@@ -22,7 +22,7 @@ Antes de instalar os nós de computação de dados para AIDE, certifique-se de q
 * Um sistema de storage AFX 1K.
 +
 
-NOTE: Para obter informações sobre a instalação do sistema de storage AFX 1K, consulte o link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["Instale seu sistema de storage AFX 1K"^].
+NOTE: Para obter informações sobre a instalação do sistema de storage AFX 1K, consulte link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["Documentação de instalação do sistema de storage AFX 1K"^].
 
 
 
@@ -51,7 +51,7 @@ Os nós de computação de dados são pesados. Tenha cuidado ao levantar e mover
 
 Tome as precauções necessárias ao mover ou levantar seu data compute node.
 
-Um nó de computação de dados pode pesar até 46,3 lbs (21 kg). Para levantar o nó de computação de dados, use duas pessoas ou um elevador hidráulico.
+Um nó de computação de dados pode pesar até 46,3 libras (21 kg). Para levantar o nó de computação de dados, use duas pessoas ou um elevador hidráulico.
 
 image::../media/drw_compute_node_lifting_weight_ieops-2743.svg[Peso de elevação do nó de computação de dados]
 
@@ -60,4 +60,4 @@ image::../media/drw_compute_node_lifting_weight_ieops-2743.svg[Peso de elevaçã
 
 
 .Qual é o próximo passo?
-Depois de analisar os requisitos de hardware, você link:prepare-hardware.html["prepare-se para instalar seus nós de computação de dados"].
+Após analisar os requisitos de hardware, link:prepare-hardware.html["prepare-se para instalar seus nós de computação de dados"].

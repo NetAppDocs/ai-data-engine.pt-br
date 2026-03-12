@@ -70,7 +70,7 @@ Você pode configurar os protocolos de rede da storage VM (SVM).
 
 . Selecione *Update data compute software*.
 +
-Se uma imagem de software de Data Compute estiver disponível para atualização, esta opção será habilitada. Selecione-a para abrir a página de atualização do software de Data Compute. Consulte também link:../administer/update-aide-firmware-software.html["Atualizar o AI Data Engine software"].
+Se uma imagem de software de Data Compute estiver disponível para atualização, esta opção será habilitada. Selecione-a para abrir a página de atualização do software de Data Compute. Para obter mais informações, consulte link:../administer/update-aide-firmware-software.html["Atualizar o AI Data Engine software"].
 
 . Selecione *Configurar rede do mecanismo de dados*.
 +

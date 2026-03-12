@@ -14,7 +14,7 @@ summary: Ligue cada shelf para atribuir um shelf ID exclusivo, ligue os nós do 
 Após instalar o hardware do rack e conectar os nós de computação de dados, você deve ligar os DCNs e os nós controladores do sistema de storage AFX, caso ainda não estejam ligados.
 
 .Antes de começar
-* Certifique-se de que suas prateleiras estejam ligadas e que cada uma tenha um ID exclusivo atribuído. Para obter informações sobre como atribuir IDs de prateleira para o sistema de storage AFX, consulte o link:https://docs.netapp.com/us-en/ontap-afx/install-setup/power-on-hardware.html#step-1-power-on-the-shelf-and-assign-shelf-id["Atribuir IDs de prateleira exclusivos"^].
+* Certifique-se de que suas prateleiras estejam ligadas e que cada uma tenha um ID exclusivo atribuído. Para obter informações sobre como atribuir IDs de prateleira para o sistema de storage AFX, consulte o link:https://docs.netapp.com/us-en/ontap-afx/install-setup/power-on-hardware.html#step-1-power-on-the-shelf-and-assign-shelf-id["documentação sobre a atribuição de IDs de shelf exclusivos"^].
 
 
 .Passos
@@ -57,4 +57,4 @@ Pode ser necessário remover o painel para acessar o botão liga/desliga; nesse 
 
 
 .Qual é o próximo passo?
-Depois de ativar os nós de computação de dados, você link:../install-setup/cluster-setup-afx.html["Configurar um cluster ONTAP AIDE"].
+Depois de ativar seus nós de computação de dados, link:../install-setup/cluster-setup-afx.html["Configurar um cluster ONTAP AIDE"].

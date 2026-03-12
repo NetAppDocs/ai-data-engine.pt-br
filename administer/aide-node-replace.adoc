@@ -84,3 +84,7 @@ ONTAP alocará um endereço IP para o novo nó. Se a versão do software do nó 
 `dcn cluster node show -instance`
 
 
+
+.Informações relacionadas
+* link:../administer/dcn-add-node.html["Expanda seu cluster de computação"]
+

@@ -119,4 +119,4 @@ Depois que a NetApp aprovar seu cadastro, você poderá baixar o software necess
 
 
 .Qual é o próximo passo?
-Depois de se preparar para instalar seus nós de computação de dados, você link:deploy-hardware.html["instale os Data Compute Node"].
+Depois de se preparar para instalar seus nós de computação de dados, link:deploy-hardware.html["instale os Data Compute Node"].

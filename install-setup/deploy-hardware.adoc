@@ -34,4 +34,4 @@ NOTE: Em geral, os switches devem ser instalados no centro do gabinete. As prate
 
 
 .Qual é o próximo passo?
-Depois de instalar os nós de computação de dados, você link:cable-hardware.html["Conecte os nós de computação de dados para AIDE"].
+Depois de instalar os nós de computação de dados, link:cable-hardware.html["Conecte os nós de computação de dados para AIDE"].

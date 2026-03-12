@@ -765,11 +765,8 @@
   <block id="e5e09031843479ef9ef8cbbd4c2f404c" category="inline-link-macro">NetApp Hardware Universe</block>
   <block id="a28718801e1a1879bc4c740387a935cd" category="paragraph">Esses procedimentos mostram configurações comuns. O cabeamento específico depende dos componentes encomendados para o seu sistema de storage. Para obter detalhes completos sobre a configuração e as prioridades dos slots, consulte <block ref="43b42c26c42f7c6fe4ef77f9f2ed17ff" category="inline-link-macro-rx"></block>.</block>
   <block id="b8813a31dec0580ca60c9211b8c31504" category="admonition">Não é necessário desligar o sistema de storage AFX 1K ao conectar os Data Compute Nodes. Você pode adicionar os Data Compute Nodes a um sistema de storage AFX 1K existente que já esteja ligado e configurado.</block>
-  <block id="8820ea58f8a7b9ba1f899988cc0bcc7e" category="inline-link-macro">Instale seu sistema de storage AFX 1K</block>
-  <block id="e8286441186e192dd0417e0b90342681" category="list-text">Você já possui um sistema de storage AFX 1K instalado. Para obter informações sobre a instalação do sistema de storage AFX 1K, consulte <block ref="6c057105940736b02f364af6d84ea81d" category="inline-link-macro-rx"></block>.</block>
   <block id="794101c4551a5d464aba13561dbdfcb7" category="list-text">Você já instalou e configurou os switches de rede necessários. Entre em contato com o administrador de rede para obter informações sobre como conectar o sistema aos switches de rede.</block>
   <block id="5438ae8fe0bf5d2f78280efdc18e8280" category="inline-link-macro">Requisitos de cabeamento para os Data Compute Node</block>
-  <block id="bc6b8966de646d62999299467e207730" category="list-text">Você revisou o <block ref="df9ffd635bc8be93ab4198a9764d5fe7" category="inline-link-macro-rx"></block>.</block>
   <block id="3e600c5ae163106b94f797b8d37531bb" category="section-title">Etapa 1: conecte os Data Compute Node à rede do host</block>
   <block id="ba9743fa4e674359437383966cb93d3a" category="paragraph">Você pode conectar as portas do Data Compute Node à sua rede host.</block>
   <block id="118345fbcadb00655f06e4cd198e4f44" category="list-text">Conecte a porta e4b dos seguintes Data Compute Node ao switch de rede Ethernet A:</block>
@@ -790,7 +787,6 @@
   <block id="4c3c38604eae6a6237406e7c21b17ea6" category="list-text">Data Compute Node 1, porta e5a</block>
   <block id="75b404150b8831865d53a73c8d5e49df" category="list-text">Data Compute Node 2, porta e5a</block>
   <block id="d8bdb0239e31e7049e331ec53560d174" category="inline-link-macro">Ligue seus data compute nodes</block>
-  <block id="b659b3546fb581caaec13f6634743878" category="paragraph">Depois de conectar os cabos do hardware, você <block ref="4a47b4628664a0cf522188fbb092ba40" category="inline-link-macro-rx"></block>.</block>
   <block id="1bea7bb4c3b67fb7e56873373a173ad4" category="summary">Saiba mais sobre a configuração de cabeamento para Data Compute Node, incluindo o uso de slots de E/S, tipos de cabos e requisitos de conexão para redes de host e cluster.</block>
   <block id="32045bb6e9ec0592350b601a788ccdce" category="doc">Requisitos para cabeamento de Data Compute Node para AI Data Engine</block>
   <block id="b0b66b711f4a262ccff9a731cc05cce3" category="paragraph">Os nós de Data Compute se integram ao seu sistema de storage AFX 1K por meio de conexões de rede do host e de rede do cluster. Revise a configuração dos slots de E/S, os tipos de cabos e os requisitos de conexão para sua implantação.</block>
@@ -856,7 +852,6 @@
   <block id="1cd087a975856327df11de8c24727816" category="section-title">Configurar AIDE com um cluster AFX existente</block>
   <block id="79e5e9e993a32c1d24149a1ab99a00f6" category="paragraph">Se você estiver adicionando um cluster de Data Compute Node a um sistema de storage AFX existente, será necessário configurar os DCNs e finalizar a configuração do seu cluster AIDE.</block>
   <block id="65f46507bff9980b186da251beea243f" category="section-title">Adicione os Data Compute Nodes ao cluster</block>
-  <block id="f9f4e6dfa867d6fadbee2179021982ce" category="paragraph">ONTAP detecta dinamicamente os novos Data Compute Node conectados à sua rede de cluster e os exibe no System Manager. Você pode <block ref="f31476c597e559edff10c8396ad56efe" category="inline-link-macro-rx"></block>. Observe também o seguinte:</block>
   <block id="f2de9ca173c14a6166010437ea58db0b" category="list-text">Os nós de Data Compute devem estar fisicamente conectados aos switches do cluster. Exatamente três DCNs são necessários ao criar um AIDE cluster.</block>
   <block id="e578c3ea135e2df360bd2b3c7d452efc" category="list-text">Você precisa ter endereços IP suficientes para a rede DCN e outras informações de configuração de rede necessárias.</block>
   <block id="74d96a5c17230f851c945568863caad2" category="section-title">Finalize a configuração do seu cluster AIDE</block>
@@ -871,7 +866,6 @@
   <block id="0d1736e8e31a21d25526ed60ca4ed657" category="list-text">Selecione *Configurar protocolos de rede*.</block>
   <block id="a6112a3104820ecf5363ca17a438fa2a" category="paragraph">Você pode configurar os protocolos de rede da storage VM (SVM).</block>
   <block id="468cfff85725ad5f71c038767aa7d0e5" category="list-text">Selecione *Update data compute software*.</block>
-  <block id="3a40cab041f6585c05ceabf8e362f05b" category="paragraph">Se uma imagem de software de Data Compute estiver disponível para atualização, esta opção será habilitada. Selecione-a para abrir a página de atualização do software de Data Compute. Consulte também <block ref="e966f8a237d0e9b99b99d834f5fe2ecd" category="inline-link-macro-rx"></block>.</block>
   <block id="a79f870ef92f37fc8b1c25bcf9b1ffa1" category="list-text">Selecione *Configurar rede do mecanismo de dados*.</block>
   <block id="67f2739e9e2d8cc78123cf3eeba619c7" category="paragraph">Esta opção exibe a página para configurar o endereço de rede do AI Data Engine.</block>
   <block id="0f18306a1d3f702e7592699af4f850f9" category="list-text">Selecione *Criar interfaces de rede entre clusters*</block>
@@ -963,7 +957,6 @@
   <block id="a6d899f314cdd20df8f4d59aca478ae8" category="list-text">Prenda o nó de computação de dados ao gabinete usando os parafusos de montagem incluídos.</block>
   <block id="353ccbfd0ab9b9e503d824a6bc057226" category="list-text">Fixe o painel na parte frontal do nó de computação de dados.</block>
   <block id="e30a01f520c71c74d7ceed0e849ca30b" category="inline-link-macro">Conecte os nós de computação de dados para AIDE</block>
-  <block id="548ea28a443d143489f072c073df763d" category="paragraph">Depois de instalar os nós de computação de dados, você <block ref="3980b3517830ec2d777c7d0167886e44" category="inline-link-macro-rx"></block>.</block>
   <block id="082b4c909289f25bf292fbd1efc1725f" category="summary">Você precisará instalar uma licença NetApp para acessar todos os recursos do AI Data Engine (AIDE). Como administrador de cluster ONTAP, você pode gerenciar as licenças usando ONTAP System Manager.</block>
   <block id="eda5245c7aa76877b2f41c80a9fe821c" category="doc">Instale uma licença AIDE em seu sistema AFX</block>
   <block id="bf59b5fa52e090d739b08baa38ea1640" category="section-title">Prepare-se para licenciar o AI Data Engine</block>
@@ -998,8 +991,6 @@
   <block id="ee68e5b99222bbc29a480fcb0d1d6ee2" category="section-title">Pré-requisitos</block>
   <block id="366c56f2f6e54f4e282605b02803862d" category="paragraph">Antes de instalar os nós de computação de dados para AIDE, certifique-se de que você tem:</block>
   <block id="f23b06a746ce876e177c6a6196286145" category="list-text">Um sistema de storage AFX 1K.</block>
-  <block id="f15992b3ead5729a349b745d488997b1" category="inline-link-macro">Instale seu sistema de storage AFX 1K</block>
-  <block id="ea0432abd4c39d4963886d922f4a17e8" category="admonition">Para obter informações sobre a instalação do sistema de storage AFX 1K, consulte o <block ref="78aacef5a151b9b9cf2f4610d698d814" category="inline-link-macro-rx"></block>.</block>
   <block id="38342a608d29c610e381db6c1bfd532c" category="section-title">Equipamentos necessários para instalação</block>
   <block id="932c06f46d2aa01c36a955878a7a1d9e" category="paragraph">Para instalar os nós de computação de dados para AIDE, você precisa dos seguintes equipamentos e ferramentas.</block>
   <block id="bb9d246c8ef7a2dd035f69ed095493f0" category="list-text">Acesso a um navegador web para configurar seus nós de computação de dados</block>
@@ -1011,18 +1002,15 @@
   <block id="e58106606682bb10c46356b63c87aaf1" category="paragraph">Os nós de computação de dados são pesados. Tenha cuidado ao levantar e mover esses itens.</block>
   <block id="6c11ed3a4af8dc2f7b618d16248e7e04" category="section-title">Pesos dos nós de computação de dados</block>
   <block id="b5e179420712f0dce203796a6bae84ee" category="paragraph">Tome as precauções necessárias ao mover ou levantar seu data compute node.</block>
-  <block id="903b6fc3c7c5a407b4c2c17bae1563d1" category="paragraph">Um nó de computação de dados pode pesar até 46,3 lbs (21 kg). Para levantar o nó de computação de dados, use duas pessoas ou um elevador hidráulico.</block>
   <block id="db874eaa8bd23db025bd708dfdf02fbe" category="image-alt">Peso de elevação do nó de computação de dados</block>
   <block id="35c124f455f44a154eb3b514029ee58a" category="inline-link">Informações de segurança e avisos regulamentares</block>
   <block id="fa81f583d8b6c7dcaf8e26a5fcf5de52" category="list-text"><block ref="fa81f583d8b6c7dcaf8e26a5fcf5de52" category="inline-link-rx"></block></block>
   <block id="d4719451e76be2b63cbc4379574f8af8" category="inline-link-macro">prepare-se para instalar seus nós de computação de dados</block>
-  <block id="143d168057f2028bf6d721060afdf078" category="paragraph">Depois de analisar os requisitos de hardware, você <block ref="36962d0c8289a56184a6c55f834a067a" category="inline-link-macro-rx"></block>.</block>
   <block id="c5c899a1a675cf6171f1b0bd26cf38ad" category="summary">Comece a instalação e configuração dos seus nós de computação de dados e implemente-os no seu ambiente ONTAP.</block>
   <block id="b44e203a59265141b15d79992f218135" category="doc">Fluxo de trabalho de instalação e configuração para nós de computação de dados para AI Data Engine</block>
   <block id="a3a99d6030b7bfab3e66259156e15dbd" category="paragraph">Para instalar e configurar seus nós de computação de dados (DCN), você revisa os requisitos de hardware, prepara seu local, instala e conecta os componentes de hardware, liga o sistema e configura seu cluster ONTAP.</block>
   <block id="7ccd978bf0dbca0a0746f98d09b99f7f" category="inline-link-macro">Revise os requisitos de instalação do hardware</block>
   <block id="6889512d643df7fa8ccfb7e52dd1181c" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block><block ref="90572de4b12061d10d3adbe91dd02ace" category="inline-link-macro-rx"></block></block>
-  <block id="0d42e01cf22c0d48df016d6dd401d5fb" category="paragraph">Certifique-se de que você já possui um sistema de storage AFX 1K instalado e, em seguida, revise os requisitos de hardware para instalar os nós de computação de dados para AIDE. Para obter informações sobre a instalação do sistema de storage AFX 1K, consulte o <block ref="78aacef5a151b9b9cf2f4610d698d814" category="inline-link-macro-rx"></block>.</block>
   <block id="2ef02acbcac74a2bf527975726a47ddc" category="inline-link-macro">Prepare-se para instalar seus nós de computação de dados</block>
   <block id="65b761c9b7abbbeca0b5bf69bc82d7a8" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block><block ref="57d90d9a41d093761f4dd9f6db8351e9" category="inline-link-macro-rx"></block></block>
   <block id="293f8966fffd4aff38846275cf9996a2" category="paragraph">Para se preparar para instalar seus nós de computação de dados, você precisa organizar o local, verificar os requisitos ambientais e elétricos e garantir que haja espaço suficiente no gabinete. Em seguida, desembale o equipamento, compare seu conteúdo com o packing slip e registre o hardware para acessar os benefícios de suporte.</block>
@@ -1038,8 +1026,6 @@
   <block id="ed7af015953fb0bba840b619136b01eb" category="paragraph">Após instalar o hardware do rack e conectar os nós de computação de dados, você deve ligar os DCNs e os nós controladores do sistema de storage AFX, caso ainda não estejam ligados.</block>
   <block id="337e9239544f1891a09a6b9c13192533" category="summary">Ligue cada shelf para atribuir um shelf ID exclusivo, ligue os nós do controlador AFX e fixe os cabos de alimentação.</block>
   <block id="8496df6ee8387022613ddc89ce82f9e4" category="doc">Ligue seus nós de computação de dados para AI Data Engine</block>
-  <block id="1057231c34be7c7dcf91de71d37a517f" category="inline-link-macro">Atribuir IDs de prateleira exclusivos</block>
-  <block id="011c6c560c3e271e6d524a1540ce1096" category="list-text">Certifique-se de que suas prateleiras estejam ligadas e que cada uma tenha um ID exclusivo atribuído. Para obter informações sobre como atribuir IDs de prateleira para o sistema de storage AFX, consulte o <block ref="85c8f165944a927c5df36b5b24e42dc9" category="inline-link-macro-rx"></block>.</block>
   <block id="7be065122c5fefd188dd2adaea8fe718" category="paragraph">Após ligar as suas prateleiras de armazenamento e atribuir os IDs exclusivos, ligue os seus DCNs e ligue os nós controladores de armazenamento, caso ainda não estejam ligados.</block>
   <block id="33c36f62f977a295a9a93ec48a27223b" category="list-text">Conecte seu laptop à porta de console serial. Isso permite que você monitore a sequência de inicialização quando os controladores são ligados.</block>
   <block id="943e3a7c8a0476b63130b5a3dfab2ef1" category="list-text">Configure a porta de console serial do laptop para 115,200 baud com N-8-1.</block>
@@ -1058,7 +1044,6 @@
   <block id="5555f21dba0c7288c23300a7fe87cd81" category="list-text">Ligue os nós de computação de dados.</block>
   <block id="be2a65d4275d3397392df6ca10446941" category="paragraph">Pode ser necessário remover o painel para acessar o botão liga/desliga; nesse caso, lembre-se de reinstalá-lo posteriormente.</block>
   <block id="33ce156e9858d918c1b56d969811ebbc" category="inline-link-macro">Configurar um cluster ONTAP AIDE</block>
-  <block id="a8d567dd1cd4e4238f332d8762966093" category="paragraph">Depois de ativar os nós de computação de dados, você <block ref="c209b4c41b8b8a46751e6876a5bec129" category="inline-link-macro-rx"></block>.</block>
   <block id="27c51e0dda139dd95822cad0516f7b35" category="summary">Prepare-se para instalar os nós de computação de dados para AI Data Engine em seu ambiente ONTAP e registre o hardware para acessar os benefícios de suporte.</block>
   <block id="8d89efe9b46db5b5f9ec296c31e95ee1" category="doc">Prepare-se para instalar seus nós de computação de dados para AI Data Engine</block>
   <block id="091ec47f94f2994330da94cd9f2af30c" category="paragraph">Prepare-se para instalar seus nós de computação de dados para AI Data Engine, preparando o local, desembalando as caixas e comparando o conteúdo das caixas com a nota de remessa, e registrando o sistema para acessar os benefícios de suporte.</block>
@@ -1105,7 +1090,6 @@
   <block id="89cc8de091278e0fb0686833ac6a7982" category="list-text">Selecione *Systems* &gt; *Register Systems*.</block>
   <block id="616ce92e68107b272305803b0da3016e" category="list-text">Insira o número de série do sistema de storage e os detalhes solicitados.</block>
   <block id="2fbc2bdcd9b44345629827ee822cf2cf" category="paragraph">Depois que a NetApp aprovar seu cadastro, você poderá baixar o software necessário. A aprovação leva até 24 horas.</block>
-  <block id="3c0af5d496c5c0d39fa007c51ceb1a85" category="paragraph">Depois de se preparar para instalar seus nós de computação de dados, você <block ref="8d80699d6ea91999991c5841195fdaf6" category="inline-link-macro-rx"></block>.</block>
   <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">Avisos legais</block>
   <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="paragraph">Avisos legais fornecem acesso a declarações de direitos autorais, marcas registradas, patentes e mais.</block>
   <block id="6016a2b341113bf496b719905398ecd2" category="section-title">Direitos autorais</block>
@@ -1515,4 +1499,22 @@
   <block id="7ca842c6b654b62693e52f6658a337fa" category="sidebar">Criar coleções de dados</block>
   <block id="e9a2a57c6909b784778f0034615bafa3" category="sidebar">Configurar espaços de trabalho</block>
   <block id="e80a572e7316601bd6ae8dcc978dc856" category="sidebar">Atribua usuários a um workspace</block>
+  <block id="7e785fd044c0f1b18cf25b7e49747bad" category="inline-link-macro">Expanda seu cluster de computação</block>
+  <block id="5f4a186931a63bd4a5b14c29fd3dcac6" category="list-text"><block ref="5f4a186931a63bd4a5b14c29fd3dcac6" category="inline-link-macro-rx"></block></block>
+  <block id="4273a5563c77b16dd7aceb65bc5f6f2f" category="inline-link-macro">Documentação de instalação do sistema de storage AFX 1K</block>
+  <block id="4ceb33132ef84a10d64402a2b335ead9" category="list-text">Você já possui um sistema de storage AFX 1K instalado. Para obter informações sobre a instalação do sistema de storage AFX 1K, consulte <block ref="91d16f8c743942a64a4fe44197be45ff" category="inline-link-macro-rx"></block>.</block>
+  <block id="43f6c91d4f0fece739597247d400b63d" category="list-text">Você revisou o <block ref="877083cb49d1afa632b7262f7cb5fd0f" category="inline-link-macro-rx"></block>.</block>
+  <block id="9aa72e2af70f149b5322b3f74fef31d3" category="paragraph">Depois de conectar os cabos do hardware, <block ref="4a47b4628664a0cf522188fbb092ba40" category="inline-link-macro-rx"></block>.</block>
+  <block id="29fc22820f59383beae9b78e0f00c89d" category="inline-link-macro">Adicione nós de computação de dados ao seu cluster AIDE</block>
+  <block id="6680ddbdb7b3311772658d225390c9f5" category="paragraph">ONTAP detecta dinamicamente os novos Data Compute Node conectados à sua rede de cluster e os exibe no System Manager. Você pode <block ref="92fd190eb6b33aabd845185d06fdf268" category="inline-link-macro-rx"></block>. Observe também o seguinte:</block>
+  <block id="5a3b3f244ac6d468c9f9e9f1e563d414" category="paragraph">Se uma imagem de software de Data Compute estiver disponível para atualização, esta opção será habilitada. Selecione-a para abrir a página de atualização do software de Data Compute. Para obter mais informações, consulte <block ref="e966f8a237d0e9b99b99d834f5fe2ecd" category="inline-link-macro-rx"></block>.</block>
+  <block id="1e52a91c8fc5152ade09d7e1b035671b" category="paragraph">Depois de instalar os nós de computação de dados, <block ref="3980b3517830ec2d777c7d0167886e44" category="inline-link-macro-rx"></block>.</block>
+  <block id="5d0e4d9b7c9c24fb2e2354166df7e64f" category="admonition">Para obter informações sobre a instalação do sistema de storage AFX 1K, consulte <block ref="91d16f8c743942a64a4fe44197be45ff" category="inline-link-macro-rx"></block>.</block>
+  <block id="51196acef57fa4702b2c79616a51c70f" category="paragraph">Um nó de computação de dados pode pesar até 46,3 libras (21 kg). Para levantar o nó de computação de dados, use duas pessoas ou um elevador hidráulico.</block>
+  <block id="fe49f456e4fe036b30f08f1261e31c76" category="paragraph">Após analisar os requisitos de hardware, <block ref="36962d0c8289a56184a6c55f834a067a" category="inline-link-macro-rx"></block>.</block>
+  <block id="ce0bc35e55364b06a87ee46623492fd8" category="paragraph">Certifique-se de que você já possui um sistema de storage AFX 1K instalado e, em seguida, revise os requisitos de hardware para instalar os nós de computação de dados para AIDE. Para obter informações sobre a instalação do sistema de storage AFX 1K, consulte <block ref="91d16f8c743942a64a4fe44197be45ff" category="inline-link-macro-rx"></block>.</block>
+  <block id="d1c8ae967ce186598cd98f11b54cf4ea" category="inline-link-macro">documentação sobre a atribuição de IDs de shelf exclusivos</block>
+  <block id="1d845d7fec926dc97ef9c9d1ae75fb4d" category="list-text">Certifique-se de que suas prateleiras estejam ligadas e que cada uma tenha um ID exclusivo atribuído. Para obter informações sobre como atribuir IDs de prateleira para o sistema de storage AFX, consulte o <block ref="2cb3ccd2ea21233c926cc907e5546ee0" category="inline-link-macro-rx"></block>.</block>
+  <block id="72b11f47a4c462a17235bf830cef5f4d" category="paragraph">Depois de ativar seus nós de computação de dados, <block ref="c209b4c41b8b8a46751e6876a5bec129" category="inline-link-macro-rx"></block>.</block>
+  <block id="69333c3b16c70d734803d338560b5f4b" category="paragraph">Depois de se preparar para instalar seus nós de computação de dados, <block ref="8d80699d6ea91999991c5841195fdaf6" category="inline-link-macro-rx"></block>.</block>
 </blocks>

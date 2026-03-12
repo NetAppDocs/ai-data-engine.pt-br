@@ -20,9 +20,9 @@ Esses procedimentos mostram configurações comuns. O cabeamento específico dep
 NOTE: Não é necessário desligar o sistema de storage AFX 1K ao conectar os Data Compute Nodes. Você pode adicionar os Data Compute Nodes a um sistema de storage AFX 1K existente que já esteja ligado e configurado.
 
 .Antes de começar
-* Você já possui um sistema de storage AFX 1K instalado. Para obter informações sobre a instalação do sistema de storage AFX 1K, consulte link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["Instale seu sistema de storage AFX 1K"^].
+* Você já possui um sistema de storage AFX 1K instalado. Para obter informações sobre a instalação do sistema de storage AFX 1K, consulte link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["Documentação de instalação do sistema de storage AFX 1K"^].
 * Você já instalou e configurou os switches de rede necessários. Entre em contato com o administrador de rede para obter informações sobre como conectar o sistema aos switches de rede.
-* Você revisou o link:../install-setup/cable-overview.html["Requisitos de cabeamento para os Data Compute Node"^].
+* Você revisou o link:../install-setup/cable-overview.html["Requisitos de cabeamento para os Data Compute Node"].
 
 
 
@@ -104,4 +104,4 @@ image::../media/drw_aide_switched_cluster_cabling_b_ieops-2650.svg[Cabo para red
 
 
 .Qual é o próximo passo?
-Depois de conectar os cabos do hardware, você link:power-on-hardware.html["Ligue seus data compute nodes"].
+Depois de conectar os cabos do hardware, link:power-on-hardware.html["Ligue seus data compute nodes"].
