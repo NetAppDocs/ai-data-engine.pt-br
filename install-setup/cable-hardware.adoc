@@ -1,0 +1,107 @@
+---
+sidebar: sidebar 
+permalink: install-setup/cable-hardware.html 
+keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, cable controllers, Cisco Nexus 9332D-GX2B, Cisco Nexus 9364D-GX2A, switches, switch, cable hardware, cable storage shelves, cable data compute nodes, cable network, cable cluster, cable host network 
+summary: Aprenda como conectar os cabos AIDE à sua rede e cabear os data compute nodes. 
+---
+= Conecte seus nós de computação de dados para AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Conecte seus nós de Data Compute Node à rede do host e aos switches de rede do cluster para habilitar o processamento de cargas de trabalho de IA e a integração com seu sistema de storage AFX 1K. Este procedimento utiliza conexões 100GbE tanto para acesso à rede do host quanto para comunicação do cluster, permitindo que os nós aproveitem a infraestrutura de cluster existente sem desligar o sistema AFX.
+
+.Sobre esta tarefa
+Esses procedimentos mostram configurações comuns. O cabeamento específico depende dos componentes encomendados para o seu sistema de storage. Para obter detalhes completos sobre a configuração e as prioridades dos slots, consulte link:https://hwu.netapp.com["NetApp Hardware Universe"^].
+
+
+NOTE: Não é necessário desligar o sistema de storage AFX 1K ao conectar os Data Compute Nodes. Você pode adicionar os Data Compute Nodes a um sistema de storage AFX 1K existente que já esteja ligado e configurado.
+
+.Antes de começar
+* Você já possui um sistema de storage AFX 1K instalado. Para obter informações sobre a instalação do sistema de storage AFX 1K, consulte link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["Instale seu sistema de storage AFX 1K"^].
+* Você já instalou e configurou os switches de rede necessários. Entre em contato com o administrador de rede para obter informações sobre como conectar o sistema aos switches de rede.
+* Você revisou o link:../install-setup/cable-overview.html["Requisitos de cabeamento para os Data Compute Node"^].
+
+
+
+
+== Etapa 1: conecte os Data Compute Node à rede do host
+
+Você pode conectar as portas do Data Compute Node à sua rede host.
+
+.Passos
+. Conecte a porta e4b dos seguintes Data Compute Node ao switch de rede Ethernet A:
++
+** Data Compute Node 1, porta e4b
+** Data Compute Node 2, porta e4b
++
+*Cabos 100GbE*
+
++
+image::../media/oie_cable100_gbe_qsfp28.png[Cabo Ethernet de 100 Gb]
+
++
+image::../media/drw_aide_network_cabling_a_ieops_2647.svg[Cabo para rede Ethernet]
+
+
+
+. Conecte a porta e5b dos seguintes Data Compute Node ao switch de rede Ethernet B:
++
+** Data Compute Node 1, porta e5b
+** Data Compute Node 2, porta e5b
++
+*Cabos 100GbE*
+
++
+image::../media/oie_cable100_gbe_qsfp28.png[Cabo Ethernet de 100 Gb]
+
++
+image::../media/drw_aide_network_cabling_b_ieops-2648.svg[Cabo para rede Ethernet]
+
+
+
+
+
+
+
+== Etapa 2: conecte os cabos do cluster de Data Compute Node
+
+Para os Data Compute Node, as portas e4a/e5a são usadas para as conexões do cluster.
+
+.Passos
+. Conecte a porta e4a dos seguintes Data Compute Node a uma porta não ISL no switch de rede do cluster A:
++
+** Data Compute Node 1, porta e4a
+** Data Compute Node 2, porta e4a
++
+*Cabos 100GbE*
+
++
+image::../media/oie_cable100_gbe_qsfp28.png[Cabo Ethernet de 100 Gb]
+
++
+image::../media/drw_aide_switched_cluster_cabling_a_ieops-2649.svg[Cabo para rede Ethernet]
+
+
+
+. Conecte a porta e5a dos seguintes Data Compute Node a uma porta não ISL no switch de rede do cluster B:
++
+** Data Compute Node 1, porta e5a
+** Data Compute Node 2, porta e5a
++
+*Cabos 100GbE*
+
++
+image::../media/oie_cable100_gbe_qsfp28.png[Cabo Ethernet de 100 Gb]
+
++
+image::../media/drw_aide_switched_cluster_cabling_b_ieops-2650.svg[Cabo para rede Ethernet]
+
+
+
+
+
+.Qual é o próximo passo?
+Depois de conectar os cabos do hardware, você link:power-on-hardware.html["Ligue seus data compute nodes"].

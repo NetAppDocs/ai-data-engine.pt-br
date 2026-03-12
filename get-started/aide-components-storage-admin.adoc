@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: get-started/aide-components-storage-admin.html 
+keywords: aide, architecture, ontap, storage administrator, system manager, workspaces, guardrails 
+summary: Aprenda como os administradores de storage interagem com os componentes do AIDE para gerenciar a infraestrutura do cluster, provisionar workspaces e aplicar políticas de governança. 
+---
+= Saiba como os administradores de storage do AI Data Engine trabalham com os componentes do AIDE
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Como administrador de storage, você gerencia a infraestrutura do AIDE por meio do ONTAP e do AIDE Console, provisionando workspaces, aplicando políticas de guardrail e monitorando a integridade do sistema. Sua função se concentra em garantir um storage confiável, seguro e em conformidade para cargas de trabalho de IA.
+
+
+
+== Acesso do administrador de storage ao componente
+
+[cols="2h,2,3"]
+|===
+| Componente | Nível de acesso | Fluxo de trabalho do administrador de storage 
+
+
+| ONTAP System Manager | Gerenciar (criar, editar, excluir) | Você utiliza ONTAP System Manager como sua interface principal para administração de cluster, provisionamento de workspace, gerenciamento de políticas de guardrail e monitoramento da integridade do sistema. 
+
+
+| AI Data Engine Console | Gerenciar (criar, editar, excluir) | Você utiliza o AI Data Engine Console para monitorar espaços de trabalho, visualizar o status da coleta e supervisionar a atividade do sistema em todo o ambiente AIDE. 
+
+
+| API REST do ONTAP | Gerenciar (criar, editar, excluir) | Você utiliza a API REST para automatizar tarefas de infraestrutura, gerenciar workspaces e políticas de guardrail de forma programática e integrar a administração do AIDE com ferramentas e fluxos de trabalho externos. 
+
+
+| Espaços de trabalho | Gerenciar (criar, editar, excluir) | Você cria e gerencia espaços de trabalho usando ONTAP System Manager. Você seleciona quais fontes de dados são incluídas, atribui permissões a engenheiros de dados e cientistas de dados, e vincula políticas de proteção para impor governança e conformidade. Você também monitora a integridade do espaço de trabalho e o acesso. 
+
+
+| Coletas de dados | Visualizar (somente leitura) | Você visualiza o status e a integridade das coleções de dados em cada espaço de trabalho usando System Manager. Você garante que as fontes de dados subjacentes estejam disponíveis e protegidas, mas não cria ou modifica coleções. 
+
+
+| Guardrails | Gerenciar (criar, editar, excluir) | Você define e associa políticas de guardrail a workspaces usando System Manager. Você monitora o status do guardrail e os relatórios de conformidade. Você garante que as políticas sejam aplicadas e atualizadas conforme necessário. 
+
+
+| Catálogo de metadados | Monitorar (visualizar saúde, status, atividade) | Você garante que o catálogo de metadados esteja preenchido e atualizado. Você monitora a integridade do catálogo e oferece suporte ao controle de acesso. 
+
+
+| Banco de dados vetorial | Provisionar/Monitorar (implantar, configurar, visualizar status) | Você provisiona e monitora a infraestrutura do banco de dados vetorial, garantindo que os nós de computação de dados com recursos de GPU e licenciamento adequado estejam em vigor. Você dá suporte ao ambiente, mas não gerencia embeddings ou consultas diretamente. 
+
+
+| Classificadores | Gerenciar (criar, editar, excluir) | Você cria, configura e gerencia classificadores e suas categorias. Você aplica classificadores a espaços de trabalho e monitora sua eficácia. 
+|===

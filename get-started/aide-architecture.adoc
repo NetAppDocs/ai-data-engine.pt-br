@@ -1,0 +1,150 @@
+---
+sidebar: sidebar 
+permalink: get-started/aide-architecture.html 
+keywords: aide, architecture, ontap, physical components, logical components, networking, security 
+summary: AIDE é construído sobre uma arquitetura escalável e tolerante a falhas que separa storage e processamento, permitindo alto desempenho e flexibilidade para cargas de trabalho de IA. 
+---
+= Arquitetura do AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+AIDE é construído sobre uma arquitetura escalável e tolerante a falhas que separa storage e processamento, permitindo alto desempenho e flexibilidade para cargas de trabalho de IA.
+
+
+
+== Componentes físicos
+
+image::../media/aide-system-architecture.png[Diagrama da arquitetura do AI Data Engine]
+
+
+
+=== Nós controladores AFX
+
+Os nós controladores AFX executam uma personalidade especializada do ONTAP projetada para atender aos requisitos do ambiente AFX. Os clientes acessam os nós por meio de múltiplos protocolos, incluindo NFS e SMB. Cada nó possui uma visão completa do storage, ao qual pode acessar com base nas solicitações do cliente. Os nós são stateful, com memória não volátil para persistir informações críticas de estado e incluem melhorias adicionais específicas para as cargas de trabalho de destino.
+
+São necessários pelo menos quatro nós controladores AFX para implantações do AIDE, a fim de garantir alta disponibilidade e desempenho.
+
+
+
+=== Nós de computação de dados
+
+Os nós de computação de dados (DCNs, na sigla em inglês) são servidores baseados em Linux com recursos avançados de CPU, RAM e GPU, dedicados a tarefas de processamento de dados de IA. Eles hospedam serviços específicos de IA, como catalogação de metadados, busca vetorial e pipelines de incorporação.
+
+São necessários exatamente _três_ DCNs para implantações do AIDE.
+
+
+
+=== Switches de cluster/storage
+
+Switches redundantes de alta velocidade (100GbE ou superior) conectam ONTAP e DCNs para transferência de dados com baixa latência e alta disponibilidade.
+
+
+
+=== Prateleiras de storage
+
+Os chassis NVMe-oF com SSDs de alta densidade oferecem latência ultrabaixa e redundância, suportando armazenamento em escala de PB.
+
+
+
+== Rede
+
+Todos os DCNs e nós de armazenamento ONTAP são conectados por meio de switches de cluster redundantes e de alta velocidade (mínimo 100GbE). Essa arquitetura separa recursos de computação e de storage, permitindo que cada um seja dimensionado independentemente e otimizando tanto o desempenho quanto a utilização de recursos.
+
+A comunicação entre DCNs e os nós do ONTAP é isolada por meio de VLANs e IPspaces dedicados nos switches do cluster. Isso garante que todas as comunicações, como acesso a dados, APIs de gerenciamento e tráfego de serviços internos, permaneçam seguras, eficientes e não interfiram em outras operações de rede.
+
+
+
+== Principais funcionalidades do AI Data Engine
+
+Os principais recursos do AI Data Engine (AIDE) trabalham juntos para automatizar, proteger e acelerar o ciclo de vida dos dados de IA. Cada recurso é implementado como um conjunto de microsserviços em execução em DCNs, integrados ao storage ONTAP e expostos por meio de APIs REST e interfaces de gerenciamento.
+
+
+
+=== Metadata Engine
+
+O Metadata Engine gera automaticamente uma visão estruturada, atualizada e interativa do seu conjunto de dados NetApp.
+
+.Licença e acesso
+O Metadata Engine está incluído na licença básica do ONTAP One e está disponível após a instalação do AIDE.
+
+Você pode acessá-lo por meio do ONTAP System Manager.
+
+.Capacidades
+* Cataloga metadados de todas as fontes de dados, incluindo volumes armazenados localmente no cluster AFX e aqueles sincronizados de clusters ONTAP remotos.
+* Extrai metadados automaticamente e preenche o catálogo à medida que os dados são ingeridos ou alterados.
+* Fornece acesso à API REST para consulta de metadados, permitindo que profissionais de dados e administradores de storage descubram, classifiquem e compreendam os dados.
+* Descarrega as consultas de metadados do caminho de dados, reduzindo a carga de tráfego NFS nos sistemas de storage.
+* Suporta grandes registros de metadados com recursos de indexação e pesquisa.
+* Integra-se com abstrações de espaço de trabalho e coleta de dados para aplicar controle de acesso e governança.
+
+
+
+
+=== Sincronização de dados
+
+O Data Sync é um serviço automatizado em segundo plano que garante que o catálogo de metadados e as coleções de dados permaneçam atualizados e consistentes com as fontes de dados subjacentes, mesmo quando os dados de origem são alterados.
+
+.Licença e acesso
+A funcionalidade Data Sync não está incluída na licença básica do ONTAP One e requer uma licença AIDE separada.
+
+.Capacidades
+* Sincroniza dados de clusters ONTAP remotos ou locais usando replicação SnapMirror voltada a políticas. Os dados dos clusters remotos são copiados para o cluster AFX local para processamento AIDE.
+* Atualiza incrementalmente com base nas alterações detectadas, propagando apenas os dados modificados.
+* Proporciona mobilidade de dados segura e incremental e sincronização em todo o ambiente de dados.
+* Agenda e monitora intervalos de sincronização com taxas de atualização configuráveis por workspace.
+* Integra-se aos fluxos de trabalho de criação de workspaces para extrair e atualizar metadados à medida que novas fontes de dados são adicionadas.
+
+
+
+
+=== Data Guardrails
+
+O serviço Data Guardrails oferece governança e proteção contínuas e automatizadas para dados confidenciais ao longo de todo o ciclo de vida da IA.
+
+.Licença e acesso
+A funcionalidade Data Guardrails não está incluída na licença básica do ONTAP One e requer uma licença AIDE separada.
+
+Você pode acessar a funcionalidade de Data Guardrails através do AI Data Engine Console.
+
+.Capacidades
+* Analisa, classifica e categoriza dados continuamente.
+* Identifica dados confidenciais e riscos usando classificadores incorporados e personalizáveis para tarefas como detecção de PII.
+* Automatiza o tratamento de dados confidenciais por meio de redação, mascaramento e restrições de acesso voltados a políticas.
+* Garante o cumprimento dos padrões da empresa e dos regulamentos por meio de políticas de Data Guardrails vinculadas aos workspaces.
+* Restringe o acesso a arquivos ou volumes confidenciais conforme configurado, com registro de auditoria e relatórios de conformidade.
+* Integra-se com o gerenciamento de espaço de trabalho e coleta de dados para aplicar guardrails de forma consistente em todos os fluxos de trabalho de dados de IA.
+
+
+
+
+=== Data Curator
+
+O serviço Data Curator permite a descoberta, busca, vetorização e recuperação rápidas de dados para aplicações de IA e GenAI.
+
+.Licença e acesso
+A funcionalidade Data Curator não está incluída na licença básica do ONTAP One e requer uma licença AIDE separada.
+
+Você pode acessar o Data Curator através do AI Data Engine Console.
+
+.Capacidades
+* Pesquisa o storage por dados relevantes usando o catálogo de metadados centralizado.
+* Fornece ferramentas para cientistas de dados criarem coleções de dados curadas.
+* Gera representações vetoriais automaticamente na camada de storage.
+* Fornece um ponto de extremidade de recuperação seguro para aplicações de IA, suportando busca semântica vetorial e reclassificação.
+* Integra-se com ferramentas e tecnologias de IA, incluindo pipelines de Geração Aumentada por Recuperação (RAG) e frameworks de IA agentic.
+* Fornece API REST para acesso programático a coleções de dados, pesquisa vetorial e endpoints de recuperação.
+
+
+
+
+== Segurança e alocação a vários clientes
+
+A plataforma aplica tanto o controle de acesso baseado em funções (RBAC) quanto as listas de controle de acesso em nível de recurso (ACLs). Todas as ações de API e de usuários são auditadas, e todos os dados são criptografados em repouso e em trânsito. Os locatários individuais são isolados para dados e metadados.
+
+.Informações relacionadas
+* link:../install-setup/install-license-task.html["Instale uma licença AIDE"]
+* link:../vectorization/zero-to-rag.html["Início rápido de Data-to-RAG"]
+

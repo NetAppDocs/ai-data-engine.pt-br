@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: administer/aide-node-replace.html 
+keywords:  
+summary:  
+---
+= Substitua um nó no seu AIDE cluster
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você precisa substituir um nó de computação de dados (DCN) em seu AI Data Engine (AIDE) cluster se ele parar de funcionar ou precisar ser trocado devido a falha de hardware, upgrade ou manutenção. Isso garante que o cluster do AI Data Engine (AIDE) permaneça íntegro e operacional. O procedimento pode ser realizado sem interromper os serviços em andamento.
+
+
+
+== Prepare-se para substituir um nó
+
+Há vários fatores a considerar antes de substituir um nó no seu AIDE cluster.
+
+.Credenciais do System Manager
+Você precisa de privilégios de _administrador de storage_ para executar tarefas de substituição de nó de cluster AIDE.
+
+
+
+=== Restrições
+
+Você deve estar ciente das seguintes restrições ao substituir um nó no AIDE cluster:
+
+* A substituição de nó só é suportada usando a CLI e, opcionalmente, a API REST.
+* Não é possível realizar a substituição de nó usando System Manager.
+* O novo nó deve corresponder à versão do software do cluster; ONTAP atualizará se necessário.
+* O nó com falha não deve ser ligado enquanto estiver conectado à rede do cluster para evitar conflitos de endereço IP.
+
+
+
+
+=== Requisitos
+
+Você precisará do seguinte:
+
+* Número de série do novo nó de substituição
+
+
+
+
+== Substitua um nó DCN no seu cluster AIDE
+
+Você pode substituir um nó DCN em seu AIDE cluster usando o seguinte procedimento.
+
+.Passos
+. Remova fisicamente o nó com defeito
++
+Desligue e desconecte o nó da rede do cluster. Certifique-se de que o nó não esteja inicializado na rede durante o processo de substituição.
+
+. Exclua o nó com falha do cluster usando o seguinte comando:
++
+`dcn cluster node delete -name <node_name> -force true`
+
++
+Forneça o nome real para o valor <node_name>.
+
+. Conecte fisicamente o novo nó ao cluster
++
+Certifique-se de que o nó esteja conectado por cabo, ligado e detectável.
+
+. Visualize os nós detectáveis e não configurados para verificar se o novo nó está online:
++
+`dcn cluster node show -membership available`
+
+. Adicione o nó ao cluster usando o seguinte comando:
++
+`dcn cluster node create -serial-number <new_node_serial>`
+
++
+ONTAP alocará um endereço IP para o novo nó. Se a versão do software do nó não corresponder à do cluster, ONTAP atualizará automaticamente o nó.
+
+. Verifique a integridade do cluster e a integração do nó com um dos seguintes comandos:
++
+`dcn cluster node show`
+
++
+`dcn cluster node show -instance`
+
+

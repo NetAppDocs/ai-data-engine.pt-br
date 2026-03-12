@@ -1,0 +1,37 @@
+---
+sidebar: sidebar 
+permalink: install-setup/deploy-hardware.html 
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, hardware, deploy, 
+summary: Aprenda como instalar os kits de trilhos e fixar os nós de computação de dados no gabinete. 
+---
+= Instale seus nós de computação de dados para AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Instale e proteja seus nós de data compute no gabinete.
+
+.Antes de começar
+* Certifique-se de que você tenha as instruções embaladas com o kit de trilhos.
+* Compreenda as questões de segurança relacionadas ao peso do nó de computação de dados, sistema de storage e storage shelf.
+* Entenda que o fluxo de ar através do sistema de storage entra pela frente, onde o painel ou as tampas laterais estão instaladas, e sai pela parte traseira, onde as portas estão localizadas.
+
+
+
+NOTE: Em geral, os switches devem ser instalados no centro do gabinete. As prateleiras de armazenamento devem ser instaladas abaixo do switch e acima de um segundo switch instalado. Os nós controladores podem ser instalados acima ou abaixo dos switches dentro do gabinete. Os nós de computação de dados podem ser instalados acima ou abaixo dos nós controladores dentro do gabinete.
+
+.Passos
+. Instale os kits de trilhos para seus data compute nodes, conforme necessário, usando as instruções incluídas com os kits.
+. Instale e proteja seus nós de computação de dados no gabinete:
++
+.. Posicione o nó de computação de dados nos trilhos no meio do gabinete e, em seguida, apoie o appliance pela parte inferior e deslize-o para o lugar.
+.. Prenda o nó de computação de dados ao gabinete usando os parafusos de montagem incluídos.
+
+
+. Fixe o painel na parte frontal do nó de computação de dados.
+
+
+.Qual é o próximo passo?
+Depois de instalar os nós de computação de dados, você link:cable-hardware.html["Conecte os nós de computação de dados para AIDE"].

@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: get-started/aide-components-data-users.html 
+keywords: aide, data engineer, data scientist, ai data engine console, data collections, vector database, metadata catalog, rag endpoints 
+summary: Aprenda como engenheiros de dados e cientistas de dados interagem com os componentes do AIDE para descobrir dados, construir e organizar coleções, gerenciar pipelines, realizar buscas semânticas e integrar fluxos de trabalho de IA. 
+---
+= Aprenda como engenheiros de dados e cientistas de dados do AI Data Engine trabalham com os componentes do AIDE
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Como engenheiro de dados ou cientista de dados, você usa o AI Data Engine Console para explorar workspaces aos quais você recebeu acesso, criar e gerenciar data collections, realizar buscas semânticas e integrar retrieval endpoints em workflows de IA/ML.
+
+Os engenheiros de dados se concentram em transformar dados brutos em conjuntos de dados prontos para IA, criando coleções, configurando pipelines de incorporação e controlando quais usuários podem acessar as coleções publicadas. Os cientistas de dados se concentram em aproveitar conjuntos de dados selecionados para análise, treinamento de modelos e aplicações GenAI, sem gerenciar controle de acesso ou infraestrutura.
+
+
+
+== Acesso do usuário de dados ao componente
+
+[cols="2h,2,3,3"]
+|===
+| Componente | Nível de acesso | Fluxo de trabalho do engenheiro de dados | Fluxo de trabalho do cientista de dados 
+
+
+| AI Data Engine Console | Gerenciar (criar, editar, excluir) | O AI Data Engine Console é sua interface principal para tarefas do dia a dia, incluindo descoberta de dados, gerenciamento de coleta, configuração de pipeline e publicação de endpoints RAG ou de recuperação, para os workspaces que você está autorizado a acessar. | O AI Data Engine Console é sua interface principal para exploração de dados, refinamento e versionamento de coleções dentro dos workspaces aos quais você pode acessar, além de conectar conjuntos de dados selecionados e endpoints de recuperação a fluxos de trabalho de análise, modelagem e GenAI. 
+
+
+| API REST do ONTAP | Gerenciar (criar, editar, excluir) | Você utiliza a API REST para automatizar operações do ciclo de vida da coleta, acionar e monitorar pipelines de incorporação e integrar programaticamente fluxos de trabalho de dados com ferramentas externas. | Você utiliza a API REST para acessar programaticamente coleções de dados, executar consultas de busca vetorial e integrar endpoints de recuperação em aplicações de IA/ML e frameworks agentic. 
+
+
+| Espaços de trabalho | Visualizar/usar (somente leitura) | Você explora seus espaços de trabalho atribuídos para identificar e compreender as fontes de dados disponíveis antes de criar coleções. | Você pesquisa em seus espaços de trabalho atribuídos para localizar arquivos e objetos relevantes para tarefas específicas de pesquisa ou modelagem. 
+
+
+| Coletas de dados | Gerenciar (criar, editar, excluir) | Você cria coleções de dados selecionando e filtrando dados de origem usando tags, classificação e outros atributos, e gerencia todo o ciclo de vida da coleção, desde a criação e versionamento até a publicação como endpoints RAG para uso em IA. Você também gerencia quais cientistas de dados e outros usuários podem acessar cada coleção. | Você cria, seleciona, anota, versiona e refina coleções de dados dentro dos espaços de trabalho aos quais você tem acesso. Você usa essas coleções como base para busca semântica e fluxos de trabalho GenAI. 
+
+
+| Catálogo de metadados | Consultar/utilizar (consumir para fluxos de trabalho) | Você utiliza o catálogo de metadados para avaliar e selecionar fontes de dados para ingestão, executando consultas para localizar arquivos relevantes e confirmar se eles atendem aos requisitos das coleções que você está criando em seus espaços de trabalho atribuídos. | Você pesquisa e filtra metadados nos workspaces aos quais tem acesso para localizar arquivos e objetos necessários para análise ou treinamento de modelos, contando com a estrutura de catálogo que foi criada e é mantida por engenheiros de dados. 
+
+
+| Banco de dados vetorial  a| 
+* Gerenciar embeddings/busca (engenheiro de dados)
+* Usar/pesquisar (cientista de dados)
+
+| Você aciona pipelines de incorporação, monitora o status da vetorização, configura parâmetros de fragmentação e incorporação e expõe endpoints de recuperação com suporte de busca vetorial. Aplicativos e agentes então consultam esses endpoints via a API para busca semântica e fluxos de trabalho RAG. | Você executa consultas de busca semântica em embeddings gerados por pipelines gerenciados por engenheiros de dados e integra os resultados da recuperação em fluxos de trabalho GenAI ou RAG para respostas de modelos sensíveis ao contexto. Você não configura o particionamento, os embeddings ou os parâmetros do pipeline. 
+
+
+| Classificadores | Usar (consumir dados classificados) | Você utiliza os resultados da classificação para anotar e etiquetar os dados de origem durante a preparação da coleta, garantindo que o conteúdo que entra em seus pipelines esteja devidamente rotulado para fluxos de trabalho de IA downstream. | Você consome dados pré-classificados para garantir que apenas conteúdo em conformidade e relevante seja usado em suas análises e modelagem. 
+|===

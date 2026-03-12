@@ -1,0 +1,60 @@
+---
+sidebar: sidebar 
+permalink: install-setup/power-on-hardware.html 
+keywords: aide, ai, data engine, ai data engine dcn, data compute node, afx, afx 1k, power on, 
+summary: Ligue cada shelf para atribuir um shelf ID exclusivo, ligue os nós do controlador AFX e fixe os cabos de alimentação. 
+---
+= Ligue seus nós de computação de dados para AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Após instalar o hardware do rack e conectar os nós de computação de dados, você deve ligar os DCNs e os nós controladores do sistema de storage AFX, caso ainda não estejam ligados.
+
+.Antes de começar
+* Certifique-se de que suas prateleiras estejam ligadas e que cada uma tenha um ID exclusivo atribuído. Para obter informações sobre como atribuir IDs de prateleira para o sistema de storage AFX, consulte o link:https://docs.netapp.com/us-en/ontap-afx/install-setup/power-on-hardware.html#step-1-power-on-the-shelf-and-assign-shelf-id["Atribuir IDs de prateleira exclusivos"^].
+
+
+.Passos
+Após ligar as suas prateleiras de armazenamento e atribuir os IDs exclusivos, ligue os seus DCNs e ligue os nós controladores de armazenamento, caso ainda não estejam ligados.
+
+. Conecte seu laptop à porta de console serial. Isso permite que você monitore a sequência de inicialização quando os controladores são ligados.
++
+.. Configure a porta de console serial do laptop para 115,200 baud com N-8-1.
++
+Consulte a ajuda online do seu laptop para obter instruções sobre como configurar a porta de console serial.
+
+.. Conecte o cabo de console ao laptop e conecte a porta de console serial no controlador usando o cabo de console que veio com o seu sistema de storage.
+.. Conecte o laptop ao switch na sub-rede de gerenciamento.
++
+image::../media/drw_afx_1k_console_connection_ieops-2708.svg[Conexões do console]
+
+
+
+
+
+. Atribua um endereço TCP/IP ao laptop, usando um que esteja na sub-rede de gerenciamento.
+. Conecte os cabos de alimentação às fontes de alimentação do controlador e, em seguida, conecte-os a fontes de alimentação em circuitos diferentes.
++
+image::../media/drw_affa1k_power_source_icon_ieops-1700.svg[Um diagrama de conexão de energia]
+
++
+** O sistema começa a inicializar. A inicialização inicial pode levar até oito minutos.
+** Os LEDs piscam e as ventoinhas ligam, o que indica que os controladores estão sendo ligados.
+** Os ventiladores podem fazer barulho ao iniciar, o que é normal.
+
+
+
+
+. Conecte os cabos de alimentação às fontes de alimentação do nó de computação de dados e, em seguida, conecte-os a fontes de alimentação em circuitos diferentes.
+. Prenda os cabos de alimentação usando o dispositivo de fixação em cada fonte de alimentação.
+. Ligue os nós de computação de dados.
++
+Pode ser necessário remover o painel para acessar o botão liga/desliga; nesse caso, lembre-se de reinstalá-lo posteriormente.
+
+
+
+.Qual é o próximo passo?
+Depois de ativar os nós de computação de dados, você link:../install-setup/cluster-setup-afx.html["Configurar um cluster ONTAP AIDE"].

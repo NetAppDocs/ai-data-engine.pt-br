@@ -1,0 +1,34 @@
+---
+sidebar: sidebar 
+permalink: install-setup/install-workflow.html 
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, workflow, 
+summary: Comece a instalação e configuração dos seus nós de computação de dados e implemente-os no seu ambiente ONTAP. 
+---
+= Fluxo de trabalho de instalação e configuração para nós de computação de dados para AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para instalar e configurar seus nós de computação de dados (DCN), você revisa os requisitos de hardware, prepara seu local, instala e conecta os componentes de hardware, liga o sistema e configura seu cluster ONTAP.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Um"]link:install-setup-requirements.html["Revise os requisitos de instalação do hardware"]
+[role="quick-margin-para"]
+Certifique-se de que você já possui um sistema de storage AFX 1K instalado e, em seguida, revise os requisitos de hardware para instalar os nós de computação de dados para AIDE. Para obter informações sobre a instalação do sistema de storage AFX 1K, consulte o link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["Instale seu sistema de storage AFX 1K"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Dois"]link:prepare-hardware.html["Prepare-se para instalar seus nós de computação de dados"]
+[role="quick-margin-para"]
+Para se preparar para instalar seus nós de computação de dados, você precisa organizar o local, verificar os requisitos ambientais e elétricos e garantir que haja espaço suficiente no gabinete. Em seguida, desembale o equipamento, compare seu conteúdo com o packing slip e registre o hardware para acessar os benefícios de suporte.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Três"]link:deploy-hardware.html["Instale o hardware para seus nós de computação de dados"]
+[role="quick-margin-para"]
+Instale os kits de trilhos para seus nós de computação de dados. Fixe seus nós de computação de dados dentro do gabinete. Por fim, conecte os dispositivos de gerenciamento de cabos na parte traseira do sistema para organização dos cabos.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatro"]link:cable-hardware.html["Conecte seus nós de computação de dados"]
+[role="quick-margin-para"]
+Para conectar o hardware, primeiro conecte os nós de computação de dados à sua rede de dados e cluster, depois conecte os nós de computação de dados aos switches do cluster.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinco"]link:power-on-hardware.html["Ligue seus nós de computação de dados"]
+[role="quick-margin-para"]
+Após instalar o hardware do rack e conectar os nós de computação de dados, você deve ligar os DCNs e os nós controladores do sistema de storage AFX, caso ainda não estejam ligados.

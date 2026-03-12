@@ -1,0 +1,8 @@
+---
+section: release-notes
+title: Notas de lançamento
+entries:
+- title: O que há de novo no AIDE 9.18.1
+  url: "/release-notes/whats-new.html"
+- title: Limitações conhecidas do AIDE
+  url: "/release-notes/known-limitations.html"

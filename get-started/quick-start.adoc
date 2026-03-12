@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: get-started/quick-start.html 
+keywords: ai, data engine, get started, getting started, quick start, install, set up 
+summary: Para começar a usar um AI Data Engine system, instale o hardware, configure o cluster, configure o acesso aos dados e provisione armazenamento para os workspaces que serão usados com workloads de IA. 
+---
+= Guia rápido para AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para colocar seu AI Data Engine system em funcionamento, você precisa instalar os componentes de hardware, configurar seu cluster, configurar o acesso aos dados dos seus hosts ao sistema de storage e provisionar seu armazenamento.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Um"] AIDE será instalado em um cluster AFX novo ou já existente?
+[role="quick-margin-para"]
+Você precisa decidir se AIDE e AFX serão instalados juntos ao mesmo tempo ou se AIDE será integrado a um cluster AFX existente.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Dois"] Instale e configure seu hardware
+[role="quick-margin-para"]
+link:../install-setup/aide-hardware-requirements.html["Instale e configure"] seus nós de computação do cluster AIDE. Dependendo do ambiente de instalação, certifique-se também de  https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["instalar"^] o hardware AFX.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Três"] Configure seu cluster
+[role="quick-margin-para"]
+Use ONTAP System Manager para guiá-lo por um processo rápido e fácil para link:../install-setup/cluster-setup-afx.html["Configure o AIDE com um cluster AFX"].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatro"]Configure os espaços de trabalho e o acesso aos dados
+[role="quick-margin-para"]
+link:../workspaces/create-workspace.html["Configure um espaço de trabalho e usuários para esse espaço de trabalho que podem acessar os dados do AI Data Engine"].
+
+.Qual é o próximo passo?
+Agora você pode usar ONTAP System Manager para gerenciar seu AI Data Engine e fazer com que seus engenheiros de dados e cientistas de dados comecem com seus workspaces e configurações.

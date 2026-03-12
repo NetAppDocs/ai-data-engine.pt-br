@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: get-started/aide-interfaces.html 
+keywords: aide, interfaces, ontap, architecture 
+summary: AIDE oferece três interfaces principais para interação do usuário e automação. 
+---
+= Interfaces do AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+AI Data Engine (AIDE) fornece três interfaces principais para interação do usuário e automação. Cada função, como administradores de storage, engenheiros de dados e cientistas de dados, utiliza essas interfaces de acordo com suas tarefas e responsabilidades específicas.
+
+
+
+== ONTAP System Manager
+
+ONTAP System Manager é uma interface Web projetada para administradores de storage. Ele fornece fluxos de trabalho para configuração de cluster, gerenciamento de espaço de trabalho, monitoramento de DCN e aplicação de políticas de guardrail.
+
+
+
+== AI Data Engine Console
+
+AI Data Engine Console é uma interface dedicada para engenheiros de dados e cientistas de dados. Ela permite que os usuários explorem fontes de dados, criem e gerenciem coleções de dados, configurem pipelines de dados, apliquem classificadores e interajam com recursos de proteção e busca vetorial. O console fornece ferramentas avançadas para descoberta, curadoria e integração com fluxos de trabalho de IA/ML.
+
+
+
+== API REST
+
+AIDE expõe a API REST do ONTAP para automação, integração e acesso programático. A API oferece suporte à configuração de clusters, gerenciamento de espaços de trabalho e coleções, consultas de metadados, busca vetorial e endpoints de recuperação.

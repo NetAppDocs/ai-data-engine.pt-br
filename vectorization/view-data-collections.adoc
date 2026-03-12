@@ -1,0 +1,120 @@
+---
+sidebar: sidebar 
+permalink: vectorization/view-data-collections.html 
+keywords: aide, data collections, monitor collections, vector database, ai data engine, data engineer, data scientist, activity 
+summary: Use as ferramentas do AI Data Engine para visualizar coleções de dados, acompanhar tarefas de indexação e publicação e compreender a pegada vetorial em espaços de trabalho. 
+---
+= Visualizar coleções de dados no AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Depois que engenheiros de dados ou cientistas de dados criam e publicam coleções de dados a partir de workspaces, você precisa de visibilidade sobre o status, tamanho e impacto dessas coleções no AI Data Engine cluster.
+
+Se você for um administrador de storage, engenheiro de dados ou cientista de dados, poderá visualizar data collections no ONTAP System Manager e AIDE Console.
+
+.Antes de começar
+* Você precisa de privilégios de _administrador de storage_ no ONTAP System Manager ou de _engenheiro de dados_ ou _cientista de dados_ no AI Data Engine Console (`\https://<cluster_management_ip>/console` para visualizar coleções de dados.
+* Existe pelo menos um espaço de trabalho com metadados extraídos com sucesso.
+* Engenheiros de dados ou cientistas de dados criaram e publicaram pelo menos uma data collection no AI Data Engine Console.
+* A licença do AI Data Engine software está instalada e os recursos de inferência estão ativados, de modo que os endpoints de vetorização e recuperação estejam ativos.
+
+
+
+
+== Visualizar coleta de dados de todo o cluster
+
+Para administradores de storage, ONTAP System Manager fornece uma visão de todo o cluster das coletas de dados e seu footprint, mas não permite que os administradores as criem ou modifiquem.
+
+.Passos
+. No System Manager, navegue até *Data Engine > data collections*.
+. Confira o resumo do inventário no topo da página:
++
+** Número total de coleta de dados por status
+** Espaço total consumido pelo banco de dados de vetores em todas as coleções
+** Espaço vetorial como porcentagem da capacidade total do cluster
+
+
+. Selecione uma coleta de dados e revise:
++
+** Nome e descrição da coleção
+** UUID
+** Espaço de trabalho associado
+** Status
+** Tamanho da coleção
+** Criador
+** Última atualização
+
+
+
+
+.Resultado
+Agora você tem uma visão de alto nível de todas as coletas de dados no cluster e seu impacto no armazenamento. Use essa visão para identificar coletas que são grandes, desatualizadas ou que estão em um estado não pronto.
+
+Você também pode verificar se uma coleta de dados está sendo atualizada ativamente e se alguma falha está bloqueando o uso do RAG.
+
+
+
+== Monitorar trabalhos e eventos relacionados à coleta
+
+Como administrador de storage, você pode monitorar tarefas que criam e atualizam coleções na página *Activity* de todo o cluster e nos detalhes do espaço de trabalho.
+
+.Passos
+. No System Manager, navegue até *AI Data Engine > Activity*.
+. Na aba *Eventos*:
++
+.. Filtre por tipo (por exemplo, workspace, coleta de dados) ou gravidade.
+.. Expanda qualquer evento relacionado à coleta de dados (por exemplo, "Data collection publish failed") para ver mais detalhes.
+
+
+. Na aba *Jobs*:
++
+.. Filtre para focar em coleta de dados, indexação e publicação.
+.. Para cada tarefa, abra a pré-visualização para ver:
++
+*** Porcentagem de progresso.
+*** Horários de início e término.
+*** Quaisquer mensagens de erro ou avisos relatados.
+
+
+
+
+. Opcionalmente, volte ao espaço de trabalho afetado (*Data Engine > Workspaces*) e abra a guia *Atividade* para ver os eventos e trabalhos restritos a esse espaço de trabalho.
+
+
+.Resultado
+Você pode acompanhar o ciclo de vida de coletas de dados, identificar trabalhos paralisados ou com falha e reunir informações contextuais para repassar a data engineers, data scientists ou suporte.
+
+
+TIP: Quando uma coleta de dados permanece em  `Publishing` estado por um período prolongado, verifique se há uma tarefa de longa duração correspondente na página Activity antes de presumir uma falha.
+
+
+
+== Visualize as coleções de dados do AIDE Console
+
+Engenheiros de dados e cientistas de dados normalmente monitoram coleta de dados diretamente do AIDE Console, onde são criadas e publicadas.
+
+.Passos
+. Faça login no AIDE Console como data engineer ou data scientist.
+. Navegue até *Coleções de Dados* e selecione a data collection desejada.
+. Para cada coleção:
++
+.. Verifique o estado (`Draft`, `Publishing`, `Ready`, ou `Failed`).
+.. Selecione o nome da coleta de dados para revisar os detalhes da definição (filtros, tipos de arquivo incluídos, opções de classificação, configurações de incorporação).
+.. Verifique os registros de data e hora da última publicação ou atualização.
+
+
+. Se necessário, abra os detalhes ou logs da tarefa (quando disponíveis) para entender falhas ou execuções incompletas.
+
+
+.Resultado
+Engenheiros de dados e cientistas de dados podem iterar nas definições de coleção e publicá-las novamente enquanto monitoram o status e a integridade, sem envolver o administrador de storage.
+
+
+
+== Qual é o próximo passo?
+
+* link:create-data-collections.html["Crie coleções de dados para RAG no AIDE Console"]
+

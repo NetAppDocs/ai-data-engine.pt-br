@@ -1,0 +1,145 @@
+---
+sidebar: sidebar 
+permalink: faq-aide.html 
+keywords: aide, ai data engine, faq, ontap, requirements, user types, features, integration, licensing 
+summary: 'Perguntas frequentes sobre NetApp AI Data Engine (AIDE), abrangendo visão geral do produto, requisitos, tipos de usuários, principais recursos, integração e licenciamento.' 
+---
+= Perguntas frequentes sobre NetApp AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Este FAQ aborda dúvidas comuns sobre NetApp AI Data Engine (AIDE), incluindo sua arquitetura, implantação, tipos de usuários, recursos técnicos, integração e licenciamento.
+
+
+
+== Noções básicas de AIDE
+
+.O que é NetApp AI Data Engine (AIDE)?
+NetApp AI Data Engine (AIDE) é um serviço de dados de IA integrado ao storage que abrange todo o ciclo de vida de IA, desde a descoberta e preparação de dados brutos até o fornecimento de pontos de recuperação para impulsionar IA generativa (GenAI), Retrieval-Augmented Generation (RAG), agentic AI e fábricas de IA. AIDE automatiza a sincronização e a detecção de alterações, fornecendo uma visão unificada e atualizada dos dados selecionados para descoberta e curadoria de dados.
+
+.Como o AIDE funciona?
+AIDE integra-se diretamente com os sistemas de armazenamento NetApp ONTAP para criar uma visão global e estruturada de todo o conjunto de dados NetApp, com detecção e sincronização automatizadas de alterações. AIDE oferece vetorização em tempo real com compressão e deduplicação, Data Guardrails voltado a políticas e integração com ferramentas de IA.
+
+
+
+== Usuários e funções
+
+.Quem usa o AI Data Engine?
+Os principais usuários do AIDE incluem:
+
+. *Administradores de storage ONTAP*: Gerenciam a infraestrutura, as necessidades de storage específicas para IA, a segurança e a conformidade.
+. *Engenheiros de dados*: gerenciam movimentação, preparação e integração de dados entre ambientes.
+. *Cientistas de dados*: preparar e transformar os dados relevantes para o consumo por IA.
+
+
+
+
+== Requisitos e implantação
+
+.Que hardware é necessário?
+AIDE requer sistemas AFX para implantação (incluindo um controlador AFX, um gabinete de discos e um switch de rede), mas pode usar dados de cluster de clusters executando ONTAP 9 usando SnapMirror e peering de cluster. Pelo menos quatro nós de controlador AFX são necessários para implantações do AIDE, a fim de garantir alta disponibilidade e desempenho.
+
+AIDE é executado em um nó de computação de dados NetApp (DCN). Três DCNs são necessários. O DCN hospeda o software AIDE, que inclui o Metadata Engine, Data Sync, Data Curator e Data Guardrails.
+
+.Posso usar minha própria DCN?
+Não. O DCN é um nó de hardware de computação de dados fornecido pela NetApp e é o único mecanismo de implantação para o AI Data Engine.
+
+.Qual é o número mínimo de DCNs necessário?
+São necessários exatamente três DCNs.
+
+.Qual sistema operacional é executado nos DCN?
+Os DCNs executam uma pilha de software fornecida pela NetApp com AIDE.
+
+.O AIDE pode ser implantado sem o AFX?
+Não. AIDE requer AFX para implantação. AIDE usa Trident para consumir os volumes do AFX para storage interno (volumes persistentes). O cluster AFX que fornece storage para AIDE pode ser emparelhado com um sistema ou cluster ONTAP 9. Ele usa o emparelhamento de clusters e SnapMirror para sincronizar dados do cluster ONTAP remoto para o sistema AFX.
+
+
+
+== Gerenciamento e interfaces
+
+.O AI Data Engine Console faz parte do NetApp Console ou é uma interface separada?
+O AIDE Console é uma interface de gerenciamento separada que é executada em DCNs. Você usa o AIDE Console para gerenciar serviços do AIDE, como Data Guardrails e Data Curator. Você também pode usar o ONTAP System Manager para monitorar o cluster AIDE.
+
+
+
+== Recursos e funcionalidades
+
+.Quais são os principais recursos do AIDE?
+Existem quatro principais recursos do AIDE:
+
+.Metadata Engine
+* Gera automaticamente uma visualização estruturada, atualizada e interativa dos seus dados.
+* Funciona com dados armazenados no ONTAP.
+* Permite que profissionais de dados colaborem com administradores de storage para encontrar e compreender dados.
+* As APIs consultam metadados para fornecer funcionalidades enquanto reduzem a carga de tráfego NFS nos sistemas de armazenamento.
+* A capacidade de extração e catalogação de metadados foi desenvolvida especificamente para AIDE, funciona de forma contínua e aproveita recursos do ONTAP, como snapshots.
+
+
+.Sincronização de dados
+* Mantém a atualização dos dados automaticamente conforme os dados de origem são alterados sem intervenção manual.
+* Os administradores definem o intervalo de atualização de dados em dias ou horas.
+* Proporciona mobilidade de dados incremental e sincronização em todos os dados para eliminar cópias redundantes de dados de IA.
+
+
+.Data Guardrails
+* Identifica e protege automaticamente dados confidenciais ao longo de todo o ciclo de vida da IA. Está acessível através do AI Data Engine Console.
+* Analisa, classifica e categoriza dados continuamente.
+* Identifica dados confidenciais (como PII) e riscos.
+* Facilita a criação de políticas para o tratamento automático de dados confidenciais em conformidade com os padrões da empresa e normas regulamentares.
+* Oferece redação automática de dados confidenciais para proteção de dados.
+* Restringe o acesso a arquivos confidenciais conforme necessário.
+
+
+.Data Curator
+* Permite que cientistas de dados pesquisem em todo o storage em busca de dados relevantes.
+* Cria coleções de dados selecionados com dados existentes nos volumes do AFX.
+* Gera representações vetoriais na camada de storage para reduzir dados brutos e aumentar o desempenho.
+* Fornece um endpoint de recuperação para aplicações de IA com busca semântica vetorial e reclassificação.
+
+
+
+
+== Integração e interoperabilidade
+
+.AIDE oferece suporte a metadados federados em vários clusters ONTAP?
+AIDE pode se conectar a vários clusters ONTAP usando SnapMirror e peering de clusters, permitindo visibilidade centralizada dos metadados.
+
+.Onde os metadados são armazenados?
+AIDE armazena metadados no cluster AFX conectado usando um volume persistente fornecido pelo AFX. Os DCNs usam armazenamento local para operações internas.
+
+.O AIDE Metadata Engine classifica dados?
+Não. O Metadata Engine cataloga metadados do sistema de arquivos e fornece APIs para consultar esses metadados catalogados.
+
+.Quais fontes de dados são suportadas?
+AIDE suporta volumes ONTAP (locais ou remotos) como fontes de dados. Clusters ONTAP remotos devem executar ONTAP 9 e estar conectados via peering de cluster e SnapMirror.
+
+Os buckets ONTAP S3 e os objetos StorageGRID não são suportados como fontes de dados no AIDE 9.18.1.
+
+.Quais tipos de arquivos a AIDE pode processar para classificação, vetorização e busca semântica?
+AIDE suporta uma ampla variedade de tipos de arquivo, incluindo PDF, DOCX, PPTX, TXT e arquivos de imagem com recursos de OCR.
+
+.AIDE oferece suporte à classificação de dados em idiomas diferentes do inglês?
+AIDE suporta apenas dados em inglês.
+
+.Quais integrações o AIDE suporta?
+AIDE fornece um endpoint de API RAG acessível por meio de chamadas diretas à API ou por meio de um servidor de Model Context Protocol (MCP). Isso permite a integração com frameworks e ferramentas de IA agentic.
+
+
+
+== Implantação e licenciamento
+
+.Quais são as opções de implantação?
+AIDE é implementado localmente na infraestrutura AFX com DCNs. Ele se integra diretamente com instalações AFX do NetApp ONTAP.
+
+.Como o AIDE é licenciado?
+AIDE requer uma licença de software para executar Data Guardrails e Data Curator.
+
+Se você precisar apenas do Metadata Engine, a licença ONTAP One, que está incluída em todos os sistemas AFX, concede direito apenas às funcionalidades do Metadata Engine.
+
+.Informações relacionadas
+* link:./install-setup/install-license-task.html["Instale licenças AIDE no ONTAP System Manager"]
+* link:./get-started/aide-architecture.html["Saiba mais sobre a arquitetura e os componentes do AIDE"]
+

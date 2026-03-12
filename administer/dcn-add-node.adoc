@@ -1,0 +1,118 @@
+---
+sidebar: sidebar 
+permalink: administer/dcn-add-node.html 
+keywords: aide, ai data engine, data compute node, dcn, add dcn, expand dcn cluster 
+summary:  
+---
+= Adicione nós de computação de dados ao seu cluster AIDE
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode adicionar nós de computação de dados (DCNs) como parte da criação de um novo cluster AI Data Engine (AIDE) ou da expansão de um cluster existente. O fluxo de trabalho consiste em descobrir e configurar os nós usando o ONTAP System Manager.
+
+
+
+== Prepare-se para adicionar nós
+
+Existem várias considerações ao adicionar nós DCN.
+
+.Ao criar um novo AIDE cluster
+São necessários exatamente três nós DCN para um novo cluster AIDE.
+
+.Instalação e endereçamento de hardware
+Certifique-se de que os seguintes pré-requisitos sejam atendidos:
+
+* O novo DCN hardware está instalado no rack, ligado e conectado aos switches do cluster.
+* Você tem um intervalo de endereços IP disponível para a subnet de backend do DCN para o ONTAP.
+* O cluster ONTAP foi inicializado e está acessível a partir da LIF de gerenciamento do cluster.
+
+
+.Credenciais do System Manager
+Você precisa de privilégios de _administrador de storage_ para executar tarefas de criação ou expansão de cluster AIDE.
+
+.Compatibilidade de software
+Consulte a seguinte documentação para confirmar se o hardware e as versões de software do seu DCN são compatíveis com o seu cluster ONTAP:
+
+* link:../administer/upgrades-aide-summary.html["O software DCN é compatível com a versão do ONTAP"].
+
+
+Durante a operação de adição de nós, System Manager confirmará se os novos nós executam uma versão de software compatível com:
+
+* A versão efetiva do ONTAP (ECV) do cluster, caso esta seja a primeira junção do DCN.
+* A versão do cluster DCN existente, caso já existam DCNs presentes.
+
+
+Se um nó for incompatível:
+
+* Um erro é exibido ao lado do DCN afetado na caixa de diálogo *Adicionar*.
+* Primeiro, você deve atualizar o DCN (ou ONTAP, conforme o caso) para uma versão compatível.
+
+
+
+
+== Adicione os nós de computação de dados
+
+Você adiciona nós DCN como parte da criação de um novo cluster AIDE ou da expansão de um cluster existente.
+
+.Passos
+. No System Manager, selecione *Dashboard* no painel de navegação e, em seguida, o cartão *Health*.
+. Confirme se há nós para adicionar e selecione *View details* para exibir a lista.
++
+A lista contém nós descobertos que ainda não fazem parte do AIDE cluster
+
+. Alternativamente, você pode selecionar *Cluster* e *Overview* e a guia *Data compute* para ver a lista.
+. Na parte inferior da página de computação de dados, selecione *Adicionar* acima da lista de nós.
+. Na caixa de diálogo *Adicionar nós de computação de dados*, selecione os nós DCN que deseja adicionar.
++
+Você pode opcionalmente renomear nós individuais antes de adicioná-los.
+
+. Se esta for a primeira vez que você está adicionando nós e não houver uma sub-rede de backend, selecione *Adicionar sub-rede* e forneça:
++
+** Nome da sub-rede (para uso interno)
+** Endereço e máscara de sub-rede
+** Intervalo de endereços IP para DCN e nós ONTAP nesta rede de back-end
++
+System Manager valida se o intervalo inclui endereços IP livres suficientes para todos os DCNs que estão sendo adicionados, todos os nós ONTAP no cluster e IPs flutuantes adicionais no nível do cluster usados para comunicação entre o DCN e o ONTAP.
+
+
+
+. Se você adicionou a sub-rede de backend ou se ela já existe:
++
+.. Analise os endereços IP disponíveis.
+.. Se necessário, selecione *Editar sub-rede* e amplie o intervalo de IP.
++
+*** Você só pode aumentar o intervalo. Reduzir ou alterar a sub-rede não é compatível.
+*** Alterar a sub-rede ou o intervalo de IP pode exigir a recriação do cluster Kubernetes subjacente nos DCNs e pode levar vários minutos.
+
+
+
+
+. Opcionalmente, configure a interface do serviço Data Engine fornecendo:
++
+** Endereço IP do serviço
+** Máscara de rede
+** Gateway (se necessário para o seu ambiente)
++
+O endereço IP único será balanceado entre as DCNs e usado como endereço de frontend para o AI Data Engine Console e APIs relacionadas.
+
+
+
+. Analise os nós selecionados, a sub-rede de back-end e as configurações da interface de serviço do Data Engine.
+. Selecione *Add* e aguarde a conclusão da operação. System Manager executará as seguintes ações:
++
+** Adicione os nós selecionados ao cluster DCN
+** Provisione a rede de backend e adicione nós ao cluster DCN baseado em Kubernetes
+** Atualiza os metadados internos para descoberta de DCN
+
+
+. Após a conclusão, selecione *Cluster* e *Overview* e confirme:
++
+.. Em *Computação de dados*, os novos DCNs aparecem como parte do cluster
+.. Todos os nós estão *saudáveis*
+.. Verifique se o cartão *Saúde* do dashboard mostra a contagem de nós atualizada
+
+
+

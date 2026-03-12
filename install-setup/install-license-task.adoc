@@ -1,0 +1,66 @@
+---
+permalink: install-setup/install-license-task.html 
+sidebar: sidebar 
+keywords: ai data engine, install license, add license, software entitlement, keys, nlf, nlf file 
+summary: 'Você precisará instalar uma licença NetApp para acessar todos os recursos do AI Data Engine (AIDE). Como administrador de cluster ONTAP, você pode gerenciar as licenças usando ONTAP System Manager.' 
+---
+= Instale uma licença AIDE em seu sistema AFX
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você precisará instalar uma licença NetApp para acessar todos os recursos do AI Data Engine (AIDE). Como administrador de cluster ONTAP, você pode gerenciar as licenças usando ONTAP System Manager.
+
+
+
+== Prepare-se para licenciar o AI Data Engine
+
+Uma licença é um registro de um ou mais direitos de uso de software. Todas as licenças AFX são fornecidas como um NetApp license file (NLF), que é um único arquivo que habilita vários recursos. Há vários aspectos que você deve considerar antes de instalar uma licença em seu sistema de storage para dar suporte ao AIDE.
+
+
+
+=== Tipos de licenças
+
+Existem dois tipos principais de licenças necessárias para começar a usar AIDE através do seu sistema de storage AFX.
+
+.Licença ONTAP One
+A licença Metadata Engine Basic geralmente vem instalada de fábrica como parte da licença ONTAP One. Ela permite o acesso à funcionalidade do Metadata Engine, que fornece a base essencial para as operações do AIDE. Todas as funcionalidades principais necessárias para administrar seu sistema ONTAP também estão incluídas.
+
+.AI Data Engine
+Você precisa adquirir e instalar a licença do AI Data Engine para acessar os serviços premium necessários para ativar todos os recursos do AIDE. A licença desbloqueia seus nós de computação de dados, habilitando recursos de IA como vetorização, mecanismos de governança, inferência e uma experiência de interface de usuário integrada. A licença inclui uma quantidade de GPUs e uma data de expiração.
+
+
+
+=== Requisitos de instalação da licença
+
+Você precisará adquirir a licença do AIDE e baixar o arquivo NLF correspondente para o seu sistema local. Em seguida, você poderá carregar o arquivo para o seu sistema de storage através do System Manager. Certifique-se também de ter o seguinte:
+
+* Credenciais de administrador para fazer login no ONTAP System Manager
+* Um cluster AFX executando ONTAP 9.18.1 ou posterior
+
+
+
+
+== Instale uma licença no seu sistema AFX
+
+Você pode instalar uma licença AIDE para ativar os recursos adicionais do AIDE necessários para o seu sistema de storage AFX.
+
+.Passos
+. No System Manager, selecione *Cluster* e depois *Settings*.
+. Ao lado de *Licenses*, selecione image:icon_arrow.gif["seta azul apontando para a direita"].
+. Selecione a guia *Features* para exibir os recursos ONTAP disponíveis.
+. Para instalar uma licença, selecione a guia *Licenças instaladas*.
+. Selecione image:icon_add_blue_bg.png["retângulo azul contendo um sinal de mais seguido da palavra add em letras brancas"].
+. Selecione um arquivo de licença local e selecione *Adicionar*.
+
+
+
+
+== Informações relacionadas
+
+* https://docs.netapp.com/us-en/ontap/system-admin/manage-licenses-concept.html["Visão geral do licenciamento ONTAP"^]
+* https://kb.netapp.com/nss/Licensing/How_to_download_NLF_licenses_from_the_NetApp_Support_Site["Como baixar licenças NLF do site de suporte da NetApp"^]
+* https://docs.netapp.com/us-en/ontap-cli/system-license-add.html["ONTAP CLI: adicionar licença do sistema"^]
+

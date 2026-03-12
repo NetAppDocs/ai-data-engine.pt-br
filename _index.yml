@@ -1,0 +1,82 @@
+---
+indexpage:
+  title: Documentação do AI Data Engine
+  summary: A documentação do AI Data Engine fornece informações abrangentes sobre
+    a instalação, configuração e gerenciamento de sistemas AIDE, incluindo catalogação
+    de metadados, gerenciamento de espaço de trabalho, coleções de dados e integração
+    com fluxos de trabalho de IA/ML.
+  keywords: aide, ai data engine, ontap, metadata engine, workspaces, data collections,
+    vector database, guardrails, dcn, data compute nodes
+  lead: NetApp AI Data Engine (AIDE) é uma plataforma de nível empresarial projetada
+    para acelerar e simplificar o processamento de dados orientados por IA, gerenciamento
+    e governança. AIDE transforma dados não estruturados em conjuntos de dados estruturados
+    e prontos para IA, para cargas de trabalho de aprendizado de máquina e IA generativa.
+  tiles:
+  - title: Comece agora
+    links:
+    - title: Saiba mais sobre AI Data Engine
+      url: "/get-started/learn-about.html"
+    - title: Arquitetura AIDE
+      url: "/get-started/aide-architecture.html"
+    - title: O que há de novo
+      url: "/release-notes/whats-new.html"
+    - title: Limitações conhecidas
+      url: "/release-notes/known-limitations.html"
+    - title: Início rápido do AIDE
+      url: "/get-started/quick-start.html"
+    - title: FAQ sobre AIDE
+      url: "/faq-aide.html"
+  - title: Instalar e configurar
+    links:
+    - title: Fluxo de trabalho de instalação de data compute nodes
+      url: "/install-setup/install-workflow.html"
+    - title: Requisitos de instalação
+      url: "/install-setup/install-setup-requirements.html"
+    - title: Hardware de cabos
+      url: "/install-setup/cable-hardware.html"
+    - title: Ligar o sistema
+      url: "/install-setup/power-on-hardware.html"
+    - title: Configurar AIDE cluster
+      url: "/install-setup/cluster-setup-afx.html"
+    - title: Configurar autenticação OIDC
+      url: "/install-setup/configure-oidc.html"
+  - title: Espaços de trabalho e acesso a dados
+    links:
+    - title: Prepare os dados para AIDE
+      url: "/workspaces/prepare-data-for-aide.html"
+    - title: Criar um espaço de trabalho
+      url: "/workspaces/create-workspace.html"
+    - title: Atribuir usuários a espaços de trabalho
+      url: "/workspaces/assign-users-to-workspace.html"
+    - title: Gerenciar workspaces
+      url: "/administer/manage-workspace.html"
+  - title: Administrar e monitorar
+    links:
+    - title: Visualizar dashboard e status de cluster
+      url: "/administer/view-dashboard.html"
+    - title: Visualizar eventos e log de auditoria
+      url: "/administer/view-events-log.html"
+    - title: Instalar licenças AIDE
+      url: "/install-setup/install-license-task.html"
+    - title: Atualizar o software AIDE
+      url: "/administer/update-aide-firmware-software.html"
+    - title: Adicionar nós de computação de dados
+      url: "/administer/dcn-add-node.html"
+    - title: Substituir nó de computação de dados
+      url: "/administer/aide-node-replace.html"
+  - title: Entenda funções e componentes
+    links:
+    - title: Componentes AIDE por função
+      url: "/get-started/aide-components.html"
+    - title: Tarefas do administrador de storage
+      url: "/get-started/aide-components-storage-admin.html"
+    - title: Tarefas de engenheiro de dados e cientista de dados
+      url: "/get-started/aide-components-data-users.html"
+  - title: Utilize coletas de dados e mecanismos de controle
+    links:
+    - title: Início rápido de Data-to-RAG
+      url: "/vectorization/zero-to-rag.html"
+    - title: Criar e publicar coleções de dados
+      url: "/vectorization/create-data-collections.html"
+    - title: Defina políticas de proteção
+      url: "/guardrails/define-data-policies.html"

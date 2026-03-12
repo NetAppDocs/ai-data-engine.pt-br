@@ -1,0 +1,134 @@
+---
+sidebar: sidebar 
+permalink: vectorization/create-data-collections.html 
+keywords: aide, create data collection, rag, data engineer, data scientist, embeddings, ai data engine, indexing 
+summary: 'Crie e publique coleções de dados a partir de metadados do workspace no AI Data Engine Console para potencializar a geração aumentada por recuperação (RAG) e outras cargas de trabalho de IA.' 
+---
+= Crie coleções de dados no AI Data Engine Console
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+As coleções de dados são os blocos de construção RAG essenciais no AI Data Engine (AIDE). Como engenheiro de dados ou cientista de dados, você define quais arquivos pertencem a uma coleção, configura as opções de incorporação e indexação e publica a coleção para que os aplicativos possam consultá-la por meio de um endpoint de recuperação.
+
+Você executará todas as tarefas de coleta de dados no AI Data Engine Console.
+
+.Antes de começar
+* Você precisa de privilégios de _engenheiro de dados_ ou _cientista de dados_ no AI Data Engine Console (`\https://<cluster_management_ip>/console`).
+* Você tem acesso a pelo menos um espaço de trabalho com metadados extraídos e em  `Ready` estado.
+* Você explorou os metadados do workspace e identificou consultas ou filtros que definem subconjuntos de dados relevantes.
+* A licença do AI Data Engine software está instalada e os recursos de inferência estão ativados.
+
+
+
+
+== Criar uma coleta de dados a partir de metadados do workspace
+
+.Passos
+. Acesse *Data Curator > Workspaces* e selecione o workspace que contém seus dados de destino.
+. Selecione *Add data collection*.
+. Na página *Criar nova coleta de dados*, faça o seguinte:
++
+.. Insira um nome e uma descrição para a coleção (por exemplo, `Support_KB_RAG_EN`).
+.. Escolha se a coleta deve ser:
++
+*** *Dinâmico*: Novos arquivos são identificados e adicionados automaticamente à coleta de dados com base nos critérios de filtragem que você define. Isso ocorre durante as atualizações do espaço de trabalho.
+*** *Estático*: Você escolhe quais arquivos são incluídos na coleção. Você pode editar os arquivos se a coleta de dados estiver no `draft` estado. Depois que a coleta de dados passa para `Published` estado, ela não pode ser editada.
+
+
+
+
+. Especifique o subconjunto de origem:
++
+.. Utilize palavras-chave e filtros (tipo de arquivo, carimbos de data e hora e outros atributos) para encontrar os arquivos relevantes a serem incluídos.
++
+
+NOTE: Você pode selecionar um nome de arquivo para abrir uma janela de visualização prévia do conteúdo.
+
+
+
+. Adicione esses arquivos à coleta de dados.
+. Selecione *Save* para finalizar a coleta.
+
+
+.Resultado
+Você definiu o escopo da coleta de dados e adicionou os arquivos necessários a ela. AIDE gera embeddings e constrói o índice vetorial quando você publica a coleção.
+
+
+TIP: Crie coleções pequenas e focadas (por exemplo, por caso de uso ou domínio) em vez de uma única coleção "para tudo". Isso melhora a relevância da recuperação e a capacidade de gerenciamento.
+
+
+
+== Publicar uma coleta de dados
+
+Publique a coleta de dados para torná-la consultável por aplicações de IA através de um endpoint de recuperação RAG. A publicação gera embeddings vetoriais a partir dos arquivos selecionados e os indexa para busca semântica. Após a coleção atingir  `Ready` estado, seu endpoint fica disponível para que cientistas de dados a integrem em notebooks, pipelines e aplicações de IA para geração aumentada por recuperação (RAG) e busca.
+
+
+TIP: Para coleções grandes, considere agendar a publicação inicial e as principais republicações em horários de menor movimento para minimizar a disputa por recursos.
+
+.Passos
+. Navegue até *Data Curator > Data collections* e selecione o menu de opções (image:icon_kabob_horizontal.png["três pontos azuis horizontais"]) para sua coleta de dados.
+. Selecione *Publish*.
+. Selecione uma configuração de otimização padrão ou personalizada.
+. Selecione *Publicar* para iniciar a transformação de dados.
+. No AIDE Console, abra a visualização de detalhes da coleta (*Data Curator > Coletas de dados*) para atualizações de status.
+
+
+.Resultado
+A coleção chega ao estado  `Ready` e fica disponível para uso por aplicações subsequentes e cientistas de dados.
+
+Em *Data Curator > Data collections*, você pode selecionar *Copy URI* para obter as informações necessárias para acessar a coleta de dados usando uma API.
+
+
+
+== Atualizar ou excluir uma coleta de dados
+
+Com o tempo, você pode precisar refinar ou desativar coleções de dados. Refinar uma coleção pode envolver ajustar filtros para adicionar ou remover arquivos, alterar configurações de incorporação ou atualizar a descrição da coleção. Excluir uma coleção a remove permanentemente e torna seu endpoint de recuperação indisponível.
+
+
+
+=== Atualizar uma coleta de dados
+
+Você pode atualizar uma coleta de dados quando ela estiver em  `draft` estado.
+
+.Passos
+. Acesse *Data Curator > Data collections*.
+. Selecione a coleção que você deseja modificar.
+. Escolha *Editar*.
+. Ajuste qualquer um dos seguintes:
++
+** Nome e descrição
+** Filtros (caminhos, tipos de arquivo, classification tags).
+** Configurações de embedding e chunking.
+
+
+. Salve suas alterações.
+. Publique a coleção novamente para que a nova definição e os embeddings entrem em vigor.
+
+
+.Resultado
+Uma nova tarefa de indexação é executada com a configuração atualizada e a coleção retorna a `Ready` um estado quando concluída.
+
+
+
+=== Excluir uma coleção
+
+A exclusão de uma coleção é permanente. Certifique-se de que nenhum aplicativo em produção ainda dependa do endpoint de recuperação da coleção antes de excluí-la.
+
+.Passos
+. Navegue até *Data Curator > Data collections* e selecione o menu de opções (image:icon_kabob_horizontal.png["três pontos azuis horizontais"]) para a coleção.
+. Escolha *Excluir*.
+. Confirme a exclusão.
+
+
+.Resultado
+A definição da coleção e seus embeddings são removidos do AI Data Engine. Aplicativos que tentarem consultar o antigo endpoint de recuperação falharão após a remoção da coleção.
+
+
+
+== Qual é o próximo passo?
+
+* link:view-data-collections.html["Visualizar coletas de dados"]
+

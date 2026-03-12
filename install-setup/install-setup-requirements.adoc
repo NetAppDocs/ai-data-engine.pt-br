@@ -1,0 +1,63 @@
+---
+sidebar: sidebar 
+permalink: install-setup/install-setup-requirements.html 
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, requirements, cautions, 
+summary: Analise o equipamento necessário e as precauções de elevação para os nós de computação de dados do AI Data Engine. 
+---
+= Requisitos de instalação para nós de computação de dados para AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Analise o equipamento necessário e as precauções de elevação para os nós de computação de dados do AI Data Engine.
+
+
+
+== Pré-requisitos
+
+Antes de instalar os nós de computação de dados para AIDE, certifique-se de que você tem:
+
+* Um sistema de storage AFX 1K.
++
+
+NOTE: Para obter informações sobre a instalação do sistema de storage AFX 1K, consulte o link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["Instale seu sistema de storage AFX 1K"^].
+
+
+
+
+
+== Equipamentos necessários para instalação
+
+Para instalar os nós de computação de dados para AIDE, você precisa dos seguintes equipamentos e ferramentas.
+
+* Acesso a um navegador web para configurar seus nós de computação de dados
+* Pulseira de descarga eletrostática (ESD)
+* Lanterna
+* Laptop ou console com uma conexão USB/serial
+* Chave de fenda Phillips #2
+
+
+
+
+== Precauções de levantamento
+
+Os nós de computação de dados são pesados. Tenha cuidado ao levantar e mover esses itens.
+
+
+
+=== Pesos dos nós de computação de dados
+
+Tome as precauções necessárias ao mover ou levantar seu data compute node.
+
+Um nó de computação de dados pode pesar até 46,3 lbs (21 kg). Para levantar o nó de computação de dados, use duas pessoas ou um elevador hidráulico.
+
+image::../media/drw_compute_node_lifting_weight_ieops-2743.svg[Peso de elevação do nó de computação de dados]
+
+.Informações relacionadas
+* https://library.netapp.com/ecm/ecm_download_file/ECMP12475945["Informações de segurança e avisos regulamentares"^]
+
+
+.Qual é o próximo passo?
+Depois de analisar os requisitos de hardware, você link:prepare-hardware.html["prepare-se para instalar seus nós de computação de dados"].

@@ -1,0 +1,138 @@
+---
+sidebar: sidebar 
+permalink: administer/view-events-log.html 
+keywords: aide, aide system, events, audit log, jobs, activity 
+summary: Você pode revisar os eventos, tarefas e mensagens de log de auditoria gerados pelo AIDE para acompanhar o processamento interno e diagnosticar possíveis problemas. O sistema AIDE pode ser configurado para encaminhar essas informações, juntamente com outros dados relacionados, para processamento e arquivamento adicionais. 
+---
+= Visualizar eventos do AIDE, tarefas e log de auditoria
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Como administrador de storage, você pode revisar os eventos, trabalhos e mensagens de log de auditoria gerados pelo AIDE para acompanhar o processamento interno e diagnosticar possíveis problemas. O sistema AIDE pode ser configurado para encaminhar essas informações, juntamente com outros dados relacionados, para processamento e arquivamento adicionais.
+
+.Antes de começar
+* Você precisa de privilégios de _administrador de storage_ para executar tarefas administrativas relacionadas ao AIDE ONTAP.
+
+
+
+
+== Monitorar as atividades, eventos e trabalhos do AIDE
+
+Você pode usar a visualização centralizada *Activity* para monitorar eventos e tarefas específicos do AIDE em todos os espaços de trabalho ou revisar a atividade restrita a espaços de trabalho individuais.
+
+
+
+=== Visualizar a atividade do AIDE em todo o cluster
+
+Monitore as operações do workspace, solucione problemas de extração de metadados e acompanhe a publicação da coleta de dados em toda a sua implementação do AIDE.
+
+. No ONTAP System Manager, no painel de navegação selecione *Data engine* e depois *Activity*.
+. Selecione a guia *Eventos*:
++
+** Revise eventos recentes específicos da AIDE, como os seguintes:
++
+*** Criação, atualização ou exclusão de workspace
+*** Operações de adição/remoção de contêiner de dados
+*** Publicação da coleta de dados (se presente)
+
+
+** Use filtros (por gravidade, tipo de objeto, espaço de trabalho ou intervalo de tempo) para se concentrar em eventos ativos ou críticos.
+
+
+. Selecione um evento individual para abrir e revisar:
++
+** Descrição e timestamp
+** Espaço de trabalho, coleta de dados ou fonte de dados afetada
+** Ação recomendada, se fornecida
+
+
+. Selecione a aba *Jobs*:
++
+** Monitore tarefas de longa duração, como:
++
+*** Extração inicial de metadados para um espaço de trabalho
+*** Tarefas de atualização do espaço de trabalho / atualização do catálogo
+*** Publicação de coleta de dados ou trabalhos de atualização
+
+
+** Verifique o status e o progresso do trabalho.
+
+
+. Selecione uma tarefa para abrir a pré-visualização e revisar:
++
+** Horário de início e término
+** Percentual de progresso e fase (por exemplo, *Scanning*, *Publishing*)
+** Espaço de trabalho, coleta de dados ou fonte de dados afetada
+** Mensagens de erro para jobs com falha
+
+
+
+
+
+
+=== Visualizar atividade específica do espaço de trabalho
+
+Para solucionar problemas em um espaço de trabalho específico, abra os detalhes do espaço de trabalho (*Data Engine > Workspaces*, selecione um espaço de trabalho) e use a guia *Atividade*:
+
+* Analise eventos e tarefas restritos apenas a esse workspace.
+* Use esta visualização para isolar problemas, como um único espaço de trabalho travado em  `Processing` estado.
+
+
+
+
+== Visualizar eventos em todo o cluster
+
+Analise as mensagens de eventos para obter um registro valioso da atividade do sistema. Cada evento inclui uma descrição e um identificador exclusivo junto com uma ação recomendada.
+
+. No ONTAP System Manager, selecione *Events & jobs* e, em seguida, *Events*.
+. Analise e responda às ações recomendadas na parte superior da página, como ativar a atualização automática.
+. Selecione a aba *Events log* para exibir uma lista das mensagens.
+. Selecione uma mensagem de evento para examiná-la em mais detalhes, incluindo o número de sequência, descrição, evento e ação recomendada.
+. Opcionalmente, selecione a guia *Sugestões do Active IQ* e registre-se no Active IQ para obter informações detalhadas sobre os riscos do cluster.
+
+
+
+
+== Visualizar tarefas em todo o cluster
+
+Veja todos os trabalhos em execução no cluster AIDE, incluindo trabalhos específicos do AIDE e trabalhos gerais do ONTAP.
+
+. No ONTAP System Manager, selecione *Events & Jobs* e depois *Jobs*.
+. Personalize a exibição, além de pesquisar e baixar as informações do trabalho conforme necessário.
+
+
+
+
+== Visualizar log de auditoria
+
+Utilize o log de auditoria para revisar um registro da atividade do sistema com base no uso de protocolos de acesso como HTTP.
+
+. No ONTAP System Manager, selecione *Eventos e tarefas* e, em seguida, *log de auditoria*.
+. Selecione *Configurações* para ativar ou desativar as operações que são rastreadas.
+
+
+
+
+== Gerenciar notificações
+
+Configurar os destinos de notificação para encaminhar automaticamente eventos AIDE e logs de auditoria.
+
+.Passos
+. No ONTAP System Manager, selecione *Cluster* e depois *Settings*.
+. Acesse *Gerenciamento de notificações* e selecione image:icon_kabob.gif["três pontos azuis verticais"].
+. Selecione a ação apropriada para visualizar ou configurar os destinos usados pelo AIDE:
++
+.. Destinos do evento: selecione *Ver destinos do evento*
+.. Destinos do log de auditoria: selecione *Exibir destinos de auditoria*
+
+
+. Selecione *Adicionar* conforme apropriado e forneça as informações de destino.
+. Selecione *Save*.
+
+
+.Informações relacionadas
+* https://docs.netapp.com/us-en/ontap/event-performance-monitoring/index.html["Monitoramento de eventos, desempenho e saúde do ONTAP"^]
+

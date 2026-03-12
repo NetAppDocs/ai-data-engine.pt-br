@@ -1,0 +1,122 @@
+---
+sidebar: sidebar 
+permalink: install-setup/prepare-hardware.html 
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, prepare, hardware installation, afx, afx 1k, 
+summary: Prepare-se para instalar os nós de computação de dados para AI Data Engine em seu ambiente ONTAP e registre o hardware para acessar os benefícios de suporte. 
+---
+= Prepare-se para instalar seus nós de computação de dados para AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Prepare-se para instalar seus nós de computação de dados para AI Data Engine, preparando o local, desembalando as caixas e comparando o conteúdo das caixas com a nota de remessa, e registrando o sistema para acessar os benefícios de suporte.
+
+
+
+== Etapa 1: preparar o local
+
+Para instalar seus nós de computação de dados, certifique-se de que o local e o gabinete ou rack que você planeja usar atendam às especificações da sua configuração.
+
+.Passos
+. Use  https://hwu.netapp.com["NetApp Hardware Universe"^] para confirmar se o seu site atende aos requisitos ambientais e elétricos para os seus nós de computação de dados.
+. Certifique-se de que você possui espaço suficiente no gabinete para seus nós de computação de dados dentro da instalação existente do sistema de storage AFX 1K.
++
+** 1U para cada nó de computação de dados
+** 2U para cada nó controlador AFX 1K
+** 2U para cada shelf NX224
+** 1U ou 2U por switch, dependendo do modelo de switch.
+
+
+
+
+
+
+== Passo 2: desembale as caixas
+
+Após garantir que o local e o gabinete ou rack que você planeja usar para seus nós de computação de dados atendam às especificações exigidas, desembale todas as caixas e compare o conteúdo com os itens da nota de entrega.
+
+.Passos
+. Abra cuidadosamente todas as caixas e disponha o conteúdo de forma organizada.
+. Compare os itens desembalados com a nota de embalagem e observe quaisquer discrepâncias.
++
+Você pode obter sua lista de embalagem ao escanear o código QR na lateral da caixa de envio.
+
++
+Os seguintes itens são alguns dos conteúdos que você pode ver nas caixas.
+
++
+[cols="12,9,4"]
+|===
+
+
+| *Hardware* | *Cabos* |  
+
+
+ a| 
+** Painel
+** Kits de trilhos com instruções
+** Nó(s) de computação de dados
+
+ a| 
+** Cabos de alimentação
+
+|  
+|===
+
+
+
+
+== Etapa 3: registre seus nós de computação de dados
+
+Após garantir que seu site atende aos requisitos das especificações do seu data compute node e verificar se você possui todas as partes que encomendou, você deve registrar seu sistema.
+
+.Passos
+. Localize os números de série dos seus nós de computação de dados.
++
+Você pode encontrar os números de série nos seguintes locais:
+
++
+** Na nota de embalagem
+** No seu e-mail de confirmação
+** Em cada nó de computação de dados ou, em alguns sistemas, no módulo de gerenciamento do sistema de cada nó de computação de dados.
++
+image::../media/drw_ssn_label.svg[Exemplo do número de série do sistema]
+
+
+
+. Navegue até o http://mysupport.netapp.com/["NetApp site de suporte"^].
+. Determine se você precisa registrar seu sistema de storage:
++
+[cols="1a,2a"]
+|===
+| Se você é um(a)... | Siga estes passos... 
+
+
+ a| 
+Cliente existente NetApp
+ a| 
+.. Sign in com seu nome de usuário e senha.
+.. Selecione *Systems* > *My Systems*.
+.. Confirme se o novo número de série está listado.
+.. Se o número de série não estiver listado, siga as instruções para novos NetApp customers.
+
+
+
+
+ a| 
+Novo NetApp cliente
+ a| 
+.. Clique em *Register Now* para criar uma conta.
+.. Selecione *Systems* > *Register Systems*.
+.. Insira o número de série do sistema de storage e os detalhes solicitados.
+
+
+Depois que a NetApp aprovar seu cadastro, você poderá baixar o software necessário. A aprovação leva até 24 horas.
+
+|===
+
+
+.Qual é o próximo passo?
+Depois de se preparar para instalar seus nós de computação de dados, você link:deploy-hardware.html["instale os Data Compute Node"].

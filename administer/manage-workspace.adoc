@@ -1,0 +1,167 @@
+---
+sidebar: sidebar 
+permalink: administer/manage-workspace.html 
+keywords: aide, ai data engine, workspaces, metadata engine, manage workspaces, add data containers, users 
+summary: Gerencie o ciclo de vida dos workspaces do AI Data Engine, incluindo visualização, edição, adição de contêineres de dados, gerenciamento de usuários e exclusão de workspaces. 
+---
+= Gerenciar workspaces do AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Um workspace é um conjunto de fontes de dados (volumes) que o AI Data Engine (AIDE) usa para construir e atualizar um catálogo de metadados para um projeto ou caso de uso. Como administrador de storage, você pode usar o ONTAP System Manager para monitorar a integridade do workspace, ajustar a configuração, controlar as fontes de dados, gerenciar usuários e excluir workspaces quando eles não forem mais necessários.
+
+.Antes de começar
+* Você precisa de privilégios de _administrador de storage_ para gerenciar workspaces.
+
+
+
+
+== Revisar o status do workspace
+
+Analise a integridade do workspace, a utilização da capacidade e o status dos metadados para garantir que o Metadata Engine esteja operando conforme o esperado e não esteja consumindo recursos inesperados.
+
+.Passos
+. No ONTAP System Manager, no painel de navegação selecione *Data engine > Workspaces*.
+. Consulte o resumo na parte superior da página para total de espaços de trabalho, integridade geral dos espaços de trabalho e uso da capacidade.
+. Para obter informações específicas do espaço de trabalho, selecione um nome de espaço de trabalho. Na guia *Visão geral*, confirme:
++
+** Estado e tamanho do espaço de trabalho.
+** Contêineres de dados (volumes) incluídos no workspace.
+** Contagem de itens e horário da última atualização por fonte de dados.
+** Quaisquer avisos em nível de workspace.
+
+
++
+
+NOTE: Se um workspace ou coleta de dados apresentar um estado de erro, verifique se todos os volumes de origem estão online e acessíveis.
+
+. Selecione a aba *Coleta de dados* para ver:
++
+** Todas as coleções de dados associadas a este workspace.
+** Estado (como `Published` ou `Error`), tamanho e hora da última atualização.
++
+
+NOTE: System Manager é somente leitura para coleções de dados. Engenheiros de dados podem criar e gerenciar coleções de dados no AI Data Engine Console.
+
+
+
+. Selecione a aba *Usuários* para visualizar:
++
+** A lista de usuários com acesso a este espaço de trabalho.
+
+
+. Selecione a aba *Atividade* para ver eventos e tarefas relacionados somente a este espaço de trabalho.
+
+
+
+
+== Editar propriedades do espaço de trabalho e agendamento de atualização
+
+Você pode ajustar o nome, a descrição, o intervalo de atualização e (se licenciado) a política de guardrail de um espaço de trabalho.
+
+.Passos
+. Em *Data engine > Workspaces*, selecione image:icon_kabob.gif["três pontos azuis verticais"] ao lado de um workspace e selecione *Edit*.
+. Editar propriedades do espaço de trabalho:
++
+** Atualize *Name* e *Description* conforme necessário.
+** Ajuste o *intervalo de atualização* (frequência de atualização de metadados) dentro do intervalo permitido (horas e dias).
+** Se uma licença AIDE estiver instalada, você pode selecionar *Guardrail policy*.
+
+
+. Selecione *Save*.
+
+
+
+NOTE: Alterações no intervalo de atualização ou no processamento de metadados podem afetar a frequência com que relações remotas do SnapMirror são atualizadas para este workspace.
+
+
+
+== Adicionar contêineres de dados a um espaço de trabalho existente
+
+Você pode adicionar volumes montados adicionais (locais ou de um cluster remoto emparelhado) para que seus metadados sejam incluídos no catálogo do workspace.
+
+. Em *AI Data Engine > Espaços de trabalho*, faça um dos seguintes procedimentos:
++
+** Selecione image:icon_kabob.gif["três pontos azuis verticais"] ao lado da área de trabalho e selecione *Adicionar contêineres de dados*.
+** Abra o workspace, selecione a guia *Overview* e, em seguida, selecione *Add* na seção de data containers.
+
+
+. Na caixa de diálogo *Adicionar contêineres de dados ao espaço de trabalho*:
++
+** Localize os volumes locais no cluster AIDE.
+** Expanda os clusters emparelhados para selecionar volumes remotos (volumes remotos exigem emparelhamento de cluster e SVM).
+
+
++
+
+NOTE: Somente volumes online elegíveis, que não estejam globalmente excluídos e que ainda não façam parte do workspace, podem ser selecionados.
+
+. Se você for solicitado a mapear um volume remoto:
++
+** Selecione a máquina virtual de armazenamento de destino no cluster AIDE para receber destinos do SnapMirror para os volumes remotos escolhidos.
+
+
+. Selecione *Add*.
+. Utilize a guia *Atividade* do espaço de trabalho ou *Data engine > Atividade* para acompanhar a extração de metadados e qualquer inicialização do SnapMirror para novas fontes de dados.
+
+
+
+
+== Remova contêineres de dados de um espaço de trabalho
+
+Você pode remover um contêiner de dados quando ele não for mais relevante para a finalidade do espaço de trabalho ou se desejar reduzir o escopo do gerenciamento de metadados para esse espaço de trabalho. Remover um contêiner de dados interrompe a atualização de metadados para esse volume e remove seus metadados do catálogo de metadados.
+
+
+IMPORTANT: Não exclua um volume de origem do ONTAP que tenha sido adicionado a um espaço de trabalho. Se você excluir o volume, o espaço de trabalho entrará em estado de falha. Sempre remova o contêiner de dados do espaço de trabalho antes de excluir quaisquer volumes ONTAP subjacentes.
+
+.Passos
+. Navegue até *Data Engine > Workspaces* e selecione o workspace que contém o contêiner de dados.
+. Na guia *Visão geral*, localize o contêiner de dados a ser removido.
+. Selecione *Remove* ao lado do contêiner de dados.
+. Analise a caixa de diálogo de confirmação e selecione *Remove*.
+
+
+
+NOTE: Remover um contêiner de dados de um workspace não exclui o volume ONTAP subjacente nem sua relação do SnapMirror. Isso afeta apenas o uso de metadados dentro do AI Data Engine.
+
+
+
+== Gerenciar usuários do workspace
+
+Você pode conceder ou revogar o acesso de usuários engenheiros de dados e cientistas de dados a um workspace. Esses usuários são definidos em seu provedor de identidade (OIDC) e mapeados para funções do ONTAP. Consulte link:../workspaces/assign-users-to-workspace.html["atribuir usuários a workspaces"] a documentação para saber como gerenciar o acesso de usuários.
+
+
+
+== Excluir um workspace
+
+Você pode excluir um espaço de trabalho para remover a definição do espaço de trabalho e os metadados do AIDE. Quaisquer coleções de dados e incorporações vetoriais vinculadas ao espaço de trabalho também serão removidas.
+
+
+NOTE: Os dados subjacentes do ONTAP (volumes, SnapMirror relationships) não são excluídos.
+
+.Passos
+. Em *Data Engine > Workspaces*, faça um dos seguintes procedimentos:
++
+** Exclua um único espaço de trabalho, selecione image:icon_kabob.gif["três pontos azuis verticais"] e selecione *Excluir*.
+** Excluir vários espaços de trabalho, selecione as caixas de seleção dos espaços de trabalho e, em seguida, selecione *Excluir*.
+
+
+. Na caixa de diálogo de confirmação, revise os impactos da ação antes de prosseguir:
++
+** Os metadados do workspace são excluídos permanentemente.
+** As coleções de dados e as incorporações associadas ao espaço de trabalho são excluídas permanentemente.
+
+
++
+
+NOTE: Não existe opção de exclusão lógica ou de restauração.
+
+. Selecione a caixa de seleção para confirmar seu entendimento e selecione *Excluir*.
+
+
+.Informações relacionadas
+* link:../workspaces/assign-users-to-workspace.html["Atribuir usuários a espaços de trabalho"]
+

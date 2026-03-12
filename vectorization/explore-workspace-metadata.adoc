@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: vectorization/explore-workspace-metadata.html 
+keywords: aide, explore metadata, workspace, metadata catalog, ai data engine, data engineer, data scientist, search 
+summary: Como engenheiro de dados ou cientista de dados, utilize AI Data Engine Console para explorar os metadados do workspace, descobrir arquivos e objetos relevantes e preparar subconjuntos candidatos para coletas de dados. 
+---
+= Explore metadados de workspace no AI Data Engine Console
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Como engenheiro de dados ou cientista de dados, sua primeira tarefa no AI Data Engine (AIDE) é entender quais dados estão disponíveis em seus workspaces. Você usa o AI Data Engine Console para consultar o catálogo de metadados, buscar arquivos relevantes e identificar subconjuntos de dados para transformar em data collections.
+
+.Antes de começar
+* Você precisa de privilégios de _data engineer_ ou _data scientist_ no AI Data Engine Console e acesso a pelo menos um espaço de trabalho.
+* Um administrador de storage tem:
++
+** Criou um ou mais workspaces no ONTAP System Manager.
+** Atribuído acesso de usuário ou grupo aos espaços de trabalho relevantes.
+
+
+* A extração de metadados para o espaço de trabalho foi concluída e o espaço de trabalho está em  `Ready` estado.
+* Os classificadores estão ativados, de forma que os metadados incluam etiquetas de classificação (por exemplo, indicadores de PII).
+
+
+
+
+== Sign in no AIDE Console como engenheiro de dados ou cientista de dados
+
+.Passos
+. Em um navegador, acesse a URL do AIDE Console:
++
+`\https://<cluster_management_ip>/console`
+
+. Autentique-se através do provedor OIDC da sua organização.
+. Confirme se sua função é reconhecida como engenheiro de dados ou cientista de dados (por exemplo, pelo espaço de trabalho disponível e ações de coleta de dados). Para mais informações, veja link:../get-started/aide-components-data-users.html["AIDE documentação da função"] para saber como engenheiros de dados e cientistas de dados trabalham com os componentes do AIDE.
+
+
+.Resultado
+Você está conectado ao AIDE Console e vê apenas os espaços de trabalho aos quais você tem acesso.
+
+
+
+== Veja seus espaços de trabalho acessíveis
+
+.Passos
+. No AIDE Console, navegue até *Data Curator > Workspaces*.
+. Revise a lista de espaços de trabalho que você pode acessar.
+. Selecione um workspace para abrir seus detalhes.
+
+
+.Resultado
+Agora você tem uma visão com escopo no espaço de trabalho do conjunto de dados que os administradores de storage disponibilizaram para seus projetos.
+
+
+
+== Qual é o próximo passo?
+
+* link:create-data-collections.html["Crie coleções de dados para RAG a partir de um workspace"]
+

@@ -1,0 +1,10 @@
+---
+section: workspaces
+title: Configurar espaços de trabalho
+entries:
+- title: Preparar dados para AI Data Engine
+  url: "/workspaces/prepare-data-for-aide.html"
+- title: Criar um espaço de trabalho
+  url: "/workspaces/create-workspace.html"
+- title: Atribua usuários a um workspace
+  url: "/workspaces/assign-users-to-workspace.html"

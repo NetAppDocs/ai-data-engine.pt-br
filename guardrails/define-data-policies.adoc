@@ -1,0 +1,177 @@
+---
+sidebar: sidebar 
+permalink: guardrails/define-data-policies.html 
+keywords: aide, policies, global exclusion, classifiers, guardrails, ai data engine, data governance 
+summary: Defina políticas de dados globais no AI Data Engine Console para controlar quais dados podem ser usados para IA, como eles são classificados e como os guardrails são aplicados durante as consultas. 
+---
+= Defina suas políticas de Data Guardrails no AI Data Engine para seu data estate
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Como proprietário de dados ou plataforma, você usa o AI Data Engine Console para definir quais dados estão dentro do escopo para IA, quais dados são sempre proibidos e quais regras de segurança se aplicam quando esses dados são usados para classificação e geração aumentada por recuperação (RAG).
+
+Utilize esses procedimentos para definir essas políticas no AIDE Console para que o ONTAP System Manager possa aplicá-las a todos os dados nos workspaces.
+
+.Antes de começar
+* Você precisa de privilégios de _administrador de armazenamento_ no AI Data Engine Console (`\https://<cluster_management_ip>/console`) para criar e gerenciar políticas globais.
+* Você possui um AIDE cluster com nós de computação de dados implantados e íntegros.
+* link:../install-setup/configure-oidc.html["OpenID Connect (OIDC)"] está configurado e sua função de IdP está mapeada para uma função de administrador do AIDE que permite o gerenciamento de políticas de dados.
+* A licença do AI Data Engine software está instalada para que os recursos de Data Guardrails e inferência estejam ativados.
+* Existe pelo menos um espaço de trabalho, ou você se coordenou com o administrador para entender quais fontes de dados (volumes) serão usadas nos espaços de trabalho.
+
+
+
+
+== Entenda os tipos de políticas
+
+AIDE Console expõe estes tipos de políticas que moldam seu data estate:
+
+* *Classificadores*: Habilite classificadores para detectar PII, problemas de segurança ou outros padrões em todos os workspaces.
+* *Categorias de classificadores*: Agrupe os classificadores em categorias de conformidade para organização e gerenciamento.
+* *Políticas de Data Guardrails*: Regras de segurança e redação aplicadas no momento da recuperação ou inferência.
+
+
+Não é possível usar ONTAP System Manager para criar ou gerenciar essas políticas de Data Guardrails. Ele apenas as lê e as aplica quando um administrador de storage as define para workspaces. Toda a definição e manutenção de políticas ocorre no AIDE Console.
+
+
+
+== Ativar classificadores
+
+Os classificadores analisam tanto metadados quanto conteúdo para anotar arquivos e objetos (por exemplo, detectando PII ou categorias sensíveis). Antes que os classificadores possam ser executados nos dados do espaço de trabalho, você deve habilitá-los no AIDE Console.
+
+.Sobre esta tarefa
+O comportamento dos classificadores é controlado globalmente no AIDE Console. Todos os classificadores habilitados são executados em todos os workspaces. Como são aplicados globalmente, não podem ser habilitados ou desabilitados para um workspace individual. Eles só podem ser habilitados ou desabilitados globalmente.
+
+.Passos
+. No AIDE Console, navegue até *Data Guardrails > Classifiers*.
+. Selecione uma categoria de classificador para revelar os classificadores que ela contém.
+. Selecione as caixas de seleção dos classificadores que deseja ativar ou selecione todas as linhas para ativar classificadores em massa.
+. Selecione *Enable*.
++
+
+TIP: Use a opção de seleção em massa para ativar vários classificadores simultaneamente. Cada vez que você ativa um classificador, uma atualização do espaço de trabalho é acionada em todos os espaços de trabalho. Para minimizar atualizações desnecessárias, ative vários classificadores simultaneamente em vez de um de cada vez.
+
+
+
+.Resultado
+Todos os espaços de trabalho recém-criados e existentes executam os classificadores ativados durante o processamento de metadados.
+
+As etiquetas de classificação são gravadas no catálogo de metadados e ficam disponíveis para engenheiros de dados para filtragem durante a criação de coleções de dados.
+
+
+
+== Gerenciar categorias de classificação
+
+Os classificadores são organizados em categorias (como "PII" ou "Financial data"). As categorias ajudam a agrupar classificadores relacionados para facilitar o gerenciamento e a visibilidade da conformidade. Você pode usar as categorias padrão que a AIDE fornece ou criar categorias personalizadas para atender aos seus requisitos de conformidade.
+
+.Passos
+. No AIDE Console, navegue até *Data Guardrails > Classifiers*.
+. Veja as categorias de classificação existentes. Há duas categorias principais de classificação:
++
+** Conteúdo ou dados: detecta tipos específicos de dados dentro dos arquivos.
+** Documento: classifica o tipo de documento com base no conteúdo.
+
+
+. Determine se as subcategorias do classificador padrão são suficientes ou se você deseja criar sua própria subcategoria.
++
+** Se você estiver usando uma subcategoria de classificador padrão (por exemplo, *General Privacy*):
++
+... Selecione o nome da categoria em Classifier categories para revelar os classificadores associados.
+... Examine a lista de classificadores.
+... Selecione *Adicionar* para encontrar e adicionar classificadores não listados da lista completa de classificadores disponíveis.
+
+
+** Se você deseja criar uma categoria personalizada, selecione image:icon_add_white_bg.png["Sinal de mais azul seguido da palavra Add"].
++
+... Adicione um nome exclusivo, uma descrição e atribua os classificadores disponíveis à categoria.
+... Selecione *Add*
+
+
+
+
+. Para desativar um classificador dentro de uma categoria, selecione image:icon_kabob_horizontal.png["três pontos azuis horizontais"] para o classificador e escolha *Desativar*. Você também pode selecionar todas as linhas para fazer alterações de estado em massa.
+
+
+.Resultado
+Categorias organizam classificadores para visibilidade da conformidade. Engenheiros de dados podem usar tags de classificação ao filtrar e criar coletas de dados.
+
+
+
+== Criar e gerenciar políticas de Data Guardrails
+
+As políticas de Data Guardrails determinam como AIDE responde quando os classificadores detectam conteúdo sensível ou quando prompts e resultados da recuperação violam as regras de conteúdo.
+
+Comportamentos típicos de Data Guardrails incluem:
+
+* Mascarar ou redigir PII de trechos recuperados.
+* Bloqueando respostas que violem as regras de conformidade.
+* Registrar ou etiquetar violações para auditoria.
+
+
+.Sobre esta tarefa
+Você cria e gerencia políticas de proteção somente no AIDE Console.
+
+Você só pode associar workspaces no ONTAP System Manager a uma única política de guardrail por vez.
+
+.Passos
+. No AIDE Console, navegue até *Data Guardrails* > *Guardrail policies*.
+. Selecione *Add*.
+. Insira um nome e uma descrição que descrevam claramente o escopo (por exemplo, `Customer PII redaction for support KB`).
+. Configure as condições voltadas ao classificador de dados necessárias para a ativação do guardrail:
++
+.. Defina as condições para ativação do Data Guardrails:
++
+... Escolha a categoria de classificador ou o tipo de classificador para cada condição.
+... Adicione e defina condições adicionais conforme necessário.
+... Defina critérios de pesquisa específicos em *Pesquisar*, depois selecione *Aceitar*.
+
+
+.. Defina ações para a política de guardrail, como anonimizar conteúdo ou bloquear e remover um arquivo de uma coleta de dados.
+
+
+. Selecione a área de trabalho à qual o guardrail será aplicado.
+. Defina o estado da política:
++
+** *Ativado*: Ativa a política imediatamente.
+** *Modo de teste*: Permite validar o impacto da política antes de ativá-la.
+** *Desativado*: salva o Data Guardrails sem aplicá-lo.
+
+
+. Selecione *Adicionar* para salvar a política e aplicá-la ao workspace.
++
+
+TIP: Utilize o *Modo de Teste* com um ambiente de trabalho piloto e uma coleta de dados não-produtiva para entender quantas respostas seriam afetadas antes de habilitar a aplicação rigorosa.
+
+
+
+.Resultado
+A nova política de Data Guardrails está ativa e restrita ao espaço de trabalho selecionado.
+
+
+
+== Como as políticas interagem com os workspaces
+
+Após a definição das políticas:
+
+* O administrador de armazenamento usa ONTAP System Manager para criar espaços de trabalho, selecionar contêineres de dados e associar uma política de guardrail.
+* Os classificadores são executados automaticamente no conteúdo do espaço de trabalho com base no que você ativou.
+* Os Data Guardrails associados ao workspace influenciam como os endpoints de recuperação se comportam.
+
+
+Para engenheiros de dados e cientistas de dados:
+
+* O conjunto de dados visíveis (workspaces e coleções de dados) já está filtrado por atribuição de função.
+* Os metadados que você consulta (por exemplo, tags PII) são definidos pelos classificadores que estão habilitados.
+* As respostas que seus pipelines RAG recebem são limitadas pelos guardrails configurados no nível do espaço de trabalho.
+
+
+
+
+== Informações relacionadas
+
+* link:../vectorization/view-data-collections.html["Visualizar coleções de dados no AI Data Engine"]
+* link:../vectorization/zero-to-rag.html["Início rápido Data-to-RAG para AI Data Engine"]
+

@@ -1,0 +1,12 @@
+---
+section: vectorization
+title: Gerenciar vetorização e coleções de dados
+entries:
+- title: Início rápido de Data-to-RAG
+  url: "/vectorization/zero-to-rag.html"
+- title: Explorar metadados do workspace
+  url: "/vectorization/explore-workspace-metadata.html"
+- title: Criar coleções de dados
+  url: "/vectorization/create-data-collections.html"
+- title: Visualizar coletas de dados
+  url: "/vectorization/view-data-collections.html"

@@ -1,0 +1,157 @@
+---
+sidebar: sidebar 
+permalink: install-setup/cable-overview.html 
+keywords: aide, ai data engine, cable, overview, cabling, hardware, switches, cluster network, host network, data compute nodes 
+summary: Saiba mais sobre a configuração de cabeamento para Data Compute Node, incluindo o uso de slots de E/S, tipos de cabos e requisitos de conexão para redes de host e cluster. 
+---
+= Requisitos para cabeamento de Data Compute Node para AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Os nós de Data Compute se integram ao seu sistema de storage AFX 1K por meio de conexões de rede do host e de rede do cluster. Revise a configuração dos slots de E/S, os tipos de cabos e os requisitos de conexão para sua implantação.
+
+
+
+== Configuração de cabeamento
+
+Os nós de computação de dados se conectam aos mesmos switches de cluster que os nós controladores do AFX 1K, estendendo seu sistema de storage com recursos de computação otimizados para cargas de trabalho de AI e machine learning.
+
+A configuração inicial do AI Data Engine (AIDE) suporta um mínimo de três nós de computação de dados. Para obter detalhes completos sobre a configuração e as prioridades dos slots, consulte link:https://hwu.netapp.com["NetApp Hardware Universe"^].
+
+image::../media/drw_aide-dcn_back_slots_labeled_ieops-2646.svg[Numeração de slots em um Data Compute Node]
+
+[cols="1,4"]
+|===
+
+
+ a| 
+image::../media/icon_round_1.png[Chamada número 1]
+ a| 
+Slot não utilizado no Data Compute Node.
+
+
+
+ a| 
+image::../media/icon_round_2.png[Chamada número 2]
+ a| 
+Slot não utilizado no Data Compute Node.
+
+
+
+ a| 
+image::../media/icon_round_3.png[Chamada número 3]
+ a| 
+Slot de GPU no Data Compute Node.
+
+
+
+ a| 
+image::../media/icon_round_4.png[Chamada número 4]
+ a| 
+Slot de E/S no Data Compute Node.
+
+
+
+ a| 
+image::../media/icon_round_5.png[Chamada número 5]
+ a| 
+Slot de E/S no Data Compute Node.
+
+|===
+
+
+== Configuração do slot de E/S
+
+O Data Compute Node utiliza um esquema de numeração de slots específico que difere das configurações de servidor padrão. Compreender o layout dos slots é essencial para a correta instalação dos cabos.
+
+* *Slot 3*: reservado para GPU (não acessível para cabos de E/S)
+* *Slots 4 e 5*: slots de E/S usados para conexões de rede
++
+** Porta a: conexões de rede do cluster
+** Porta b: conexões de rede do host
+
+
+* *Slots 1 e 2*: desocupados e inacessíveis para uso
+
+
+
+
+== Conexões de rede
+
+Os nós de computação de dados requerem dois tipos de conexões de rede para se integrarem ao sistema de storage AFX 1K.
+
+* *Conexões de rede do host*
++
+As conexões de rede do host fornecem acesso aos dados do cliente e permitem que os nós de computação de dados processem as cargas de trabalho. Cada nó de computação de dados usa as portas e4b e e5b para conexões redundantes com switches de rede de host separados.
+
++
+Atribuições de portas:
+
++
+** e4b: conecta-se ao switch de rede A
+** e5b: conecta-se ao switch de rede B
+
+
+* *Conexões de rede do cluster*
++
+As conexões de rede do cluster permitem a comunicação entre os nós Data Compute Node e os nós AFX 1K controller dentro do storage cluster. Cada Data Compute Node utiliza as portas e4a e e5a para conexões redundantes com switches de rede de cluster separados.
+
++
+Atribuições de portas:
+
++
+** e4a: conecta-se ao switch de rede A
+** e5a: conecta-se ao switch de rede B
+
+
+
+
+
+
+== Componentes de hardware suportados
+
+Os nós de computação de dados requerem cabos e switches específicos para garantir a conectividade e o desempenho adequados com o sistema de storage AFX 1K.
+
+[cols="2,3,6"]
+|===
+| *Data Compute Node* | *Switches compatíveis* | *Cabos compatíveis* 
+
+
+ a| 
+Data compute nodes (mínimo de três necessários)
+ a| 
+* Cisco Nexus 9332D-GX2B (400GbE)
+* Cisco Nexus 9364D-GX2A (400GbE)
+
+ a| 
+* Cabos breakout 400GbE QSFP-DD para 4x100GbE QSFP56 para conexões com Data Compute Node:
++
+** 100GbE para portas de rede do cluster Data Compute Node (e4a, e5a)
+** 100GbE para portas de rede do host do Data Compute Node (e4b, e5b)
+
+
+* Cabos RJ-45 para conexões de gerenciamento
+
+
+|===
+
+NOTE: Os cabos breakout fornecem quatro conexões de 100GbE a partir de cada porta do switch de 400GbE. Conecte a extremidade de 400GbE aos switches e a extremidade de 100GbE às portas de E/S do Data Compute Node.
+
+
+
+== Orientação do cabo
+
+Ao conectar cabos aos Data Compute Node, a orientação correta dos cabos garante conexões confiáveis.
+
+Os diagramas de cabeamento nos procedimentos de instalação mostram ícones de seta indicando a orientação correta (para cima ou para baixo) da aba de puxar do conector do cabo ao inserir um conector em uma porta. Ao inserir o conector, você deve sentir um clique ao encaixá-lo no lugar. Se você não sentir o clique, remova-o, vire-o e tente novamente.
+
+image:../media/drw_cable_pull_tab_direction_ieops-1699.svg["Direção da aba de puxar o cabo"]
+
+
+CAUTION: Manuseie cuidadosamente os componentes delicados do conector ao encaixá-los no lugar.
+
+.Qual é o próximo passo?
+Após revisar a configuração de cabeamento, link:cable-hardware.html["conecte o hardware"] para seus Data Compute Nodes.
