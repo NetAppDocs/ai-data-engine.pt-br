@@ -19,7 +19,7 @@ Certifique-se de que você já possui um sistema de storage AFX 1K instalado e, 
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Dois"]link:prepare-hardware.html["Prepare-se para instalar seus nós de computação de dados"]
 [role="quick-margin-para"]
-Para se preparar para instalar seus nós de computação de dados, você precisa organizar o local, verificar os requisitos ambientais e elétricos e garantir que haja espaço suficiente no gabinete. Em seguida, desembale o equipamento, compare seu conteúdo com o packing slip e registre o hardware para acessar os benefícios de suporte.
+Para se preparar para instalar seus nós de computação de dados, você precisa organizar o local, verificar os requisitos ambientais e elétricos e garantir que haja espaço suficiente no gabinete. Em seguida, desembale o equipamento, compare o conteúdo com o packing slip e registre o hardware para acessar os benefícios de suporte. São necessários no mínimo três nós de computação de dados para implantar o AI Data Engine.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Três"]link:deploy-hardware.html["Instale o hardware para seus nós de computação de dados"]
 [role="quick-margin-para"]
@@ -27,7 +27,7 @@ Instale os kits de trilhos para seus nós de computação de dados. Fixe seus n�
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatro"]link:cable-hardware.html["Conecte seus nós de computação de dados"]
 [role="quick-margin-para"]
-Para conectar o hardware, primeiro conecte os nós de computação de dados à sua rede de dados e cluster, depois conecte os nós de computação de dados aos switches do cluster.
+Para conectar o hardware, primeiro conecte os nós de computação de dados à sua rede de dados e depois conecte os nós de computação de dados aos switches do cluster.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinco"]link:power-on-hardware.html["Ligue seus nós de computação de dados"]
 [role="quick-margin-para"]

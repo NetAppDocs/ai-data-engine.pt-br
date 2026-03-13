@@ -26,6 +26,9 @@ NOTE: Não é necessário desligar o sistema de storage AFX 1K ao conectar os Da
 
 
 
+NOTE: São necessários no mínimo três nós de computação de dados para implantar o AI Data Engine.
+
+
 
 == Etapa 1: conecte os Data Compute Node à rede do host
 
@@ -68,7 +71,7 @@ image::../media/drw_aide_network_cabling_b_ieops-2648.svg[Cabo para rede Etherne
 
 == Etapa 2: conecte os cabos do cluster de Data Compute Node
 
-Para os Data Compute Node, as portas e4a/e5a são usadas para as conexões do cluster.
+Para os nós de computação de dados, use cabos breakout 4x100GbE para conectar as portas e4a/e5a para as conexões do cluster.
 
 .Passos
 . Conecte a porta e4a dos seguintes Data Compute Node a uma porta não ISL no switch de rede do cluster A:
@@ -76,7 +79,7 @@ Para os Data Compute Node, as portas e4a/e5a são usadas para as conexões do cl
 ** Data Compute Node 1, porta e4a
 ** Data Compute Node 2, porta e4a
 +
-*Cabos 100GbE*
+*4x100GbE cabos breakout*
 
 +
 image::../media/oie_cable100_gbe_qsfp28.png[Cabo Ethernet de 100 Gb]
@@ -91,7 +94,7 @@ image::../media/drw_aide_switched_cluster_cabling_a_ieops-2649.svg[Cabo para red
 ** Data Compute Node 1, porta e5a
 ** Data Compute Node 2, porta e5a
 +
-*Cabos 100GbE*
+*4x100GbE cabos breakout*
 
 +
 image::../media/oie_cable100_gbe_qsfp28.png[Cabo Ethernet de 100 Gb]

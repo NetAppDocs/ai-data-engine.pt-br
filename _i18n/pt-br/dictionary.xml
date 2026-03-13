@@ -475,7 +475,6 @@
   <block id="7521c606bbb262d4406920ae0f227482" category="list-text">Suporta grandes registros de metadados com recursos de indexação e pesquisa.</block>
   <block id="a261e17515b5e7c6f4ac45586180ccf5" category="list-text">Integra-se com abstrações de espaço de trabalho e coleta de dados para aplicar controle de acesso e governança.</block>
   <block id="eb1d2c1ae9218b81f27583f8febe5b0b" category="paragraph">O Data Sync é um serviço automatizado em segundo plano que garante que o catálogo de metadados e as coleções de dados permaneçam atualizados e consistentes com as fontes de dados subjacentes, mesmo quando os dados de origem são alterados.</block>
-  <block id="c72559d5f5f29792246a89c44d4048c5" category="paragraph">A funcionalidade Data Sync não está incluída na licença básica do ONTAP One e requer uma licença AIDE separada.</block>
   <block id="48c7a7721f4589379290f5fbbe788089" category="list-text">Sincroniza dados de clusters ONTAP remotos ou locais usando replicação SnapMirror voltada a políticas. Os dados dos clusters remotos são copiados para o cluster AFX local para processamento AIDE.</block>
   <block id="1789309552c1c2cc5573fd091e47b530" category="list-text">Atualiza incrementalmente com base nas alterações detectadas, propagando apenas os dados modificados.</block>
   <block id="296d6abc76dc8666f2ce23a492687f4a" category="list-text">Proporciona mobilidade de dados segura e incremental e sincronização em todo o ambiente de dados.</block>
@@ -779,7 +778,6 @@
   <block id="dfbf664a24b20a5e81f43e898d684617" category="list-text">Data Compute Node 1, porta e5b</block>
   <block id="03c9404232757fb6fbd63f1bf30833dd" category="list-text">Data Compute Node 2, porta e5b</block>
   <block id="51ac89f3a68bd0a01d770e0a9023a233" category="section-title">Etapa 2: conecte os cabos do cluster de Data Compute Node</block>
-  <block id="23f4b4c052d032f52982aff86abb9547" category="paragraph">Para os Data Compute Node, as portas e4a/e5a são usadas para as conexões do cluster.</block>
   <block id="bc615f90adaaf6e394a43df14dc83aac" category="list-text">Conecte a porta e4a dos seguintes Data Compute Node a uma porta não ISL no switch de rede do cluster A:</block>
   <block id="a0b2e66a85b1aedce80b6da4e0310ffd" category="list-text">Data Compute Node 1, porta e4a</block>
   <block id="796d3174b2e10790956b6531fd09718d" category="list-text">Data Compute Node 2, porta e4a</block>
@@ -1013,13 +1011,11 @@
   <block id="6889512d643df7fa8ccfb7e52dd1181c" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block><block ref="90572de4b12061d10d3adbe91dd02ace" category="inline-link-macro-rx"></block></block>
   <block id="2ef02acbcac74a2bf527975726a47ddc" category="inline-link-macro">Prepare-se para instalar seus nós de computação de dados</block>
   <block id="65b761c9b7abbbeca0b5bf69bc82d7a8" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block><block ref="57d90d9a41d093761f4dd9f6db8351e9" category="inline-link-macro-rx"></block></block>
-  <block id="293f8966fffd4aff38846275cf9996a2" category="paragraph">Para se preparar para instalar seus nós de computação de dados, você precisa organizar o local, verificar os requisitos ambientais e elétricos e garantir que haja espaço suficiente no gabinete. Em seguida, desembale o equipamento, compare seu conteúdo com o packing slip e registre o hardware para acessar os benefícios de suporte.</block>
   <block id="3b6f8293a009822bdcb6d06936fb8f1d" category="inline-link-macro">Instale o hardware para seus nós de computação de dados</block>
   <block id="6b0fec8ea5ac59cda339bc131da013d3" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block><block ref="61494597b1d831d6ff8b369c273f632c" category="inline-link-macro-rx"></block></block>
   <block id="651f9bd4704a3dfd217713e594910973" category="paragraph">Instale os kits de trilhos para seus nós de computação de dados. Fixe seus nós de computação de dados dentro do gabinete. Por fim, conecte os dispositivos de gerenciamento de cabos na parte traseira do sistema para organização dos cabos.</block>
   <block id="78b7263c608b815cd3f413fb28c13ea8" category="inline-link-macro">Conecte seus nós de computação de dados</block>
   <block id="5e57f75c71b8c2be941043075bf090a2" category="paragraph-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block><block ref="725152e2ddcdb5a0cb5d010a5492d444" category="inline-link-macro-rx"></block></block>
-  <block id="cdb1dfe0058aa622edc896df103bd253" category="paragraph">Para conectar o hardware, primeiro conecte os nós de computação de dados à sua rede de dados e cluster, depois conecte os nós de computação de dados aos switches do cluster.</block>
   <block id="e5d9de39f7ca1ba2637e5640af3ae8aa" category="inline-image-macro">Cinco</block>
   <block id="7670baab52af36366616f708588174ea" category="inline-link-macro">Ligue seus nós de computação de dados</block>
   <block id="7593e41e7184593322f581da7379d8c8" category="paragraph-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block><block ref="62013dd88cfe19fc6e87ef7f52ccf53f" category="inline-link-macro-rx"></block></block>
@@ -1517,4 +1513,10 @@
   <block id="1d845d7fec926dc97ef9c9d1ae75fb4d" category="list-text">Certifique-se de que suas prateleiras estejam ligadas e que cada uma tenha um ID exclusivo atribuído. Para obter informações sobre como atribuir IDs de prateleira para o sistema de storage AFX, consulte o <block ref="2cb3ccd2ea21233c926cc907e5546ee0" category="inline-link-macro-rx"></block>.</block>
   <block id="72b11f47a4c462a17235bf830cef5f4d" category="paragraph">Depois de ativar seus nós de computação de dados, <block ref="c209b4c41b8b8a46751e6876a5bec129" category="inline-link-macro-rx"></block>.</block>
   <block id="69333c3b16c70d734803d338560b5f4b" category="paragraph">Depois de se preparar para instalar seus nós de computação de dados, <block ref="8d80699d6ea91999991c5841195fdaf6" category="inline-link-macro-rx"></block>.</block>
+  <block id="9f1b1c09e19edba239dde10c234e2b7d" category="paragraph">A funcionalidade de sincronização de dados está incluída na licença básica do ONTAP One e fica disponível após a instalação do AIDE.</block>
+  <block id="792b46ef5bfc70b9c772c4a7f3b55acc" category="admonition">São necessários no mínimo três nós de computação de dados para implantar o AI Data Engine.</block>
+  <block id="b001ec8ec4133b6f8e6b8db16e7850ff" category="paragraph">Para os nós de computação de dados, use cabos breakout 4x100GbE para conectar as portas e4a/e5a para as conexões do cluster.</block>
+  <block id="788899ea47f1311b79403513bff040e9" category="paragraph">*4x100GbE cabos breakout*</block>
+  <block id="8fbd8a2f645ce1628bb418252fd4e150" category="paragraph">Para se preparar para instalar seus nós de computação de dados, você precisa organizar o local, verificar os requisitos ambientais e elétricos e garantir que haja espaço suficiente no gabinete. Em seguida, desembale o equipamento, compare o conteúdo com o packing slip e registre o hardware para acessar os benefícios de suporte. São necessários no mínimo três nós de computação de dados para implantar o AI Data Engine.</block>
+  <block id="ba1f39989ab5fafce1803b42f3c54d45" category="paragraph">Para conectar o hardware, primeiro conecte os nós de computação de dados à sua rede de dados e depois conecte os nós de computação de dados aos switches do cluster.</block>
 </blocks>

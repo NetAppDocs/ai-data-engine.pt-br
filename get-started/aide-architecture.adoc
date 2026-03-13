@@ -88,7 +88,7 @@ Você pode acessá-lo por meio do ONTAP System Manager.
 O Data Sync é um serviço automatizado em segundo plano que garante que o catálogo de metadados e as coleções de dados permaneçam atualizados e consistentes com as fontes de dados subjacentes, mesmo quando os dados de origem são alterados.
 
 .Licença e acesso
-A funcionalidade Data Sync não está incluída na licença básica do ONTAP One e requer uma licença AIDE separada.
+A funcionalidade de sincronização de dados está incluída na licença básica do ONTAP One e fica disponível após a instalação do AIDE.
 
 .Capacidades
 * Sincroniza dados de clusters ONTAP remotos ou locais usando replicação SnapMirror voltada a políticas. Os dados dos clusters remotos são copiados para o cluster AFX local para processamento AIDE.
