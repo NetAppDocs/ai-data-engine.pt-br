@@ -13,13 +13,13 @@ summary: 'Crie e publique coleções de dados a partir de metadados do workspace
 [role="lead"]
 As coleções de dados são os blocos de construção RAG essenciais no AI Data Engine (AIDE). Como engenheiro de dados ou cientista de dados, você define quais arquivos pertencem a uma coleção, configura as opções de incorporação e indexação e publica a coleção para que os aplicativos possam consultá-la por meio de um endpoint de recuperação.
 
-Você executará todas as tarefas de coleta de dados no AI Data Engine Console.
+Você realizará todas as tarefas de coleta de dados no AIDE Console.
 
 .Antes de começar
-* Você precisa de privilégios de _engenheiro de dados_ ou _cientista de dados_ no AI Data Engine Console (`\https://<cluster_management_ip>/console`).
+* Você precisa de privilégios de _engenheiro de dados_ ou _cientista de dados_ no AIDE Console (`\https://<cluster_management_ip>/console`).
 * Você tem acesso a pelo menos um espaço de trabalho com metadados extraídos e em  `Ready` estado.
 * Você explorou os metadados do workspace e identificou consultas ou filtros que definem subconjuntos de dados relevantes.
-* A licença do AI Data Engine software está instalada e os recursos de inferência estão ativados.
+* A licença do software AIDE está instalada e os recursos de inferência estão ativados.
 
 
 
@@ -124,7 +124,7 @@ A exclusão de uma coleção é permanente. Certifique-se de que nenhum aplicati
 
 
 .Resultado
-A definição da coleção e seus embeddings são removidos do AI Data Engine. Aplicativos que tentarem consultar o antigo endpoint de recuperação falharão após a remoção da coleção.
+A definição da coleção e seus embeddings são removidos do AIDE. Aplicativos que tentarem consultar o antigo endpoint de recuperação falharão após a coleção ser removida.
 
 
 

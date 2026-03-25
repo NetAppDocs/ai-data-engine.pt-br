@@ -11,7 +11,7 @@ summary: Prepare-se para instalar os nós de computação de dados para AI Data 
 
 
 [role="lead"]
-Prepare-se para instalar seus nós de computação de dados para AI Data Engine, preparando o local, desembalando as caixas e comparando o conteúdo das caixas com a nota de remessa, e registrando o sistema para acessar os benefícios de suporte.
+Prepare-se para instalar seus nós de computação de dados para AI Data Engine (AIDE) organizando o local, desembalando as caixas, comparando o conteúdo das caixas com o packing slip e registrando o sistema para acessar os benefícios de suporte.
 
 
 

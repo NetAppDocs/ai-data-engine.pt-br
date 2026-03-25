@@ -11,7 +11,7 @@ summary: Aprenda como engenheiros de dados e cientistas de dados interagem com o
 
 
 [role="lead"]
-Como engenheiro de dados ou cientista de dados, você usa o AI Data Engine Console para explorar workspaces aos quais você recebeu acesso, criar e gerenciar data collections, realizar buscas semânticas e integrar retrieval endpoints em workflows de IA/ML.
+Como engenheiro de dados ou cientista de dados, você usa o AI Data Engine Console para explorar os workspaces aos quais você recebeu acesso, criar e gerenciar coletas de dados, realizar buscas semânticas e integrar endpoints de recuperação em fluxos de trabalho de IA/ML.
 
 Os engenheiros de dados se concentram em transformar dados brutos em conjuntos de dados prontos para IA, criando coleções, configurando pipelines de incorporação e controlando quais usuários podem acessar as coleções publicadas. Os cientistas de dados se concentram em aproveitar conjuntos de dados selecionados para análise, treinamento de modelos e aplicações GenAI, sem gerenciar controle de acesso ou infraestrutura.
 
@@ -24,7 +24,7 @@ Os engenheiros de dados se concentram em transformar dados brutos em conjuntos d
 | Componente | Nível de acesso | Fluxo de trabalho do engenheiro de dados | Fluxo de trabalho do cientista de dados 
 
 
-| AI Data Engine Console | Gerenciar (criar, editar, excluir) | O AI Data Engine Console é sua interface principal para tarefas do dia a dia, incluindo descoberta de dados, gerenciamento de coleta, configuração de pipeline e publicação de endpoints RAG ou de recuperação, para os workspaces que você está autorizado a acessar. | O AI Data Engine Console é sua interface principal para exploração de dados, refinamento e versionamento de coleções dentro dos workspaces aos quais você pode acessar, além de conectar conjuntos de dados selecionados e endpoints de recuperação a fluxos de trabalho de análise, modelagem e GenAI. 
+| AIDE Console | Gerenciar (criar, editar, excluir) | AIDE Console é a sua interface principal para tarefas do dia a dia, incluindo descoberta de dados, gerenciamento de coleta, configuração de pipeline e publicação de endpoints RAG ou de recuperação, para os workspaces que você está autorizado a acessar. | AIDE Console é a sua interface principal para exploração de dados, refinamento e versionamento de coleções dentro dos workspaces aos quais você pode acessar, e para conectar conjuntos de dados selecionados e endpoints de recuperação a fluxos de trabalho de análise, modelagem e GenAI. 
 
 
 | API REST do ONTAP | Gerenciar (criar, editar, excluir) | Você utiliza a API REST para automatizar operações do ciclo de vida da coleta, acionar e monitorar pipelines de incorporação e integrar programaticamente fluxos de trabalho de dados com ferramentas externas. | Você utiliza a API REST para acessar programaticamente coleções de dados, executar consultas de busca vetorial e integrar endpoints de recuperação em aplicações de IA/ML e frameworks agentic. 

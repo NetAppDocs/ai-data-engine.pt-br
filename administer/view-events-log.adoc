@@ -4,14 +4,14 @@ permalink: administer/view-events-log.html
 keywords: aide, aide system, events, audit log, jobs, activity 
 summary: Você pode revisar os eventos, tarefas e mensagens de log de auditoria gerados pelo AIDE para acompanhar o processamento interno e diagnosticar possíveis problemas. O sistema AIDE pode ser configurado para encaminhar essas informações, juntamente com outros dados relacionados, para processamento e arquivamento adicionais. 
 ---
-= Visualizar eventos do AIDE, tarefas e log de auditoria
+= Visualize os eventos, tarefas e log de auditoria do AI Data Engine
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Como administrador de storage, você pode revisar os eventos, trabalhos e mensagens de log de auditoria gerados pelo AIDE para acompanhar o processamento interno e diagnosticar possíveis problemas. O sistema AIDE pode ser configurado para encaminhar essas informações, juntamente com outros dados relacionados, para processamento e arquivamento adicionais.
+Como administrador de storage, você pode revisar os eventos, trabalhos e mensagens do log de auditoria gerados pelo AI Data Engine (AIDE) para acompanhar o processamento interno e diagnosticar possíveis problemas. O sistema AIDE pode ser configurado para encaminhar essas informações, juntamente com outros dados relacionados, para processamento e arquivamento adicionais.
 
 .Antes de começar
 * Você precisa de privilégios de _administrador de storage_ para executar tarefas administrativas relacionadas ao AIDE ONTAP.

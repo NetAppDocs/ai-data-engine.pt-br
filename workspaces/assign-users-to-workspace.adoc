@@ -13,7 +13,7 @@ summary: Após criar um espaço de trabalho, você pode atribuir usuários a ele
 [role="lead"]
 Como administrador de storage, você atribui usuários a um espaço de trabalho com base em suas funções: engenheiros de dados, cientistas de dados ou outras funções, dependendo da estrutura e das necessidades da sua organização. Os usuários fazem login no AI Data Engine (AIDE) Console usando suas credenciais e acessam os recursos do contêiner de dados dentro do espaço de trabalho atribuído.
 
-ONTAP System Manager permite gerenciar quais usuários têm acesso aos workspaces do AI Data Engine. Você pode adicionar ou remover usuários para controlar quem pode visualizar, modificar e interagir com os dados e atividades do workspace.
+ONTAP System Manager permite que você gerencie quais usuários têm acesso aos workspaces do AIDE. Você pode adicionar ou remover usuários para controlar quem pode visualizar, modificar e interagir com os dados e atividades do workspace.
 
 .Antes de começar
 * Você precisa de privilégios de _administrador de storage_ para gerenciar o acesso de usuários aos workspaces.

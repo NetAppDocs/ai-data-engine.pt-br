@@ -41,13 +41,13 @@ AIDE introduz novas funções de usuário, mantendo o suporte às funções trad
 | Função (nome RBAC) | Descrição 
 
 
-| Administrador de storage (`admin`) | Gerencia a configuração do cluster AFX e AIDE, rede, provisionamento de storage e acesso do usuário. Atribui funções RBAC aos usuários que determinam o nível de acesso às interfaces e recursos do AIDE. Essa função de administrador tem acesso total de gerenciamento usando ONTAP System Manager e AI Data Engine Console. 
+| Administrador de storage (`admin`) | Gerencia a configuração do cluster AFX e AIDE, rede, provisionamento de storage e acesso do usuário. Atribui funções RBAC aos usuários que determinam o nível de acesso às interfaces e recursos do AIDE. Essa função de administrador tem acesso total de gerenciamento usando ONTAP System Manager e AIDE Console. 
 
 
-| Engenheiro de dados (`data-engineer` | Cria e otimiza pipelines de IA/ML, gerencia coletas de dados e integra modelos de IA. Esta função tem acesso ao AI Data Engine Console para fluxos de trabalho de engenharia de dados. 
+| Engenheiro de dados (`data-engineer` | Cria e otimiza pipelines de IA/ML, gerencia coletas de dados e integra modelos de IA. Esta função tem acesso ao AIDE Console para fluxos de trabalho de engenharia de dados. 
 
 
-| Cientista de dados (`data-scientist`) | Descobre, organiza e analisa conjuntos de dados, cria coleções de dados e utiliza pontos de recuperação para aplicações GenAI. Esta função tem acesso ao AI Data Engine Console para fluxos de trabalho de ciência de dados. 
+| Cientista de dados (`data-scientist`) | Descobre, organiza e analisa conjuntos de dados, cria coleções de dados e utiliza pontos de acesso para aplicações GenAI. Esta função tem acesso ao AIDE Console para fluxos de trabalho de ciência de dados. 
 |===
 
 

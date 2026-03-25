@@ -4,14 +4,14 @@ permalink: administer/view-insights.html
 keywords: aide, aide system, insights, view insights 
 summary: Você pode usar o recurso Insights do ONTAP System Manager para exibir atualizações de configuração sugeridas que estejam alinhadas com as melhores práticas da NetApp. Essas alterações podem otimizar a segurança e o desempenho, bem como outras áreas do seu AIDE cluster. 
 ---
-= Veja Insights para otimizar seu sistema AIDE
+= Veja insights para otimizar seu sistema AI Data Engine
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Como administrador de storage, você pode usar o recurso _Insights_ do ONTAP System Manager para exibir atualizações de configuração sugeridas que estejam alinhadas com as melhores práticas da NetApp. Essas alterações podem otimizar a segurança e o desempenho do seu AIDE cluster.
+Como administrador de storage, você pode usar o recurso _Insights_ do ONTAP System Manager para exibir atualizações de configuração sugeridas que estejam alinhadas com as melhores práticas da NetApp. Essas alterações podem otimizar a segurança e o desempenho do seu cluster AI Data Engine (AIDE).
 
 .Sobre esta tarefa
 Cada insight é apresentado como um bloco ou cartão separado na página que você pode optar por implementar ou descartar. Você também pode selecionar o link da documentação associada para saber mais sobre uma tecnologia específica.

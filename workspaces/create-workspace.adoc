@@ -24,7 +24,7 @@ Acompanhe o status da criação de espaços de trabalho na página de inventári
 
 .Antes de começar
 * Você precisa de privilégios de _administrador de storage_ para criar workspaces e associar coletas de dados.
-* Você já definiu as fontes de dados remotas (com peering) e locais que pretende usar com o workspace e com AI Data Engine.
+* Você determinou as fontes de dados remotas (com peering) e locais que pretende usar com o workspace e com AIDE.
 * Você link:prepare-data-for-aide.html["criou pelo menos um contêiner de dados"] que o espaço de trabalho pode usar, como um volume local ou um volume de um cluster emparelhado.
 +
 
@@ -39,7 +39,7 @@ IMPORTANT: Adicione um volume a um espaço de trabalho que você não excluirá 
 
 == Criar um espaço de trabalho
 
-Crie um espaço de trabalho e associe contêineres de dados que contenham os dados que você deseja usar com AI Data Engine.
+Crie um workspace e associe contêineres de dados que contenham os dados que você deseja usar com AIDE.
 
 .Passos
 . No ONTAP System Manager, navegue até *Data Engine > Workspaces*.
@@ -60,7 +60,7 @@ TIP: Escolha um intervalo que equilibre a atualização dos dados com o desempen
 .Resultado
 O processo de criação do espaço de trabalho leva de vários minutos a horas para ser concluído, dependendo do conjunto de dados associado e de sua contagem de arquivos, tamanho de arquivos e outros fatores.
 
-O sistema extrai automaticamente metadados de todas as fontes de dados e os armazena em um catálogo de metadados que os usuários podem usar para localizar os arquivos necessários para seus projetos. Depois de atribuir usuários ao espaço de trabalho, os engenheiros de dados podem configurar e interagir com os componentes associados ao espaço de trabalho a partir do AI Data Engine Console.
+O sistema extrai automaticamente metadados de todas as fontes de dados e os armazena em um catálogo de metadados que os usuários podem usar para localizar os arquivos necessários para seus projetos. Depois de atribuir usuários ao espaço de trabalho, usuários engenheiros de dados podem configurar e interagir com os componentes afiliados ao espaço de trabalho a partir do AIDE Console.
 
 O novo espaço de trabalho aparece na página Espaços de trabalho em  `Creating` estado até que o processo seja concluído e o estado mude para  `ready`.
 

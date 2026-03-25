@@ -11,7 +11,7 @@ summary: AIDE é construído sobre uma arquitetura escalável e tolerante a falh
 
 
 [role="lead"]
-AIDE é construído sobre uma arquitetura escalável e tolerante a falhas que separa storage e processamento, permitindo alto desempenho e flexibilidade para cargas de trabalho de IA.
+AI Data Engine (AIDE) é construído sobre uma arquitetura escalável e tolerante a falhas que separa o storage e o processamento, permitindo alto desempenho e flexibilidade para cargas de trabalho de IA.
 
 
 
@@ -107,7 +107,7 @@ O serviço Data Guardrails oferece governança e proteção contínuas e automat
 .Licença e acesso
 A funcionalidade Data Guardrails não está incluída na licença básica do ONTAP One e requer uma licença AIDE separada.
 
-Você pode acessar a funcionalidade de Data Guardrails através do AI Data Engine Console.
+Você pode acessar a funcionalidade do Data Guardrails através do AIDE Console.
 
 .Capacidades
 * Analisa, classifica e categoriza dados continuamente.
@@ -127,7 +127,7 @@ O serviço Data Curator permite a descoberta, busca, vetorização e recuperaç�
 .Licença e acesso
 A funcionalidade Data Curator não está incluída na licença básica do ONTAP One e requer uma licença AIDE separada.
 
-Você pode acessar o Data Curator através do AI Data Engine Console.
+Você pode acessar Data Curator através da AIDE Console.
 
 .Capacidades
 * Pesquisa o storage por dados relevantes usando o catálogo de metadados centralizado.

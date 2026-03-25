@@ -23,7 +23,7 @@ ONTAP System Manager é uma interface Web projetada para administradores de stor
 
 == AI Data Engine Console
 
-AI Data Engine Console é uma interface dedicada para engenheiros de dados e cientistas de dados. Ela permite que os usuários explorem fontes de dados, criem e gerenciem coleções de dados, configurem pipelines de dados, apliquem classificadores e interajam com recursos de proteção e busca vetorial. O console fornece ferramentas avançadas para descoberta, curadoria e integração com fluxos de trabalho de IA/ML.
+AIDE Console é uma interface dedicada para engenheiros de dados e cientistas de dados. Ela permite que os usuários explorem fontes de dados, criem e gerenciem coletas de dados, configurem pipelines de dados, apliquem classificadores e interajam com Data Guardrails e recursos de busca vetorial. O console fornece ferramentas avançadas para descoberta, curadoria e integração de dados com fluxos de trabalho de IA/ML.
 
 
 

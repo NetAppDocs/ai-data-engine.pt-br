@@ -2,7 +2,7 @@
 permalink: install-setup/install-license-task.html 
 sidebar: sidebar 
 keywords: ai data engine, install license, add license, software entitlement, keys, nlf, nlf file 
-summary: 'Você precisará instalar uma licença NetApp para acessar todos os recursos do AI Data Engine (AIDE). Como administrador de cluster ONTAP, você pode gerenciar as licenças usando ONTAP System Manager.' 
+summary: 'Você precisará instalar uma licença NetApp para acessar todos os recursos do AI Data Engine (AIDE). Como administrador de cluster ONTAP, você pode realizar o gerenciamento de licenças usando o ONTAP System Manager.' 
 ---
 = Instale uma licença AIDE em seu sistema AFX
 :allow-uri-read: 
@@ -11,11 +11,11 @@ summary: 'Você precisará instalar uma licença NetApp para acessar todos os re
 
 
 [role="lead"]
-Você precisará instalar uma licença NetApp para acessar todos os recursos do AI Data Engine (AIDE). Como administrador de cluster ONTAP, você pode gerenciar as licenças usando ONTAP System Manager.
+Você precisará instalar uma licença NetApp para acessar todos os recursos do AI Data Engine (AIDE). Como administrador de cluster ONTAP, você pode realizar o gerenciamento de licenças usando o ONTAP System Manager.
 
 
 
-== Prepare-se para licenciar o AI Data Engine
+== Prepare-se para licenciar AI Data Engine
 
 Uma licença é um registro de um ou mais direitos de uso de software. Todas as licenças AFX são fornecidas como um NetApp license file (NLF), que é um único arquivo que habilita vários recursos. Há vários aspectos que você deve considerar antes de instalar uma licença em seu sistema de storage para dar suporte ao AIDE.
 
@@ -29,7 +29,7 @@ Existem dois tipos principais de licenças necessárias para começar a usar AID
 A licença Metadata Engine Basic geralmente vem instalada de fábrica como parte da licença ONTAP One. Ela permite o acesso à funcionalidade do Metadata Engine, que fornece a base essencial para as operações do AIDE. Todas as funcionalidades principais necessárias para administrar seu sistema ONTAP também estão incluídas.
 
 .AI Data Engine
-Você precisa adquirir e instalar a licença do AI Data Engine para acessar os serviços premium necessários para ativar todos os recursos do AIDE. A licença desbloqueia seus nós de computação de dados, habilitando recursos de IA como vetorização, mecanismos de governança, inferência e uma experiência de interface de usuário integrada. A licença inclui uma quantidade de GPUs e uma data de expiração.
+Você precisa adquirir e instalar a licença AIDE para acessar os serviços premium necessários para ativar todos os recursos do AIDE. A licença desbloqueia seus nós de computação de dados, habilitando recursos de IA como vetorização, Data Guardrails, inferência e uma experiência de interface de usuário integrada. A licença inclui uma contagem de GPUs e uma data de expiração.
 
 
 

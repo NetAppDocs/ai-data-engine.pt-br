@@ -17,7 +17,7 @@ Este FAQ aborda dúvidas comuns sobre NetApp AI Data Engine (AIDE), incluindo su
 
 == Noções básicas de AIDE
 
-.O que é NetApp AI Data Engine (AIDE)?
+.O que é NetApp AI Data Engine?
 NetApp AI Data Engine (AIDE) é um serviço de dados de IA integrado ao storage que abrange todo o ciclo de vida de IA, desde a descoberta e preparação de dados brutos até o fornecimento de pontos de recuperação para impulsionar IA generativa (GenAI), Retrieval-Augmented Generation (RAG), agentic AI e fábricas de IA. AIDE automatiza a sincronização e a detecção de alterações, fornecendo uma visão unificada e atualizada dos dados selecionados para descoberta e curadoria de dados.
 
 .Como o AIDE funciona?
@@ -27,7 +27,7 @@ AIDE integra-se diretamente com os sistemas de armazenamento NetApp ONTAP para c
 
 == Usuários e funções
 
-.Quem usa o AI Data Engine?
+.Quem usa AI Data Engine?
 Os principais usuários do AIDE incluem:
 
 . *Administradores de storage ONTAP*: Gerenciam a infraestrutura, as necessidades de storage específicas para IA, a segurança e a conformidade.
@@ -45,7 +45,7 @@ AIDE requer sistemas AFX para implantação (incluindo um controlador AFX, um ga
 AIDE é executado em um nó de computação de dados NetApp (DCN). Três DCNs são necessários. O DCN hospeda o software AIDE, que inclui o Metadata Engine, Data Sync, Data Curator e Data Guardrails.
 
 .Posso usar minha própria DCN?
-Não. O DCN é um nó de hardware de computação de dados fornecido pela NetApp e é o único mecanismo de implantação para o AI Data Engine.
+Não. O DCN é um nó de hardware de computação de dados fornecido pela NetApp e é o único mecanismo de implantação para AIDE.
 
 .Qual é o número mínimo de DCNs necessário?
 São necessários exatamente três DCNs.
@@ -60,8 +60,8 @@ Não. AIDE requer AFX para implantação. AIDE usa Trident para consumir os volu
 
 == Gerenciamento e interfaces
 
-.O AI Data Engine Console faz parte do NetApp Console ou é uma interface separada?
-O AIDE Console é uma interface de gerenciamento separada que é executada em DCNs. Você usa o AIDE Console para gerenciar serviços do AIDE, como Data Guardrails e Data Curator. Você também pode usar o ONTAP System Manager para monitorar o cluster AIDE.
+.AIDE Console faz parte do NetApp Console ou é uma interface separada?
+AIDE Console é uma interface de gerenciamento separada que é executada em DCNs. Você usa AIDE Console para gerenciar serviços do AIDE, como Data Guardrails e Data Curator. Você também pode usar ONTAP System Manager para monitorar o cluster do AIDE.
 
 
 
@@ -85,7 +85,7 @@ Existem quatro principais recursos do AIDE:
 
 
 .Data Guardrails
-* Identifica e protege automaticamente dados confidenciais ao longo de todo o ciclo de vida da IA. Está acessível através do AI Data Engine Console.
+* Identifica e protege automaticamente dados confidenciais ao longo de todo o ciclo de vida dos dados. É acessível através do AIDE Console.
 * Analisa, classifica e categoriza dados continuamente.
 * Identifica dados confidenciais (como PII) e riscos.
 * Facilita a criação de políticas para o tratamento automático de dados confidenciais em conformidade com os padrões da empresa e normas regulamentares.
@@ -111,7 +111,7 @@ AIDE pode se conectar a vários clusters ONTAP usando SnapMirror e peering de cl
 AIDE armazena metadados no cluster AFX conectado usando um volume persistente fornecido pelo AFX. Os DCNs usam armazenamento local para operações internas.
 
 .O AIDE Metadata Engine classifica dados?
-Não. O Metadata Engine cataloga metadados do sistema de arquivos e fornece APIs para consultar esses metadados catalogados.
+Não. AIDE Metadata Engine cataloga metadados do sistema de arquivos e fornece APIs para consultar esses metadados catalogados.
 
 .Quais fontes de dados são suportadas?
 AIDE suporta volumes ONTAP (locais ou remotos) como fontes de dados. Clusters ONTAP remotos devem executar ONTAP 9 e estar conectados via peering de cluster e SnapMirror.

@@ -11,13 +11,13 @@ summary: Analise os requisitos para a instalação do AI Data Engine, incluindo 
 
 
 [role="lead"]
-Analise os requisitos para a instalação do AI Data Engine. AIDE requer um sistema de storage AFX, no mínimo três Data Compute Node, switches de rede e cabos.
+Analise os requisitos para a instalação do AI Data Engine (AIDE). AIDE requer um sistema de storage AFX, no mínimo três nós de computação de dados, switches de rede e cabos.
 
 
 
 == Requisitos de hardware
 
-O AI Data Engine requer um sistema de storage AFX e um mínimo de três Data Compute Nodes. O sistema AFX fornece a infraestrutura de storage, enquanto os Data Compute Nodes hospedam os componentes de software AIDE que permitem o gerenciamento, a curadoria e os recursos de IA dos dados.
+AIDE requer um sistema de storage AFX e um mínimo de três nós de computação de dados. O sistema AFX fornece a infraestrutura de storage, enquanto os nós de computação de dados hospedam os componentes de software do AIDE que permitem o gerenciamento de dados, a curadoria e os recursos de IA.
 
 * *AFX sistema de storage*: Inclui um controlador AFX, um compartimento para discos e um switch de rede. O sistema de storage AFX é necessário para a implantação do AIDE.
 * *Nós de computação de dados*: É necessário um mínimo de três nós de computação de dados. Os nós de computação de dados são nós de hardware fornecidos pela NetApp que hospedam o software AIDE, incluindo o Metadata Engine, Data Sync, Data Curator e Data Guardrails.
@@ -33,7 +33,7 @@ O AI Data Engine requer um sistema de storage AFX e um mínimo de três Data Com
 
 == Requisitos do switch de rede
 
-AI Data Engine requer switches de rede para habilitar a conectividade de rede do host e a comunicação entre os Data Compute Node.
+AIDE requer switches de rede para habilitar a conectividade de rede do host e a comunicação entre os nós de computação de dados.
 
 * Switches de cliente para conectividade de rede do host (Cisco Nexus 9332D-GX2B ou Cisco Nexus 9364D-GX2A)
 * Switches de cluster para comunicação entre nós (Cisco Nexus 9332D-GX2B ou Cisco Nexus 9364D-GX2A)

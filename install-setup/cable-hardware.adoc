@@ -26,7 +26,7 @@ NOTE: Não é necessário desligar o sistema de storage AFX 1K ao conectar os Da
 
 
 
-NOTE: São necessários no mínimo três nós de computação de dados para implantar o AI Data Engine.
+NOTE: É necessário um mínimo de três nós de computação de dados para implantar AI Data Engine.
 
 
 

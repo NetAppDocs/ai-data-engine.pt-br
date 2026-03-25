@@ -11,7 +11,7 @@ summary: Gerencie o ciclo de vida dos workspaces do AI Data Engine, incluindo vi
 
 
 [role="lead"]
-Um workspace é um conjunto de fontes de dados (volumes) que o AI Data Engine (AIDE) usa para construir e atualizar um catálogo de metadados para um projeto ou caso de uso. Como administrador de storage, você pode usar o ONTAP System Manager para monitorar a integridade do workspace, ajustar a configuração, controlar as fontes de dados, gerenciar usuários e excluir workspaces quando eles não forem mais necessários.
+Um espaço de trabalho é um conjunto de fontes de dados (volumes) que AI Data Engine (AIDE) utiliza para construir e atualizar um catálogo de metadados para um projeto ou caso de uso. Como administrador de storage, você pode usar ONTAP System Manager para monitorar a integridade do espaço de trabalho, ajustar a configuração, controlar as fontes de dados, gerenciar usuários e excluir espaços de trabalho quando eles não forem mais necessários.
 
 .Antes de começar
 * Você precisa de privilégios de _administrador de storage_ para gerenciar workspaces.
@@ -44,7 +44,7 @@ NOTE: Se um workspace ou coleta de dados apresentar um estado de erro, verifique
 ** Estado (como `Published` ou `Error`), tamanho e hora da última atualização.
 +
 
-NOTE: System Manager é somente leitura para coleções de dados. Engenheiros de dados podem criar e gerenciar coleções de dados no AI Data Engine Console.
+NOTE: System Manager é somente leitura para coletas de dados. Os engenheiros de dados podem criar e gerenciar coletas de dados no AIDE Console.
 
 
 
@@ -125,7 +125,7 @@ IMPORTANT: Não exclua um volume de origem do ONTAP que tenha sido adicionado a 
 
 
 
-NOTE: Remover um contêiner de dados de um workspace não exclui o volume ONTAP subjacente nem sua relação do SnapMirror. Isso afeta apenas o uso de metadados dentro do AI Data Engine.
+NOTE: Remover um contêiner de dados de um espaço de trabalho não exclui o volume ONTAP subjacente nem sua relação do SnapMirror. Isso afeta apenas o uso de metadados dentro do AIDE.
 
 
 

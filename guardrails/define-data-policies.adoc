@@ -16,10 +16,10 @@ Como proprietário de dados ou plataforma, você usa o AI Data Engine Console pa
 Utilize esses procedimentos para definir essas políticas no AIDE Console para que o ONTAP System Manager possa aplicá-las a todos os dados nos workspaces.
 
 .Antes de começar
-* Você precisa de privilégios de _administrador de armazenamento_ no AI Data Engine Console (`\https://<cluster_management_ip>/console`) para criar e gerenciar políticas globais.
+* Você precisa de privilégios de _administrador de storage_ no AIDE Console (`\https://<cluster_management_ip>/console` para criar e gerenciar políticas globais.
 * Você possui um AIDE cluster com nós de computação de dados implantados e íntegros.
 * link:../install-setup/configure-oidc.html["OpenID Connect (OIDC)"] está configurado e sua função de IdP está mapeada para uma função de administrador do AIDE que permite o gerenciamento de políticas de dados.
-* A licença do AI Data Engine software está instalada para que os recursos de Data Guardrails e inferência estejam ativados.
+* A licença do software AIDE está instalada de forma que os recursos de Data Guardrails e inferência estejam ativados.
 * Existe pelo menos um espaço de trabalho, ou você se coordenou com o administrador para entender quais fontes de dados (volumes) serão usadas nos espaços de trabalho.
 
 
@@ -172,6 +172,6 @@ Para engenheiros de dados e cientistas de dados:
 
 == Informações relacionadas
 
-* link:../vectorization/view-data-collections.html["Visualizar coleções de dados no AI Data Engine"]
-* link:../vectorization/zero-to-rag.html["Início rápido Data-to-RAG para AI Data Engine"]
+* link:../vectorization/view-data-collections.html["Visualizar as coletas de dados no AIDE"]
+* link:../vectorization/zero-to-rag.html["Início rápido de Data-to-RAG para AIDE"]
 

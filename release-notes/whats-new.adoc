@@ -15,7 +15,7 @@ AI Data Engine (AIDE) 9.18.1 é a versão inicial da plataforma de AI Data Engin
 
 
 
-== O que há de novo na versão inicial do AIDE 9.18.1
+== Novidades na versão inicial do AIDE 9.18.1
 
 AIDE 9.18.1 introduz as seguintes funcionalidades fundamentais:
 
@@ -66,23 +66,23 @@ A versão inicial inclui os seguintes fluxos de trabalho:
 
 
 .link:../vectorization/zero-to-rag.html["Capacidades avançadas de curadoria e governança de dados"]
-As seguintes funcionalidades estão disponíveis para clientes que possuem as licenças apropriadas do AI Data Engine:
+As seguintes funcionalidades estão disponíveis para clientes que possuem as licenças AIDE apropriadas:
 
 * *Vetorização e RAG*: Criação de coleções de dados, incorporações e pontos de extremidade de recuperação no AI Data Engine Console, usando metadados dos workspaces do AIDE.
-* *Governança baseada em guardrails*: definição de políticas de guardrail no AI Data Engine Console e associação dessas políticas com workspaces no ONTAP System Manager.
+* *Governança baseada em Data Guardrails*: Definição de políticas de Data Guardrails no AI Data Engine Console e associação dessas políticas com workspaces no ONTAP System Manager.
 
 
 
 
 === Hardware e plataformas compatíveis
 
-AI Data Engine 9.18.1 é executado em clusters da plataforma de dados ONTAP AI que combinam:
+AIDE 9.18.1 é executado em clusters da plataforma de dados ONTAP AI que combinam:
 
 * Nós de armazenamento AFX 1K
 * Nós de computação de dados NetApp
 
 
 .Informações relacionadas
-* link:known-limitations.html["Limitações conhecidas do AI Data Engine"]
-* link:../get-started/learn-about.html["Saiba mais sobre a arquitetura e os componentes do AI Data Engine"]
+* link:known-limitations.html["Limitações conhecidas do AIDE"]
+* link:../get-started/learn-about.html["Saiba mais sobre a arquitetura e os componentes do AIDE"]
 

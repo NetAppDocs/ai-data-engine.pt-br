@@ -14,7 +14,7 @@ summary: Como engenheiro de dados ou cientista de dados, utilize AI Data Engine 
 Como engenheiro de dados ou cientista de dados, sua primeira tarefa no AI Data Engine (AIDE) é entender quais dados estão disponíveis em seus workspaces. Você usa o AI Data Engine Console para consultar o catálogo de metadados, buscar arquivos relevantes e identificar subconjuntos de dados para transformar em data collections.
 
 .Antes de começar
-* Você precisa de privilégios de _data engineer_ ou _data scientist_ no AI Data Engine Console e acesso a pelo menos um espaço de trabalho.
+* Você precisa de privilégios de _engenheiro de dados_ ou _cientista de dados_ no AIDE Console e acesso a pelo menos um espaço de trabalho.
 * Um administrador de storage tem:
 +
 ** Criou um ou mais workspaces no ONTAP System Manager.

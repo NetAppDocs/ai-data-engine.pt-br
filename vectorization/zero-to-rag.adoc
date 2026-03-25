@@ -16,7 +16,7 @@ Vá de um sistema AI Data Engine (AIDE) recém-implantado para um endpoint de ge
 
 .Antes de começar
 * Você instalou e adicionou nós de computação de dados (DCNs) ao cluster ONTAP.
-* Você instalou e licenciou AI Data Engine software para vetorização e guardrails.
+* Você instalou e licenciou o software AIDE para vetorização e guardrails.
 * Você configurou link:../install-setup/configure-oidc.html["OpenID Connect (OIDC)"] e mapeou as funções de administrador, engenheiro de dados e cientista de dados.
 
 
@@ -48,7 +48,7 @@ Como engenheiro de dados ou cientista de dados, você deseja transformar o subco
 
 
 .Qual é o próximo passo?
-* link:../guardrails/define-data-policies.html["Defina seu ambiente de dados e políticas de proteção no AI Data Engine"]
-* link:explore-workspace-metadata.html["Explore metadados de workspace no AI Data Engine Console"]
-* link:create-data-collections.html["Crie coleções de dados no AI Data Engine Console"]
+* link:../guardrails/define-data-policies.html["Defina seu ambiente de dados e políticas de guardrails no AIDE"]
+* link:explore-workspace-metadata.html["Explore os metadados do workspace no AIDE Console"]
+* link:create-data-collections.html["Crie coleções de dados no AIDE Console"]
 

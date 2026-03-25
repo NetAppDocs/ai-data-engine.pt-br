@@ -12,7 +12,7 @@ searchtitle: Saiba mais sobre AI Data Engine
 
 
 [role="lead"]
-O NetApp AI Data Engine (AIDE) é uma plataforma de nível empresarial projetada para acelerar e simplificar o processamento de dados, o gerenciamento e a governança de dados orientados por IA. AIDE pode ajudar a transformar grandes quantidades de dados não estruturados em conjuntos de dados estruturados e prontos para IA. Ele foi desenvolvido para atender às demandas das cargas de trabalho modernas de aprendizado de máquina (ML) e IA generativa (GenAI), oferecendo suporte tanto às operações tradicionais de TI quanto às novas funções centradas em IA.
+NetApp AI Data Engine (AIDE) é uma plataforma de nível empresarial projetada para acelerar e simplificar o processamento de dados orientados por IA, gerenciamento e governança. AIDE pode ajudar a transformar grandes quantidades de dados não estruturados em conjuntos de dados estruturados e prontos para IA. Ele foi desenvolvido para atender às demandas das cargas de trabalho modernas de aprendizado de máquina (ML) e IA generativa (GenAI), oferecendo suporte tanto às operações tradicionais de TI quanto às novas funções centradas em IA.
 
 
 
@@ -30,7 +30,7 @@ AIDE foi projetado para ajudar as organizações a gerenciar dados para cargas d
 
 == Características de projeto de alto nível
 
-As seguintes características de design definem como AI Data Engine foi construído para atender às necessidades das cargas de trabalho de AI:
+As seguintes características de design definem como AIDE foi construído para atender às necessidades das cargas de trabalho de AI:
 
 * *Serviços baseados em microsserviços*: Usa o Kubernetes para orquestrar serviços modulares e resilientes para catalogação de metadados, busca vetorial e gerenciamento de infraestrutura.
 * *Segurança de nível empresarial*: Implementa criptografia, controle de acesso baseado em funções (RBAC) e auditoria em todos os dados e metadados.
@@ -53,7 +53,7 @@ NOTE: Buckets S3 não são suportados como fontes de dados para workspaces ou co
 . **Criação de workspaces**: Os administradores de armazenamento definem workspaces no ONTAP System Manager, agrupando volumes ONTAP relacionados para projetos, equipes ou fluxos de trabalho específicos. As permissões de acesso e as políticas de governança são atribuídas no nível do workspace.
 . **Extração de metadados**: AIDE examina automaticamente arquivos e objetos em espaços de trabalho, extraindo metadados (tipo de arquivo, tamanho, carimbos de data/hora, atributos personalizados) e armazenando-os em um catálogo centralizado. Isso ocorre continuamente à medida que os dados são alterados.
 . **Classificação e governança**: Classificadores examinam os dados em busca de informações sensíveis (PII, dados financeiros) ou tipos de documento (jurídicos, RH). Políticas de Data Guardrails aplicam redação ou restrições de acesso automaticamente.
-. **Criação de coleta de dados**: engenheiros e cientistas de dados usam o AI Data Engine Console para consultar o catálogo de metadados, filtrar resultados e reunir coletas de dados selecionadas para tarefas específicas de IA.
+. **Criação de coleta de dados**: engenheiros e cientistas de dados usam AIDE Console para consultar o catálogo de metadados, filtrar resultados e montar coletas de dados selecionadas para tarefas específicas de IA.
 . **Vetorização**: para coleções que exigem busca semântica, AIDE gera embeddings usando modelos de IA selecionados. Vetores são armazenados no banco de dados de vetores para recuperação de alto desempenho.
 . **Consumo de IA/ML**: aplicativos acessam dados por meio de múltiplos caminhos:
 +

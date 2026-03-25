@@ -11,7 +11,7 @@ summary: Analise o equipamento necessário e as precauções de elevação para 
 
 
 [role="lead"]
-Analise o equipamento necessário e as precauções de elevação para os nós de computação de dados do AI Data Engine.
+Analise o equipamento necessário e as precauções de elevação para os nós de computação de dados do AI Data Engine (AIDE).
 
 
 
