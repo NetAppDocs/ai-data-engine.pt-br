@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: administer/aide-node-replace.html 
-keywords: aide, node replacement, DCN, cluster 
-summary: 'Substitua um nó de computação de dados (DCN) no seu cluster do AI Data Engine (AIDE).' 
+keywords: ai data engine, aide, data compute node, dcn, replace node, node replacement, cluster maintenance 
+summary: 'Você precisa substituir um nó de computação de dados (DCN) em seu AI Data Engine (AIDE) cluster se ele parar de funcionar ou precisar ser trocado devido a falha de hardware, upgrade ou manutenção. Isso garante que o cluster do AI Data Engine (AIDE) permaneça íntegro e operacional. O procedimento pode ser realizado sem interromper os serviços em andamento.' 
 ---
 = Substitua um nó no seu cluster do AI Data Engine
 :allow-uri-read: 
@@ -19,8 +19,15 @@ Você precisa substituir um nó de computação de dados (DCN) em seu AI Data En
 
 Há vários fatores a considerar antes de substituir um nó no seu AIDE cluster.
 
-.Credenciais do System Manager
-Você precisa de privilégios de _administrador de storage_ para executar tarefas de substituição de nó de cluster AIDE.
+
+
+=== Requisitos
+
+Você precisará do seguinte:
+
+* Credenciais de usuário com privilégios de _administrador de storage_
+* Número de série do novo nó de substituição
+
 
 
 
@@ -32,15 +39,6 @@ Você deve estar ciente das seguintes restrições ao substituir um nó no AIDE 
 * Não é possível realizar a substituição de nó usando System Manager.
 * O novo nó deve corresponder à versão do software do cluster; ONTAP atualizará se necessário.
 * O nó com falha não deve ser ligado enquanto estiver conectado à rede do cluster para evitar conflitos de endereço IP.
-
-
-
-
-=== Requisitos
-
-Você precisará do seguinte:
-
-* Número de série do novo nó de substituição
 
 
 

@@ -18,6 +18,7 @@ CAUTION: Você deve configurar o OIDC para acessar o AIDE Console. Quando config
 
 Observe também o seguinte sobre a configuração OIDC para acesso ao AIDE:
 
+* Em linhas gerais, a configuração do OIDC consiste em duas etapas principais. Primeiro, você precisa realizar a configuração básica do OIDC usando System Manager. Em seguida, você pode concluir a configuração definindo o mapeamento de funções externas usando a ONTAP CLI.
 * Não é possível modificar uma configuração OIDC existente. Se precisar fazer uma alteração, primeiro exclua a configuração e crie uma nova com as configurações desejadas.
 * Se você desativar ou remover o OIDC, System Manager voltará para a autenticação local do ONTAP.
 
@@ -69,6 +70,9 @@ Veja  https://learn.microsoft.com/en-us/azure/active-directory-b2c/identity-prov
 
 Após configurar seu IdP, você pode configurar a autenticação OIDC no System Manager para habilitar o acesso seguro ao AIDE Console.
 
+
+TIP: Você pode fornecer o URI de metadados para preencher automaticamente os campos de configuração OIDC no System Manager. Consulte a documentação do seu IdP para obter o formato exato do URI.
+
 .Antes de começar
 * Você precisa ter acesso de administrador ao System Manager.
 * Seu provedor de identidade OIDC deve estar configurado e acessível.
@@ -106,10 +110,38 @@ Após configurar seu IdP, você pode configurar a autenticação OIDC no System 
 . Faça login com suas credenciais do IdP; após autenticação bem-sucedida, você retornará ao System Manager.
 
 
+.Depois que você terminar
+Conclua a configuração do OIDC configurando o mapeamento de função externa.
+
+
+
+== Configurar o mapeamento de funções externas usando a CLI
+
+O mapeamento de funções externas é um recurso do ONTAP que permite mapear as funções do IdP externo para as funções correspondentes no ONTAP. Você precisa configurar esse mapeamento para garantir que os usuários que se autenticam por meio do OIDC recebam as permissões RBAC apropriadas no ONTAP.
+
+.Sobre esta tarefa
+Esta tarefa mapeia o engenheiro de dados e o cientista de dados para as funções correspondentes do ONTAP. Você precisa atualizar os exemplos de comando com os nomes de função apropriados com base no seu ambiente. Observe que você já deve ter mapeado a função de administrador de storage para a função do ONTAP `admin` durante a configuração básica do OIDC no System Manager.
+
+.Passos
+. Utilizando SSH, faça login na ONTAP CLI com uma conta que possua privilégios administrativos.
+. Configurar o mapeamento de funções para a função de engenheiro de dados; por exemplo:
++
+[source, bash]
+----
+security login external-role-mapping create -external-role dataEngineer -provider entra -ontap-role data-engineer
+----
+. Configurar o mapeamento de funções para a função de cientista de dados; por exemplo:
++
+[source, bash]
+----
+security login external-role-mapping create -external-role dataScientist -provider entra -ontap-role data-scientist
+----
+
+
 
 
 == Informações relacionadas
 
+* https://docs.netapp.com/us-en/ontap/authentication/oauth2-external-roles.html["Mapeamento de funções externas do OAuth 2.0 em ONTAP"^]
 * https://openid.net/["OpenID Foundation"^]
-* https://docs.netapp.com/us-en/ontap/authentication/overview-oauth2.html["Implementação do OAuth 2.0 no ONTAP"^]
 

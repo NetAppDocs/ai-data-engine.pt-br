@@ -5,7 +5,6 @@
   <block id="0f6902c11864c7f6ea3e7e97543390ff" category="section-title">Prepare-se para substituir um nó</block>
   <block id="192d4730c4474133e43ad79a17bc2b0a" category="paragraph">Há vários fatores a considerar antes de substituir um nó no seu AIDE cluster.</block>
   <block id="3d0290aecf6f3d97cfe6bc8642514dfb" category="paragraph-title">Credenciais do System Manager</block>
-  <block id="214815a740557c20d025260617d488f6" category="paragraph">Você precisa de privilégios de _administrador de storage_ para executar tarefas de substituição de nó de cluster AIDE.</block>
   <block id="e3e16bb73c0250a6a229fb457b4f957e" category="section-title">Restrições</block>
   <block id="c236764b0a821599642d7a5689c7dec8" category="paragraph">Você deve estar ciente das seguintes restrições ao substituir um nó no AIDE cluster:</block>
   <block id="3bc43fb96432ecb013dfd886119f4664" category="list-text">A substituição de nó só é suportada usando a CLI e, opcionalmente, a API REST.</block>
@@ -879,8 +878,6 @@
   <block id="b3eac18ae7c204c556f62dd66a01d35d" category="list-text">Faça login com suas credenciais do IdP; após autenticação bem-sucedida, você retornará ao System Manager.</block>
   <block id="83ae1104f2752dedd3f734e862e77079" category="inline-link">OpenID Foundation</block>
   <block id="d6dc3de1eee9ae466c18b32abc3802b3" category="list-text"><block ref="d6dc3de1eee9ae466c18b32abc3802b3" category="inline-link-rx"></block></block>
-  <block id="79ae1a530fac5c3d3243825c084b579d" category="inline-link">Implementação do OAuth 2.0 no ONTAP</block>
-  <block id="f3bab0602006a91da3ab07cad24e13f8" category="list-text"><block ref="f3bab0602006a91da3ab07cad24e13f8" category="inline-link-rx"></block></block>
   <block id="00f45165b3cfbcdf086cee49c25c82c9" category="summary">Aprenda como instalar os kits de trilhos e fixar os nós de computação de dados no gabinete.</block>
   <block id="d08f231bff757ee25df913223bf39e35" category="doc">Instale seus nós de computação de dados para AI Data Engine</block>
   <block id="69e42da6d542e4665008dcc83755451b" category="paragraph">Instale e proteja seus nós de data compute no gabinete.</block>
@@ -1417,7 +1414,6 @@
   <block id="b001ec8ec4133b6f8e6b8db16e7850ff" category="paragraph">Para os nós de computação de dados, use cabos breakout 4x100GbE para conectar as portas e4a/e5a para as conexões do cluster.</block>
   <block id="788899ea47f1311b79403513bff040e9" category="paragraph">*4x100GbE cabos breakout*</block>
   <block id="ba1f39989ab5fafce1803b42f3c54d45" category="paragraph">Para conectar o hardware, primeiro conecte os nós de computação de dados à sua rede de dados e depois conecte os nós de computação de dados aos switches do cluster.</block>
-  <block id="e6f8cfd22de27cfd8ccde79f61a46bd1" category="summary">Substitua um nó de computação de dados (DCN) no seu cluster do AI Data Engine (AIDE).</block>
   <block id="32f794268679c746fb213c9e0c2c7e31" category="doc">Substitua um nó no seu cluster do AI Data Engine</block>
   <block id="d1293847699b10ee9673528d7b2c04bd" category="doc">Adicione nós de computação de dados ao seu cluster do AI Data Engine</block>
   <block id="e224a7cdea2fcc18f05199345c841386" category="paragraph">O endereço IP único será balanceado entre as DCNs e usado como endereço de frontend para AIDE Console e APIs relacionadas.</block>
@@ -1527,4 +1523,16 @@
   <block id="3f5ac75246d8594dc42a3814252da7ce" category="list-text"><block ref="8ceb652f32f46e0c9a1975fc579b542f" category="inline-link-rx"></block> que contém dados que você deseja usar com AIDE.</block>
   <block id="119a03c8a8d1576eafb9b8f6ac04c12f" category="inline-link-macro">Selecione os volumes que deseja usar com AIDE</block>
   <block id="0d5f62005a0ac8e87f1aaffb995ce7de" category="list-text"><block ref="3ddf7be728c954623bdc7abbf7625bd2" category="inline-link-macro-rx"></block>.</block>
+  <block id="4664a9ced36cba14050a4fcbf1450a27" category="list-text">Credenciais de usuário com privilégios de _administrador de storage_</block>
+  <block id="eadf44f76dffdd84c31f1c9d356c0868" category="list-text">Em linhas gerais, a configuração do OIDC consiste em duas etapas principais. Primeiro, você precisa realizar a configuração básica do OIDC usando System Manager. Em seguida, você pode concluir a configuração definindo o mapeamento de funções externas usando a ONTAP CLI.</block>
+  <block id="5ac833147e752f92ac0c80b33430fb9f" category="admonition">Você pode fornecer o URI de metadados para preencher automaticamente os campos de configuração OIDC no System Manager. Consulte a documentação do seu IdP para obter o formato exato do URI.</block>
+  <block id="624871063b499c9a41dbf91f4f294d7c" category="paragraph">Conclua a configuração do OIDC configurando o mapeamento de função externa.</block>
+  <block id="3c0b11b1d3509faa0a7bbac825211a4a" category="section-title">Configurar o mapeamento de funções externas usando a CLI</block>
+  <block id="4ae4bdbad8969579acc1dc1db436776d" category="paragraph">O mapeamento de funções externas é um recurso do ONTAP que permite mapear as funções do IdP externo para as funções correspondentes no ONTAP. Você precisa configurar esse mapeamento para garantir que os usuários que se autenticam por meio do OIDC recebam as permissões RBAC apropriadas no ONTAP.</block>
+  <block id="4cf903122d76266e6c91111b522b6d5f" category="paragraph">Esta tarefa mapeia o engenheiro de dados e o cientista de dados para as funções correspondentes do ONTAP. Você precisa atualizar os exemplos de comando com os nomes de função apropriados com base no seu ambiente. Observe que você já deve ter mapeado a função de administrador de storage para a função do ONTAP<block ref="21232f297a57a5a743894a0e4a801fc3" prefix=" " category="inline-code"></block> durante a configuração básica do OIDC no System Manager.</block>
+  <block id="7c05dc11a263c8c571a6a666a4c4d4b3" category="list-text">Utilizando SSH, faça login na ONTAP CLI com uma conta que possua privilégios administrativos.</block>
+  <block id="258b991bef7bf176457c18935f6166d8" category="list-text">Configurar o mapeamento de funções para a função de engenheiro de dados; por exemplo:</block>
+  <block id="cd5dcea2498cb30a3d7de0f356155044" category="list-text">Configurar o mapeamento de funções para a função de cientista de dados; por exemplo:</block>
+  <block id="4b527243ee5adebf301c5c9ab3aa1e5a" category="inline-link">Mapeamento de funções externas do OAuth 2.0 em ONTAP</block>
+  <block id="7d8d22eff571b389da4ee3b87fac44f2" category="list-text"><block ref="7d8d22eff571b389da4ee3b87fac44f2" category="inline-link-rx"></block></block>
 </blocks>
