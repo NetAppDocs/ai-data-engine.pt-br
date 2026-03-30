@@ -182,26 +182,20 @@
   <block id="0a31736f60dd76c513b61196a00b88d6" category="section-title">Entenda o processo de atualização</block>
   <block id="319d9b005d239892cc2b564df5cba1e1" category="paragraph">As atualizações do software AIDE podem ser gerenciadas através do ONTAP System Manager.</block>
   <block id="1d07799f906ab75d186ca484e6fac46a" category="paragraph">Tipos e escopo de release:</block>
-  <block id="02820103aa434f47df1e6032459d04d7" category="list-text">As versões principais do ONTAP (9.x.x) e as versões principais do AIDE (9.x.x U0) introduzem novos recursos, APIs ou alterações que afetam a integração do ONTAP.</block>
-  <block id="dbb222271ea093c78aeca68e3a9f2837" category="list-text">As versões de correção do ONTAP (9.x.x Px) e as versões de atualização do AIDE (9.x.x Ux) contêm correções e atualizações que não afetam a integração do ONTAP.</block>
   <block id="c40a9ed4ca32a41abfe823a5591ab593" category="section-title">Matriz de compatibilidade</block>
   <block id="3aff4c208b1fe57e6b7d50faa86107ee" category="paragraph">Ao planejar atualizações, assegure-se da compatibilidade entre ONTAP e AI Data Engine software.</block>
   <block id="83b5552fb5911c379734b63d82d04547" category="paragraph">O software AIDE é lançado como versões "U". Uma versão principal do AIDE é uma versão "U0" e as versões secundárias subsequentes serão "U1" e posteriores.</block>
   <block id="0a8261ac12ab162f2cb8a7ff2c0c2917" category="section-title">Compatibilidade entre ONTAP e AIDE</block>
   <block id="07bd1c5d6519187df7481131b5f994d3" category="cell">Versões do AIDE</block>
   <block id="dcf4fd27b8dceecd77b2127bb7270258" category="cell">Versões do ONTAP suportadas</block>
-  <block id="0faf11919e2d57059a1aeb8f99e3a852" category="cell">9.18.1 U0</block>
   <block id="ce26eb948c24c32e87abcd86f1e08b67" category="cell">9.18.1 GA e todos 9.18.1 Px</block>
-  <block id="4b99164937f5285b507d1cc4aa57dc78" category="cell">9.18.1 U1 e posteriores</block>
   <block id="c8edbd10a1cefa33b5426f3caf51927b" category="paragraph">"Px" indica todas as versões de correção (patches) do ONTAP na versão principal (por exemplo, 9.18.1 P1, 9.18.2 e outras).</block>
   <block id="c61715af31fb78022fc54f7938e42152" category="section-title">Caminhos de atualização do AIDE</block>
   <block id="4b243629427b1bb46c9cb93a56cc6414" category="paragraph">Os exemplos a seguir utilizam versões futuras hipotéticas para mostrar os caminhos de upgrade e atualização permitidos a partir do AIDE 9.18.1 U0 e 9.18.1 U1.</block>
   <block id="40c84643ebad16fbf17548baaafd1040" category="cell">Se a sua versão atual do AIDE for…</block>
   <block id="1f2d57a8c4fbbe5fc8e3b0c57dddf4dd" category="cell">E a sua versão alvo do AIDE é…</block>
   <block id="d6d759596e0eba5472d9b19d0ced7754" category="cell">Seu caminho de upgrade ou atualização é…</block>
-  <block id="283ca8d4b834f564b72f0f555816803c" category="cell">9.18.1 U1</block>
   <block id="fd1dd0c603be8170f9eae0be9f2f6afb" category="cell">Direto</block>
-  <block id="fab78b96763d1052d2515db675734272" category="cell">9.18.1 U3</block>
   <block id="e32e4b57cad1c9f5a8057724e32b4e74" category="cell">Direto (você pode atualizar de qualquer Ux para qualquer Ux posterior na 9.18.1)</block>
   <block id="bc9337f62cc08a9589fd7554ed86a7ae" category="section-title">Reverter limitações</block>
   <block id="74bfdc300a94797f04e4f81bc4194296" category="inline-xref">requisitos de compatibilidade</block>
@@ -1535,4 +1529,10 @@
   <block id="cd5dcea2498cb30a3d7de0f356155044" category="list-text">Configurar o mapeamento de funções para a função de cientista de dados; por exemplo:</block>
   <block id="4b527243ee5adebf301c5c9ab3aa1e5a" category="inline-link">Mapeamento de funções externas do OAuth 2.0 em ONTAP</block>
   <block id="7d8d22eff571b389da4ee3b87fac44f2" category="list-text"><block ref="7d8d22eff571b389da4ee3b87fac44f2" category="inline-link-rx"></block></block>
+  <block id="15090c6ee8816b205eaa75ebafe250fa" category="list-text">As versões principais do ONTAP (9.x.x) e AIDE (9.x.xU0) introduzem novos recursos, APIs ou alterações que afetam a integração do ONTAP.</block>
+  <block id="4a5c3a9dd9df2bf0a351def708479b81" category="list-text">As versões de patch do ONTAP (9.x.x Px) e as versões de atualização do AIDE (9.x.xUx) contêm correções e atualizações que não afetam a integração do ONTAP.</block>
+  <block id="f142a2e7033e6ebdb43d28fba51d9e34" category="cell">9.18.1U0</block>
+  <block id="7399a3eeb224c7978e5e9a5935d16d63" category="cell">9.18.1U1 e versões posteriores</block>
+  <block id="f3ac8b594b4d3cbd234a7be195b01f2b" category="cell">9.18.1U1</block>
+  <block id="d26df6a55e36d2b963c52c54e1a92f01" category="cell">9.18.1U3</block>
 </blocks>

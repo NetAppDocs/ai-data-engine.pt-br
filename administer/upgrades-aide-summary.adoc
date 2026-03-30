@@ -41,8 +41,8 @@ AIDE não suporta a funcionalidade de atualizações automáticas de software do
 
 Tipos e escopo de release:
 
-* As versões principais do ONTAP (9.x.x) e as versões principais do AIDE (9.x.x U0) introduzem novos recursos, APIs ou alterações que afetam a integração do ONTAP.
-* As versões de correção do ONTAP (9.x.x Px) e as versões de atualização do AIDE (9.x.x Ux) contêm correções e atualizações que não afetam a integração do ONTAP.
+* As versões principais do ONTAP (9.x.x) e AIDE (9.x.xU0) introduzem novos recursos, APIs ou alterações que afetam a integração do ONTAP.
+* As versões de patch do ONTAP (9.x.x Px) e as versões de atualização do AIDE (9.x.xUx) contêm correções e atualizações que não afetam a integração do ONTAP.
 
 
 
@@ -62,10 +62,10 @@ O software AIDE é lançado como versões "U". Uma versão principal do AIDE é 
 | Versões do AIDE | Versões do ONTAP suportadas 
 
 
-| 9.18.1 U0 | 9.18.1 GA e todos 9.18.1 Px 
+| 9.18.1U0 | 9.18.1 GA e todos 9.18.1 Px 
 
 
-| 9.18.1 U1 e posteriores | 9.18.1 GA e todos 9.18.1 Px 
+| 9.18.1U1 e versões posteriores | 9.18.1 GA e todos 9.18.1 Px 
 |===
 [NOTE]
 ====
@@ -83,13 +83,13 @@ Os exemplos a seguir utilizam versões futuras hipotéticas para mostrar os cami
 | Se a sua versão atual do AIDE for… | E a sua versão alvo do AIDE é… | Seu caminho de upgrade ou atualização é… 
 
 
-| 9.18.1 U0 | 9.18.1 U1 | Direto 
+| 9.18.1U0 | 9.18.1U1 | Direto 
 
 
-| 9.18.1 U0 | 9.18.1 U3 | Direto (você pode atualizar de qualquer Ux para qualquer Ux posterior na 9.18.1) 
+| 9.18.1U0 | 9.18.1U3 | Direto (você pode atualizar de qualquer Ux para qualquer Ux posterior na 9.18.1) 
 
 
-| 9.18.1 U1 | 9.18.1 U3 | Direto (você pode atualizar de qualquer Ux para qualquer Ux posterior na 9.18.1) 
+| 9.18.1U1 | 9.18.1U3 | Direto (você pode atualizar de qualquer Ux para qualquer Ux posterior na 9.18.1) 
 |===
 
 
