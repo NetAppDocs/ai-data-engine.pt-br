@@ -1,0 +1,12 @@
+---
+section: rest
+title: Use a API REST
+entries:
+- title: Saiba mais sobre a API REST
+  url: "/rest/learn-rest-api.html"
+- title: Autenticação e autorização
+  url: "/rest/authentication-authorization.html"
+- title: Sua primeira chamada à API REST
+  url: "/rest/first-api-call.html"
+- title: Recursos da API REST
+  url: "/rest/resources.html"

@@ -18,6 +18,7 @@ sidebar:
   - section: administer
   - section: vectorization
   - section: guardrails
+  - section: rest
   - title: Perguntas frequentes
     url: "/faq-aide.html"
   - title: Avisos legais

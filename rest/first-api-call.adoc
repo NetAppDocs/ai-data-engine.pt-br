@@ -1,0 +1,65 @@
+---
+sidebar: sidebar 
+permalink: rest/first-api-call.html 
+keywords: afx rest api, aide rest api, first api call, curl command, access token, verify permissions 
+summary: Você pode executar um comando curl simples para começar a usar as extensões AIDE da API REST do ONTAP. 
+---
+= Sua primeira chamada à API REST do AIDE
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Você pode executar um comando curl simples para começar a usar as extensões AIDE da API REST do ONTAP.
+
+.Sobre esta tarefa
+A chamada de exemplo da API REST retorna o nome de usuário, a função e os privilégios do usuário associado ao token de acesso fornecido na chamada. Esta é uma maneira simples de verificar seu token de acesso com as permissões necessárias. Variáveis no estilo Bash são usadas para simplicidade.
+
+.Antes de começar
+Além de ter o utilitário curl disponível em sua estação de trabalho local, você precisará do seguinte:
+
+* Endereço IP ou FQDN da LIF de gerenciamento do cluster ONTAP
+* Um token de acesso emitido pelo seu provedor de identidade para a função de _administrador de storage_
+
+
+.Passos
+. Emita o seguinte comando na CLI da sua estação de trabalho local:
++
+[source, curl]
+----
+curl --request GET "https://$FQDN_IP/api/security/login/whoami" \
+--include --header "Accept: */*" \
+--header "Authorization: Bearer $TOKEN_ADMIN"
+----
+. Analise a resposta; por exemplo:
++
+[listing]
+----
+{
+  "username": "storageAdmin@examplecompany.onmicrosoft.com",
+  "role": [
+    "admin"
+  ],
+  "privileges": [
+    {
+      "path": "/api",
+      "access": "all"
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "/api/security/login/whoami"
+    }
+  }
+}
+----
+
+
+.Informações relacionadas
+* link:../rest/authentication-authorization.html["Autenticação e autorização para a API REST AIDE"]
+* https://docs.netapp.com/us-en/ontap-afx/rest/first-call.html["Sua primeira chamada à API REST do sistema de storage AFX"^]
+

@@ -1535,4 +1535,130 @@
   <block id="7399a3eeb224c7978e5e9a5935d16d63" category="cell">9.18.1U1 e versões posteriores</block>
   <block id="f3ac8b594b4d3cbd234a7be195b01f2b" category="cell">9.18.1U1</block>
   <block id="d26df6a55e36d2b963c52c54e1a92f01" category="cell">9.18.1U3</block>
+  <block id="a0c763b166d498e8fa6368b0a8a0c728" category="summary">Antes de usar a ONTAP REST API com extensões AIDE, você deve entender as opções de autenticação e autorização.</block>
+  <block id="676762505c91c322ed556237af123141" category="doc">Autenticação e autorização para a API REST AIDE</block>
+  <block id="cb0ce12b21fb217e1d92c4a0e54220d7" category="section-title">Opções de autenticação da API REST do ONTAP</block>
+  <block id="c0dbdee9521e2d6d08ae7807f414603e" category="paragraph">A API REST do ONTAP suporta duas técnicas principais de autenticação.</block>
+  <block id="2368b2eed23ca308b7bd81bf5d82bfe0" category="list-text">Autenticação básica</block>
+  <block id="7fe49b0494ceccf9a481627c1f54c4d6" category="list-text">A autenticação básica é uma técnica simples definida como parte do protocolo HTTP. Com autenticação básica, você fornece um nome de usuário e uma senha (combinados e codificados em base64) no cabeçalho Authorization das suas chamadas de API. Não é recomendada para uso com a AIDE API REST, mas ainda pode ser usada com chamadas de API ONTAP existentes.</block>
+  <block id="ddcbe4d8bd4db8bb601aa770e20ff536" category="list-text">Autenticação OAuth 2.0</block>
+  <block id="3c07c71a9c7703391c642d22d7402ea2" category="list-text">A partir da versão 9.14.1, ONTAP também oferece suporte ao OAuth 2.0. Esta é uma estrutura de autenticação mais segura e flexível. Ao usar o OAuth 2.0, é necessário solicitar um token de acesso de um provedor de identidade (IdP) externo e incluí-lo em cada solicitação HTTP.</block>
+  <block id="24dbdbb3d3e8761526d3e12ce9cc3690" category="section-title">AI Data Engine e OpenID Connect</block>
+  <block id="9387cfb40d518bee30cb9c67791b77e6" category="paragraph">O OpenID Connect (OIDC) é baseado no OAuth 2.0 e oferece uma opção segura e padronizada para autenticar usuários e aplicativos. OIDC é necessário para acessar as funcionalidades do DCN e do AIDE. Após você <block ref="01a71c74a6244b4787e6e8dbbf22b582" category="inline-link-macro-rx"></block>, o acesso ao ONTAP System Manager e à página Swagger on-box são protegidos pela autenticação OIDC.</block>
+  <block id="75b36738272a767fb2da96031d792a5f" category="paragraph">Como parte da configuração do OIDC no ONTAP System Manager, o OAuth 2.0 é ativado automaticamente e um cliente OAuth 2.0 é criado. Você pode então obter um token de acesso por meio do *token_endpoint* do seu IdP, que normalmente pode ser determinado a partir do URI de metadados do IdP. Os tokens de acesso precisam ser incluídos no cabeçalho Authorization das suas chamadas de API para autenticar e autorizar o acesso aos recursos do AIDE.</block>
+  <block id="8d737abad0c9a5f3716fb7410e972385" category="section-title">Aprimoramentos na implementação do RBAC do ONTAP</block>
+  <block id="7c16bedb8daf38e8794c2c2b2ef2846c" category="paragraph">O acesso à API REST do AIDE é protegido usando a estrutura de Controle de Acesso Baseado em Função (RBAC) do ONTAP. Os usuários devem ter as funções e privilégios apropriados atribuídos no ONTAP para acessar os recursos do AIDE e executar operações por meio da API REST.</block>
+  <block id="87cba8a2dfad75f383fe16e0d9705bd5" category="paragraph">Existem duas funções adicionais do ONTAP que dão suporte ao AIDE. As funções externas equivalentes definidas no seu IdP precisam ser mapeadas para essas funções do ONTAP para fornecer o acesso necessário aos recursos do AIDE.</block>
+  <block id="1c1531a941b5e3a0fdc7de92b1623675" category="admonition">Além das duas novas funções do ONTAP, você também precisa mapear a função de administrador de storage externo para a função ONTAP<block ref="21232f297a57a5a743894a0e4a801fc3" prefix=" " category="inline-code"></block> existente. Consulte <block ref="9127bd9d927d4d15ad56406084c56373" category="inline-link-macro-rx"></block> e <block ref="01a71c74a6244b4787e6e8dbbf22b582" category="inline-link-macro-rx"></block> para mais informações.</block>
+  <block id="1870f298c6f688b7a7b0648dd1fea76d" category="list-text">engenheiro de dados</block>
+  <block id="bb5ed54a9268292dd27bd5bb1fe55a2c" category="list-text">Esta é uma função administrativa ONTAP predefinida para o AIDE Data Engineer. Ela restringe o acesso apenas aos endpoints, bem como aos diretórios de comandos da CLI correspondentes, necessários para executar tarefas de engenharia de dados do AIDE. As tarefas incluem trabalhar com workspaces e coleções de dados, visualizar jobs e usar a pré-visualização de arquivos quando permitido.</block>
+  <block id="39c1868b2bbb2d4cba562bfb0b031ef2" category="list-text">cientista de dados</block>
+  <block id="bf6903089e50d2aef88fd45690eda45e" category="list-text">Esta é a segunda função administrativa predefinida do ONTAP para o AIDE Data Scientist. Da mesma forma, ela restringe o acesso apenas às APIs REST e aos diretórios de comandos CLI correspondentes necessários para os fluxos de trabalho do AIDE Data Scientist.</block>
+  <block id="2786f189013cd2d04486b8b32e9f53b4" category="section-title">Adquira um token de acesso</block>
+  <block id="ccdcbcce8ce3a2e706efb04efb80f676" category="paragraph">Você precisa obter um token de acesso para usar com a chamada da API REST. A solicitação do token é realizada fora do ONTAP e o procedimento exato depende do servidor de autorização e de sua configuração. Você pode solicitar o token por meio de um navegador da web, com um comando curl ou usando uma linguagem de programação. Para fins de ilustração, apresentamos um exemplo de como um token de acesso pode ser solicitado do Microsoft Entra ID usando curl.</block>
+  <block id="cf3a2d2c139bf5c9cc87fe714bfff3b1" category="paragraph">Observe o seguinte:</block>
+  <block id="ff94337e2ff4b960acd7bf520fed2c6b" category="list-text">Você precisa <block ref="01a71c74a6244b4787e6e8dbbf22b582" category="inline-link-macro-rx"></block> de um cluster com AIDE habilitado.</block>
+  <block id="3ef63694b07256226f7a3237ff5bfeb1" category="list-text">Determine o <block ref="28a92240b4c1954cfe1628403a4c5e9c" prefix=" " category="inline-code"></block> do seu IdP, normalmente disponível através do URI de metadados OIDC.</block>
+  <block id="9433d9afd5f034bfcbf40d61d627db2c" category="list-text">Localize os valores apropriados para a configuração, como CLIENT_ID, com base no seu IdP.</block>
+  <block id="966d57ff4077592816ca70d63ab9f426" category="list-text">Os parâmetros de configuração, como TENANT_ID, CLIENT_ID e CLIENT_SECRET, estão no formato UUID. USERNAME e PASSWORD são credenciais em texto simples.</block>
+  <block id="da96c4038fb6432905f819cc188fe38f" category="list-text">Opcionalmente, você pode definir os valores das variáveis no shell Bash para uso com o comando curl.</block>
+  <block id="0a1f2aa24686a4fee8e95dc5ef5bb2b0" category="list-text">Emita o seguinte comando na CLI da sua estação de trabalho local, fornecendo valores para as variáveis com base no seu ambiente:</block>
+  <block id="56eedd0c18340dc47f61fe8aeae0f1b7" category="list-text">Analise a resposta e extraia o token de acesso para uso em uma chamada de API REST.</block>
+  <block id="061698ea4e4d3b0aede3d8cdb7aab427" category="list-text"><block ref="061698ea4e4d3b0aede3d8cdb7aab427" category="inline-link-macro-rx"></block></block>
+  <block id="e72c6db3b0985939c36953b03abdd1df" category="inline-link">Autenticação e autorização ONTAP usando OAuth 2.0</block>
+  <block id="589b820ede90105592cbd296b2d34766" category="list-text"><block ref="589b820ede90105592cbd296b2d34766" category="inline-link-rx"></block></block>
+  <block id="a2201ab0fd73e897fe98bd45ca71061d" category="inline-link">Prepare-se para usar os fluxos de trabalho da API REST do ONTAP</block>
+  <block id="02eea1c2820dd10a610cd480ea9c36cf" category="list-text"><block ref="02eea1c2820dd10a610cd480ea9c36cf" category="inline-link-rx"></block></block>
+  <block id="1c8575f79f3ac7958e9234d83fbb760b" category="inline-link">Segurança RBAC com a ONTAP REST API</block>
+  <block id="7dfeaa43a6d35075133e313ac0d8a969" category="list-text"><block ref="7dfeaa43a6d35075133e313ac0d8a969" category="inline-link-rx"></block></block>
+  <block id="7b8149ea98a1b5191bb965fbaacfc852" category="summary">Você pode executar um comando curl simples para começar a usar as extensões AIDE da API REST do ONTAP.</block>
+  <block id="bf755d1498b6dd0eeb2397ad3600ed73" category="doc">Sua primeira chamada à API REST do AIDE</block>
+  <block id="7994e3b47cf8df6dc7b1d54dfa0baf9b" category="paragraph">A chamada de exemplo da API REST retorna o nome de usuário, a função e os privilégios do usuário associado ao token de acesso fornecido na chamada. Esta é uma maneira simples de verificar seu token de acesso com as permissões necessárias. Variáveis no estilo Bash são usadas para simplicidade.</block>
+  <block id="7013ac323311e3dab810263b1d637a84" category="paragraph">Além de ter o utilitário curl disponível em sua estação de trabalho local, você precisará do seguinte:</block>
+  <block id="7bfe29215621deb70a47f902294281bf" category="list-text">Endereço IP ou FQDN da LIF de gerenciamento do cluster ONTAP</block>
+  <block id="310f9379d9598bfc887305a51ff28f10" category="list-text">Um token de acesso emitido pelo seu provedor de identidade para a função de _administrador de storage_</block>
+  <block id="443197067be7e73a044a1b52eaba8077" category="list-text">Emita o seguinte comando na CLI da sua estação de trabalho local:</block>
+  <block id="0a1f3987b161cb32f03d6515388c3ee3" category="list-text">Analise a resposta; por exemplo:</block>
+  <block id="99aaf8625eb68a75d95cba8516f30760" category="list-text"><block ref="99aaf8625eb68a75d95cba8516f30760" category="inline-link-macro-rx"></block></block>
+  <block id="82c5461d1a57f884eb846ca365801e17" category="inline-link">Sua primeira chamada à API REST do sistema de storage AFX</block>
+  <block id="3906d9846f7fcb4e0bc1d504f5d72e5e" category="list-text"><block ref="3906d9846f7fcb4e0bc1d504f5d72e5e" category="inline-link-rx"></block></block>
+  <block id="361a472e0bbcf28e594a713e4df0f013" category="summary">Quando AI Data Engine (AIDE) é integrado a um sistema de storage ONTAP, como o AFX, a API REST ONTAP existente é aprimorada com endpoints adicionais para suportar os novos recursos focados em IA. Se você planeja usar a API REST para administrar AIDE, primeiro deve aprender sobre suas características e operação básica.</block>
+  <block id="e452a0b121f93f073796bb355adc4652" category="doc">Saiba mais sobre a AIDE API REST</block>
+  <block id="e68803fad5457fe4f84a6a7328d459bc" category="section-title">Características da API REST estendida</block>
+  <block id="53d4d6c54b55013d2155e468c90e7c27" category="paragraph">AIDE amplia a API REST do ONTAP em um sistema de storage AFX com recursos adicionais. Isso proporciona aos clientes um ponto de entrada de gerenciamento único e familiar, permitindo que o ONTAP coordene o trabalho necessário realizado nos Data Compute Nodes (DCNs). Em linhas gerais, as características relevantes da API REST aprimorada incluem:</block>
+  <block id="6d9d4616ea18ce07a86b9e88c1888393" category="list-text">ONTAP continua sendo o principal meio de acesso à API REST. Os clientes continuam a usar a estrutura da ONTAP REST API, métodos de autenticação e o modelo RBAC.</block>
+  <block id="49e8eaefc17ad6251e2fec68c2179dd1" category="list-text">AIDE adiciona novos recursos REST, principalmente nas <block ref="9a29f63320bf34eeddb070c58d742531" prefix=" " category="inline-code"></block> e <block ref="998e965c28b026e2551fc1b16ac0f33c" prefix=" " category="inline-code"></block> subárvores, para gerenciar o workspace, as data sources e as data collections, bem como os componentes internos do AIDE no pipeline de IA.</block>
+  <block id="1da39642a1092ba9643f439c1ad29835" category="list-text">ONTAP atua como uma camada de orquestração para processar solicitações de clientes das seguintes maneiras:</block>
+  <block id="5d2d248829762e256d17ed74041f0669" category="list-text">As solicitações são processadas pelo ONTAP, que se comunica e coordena com os serviços em execução nos nós de computação de dados, conforme necessário.</block>
+  <block id="651b02a34942441aba12944fbc385b27" category="list-text">Solicitações REST downstream separadas são criadas pelo ONTAP e enviadas para os serviços baseados em DCN, com uma resposta normalizada no estilo ONTAP retornada ao cliente original.</block>
+  <block id="cc0295040fcd186063801ed4b4a4902f" category="list-text">A autorização é feita em camadas para os fluxos do AIDE:</block>
+  <block id="683873403353d4858c80688d514a6949" category="list-text">ONTAP aplica a autorização de primeiro nível com base no RBAC.</block>
+  <block id="5a36570acf19da3dc55e669b391b0f74" category="list-text">Os serviços baseados em DCN podem, opcionalmente, impor um segundo nível de autorização, incluindo verificações de ACL para os workspaces e data collections.</block>
+  <block id="2f6a8bbce7363e3406b39eac24c79e39" category="paragraph">Esse design híbrido permite que o conjunto de recursos do AIDE funcione como uma extensão natural da ONTAP REST API, ao mesmo tempo que aproveita o ambiente DCN para funcionalidades intensivas em computação e específicas de IA.</block>
+  <block id="6fec0e7119601daf88d7ac10e81e8587" category="section-title">Acesso e arquitetura</block>
+  <block id="dd422684d9ffeb71daa048c484800cc1" category="paragraph">É importante entender como os clientes acessam a AIDE API REST e como a arquitetura subjacente suporta as solicitações.</block>
+  <block id="74916aa768d4c0e45ff0eb3b6ce9e472" category="list-text">Cliente para cluster ONTAP</block>
+  <block id="d242ff6b93c13a64bfb7c8897b000c59" category="list-text">Os clientes REST enviam solicitações ao ONTAP, normalmente através do endereço IP de gerenciamento do cluster, para operações de gerenciamento do AIDE. Por exemplo, as ações solicitadas podem incluir a criação e o gerenciamento de workspaces e coleções de dados. ONTAP autentica e autoriza a solicitação, emitindo chamadas REST adicionais para o cluster DCN conforme necessário.</block>
+  <block id="ba497e78240fed5b1c972ec5f4481aaa" category="list-text">Ponto de extremidade RAG separado</block>
+  <block id="a7d870bfb7a14a41020a38440ed81e68" category="list-text">Uma chamada de API no estilo de Retrieval-Augmented Generation (RAG) deve ser emitida diretamente para uma DCN. Nesse caso, a DCN extrai o token de identidade do usuário da solicitação e faz uma chamada de retorno para ONTAP para uma decisão de autorização. ONTAP valida o token, realiza verificações de RBAC e retorna o resultado da autorização. As DCNs podem armazenar esses resultados em cache para melhorar o desempenho com chamadas de autorização repetidas; elas também realizam quaisquer verificações adicionais de ACL em nível de recurso antes de executar a solicitação.</block>
+  <block id="3ee3f6e0e5f9793e6e91bc3b78197100" category="list-text">Pontos de extremidade proxy expostos pelo ONTAP</block>
+  <block id="3ccfa63dd655e95900275f5bf8c9216e" category="list-text">ONTAP também oferece suporte a caminhos no estilo proxy para rotear solicitações HTTP para o ambiente DCN, conforme descrito a seguir:</block>
+  <block id="352e3faf21c5f5a021f4a471b33a9afc" category="list-text">As solicitações com caminhos que começam com <block ref="cdc0af8a9c8d0fbacf9b0f3fc9d8ecd7" prefix=" " category="inline-code"></block> são encaminhadas para os DCNs e usadas pelo console AIDE. Elas são projetadas para serem acessíveis sem autenticação ONTAP atuando como camada de proxy.</block>
+  <block id="1b22da694994b020b955bc879bcf8186" category="list-text">As solicitações com caminhos que começam com <block ref="9cff9d6d45ae8d3915f1a24270652c03" prefix=" " category="inline-code"></block> também são encaminhadas para DCNs, mas exigem autenticação pelo ONTAP. Elas são comumente usadas para integrações de monitoramento.</block>
+  <block id="412214fc11503a91277752f12450ed8b" category="list-text">As solicitações que suportam a comunicação de serviço entre ONTAP e DCN também podem ser encaminhadas por proxy. Com uma chamada do cliente para um endpoint REST do ONTAP, o ONTAP pode traduzi-la em uma ou mais chamadas REST internas para os endpoints do DCN. Muitos dos detalhes, como a verificação de tarefas para operações assíncronas e a aplicação da lógica de página, são tratados antes de retornar a resposta final.</block>
+  <block id="58136678dafb21a65580a52b4985795e" category="paragraph">Em resumo, a funcionalidade da AIDE API REST é consumida como uma API REST no estilo ONTAP do ponto de vista do cliente, enquanto permite que o processamento subjacente abranja tanto o ONTAP quanto os serviços hospedados no DCN, juntamente com um ponto de entrada RAG dedicado.</block>
+  <block id="b79b70e0c213e8ea11007120ae49b1ee" category="section-title">Documentação de referência</block>
+  <block id="9d9d25e0255ab68716120450f05905de" category="inline-link">Referência da API REST para o sistema de storage AFX</block>
+  <block id="3f023c4c1aa8f9c8ebc564f389718c49" category="paragraph">Cada sistema de storage AFX inclui documentação de referência Swagger (OpenAPI) local. A documentação descreve endpoints, métodos HTTP, parâmetros e esquemas de requisição/resposta, com exemplos quando apropriado. Este é um recurso valioso para desenvolvedores e administradores entenderem em detalhes as capacidades da API REST do AIDE. Para mais informações sobre como acessar a documentação Swagger, consulte <block ref="2a93141dfadf9f239067f50bd34cd725" category="inline-link-rx"></block>.</block>
+  <block id="391aea2b8a642f755fa9fc56deaf7f9d" category="inline-link">Automação ONTAP</block>
+  <block id="4aee2f9c13e43eb96e2f094045f225ff" category="list-text"><block ref="4aee2f9c13e43eb96e2f094045f225ff" category="inline-link-rx"></block></block>
+  <block id="568633ab5b8e934d41b0ab5a00692e94" category="inline-link">ONTAP REST API</block>
+  <block id="29970564b27fc93e955d5e0a74e14388" category="list-text"><block ref="29970564b27fc93e955d5e0a74e14388" category="inline-link-rx"></block></block>
+  <block id="0e0d5d8449e37a550c8441b86e206c4b" category="summary">A API REST do ONTAP inclui novos endpoints para dar suporte aos recursos e funcionalidades do AI Data Engine (AIDE).</block>
+  <block id="75342786e1bdaff114094ea6f32c934d" category="doc">Recursos da API REST do AIDE</block>
+  <block id="77162550e848e9a9e78a86ba06408c6e" category="section-title">Novas categorias de recursos na ONTAP REST API para AFX</block>
+  <block id="06a30a1cb36fb2e43982d432828837f1" category="paragraph">Foram adicionadas duas novas categorias de recursos à ONTAP REST API para dar suporte à funcionalidade e aos recursos do AIDE.</block>
+  <block id="b73320ba43afcfc129223f47e069beea" category="section-title">DCN</block>
+  <block id="f31bf4ae22f6449ebe0e4e3d64f2187c" category="paragraph">Os recursos do DCN dão suporte principalmente à infraestrutura de nós de computação de dados e ao gerenciamento de ciclo de vida. Esses endpoints são usados para gerenciar e observar o próprio cluster DCN, incluindo gerenciamento de nós e clusters, telemetria e integridade, além de tarefas semelhantes da plataforma. ONTAP atua como um cliente DCN, construindo solicitações REST para serviços em execução nos DCNs, em vez de funcionar como um proxy de passagem direta. Os recursos típicos incluem:</block>
+  <block id="241d5e0237242612e02630184b5d9e42" category="list-text">Cluster DCN, bem como inventário e status dos nós.</block>
+  <block id="23355d8552e51ac115aa8f12a3e20e5d" category="list-text">Operações do ciclo de vida do cluster DCN, incluindo a capacidade de criar, expandir, substituir e remover nós.</block>
+  <block id="6a715250b8d4831acc3ea816e9d76e53" category="list-text">Telemetria e verificações operacionais necessárias pelo ONTAP para coordenar com o cluster DCN.</block>
+  <block id="fe693bec35818459d4b4b07c1d999eb7" category="paragraph">Todas essas funcionalidades são geralmente apresentadas sob a subárvore da API REST do ONTAP <block ref="998e965c28b026e2551fc1b16ac0f33c" prefix=" " category="inline-code"></block> e estão disponíveis quando o ONTAP está sendo executado em um ambiente com DCNs anexadas e ativas.</block>
+  <block id="c3dcd1d3ee6b196344af8d614e4fee7f" category="paragraph">ONTAP também expõe dois prefixos de caminho HTTP que são encaminhados diretamente para os DCNs:</block>
+  <block id="8e979c454b58f1a8756f285f9e18ecf6" category="list-text">Console ou proxy de interface do usuário sem autenticação ONTAP:<block ref="380c5212caef466ae286bff0162b8925" prefix=" " category="inline-code"></block></block>
+  <block id="f1719450de189ff9aeaafd959017b5be" category="list-text">Proxy DCN que requer autenticação ONTAP e é usado para monitoramento:<block ref="e9ed6935e67776b775aba8100b63912c" prefix=" " category="inline-code"></block></block>
+  <block id="7eb87e99c0707b063bec864fc0fd69ce" category="section-title">AI Data Engine</block>
+  <block id="465c5a5221f1cf703605612b79bc0395" category="paragraph">Os recursos do Data Engine dão suporte ao plano de dados do AIDE e ao gerenciamento de governança/metadados. Os endpoints se concentram no gerenciamento dos objetos nos quais o AIDE opera. As funcionalidades podem ser amplamente organizadas em subcategorias.</block>
+  <block id="e305c0753e6b9dc67eec532032b97b25" category="section-title">Modelo de objeto principal e CRUD</block>
+  <block id="cfc2d27cd481a6ea0c11beb2d0b8a139" category="paragraph">Existem vários endpoints que fornecem acesso aos principais objetos do AI Data Engine, incluindo:</block>
+  <block id="aa175968e1badd274fc20389eb60c7d6" category="list-text">Espaços de trabalho e versões de espaços de trabalho</block>
+  <block id="ea995898864fb0ea509106539758c905" category="list-text">Entidades</block>
+  <block id="f538f9cef3565c9dddb1f43787cee293" category="list-text">Listas de controle de acesso (ACLs)</block>
+  <block id="cf43137803fb51915f84cbc5c3068d34" category="list-text">Consultas</block>
+  <block id="d1107e5839e1db0f331201116234fc6d" category="list-text">Fontes de dados</block>
+  <block id="e0722bd5df5033f0fae59ab2ddce4787" category="section-title">Governança, auditoria e serviços de apoio</block>
+  <block id="3b7b5cf398729702918926f37277e7c1" category="paragraph">Existem diversos endpoints que fornecem acesso a serviços de governança e outros serviços de suporte, incluindo:</block>
+  <block id="4b3dae879eaac9e7ccd7c16d37f20741" category="list-text">Políticas e gestão de políticas</block>
+  <block id="934609c7c0ea1e2acc137f27b91f0c31" category="list-text">Eventos e logs de auditoria relacionados às operações da AIDE</block>
+  <block id="47cd7c74314d3f3098d24903e0a31dc9" category="list-text">Configuração de Autosupport</block>
+  <block id="f5a0a119ee1e6aac663fe27e6ef68a2e" category="list-text">Alternância de aplicativos e recursos para funcionalidades do AIDE</block>
+  <block id="1136b496618ba615e7aed9f74c6c3264" category="list-text">Áreas de governança normalmente utilizadas pelas funções</block>
+  <block id="7adb409bb86d75ace1ac2cb28fc7fd3e" category="paragraph">Observe também o seguinte:</block>
+  <block id="ff7d739867f7646846c54b5713ef087b" category="list-text">Muitas das operações de longa duração (criar, modificar, excluir) são executadas de forma assíncrona e retornam uma referência de tarefa que os clientes podem consultar para verificar o status.</block>
+  <block id="4a5fc30d7c1416f2c47192ccee9f0ad0" category="list-text">Em muitos casos ONTAP não encaminha as solicitações por proxy, mas sim as reconstrói para os endpoints do Data Engine e traduz as respostas como parte do seu comportamento como cliente DCN.</block>
+  <block id="86504e7203446a654c12f2eebc6724e1" category="section-title">Atualizações nos recursos existentes da API REST do ONTAP</block>
+  <block id="314f5cc9ea91b4f3cc084d436a96dda7" category="paragraph">Além das novas categorias de recursos, há atualizações nos recursos existentes da API REST do ONTAP.</block>
+  <block id="2fae32629d4ef4fc6341f1751b405e45" category="section-title">Segurança</block>
+  <block id="64e64987710013a6478c1b57b3a95ad9" category="paragraph">Vários novos endpoints e funcionalidades foram adicionados à seção de segurança da ONTAP REST API para dar suporte AIDE, incluindo:</block>
+  <block id="633177d223f2e99e5b7f08f83e9b9240" category="list-text">Certificados e gerenciamento de certificados</block>
+  <block id="f5c5e2a2029a0f18174f726862804bbb" category="list-text">Configuração de autenticação OIDC</block>
+  <block id="55f1810166d07d85b3260308b2d80785" category="list-text">Identidade do usuário, incluindo função e permissões</block>
+  <block id="613fc9de397488483b3bba104e1d927a" category="list-text"><block ref="613fc9de397488483b3bba104e1d927a" category="inline-link-macro-rx"></block></block>
+  <block id="d4a3578830ab7018ca26d315bfdf9496" category="inline-link">Categorias de recursos na API REST do ONTAP</block>
+  <block id="608f92897e1cef831f74f021e007f9fd" category="list-text"><block ref="608f92897e1cef831f74f021e007f9fd" category="inline-link-rx"></block></block>
+  <block id="6a66d4f800a8576eee650d6dd676dd9d" category="sidebar">Use a API REST</block>
+  <block id="90182eba2ac7240af5b5cb5ba83a8c1b" category="sidebar">Saiba mais sobre a API REST</block>
+  <block id="7625b62e5fcc43129bbf1cc880eda13b" category="sidebar">Autenticação e autorização</block>
+  <block id="8921c3b98c12a84674b91d6afb231018" category="sidebar">Sua primeira chamada à API REST</block>
+  <block id="7795da36e92481d2c29b01d9df551d96" category="sidebar">Recursos da API REST</block>
 </blocks>
