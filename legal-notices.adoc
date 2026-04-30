@@ -51,4 +51,6 @@ Os arquivos de notificação fornecem informações sobre direitos autorais e li
 
 === AI Data Engine
 
-https://library.netapp.com/ecm/ecm_download_file/ECMLP3372871["Aviso para AIDE 9.18.1"^]
+https://library.netapp.com/ecm/ecm_download_file/ECMLP3379665["Aviso para AIDE 1.0.0"^]
+
+https://library.netapp.com/ecm/ecm_download_file/ECMLP3372871["Aviso para AIDE 9.18.1U0/U1"^]
