@@ -26,16 +26,19 @@ Uma licença é um registro de um ou mais direitos de uso de software. Todas as 
 Existem dois tipos principais de licenças necessárias para começar a usar AIDE através do seu sistema de storage AFX.
 
 .Licença ONTAP One
-A licença Metadata Engine Basic geralmente vem instalada de fábrica como parte da licença ONTAP One. Ela permite o acesso à funcionalidade do Metadata Engine, que fornece a base essencial para as operações do AIDE. Todas as funcionalidades principais necessárias para administrar seu sistema ONTAP também estão incluídas.
+A licença Metadata Engine Basic é ativada se você tiver uma licença ONTAP One. Ela permite o acesso à funcionalidade Metadata Engine, que fornece a base essencial para a operação do AIDE.
 
-.AI Data Engine
-Você precisa adquirir e instalar a licença AIDE para acessar os serviços premium necessários para ativar todos os recursos do AIDE. A licença desbloqueia seus nós de computação de dados, habilitando recursos de IA como vetorização, Data Guardrails, inferência e uma experiência de interface de usuário integrada. A licença inclui uma contagem de GPUs e uma data de expiração.
+.Licença premium do AI Data Engine
+Você precisa adquirir acesso à licença de serviços premium do AIDE e instalá-la para ativar e habilitar recursos de IA, como vetorização, mecanismos de governança e inferência. A licença inclui uma quantidade de GPUs e uma data de expiração.
+
+
+NOTE: Os recursos completos do AIDE estão disponíveis apenas em determinadas implantações de NetApp DCN. O software AIDE em implantações de servidores de terceiros é limitado aos recursos de metadados e não requer uma licença AIDE.
 
 
 
 === Requisitos de instalação da licença
 
-Você precisará adquirir a licença do AIDE e baixar o arquivo NLF correspondente para o seu sistema local. Em seguida, você poderá carregar o arquivo para o seu sistema de storage através do System Manager. Certifique-se também de ter o seguinte:
+Se a sua implementação utiliza recursos licenciados do AIDE em NetApp DCNs, você precisará obter acesso à licença do AIDE e baixar o arquivo NLF associado para o seu sistema local. Em seguida, você poderá carregar o arquivo para o seu sistema de storage através do System Manager. Certifique-se também de ter o seguinte:
 
 * Credenciais de administrador para fazer login no ONTAP System Manager
 * Um cluster AFX executando ONTAP 9.18.1 ou posterior

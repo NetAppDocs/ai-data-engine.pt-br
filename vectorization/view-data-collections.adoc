@@ -13,13 +13,16 @@ summary: Use as ferramentas do AI Data Engine para visualizar coleções de dado
 [role="lead"]
 Depois que engenheiros de dados ou cientistas de dados criam e publicam coleções de dados a partir de workspaces, você precisa de visibilidade sobre o status, tamanho e impacto delas no cluster do AI Data Engine (AIDE).
 
+
+NOTE: As instruções a seguir pressupõem uma implantação do AIDE baseada em NetApp DCN.
+
 Se você for um administrador de storage, engenheiro de dados ou cientista de dados, poderá visualizar data collections no ONTAP System Manager e AIDE Console.
 
 .Antes de começar
 * Você precisa de privilégios de _administrador de storage_ no ONTAP System Manager ou de _engenheiro de dados_ ou _cientista de dados_ no AIDE Console (`\https://<cluster_management_ip>/console` para visualizar coleções de dados.
 * Existe pelo menos um espaço de trabalho com metadados extraídos com sucesso.
 * Engenheiros de dados ou cientistas de dados criaram e publicaram pelo menos uma coleta de dados a partir do AIDE Console.
-* A licença do software AIDE está instalada e os recursos de inferência estão ativados, de modo que os endpoints de vetorização e recuperação estejam ativos.
+* A licença de serviços premium do AIDE está instalada e os recursos de inferência estão ativados, de modo que os endpoints de vetorização e recuperação estejam ativos.
 
 
 

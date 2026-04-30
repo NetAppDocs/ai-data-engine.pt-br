@@ -1,23 +1,23 @@
 ---
 sidebar: sidebar 
-permalink: install-setup/aide-hardware-requirements.html 
+permalink: install-dcn/aide-dcn-hardware-requirements.html 
 keywords: ai data engine, aide, hardware, requirements, afx, dcn, data compute node 
 summary: Analise os requisitos para a instalação do AI Data Engine, incluindo o sistema de storage AFX e os Data Compute Node. 
 ---
-= Requisitos para instalação do AI Data Engine
+= Requisitos para instalar AI Data Engine em nós de computação de dados fornecidos pela NetApp
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Analise os requisitos para a instalação do AI Data Engine (AIDE). AIDE requer um sistema de storage AFX, no mínimo três nós de computação de dados, switches de rede e cabos.
+Analise os requisitos para instalar AI Data Engine (AIDE) nos nós de computação de dados fornecidos pela NetApp. AIDE requer um sistema de storage AFX, três nós de computação de dados fornecidos pela NetApp, switches de rede e cabos.
 
 
 
 == Requisitos de hardware
 
-AIDE requer um sistema de storage AFX e um mínimo de três nós de computação de dados. O sistema AFX fornece a infraestrutura de storage, enquanto os nós de computação de dados hospedam os componentes de software do AIDE que permitem o gerenciamento de dados, a curadoria e os recursos de IA.
+Para AIDE com nós de computação de dados fornecidos pela NetApp, um sistema de storage AFX e no mínimo três nós de computação são necessários. O sistema AFX fornece a infraestrutura de storage, enquanto os nós de computação de dados hospedam os componentes de software do AIDE que permitem o gerenciamento de dados, a curadoria e os recursos de IA.
 
 * *AFX sistema de storage*: Inclui um controlador AFX, um compartimento para discos e um switch de rede. O sistema de storage AFX é necessário para a implantação do AIDE.
 * *Nós de computação de dados*: É necessário um mínimo de três nós de computação de dados. Os nós de computação de dados são nós de hardware fornecidos pela NetApp que hospedam o software AIDE, incluindo o Metadata Engine, Data Sync, Data Curator e Data Guardrails.
@@ -25,6 +25,10 @@ AIDE requer um sistema de storage AFX e um mínimo de três nós de computação
 ** Cada Data Compute Node possui os slots de E/S 4 e 5 disponíveis para conectividade. O slot 3 é reservado para a GPU. Os slots 1 e 2 não estão ocupados nem acessíveis.
 ** As portas e4a e e5a são usadas para conexões de cluster.
 ** As portas e4b e e5b são usadas para conexões de rede do host.
++
+
+NOTE: Não é possível misturar nós de computação de dados fornecidos pela NetApp com servidores de terceiro no mesmo cluster AIDE.
+
 
 
 
@@ -38,6 +42,10 @@ AIDE requer switches de rede para habilitar a conectividade de rede do host e a 
 * Switches de cliente para conectividade de rede do host (Cisco Nexus 9332D-GX2B ou Cisco Nexus 9364D-GX2A)
 * Switches de cluster para comunicação entre nós (Cisco Nexus 9332D-GX2B ou Cisco Nexus 9364D-GX2A)
 * Switches de gerenciamento opcionais para gerenciamento de rede
++
+
+NOTE: Para obter mais informações sobre os switches AFX, consulte link:https://docs.netapp.com/us-en/ontap-systems-switches/afx/index.html["Switches do sistema AFX"^].
+
 
 
 
@@ -54,3 +62,6 @@ Os seguintes cabos são necessários para conectar os Data Compute Node aos swit
 == Suporte a múltiplos clusters
 
 Após o AIDE ser implantado com o AFX, ele pode se conectar e gerenciar dados de outros clusters ONTAP 9.18.1 e posteriores usando SnapMirror e peering de cluster.
+
+.O que vem a seguir
+Após analisar os requisitos de hardware, link:aide-afx-install.html["instale o sistema de storage AFX"].

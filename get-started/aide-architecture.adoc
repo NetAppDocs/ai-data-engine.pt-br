@@ -31,15 +31,15 @@ São necessários pelo menos quatro nós controladores AFX para implantações d
 
 === Nós de computação de dados
 
-Os nós de computação de dados (DCNs, na sigla em inglês) são servidores baseados em Linux com recursos avançados de CPU, RAM e GPU, dedicados a tarefas de processamento de dados de IA. Eles hospedam serviços específicos de IA, como catalogação de metadados, busca vetorial e pipelines de incorporação.
+Os nós de computação de dados são servidores baseados em Linux com recursos avançados de CPU, RAM e GPU, dedicados a tarefas de processamento de dados de IA. Eles hospedam serviços específicos de IA, como catalogação de metadados, busca vetorial e pipelines de embedding.
 
-São necessários exatamente _três_ DCNs para implantações do AIDE.
+São necessários exatamente _três_ nós de computação de dados para implantações do AIDE.
 
 
 
 === Switches de cluster/storage
 
-Switches redundantes de alta velocidade (100GbE ou superior) conectam ONTAP e DCNs para transferência de dados com baixa latência e alta disponibilidade.
+Switches redundantes de alta velocidade (100GbE ou superior) conectam ONTAP e nós de computação de dados para transferência de dados de baixa latência e alta disponibilidade.
 
 
 
@@ -51,15 +51,15 @@ Os chassis NVMe-oF com SSDs de alta densidade oferecem latência ultrabaixa e re
 
 == Rede
 
-Todos os DCNs e nós de armazenamento ONTAP são conectados por meio de switches de cluster redundantes e de alta velocidade (mínimo 100GbE). Essa arquitetura separa recursos de computação e de storage, permitindo que cada um seja dimensionado independentemente e otimizando tanto o desempenho quanto a utilização de recursos.
+Todos os nós de computação de dados e nós de storage ONTAP são conectados por meio de switches de cluster redundantes e de alta velocidade (mínimo 100GbE). Essa arquitetura separa recursos de computação e de storage, permitindo que cada um seja dimensionado independentemente e otimizando tanto o desempenho quanto a utilização de recursos.
 
-A comunicação entre DCNs e os nós do ONTAP é isolada por meio de VLANs e IPspaces dedicados nos switches do cluster. Isso garante que todas as comunicações, como acesso a dados, APIs de gerenciamento e tráfego de serviços internos, permaneçam seguras, eficientes e não interfiram em outras operações de rede.
+A comunicação entre os nós de computação de dados e os nós ONTAP é isolada por meio de VLANs e IPspaces dedicados nos switches do cluster. Isso garante que todas as comunicações, como acesso a dados, APIs de gerenciamento e tráfego de serviços internos, permaneçam seguras, eficientes e não interfiram em outras operações de rede.
 
 
 
 == Principais funcionalidades do AI Data Engine
 
-Os principais recursos do AI Data Engine (AIDE) trabalham juntos para automatizar, proteger e acelerar o ciclo de vida dos dados de IA. Cada recurso é implementado como um conjunto de microsserviços em execução em DCNs, integrados ao storage ONTAP e expostos por meio de APIs REST e interfaces de gerenciamento.
+As principais funcionalidades do AI Data Engine (AIDE) trabalham em conjunto para automatizar, proteger e acelerar o ciclo de vida dos dados. Cada funcionalidade é implementada como um conjunto de microsserviços executados em nós de computação de dados, integrados ao storage ONTAP e expostos por meio de APIs REST e interfaces de gerenciamento.
 
 
 
@@ -105,7 +105,7 @@ A funcionalidade de sincronização de dados está incluída na licença básica
 O serviço Data Guardrails oferece governança e proteção contínuas e automatizadas para dados confidenciais ao longo de todo o ciclo de vida da IA.
 
 .Licença e acesso
-A funcionalidade Data Guardrails não está incluída na licença básica do ONTAP One e requer uma licença AIDE separada.
+A funcionalidade Data Guardrails não está incluída na licença básica do ONTAP One e requer uma licença separada dos serviços premium do AIDE.
 
 Você pode acessar a funcionalidade do Data Guardrails através do AIDE Console.
 
@@ -125,7 +125,7 @@ Você pode acessar a funcionalidade do Data Guardrails através do AIDE Console.
 O serviço Data Curator permite a descoberta, busca, vetorização e recuperação rápidas de dados para aplicações de IA e GenAI.
 
 .Licença e acesso
-A funcionalidade Data Curator não está incluída na licença básica do ONTAP One e requer uma licença AIDE separada.
+A funcionalidade Data Curator não está incluída na licença básica do ONTAP One e requer uma licença separada dos serviços premium do AIDE.
 
 Você pode acessar Data Curator através da AIDE Console.
 

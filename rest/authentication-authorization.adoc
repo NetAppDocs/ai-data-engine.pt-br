@@ -30,7 +30,7 @@ Autenticação OAuth 2.0:: A partir da versão 9.14.1, ONTAP também oferece sup
 
 == AI Data Engine e OpenID Connect
 
-O OpenID Connect (OIDC) é baseado no OAuth 2.0 e oferece uma opção segura e padronizada para autenticar usuários e aplicativos. OIDC é necessário para acessar as funcionalidades do DCN e do AIDE. Após você link:../install-setup/configure-oidc.html["Configurar OpenID Connect para AIDE no ONTAP"], o acesso ao ONTAP System Manager e à página Swagger on-box são protegidos pela autenticação OIDC.
+O OpenID Connect (OIDC) é baseado no OAuth 2.0 e oferece uma opção segura e padronizada para autenticar usuários e aplicativos. OIDC é necessário para acessar a funcionalidade AIDE e os serviços relacionados do nó de computação de dados. Após você link:../install-setup/configure-oidc.html["Configurar OpenID Connect para AIDE no ONTAP"], o acesso ao ONTAP System Manager e à página Swagger on-box são protegidos pela autenticação OIDC.
 
 Como parte da configuração do OIDC no ONTAP System Manager, o OAuth 2.0 é ativado automaticamente e um cliente OAuth 2.0 é criado. Você pode então obter um token de acesso por meio do *token_endpoint* do seu IdP, que normalmente pode ser determinado a partir do URI de metadados do IdP. Os tokens de acesso precisam ser incluídos no cabeçalho Authorization das suas chamadas de API para autenticar e autorizar o acesso aos recursos do AIDE.
 
@@ -45,7 +45,7 @@ Existem duas funções adicionais do ONTAP que dão suporte ao AIDE. As funçõe
 
 NOTE: Além das duas novas funções do ONTAP, você também precisa mapear a função de administrador de storage externo para a função ONTAP `admin` existente. Consulte link:../get-started/aide-components.html["Componentes do AI Data Engine e interações baseadas em funções"] e link:../install-setup/configure-oidc.html["Configurar OpenID Connect para AIDE no ONTAP"] para mais informações.
 
-engenheiro de dados:: Esta é uma função administrativa ONTAP predefinida para o AIDE Data Engineer. Ela restringe o acesso apenas aos endpoints, bem como aos diretórios de comandos da CLI correspondentes, necessários para executar tarefas de engenharia de dados do AIDE. As tarefas incluem trabalhar com workspaces e coleções de dados, visualizar jobs e usar a pré-visualização de arquivos quando permitido.
+engenheiro de dados:: Esta é uma função administrativa ONTAP predefinida para o AIDE Data Engineer. Ela restringe o acesso apenas aos endpoints, bem como aos diretórios de comandos da CLI correspondentes, necessários para executar tarefas de engenharia de dados do AIDE, incluindo trabalhar com workspaces e data collections, visualizar jobs e usar a pré-visualização de arquivos quando permitido.
 cientista de dados:: Esta é a segunda função administrativa predefinida do ONTAP para o AIDE Data Scientist. Da mesma forma, ela restringe o acesso apenas às APIs REST e aos diretórios de comandos CLI correspondentes necessários para os fluxos de trabalho do AIDE Data Scientist.
 
 

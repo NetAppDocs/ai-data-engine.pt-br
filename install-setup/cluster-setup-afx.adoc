@@ -2,62 +2,63 @@
 permalink: install-setup/cluster-setup-afx.html 
 sidebar: sidebar 
 keywords: ai data engine, aide, cluster setup, afx, install, set up 
-summary: 'Como administrador de storage ONTAP, você pode integrar AI Data Engine (AIDE) à sua implantação do sistema AFX. Você pode configurar AIDE como parte de uma implantação inicial do sistema de storage AFX ou adicionar AIDE a um cluster AFX que já foi implantado e está servindo dados. Em ambos os casos, você também precisará concluir a configuração do AIDE após finalizar a configuração básica.' 
+summary: Após implantar a infraestrutura de computação do AI Data Engine, use ONTAP System Manager para configurar AIDE e integrá-lo a um sistema de storage AFX. 
 ---
-= Configurar AI Data Engine
+= Configurar e configurar AI Data Engine
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Como administrador de storage ONTAP, você pode integrar AI Data Engine (AIDE) à sua implantação do sistema AFX. Você pode configurar AIDE como parte de uma implantação inicial do sistema de storage AFX ou adicionar AIDE a um cluster AFX que já foi implantado e está servindo dados. Em ambos os casos, você também precisará concluir a configuração do AIDE após finalizar a configuração básica.
+Como administrador de storage ONTAP, você usa ONTAP System Manager para integrar AI Data Engine (AIDE) ao seu ambiente AFX. Após concluir a instalação dos seus nós de computação de dados, o ONTAP pode descobri-los e adicioná-los a um cluster. Você pode adicionar nós AIDE durante a configuração inicial do cluster AFX ou adicioná-los a um cluster AFX existente e, em seguida, concluir a configuração AIDE necessária.
+
+.Antes de começar
+* Você tem NetApp DCNs ou servidores de terceiros instalados e conectados aos switches do cluster. Consulte a documentação de instalação para link:../install-aide-server/install-workflow.html["AI Data Engine software em servidores de terceiros"] ou link:../install-dcn/install-workflow.html["DCNs da NetApp"] para mais informações.
+* (Para servidores de terceiros) Você concluiu link:../install-setup/install-aide-as-software.html["Instalação do software AIDE"] em cada servidor. ONTAP pode então detectar esses servidores como nós de computação, e você pode adicioná-los a um cluster.
 
 
 
-== 1. Configure AIDE e integre-o a um sistema de storage AFX
+
+== Configure AIDE e integre-o a um sistema de storage AFX
 
 Existem duas maneiras de configurar AIDE e integrá-lo a um sistema de storage AFX. Selecione a opção apropriada para o seu ambiente.
-
-
-NOTE: Antes de configurar AIDE, certifique-se de que os data compute nodes estejam instalados e conectados aos switches do cluster. Consulte link:../install-setup/aide-hardware-requirements.html["Instale o AIDE"] para mais informações.
 
 
 
 === Configurar AIDE com um novo cluster AFX
 
-Se você estiver configurando AIDE como parte da implantação inicial de um sistema AFX, o processo de configuração do AIDE faz parte do fluxo de trabalho padrão de configuração do cluster AFX. Durante a configuração do cluster ONTAP, o System Manager descobre automaticamente os DCNs conectados e os inclui como parte da configuração do cluster. Depois disso, você estará pronto para concluir a configuração do AIDE, incluindo a configuração de licença necessária.
+Se você estiver configurando AIDE como parte da implantação inicial de um sistema AFX, o processo de configuração do AIDE faz parte do fluxo de trabalho padrão de configuração do cluster AFX. Durante a configuração do cluster ONTAP, o System Manager descobre automaticamente os nós de computação conectados e os inclui na configuração do cluster.
+
+
+NOTE: Você precisará link:../install-setup/configure-oidc.html["configurar autenticação OpenID Connect"] habilitar o acesso ao AIDE Console.
 
 
 
 === Configurar AIDE com um cluster AFX existente
 
-Se você estiver adicionando um cluster de Data Compute Node a um sistema de storage AFX existente, será necessário configurar os DCNs e finalizar a configuração do seu cluster AIDE.
+Se você estiver adicionando nós de computação (sejam NetApp DCNs ou servidores de terceiro) a um sistema de storage AFX existente, será necessário adicionar os nós e concluir a configuração do seu cluster AIDE.
 
 
 
-==== Adicione os Data Compute Nodes ao cluster
+==== Adicione nós de computação ao cluster
 
-ONTAP detecta dinamicamente os novos Data Compute Node conectados à sua rede de cluster e os exibe no System Manager. Você pode link:../administer/dcn-add-node.html["Adicione nós de computação de dados ao seu cluster AIDE"]. Observe também o seguinte:
-
-* Os nós de Data Compute devem estar fisicamente conectados aos switches do cluster. Exatamente três DCNs são necessários ao criar um AIDE cluster.
-* Você precisa ter endereços IP suficientes para a rede DCN e outras informações de configuração de rede necessárias.
-
+ONTAP detecta os nós de computação conectados à sua rede de cluster e os exibe no System Manager. link:../administer/dcn-add-node.html["Adicione nós de computação ao seu cluster de armazenamento para transformá-lo em um AIDE cluster"].
 
 
 
 ==== Finalize a configuração do seu cluster AIDE
 
-Após integrar os nós de Data Compute e concluir a configuração inicial da rede, você pode finalizar a configuração do seu novo cluster AIDE.
+Após adicionar os nós de computação e concluir a configuração inicial da rede, você pode finalizar a configuração do seu novo cluster AIDE.
 
 .Sobre esta tarefa
-Uma janela de boas-vindas com orientações de configuração é exibida no lado direito da página com os passos necessários para a configuração. Uma marca de seleção é exibida à esquerda de cada passo ou item de ação que já foi concluído. Uma seta (image:icon_arrow.gif["seta azul apontando para a direita"]) é exibida para os itens que ainda não foram concluídos. Para cada uma das ações incompletas:
+Uma janela de boas-vindas com orientações de configuração é exibida na página com os passos necessários para a configuração. Uma marca de seleção é exibida à esquerda de cada passo ou item de ação que já foi concluído. Uma seta (image:icon_arrow.gif["seta azul apontando para a direita"]) é exibida para os itens que ainda não foram concluídos. Para cada uma das ações incompletas:
 
 * Selecione o link do título ativado e conclua a ação de configuração para o seu ambiente.
 * Se o link estiver desativado, passe o cursor sobre o título para exibir a ação necessária para ativá-lo e continue com a ação de configuração.
 
 
-Cada etapa possui um link para documentação adicional, quando possível. Parte da configuração pode estar incluída como parte da configuração do cluster AFX. Consulte o https://docs.netapp.com/us-en/ontap-afx/["Documentação da AFX"^] para mais informações.
+Cada etapa possui um link para documentação adicional, quando disponível. Algumas das configurações podem estar incluídas como parte da configuração do cluster AFX em https://docs.netapp.com/us-en/ontap-afx/["Documentação da AFX"^].
 
 .Passos
 . Selecione *Configurar agregação de links e VLANs*.
@@ -70,7 +71,7 @@ Você pode configurar os protocolos de rede da storage VM (SVM).
 
 . Selecione *Update data compute software*.
 +
-Se uma imagem de software de Data Compute estiver disponível para atualização, esta opção será habilitada. Selecione-a para abrir a página de atualização do software de Data Compute. Para obter mais informações, consulte link:../administer/update-aide-firmware-software.html["Atualizar o software AIDE"].
+Se uma imagem de software AIDE estiver disponível para atualização, esta opção será habilitada. Selecione-a para abrir a página de atualização de software. Para mais informações, consulte link:../administer/update-aide-firmware-software.html["Atualizar o software AIDE"].
 
 . Selecione *Configurar rede do mecanismo de dados*.
 +
@@ -99,21 +100,10 @@ Você precisará link:../install-setup/configure-oidc.html["configurar autentica
 
 
 .Depois que você terminar
-Após a conclusão de todas as tarefas, a janela de orientação fica oculta. Você pode fechá-la e reabri-la manualmente conforme necessário.
+Após a conclusão de todas as ações, a janela de orientação fica oculta. Você pode reabri-la e fechá-la manualmente conforme necessário.
 
 
 
-== 2. Concluir configuração do AIDE
+== Ative sua licença AIDE para implantações do NetApp DCN
 
-Após o seu AIDE cluster estar configurado e integrado ao sistema de storage AFX, você precisa concluir a configuração do AIDE.
-
-.Passos
-. link:../install-setup/install-license-task.html["Adicionar as licenças AIDE necessárias"].
-+
-Há uma licença do AIDE que você deve instalar para obter toda a funcionalidade do AIDE, incluindo vetorização e recursos de guardrails.
-
-. link:../install-setup/configure-oidc.html["Configurar autenticação OIDC"].
-+
-Certifique-se de configurar OIDC para todas as implantações. Você deve configurar OIDC para acessar AIDE Console.
-
-
+Se você tiver NetApp DCNs em sua configuração, precisará link:../install-setup/install-license-task.html["Instale sua licença de serviços premium da AIDE"] após o seu cluster AIDE estar configurado e integrado ao sistema de storage AFX. A licença de serviços premium do AIDE é necessária para a funcionalidade completa do AIDE, incluindo vetorização e recursos de guardrails.

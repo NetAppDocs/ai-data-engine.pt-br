@@ -1,0 +1,188 @@
+---
+sidebar: sidebar 
+permalink: install-setup/install-aide-as-software.html 
+keywords: install, setup, mde, metadata engine, byos, third-party, rhel, ontap, aide 
+summary: Instale o AI Data Engine Metadata Engine em servidores de terceiros que executam o RHEL 9.7 usando o pacote de instalação do AIDE. 
+---
+= Instale AI Data Engine software em servidores de terceiros
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Instale o AI Data Engine (AIDE) software em servidores de terceiros que executam o Red Hat Enterprise Linux (RHEL) 9.7. Essa opção de implantação permite executar AIDE em sua infraestrutura enquanto o ONTAP continua a orquestrar a pilha de software do AIDE.
+
+AI Data Engine software em servidores de terceiros oferece paridade de recursos do Metadata Engine com as implementações do AIDE baseadas em appliance de nó de computação de dados fornecidas pela NetApp. Cargas de trabalho de GPU e inferência de IA ainda não são suportadas com esta opção de implementação.
+
+Conclua este procedimento depois de terminar link:../install-aide-server/install-workflow.html["instalando seu servidor de terceiros"] e antes de link:../install-setup/cluster-setup-afx.html["criar o cluster de computação no ONTAP"].
+
+
+
+== Prepare-se para a instalação
+
+Antes de instalar AI Data Engine (AIDE) em servidores de terceiros, certifique-se do seguinte.
+
+.As recomendações de separação de rede são compreendidas
+As implementações do AIDE utilizam duas redes isoladas que servem a propósitos diferentes:
+
+* *Rede de dados*: Fornece conectividade externa para acesso de gerenciamento do host, acesso à API AIDE, downloads, DNS, NTP e outras comunicações roteadas.
+* *Rede de cluster*: Fornece caminhos de comunicação interna entre ONTAP e os nós de computação. Essa rede não é roteável e deve permanecer isolada da rede de dados.
+
+
+Mantenha uma separação rigorosa entre esses caminhos de rede para evitar conflitos de roteamento e acesso não intencional entre o tráfego interno do cluster e o tráfego de dados externo.
+
+Você precisa de uma forma de se conectar à internet ou ao servidor correto para obter atualizações do sistema operacional, patches e atualizações do software AIDE. Caso a rede de dados esteja configurada para não alcançar o servidor ou a internet para essas operações, você pode precisar de uma terceira rede de gerenciamento para essas operações do servidor de gerenciamento e do AIDE.
+
+.Os pré-requisitos ambientais foram atendidos
+* ONTAP 9.18.1 ou posterior está em execução no seu cluster ONTAP AFX
+* Exatamente três servidores que atendem aos requisitos mínimos de hardware (CPU, memória, NIC, armazenamento) estão em execução
+* Red Hat Enterprise Linux (RHEL) 9.7 está instalado em cada servidor
+
+
+.O plano de rede foi definido
+* A rede do host externo (não pertencente ao cluster) é configurada usando NetworkManager
+* A interface de manutenção externa possui um endereço IP estático, rota de gateway padrão e https://www.redhat.com/en/blog/configure-hostname-linux["nome de host estático configurado"^]
+* https://www.redhat.com/en/blog/chrony-time-services-linux["DNS e a sincronização de tempo NTP estão configurados para a interface de manutenção externa"^]
+* Você selecionou as interfaces de servidor que AIDE irá utilizar
+* Você identificou quais interfaces selecionadas são voltadas para o cluster e voltadas para os dados
+* As interfaces voltadas para o cluster estão conectadas aos switches do cluster AFX
+* As interfaces voltadas para dados estão conectadas aos switches da rede de dados
+* O acesso à rede VLAN-40 está configurado nos switches do cluster para descoberta de nós
+* A rede do cluster está isolada da rede de dados e não roteia para ela
+* Conexões de rede adicionais não são suportadas
+* O acesso de gerenciamento e o acesso à API do AIDE utilizam a conexão de rede externa
+
+
+.Acesso e software estão disponíveis
+* Você tem acesso ao site de suporte da NetApp (NSS)
+* Você tem endereços de servidor de nomes DNS disponíveis para o  `aide-setup` comando
+
+
+
+NOTE: Não são necessários drivers de GPU para implantações básicas que utilizem apenas o Metadata Engine.
+
+
+NOTE: Em implantações de servidores de terceiros, você é o único responsável pela segurança do sistema operacional, aplicação de patches, configuração de firewall, aplicação do SELinux e reforço da segurança do SSH. NetApp não fornece patches de segurança para o seu sistema operacional.
+
+
+
+== Passo 1: Baixe o pacote de instalação em cada nó
+
+Faça o download do arquivo RPM do software AIDE e do arquivo tar das imagens do contêiner a partir do site de suporte da NetApp (NSS) em cada servidor de terceiro, seja diretamente ou usando um jump host com acesso ao site de suporte da NetApp.
+
+.Passos
+. Acesse o NetApp site de suporte em  https://mysupport.netapp.com["netapp.com/br/"^].
+. Acesse a pasta *Downloads*.
+. Pesquise por "AI Data Engine".
+. Insira o nome da versão do Metadata Engine em servidores de terceiro fornecido pelo seu representante da NetApp.
+. Faça o download desses arquivos para cada servidor usando  `wget` ou o seu método de download preferido:
++
+** `netapp-aide.rpm`
+** `netapp-aide-images.tar`
+
+
+
+
+
+
+== Etapa 2: Verificar integridade do pacote em cada nó
+
+Verifique o checksum do pacote em cada servidor de terceiros após o download.
+
+.Passos
+. Verifique a integridade do pacote para ambos os arquivos usando os checksums fornecidos:
++
+[source, bash]
+----
+sha256sum netapp-aide.rpm
+sha256sum netapp-aide-images.tar
+----
+. Compare a saída com os arquivos de checksum fornecidos na página de download.
+
+
+
+IMPORTANT: Verifique o checksum SHA-256 de ambos os arquivos em cada nó antes da instalação.
+
+
+
+== Etapa 3: instale o RPM e execute o aide-setup em cada nó
+
+Extraia as imagens do contêiner, instale o pacote RPM do AIDE e execute  `aide-setup` em cada servidor de terceiro. O instalador realiza a validação prévia automatizada, a configuração do host e a implantação do software AIDE.
+
+.Passos
+. Faça login no primeiro servidor de terceiros como um usuário privilegiado.
+. Crie o diretório necessário para as imagens de contêiner:
++
+[source, bash]
+----
+mkdir -p /var/lib/rancher/rke2/agent/images/
+----
+. Extraia o arquivo tar das imagens do contêiner para o diretório:
++
+[source, bash]
+----
+tar -xf netapp-aide-images.tar -C /var/lib/rancher/rke2/agent/images/
+----
++
+
+CAUTION: Certifique-se de que nenhum outro arquivo além dos arquivos extraídos seja colocado no diretório  `/var/lib/rancher/rke2/agent/images/`.
+
+. Instale o  `netapp-aide`RPM:
++
+[source, bash]
+----
+sudo dnf install netapp-aide.rpm
+----
+. Instale o `dnsmasq` pacote:
++
+[source, bash]
+----
+sudo dnf install dnsmasq
+----
+. Identifique suas interfaces de rede internas e externas:
++
+[source, bash]
+----
+ip address show
+----
++
+** Para a interface externa, utilize apenas uma porta que tenha um endereço IP configurado
+** As portas de interface internas _não_ devem ser configuradas
+
+
+. Identifique os endereços IP do seu servidor de nomes DNS para uso no comando  `aide-setup`.
+. Execute  `aide-setup` para configurar o cluster e as interfaces externas:
++
+[source, bash]
+----
+sudo /usr/sbin/aide-setup --internal_interface_primary_port <iface1> --internal_interface_secondary_port <iface2> --external_interface <external-iface> --dns_nameserver <dns-ip-1> --dns_nameserver <dns-ip-2> --overwrite_config
+----
++
+** Utilize interfaces voltadas para o cluster para  `--internal_interface_primary_port` e  `--internal_interface_secondary_port`. Conecte essas interfaces aos switches do cluster AFX.
+** Utilize a interface de manutenção do host para  `--external_interface`. Essa interface deve ter um endereço IP configurado.
+** Forneça um ou mais endereços IP de servidor de nomes DNS com a  `--dns_nameserver` opção.
++
+
+CAUTION: Mantenha controles de segurança equivalentes nas interfaces voltadas para o cluster para proteger os dados consumidos do ONTAP. Isole o caminho de rede do cluster do caminho de rede de manutenção externa para que os dados não possam transitar entre esses canais de forma a gerar violações de acesso.
+
+
+
+. Analise os resultados da verificação pré-voo. Certifique-se de que não haja erros de conformidade na configuração de hardware antes de prosseguir.
++
+Após a conclusão bem-sucedida, você deverá ver a mensagem: `AIDE is successfully configured for this node.`
+
+. Verifique se o nó está detectável pelo ONTAP. Na CLI do ONTAP, execute:
++
+[source, cli]
+----
+dcn cluster node show -membership available
+----
+. Repita esses passos em cada um dos dois servidores de terceiros restantes.
+
+
+
+NOTE: Cada nó anuncia seu número de série, UUID e endereço link-local para o ONTAP após  `aide-setup` a conclusão.
+
+.Qual é o próximo passo?
+Após instalar o software AIDE em servidores de terceiros, faça login no ONTAP System Manager e siga o link:../install-setup/cluster-setup-afx.html["Configure o AIDE com um cluster AFX"] fluxo de trabalho para criar o cluster de computação, atribuir endereços IP e habilitar a conectividade.

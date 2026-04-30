@@ -11,9 +11,9 @@ summary: Após criar um cluster, você pode criar um contêiner de dados que con
 
 
 [role="lead"]
-Após criar um cluster, estabeleça um contêiner de dados que contenha os dados que você pretende usar com AI Data Engine (AIDE). Esse contêiner de dados deve ser um volume ONTAP, seja um volume local ou um volume de um cluster ONTAP emparelhado executando ONTAP 9.
+Após criar um cluster, estabeleça um contêiner de dados que contenha os dados que você pretende usar com AI Data Engine (AIDE). Esse contêiner de dados deve ser um volume ONTAP, seja um volume local ou um de um cluster ONTAP emparelhado executando ONTAP 9.
 
-Em vez de carregar manualmente os dados do cluster ONTAP para o AIDE, você precisará emparelhar os clusters e SVMs de destino com o cluster AIDE e então decidir quais volumes NFS deseja usar com o catálogo de metadados do AIDE. Depois de criar o contêiner de dados, você pode criar um workspace e associar o contêiner de dados a esse workspace. Os usuários desse workspace poderão acessar e interagir com as coleções de dados e recursos afiliados ao workspace para suas cargas de trabalho de IA.
+Em vez de carregar manualmente os dados do cluster ONTAP para o AIDE, você precisará emparelhar os clusters e SVMs de destino com o cluster AIDE e então decidir quais volumes NFS deseja usar com o catálogo de metadados do AIDE. Depois de criar o contêiner de dados, você pode criar um espaço de trabalho e associar o contêiner de dados a esse espaço de trabalho. Os usuários desse espaço de trabalho poderão acessar e interagir com as coleções de dados e recursos afiliados ao espaço de trabalho para suas cargas de trabalho de IA.
 
 .Sobre esta tarefa
 Você deve estabelecer um peering entre cada SVM que contenha os dados que deseja usar com AIDE. Estabelecer peering apenas com o cluster não é suficiente. Isso garante que AIDE possa acessar, integrar e indexar seus dados conforme o esperado.

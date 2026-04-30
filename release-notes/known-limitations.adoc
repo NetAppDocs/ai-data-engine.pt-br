@@ -15,21 +15,109 @@ As limitações conhecidas identificam plataformas, dispositivos ou funções qu
 
 
 
-== Limitações conhecidas para o lançamento inicial do AIDE 9.18.1
+== Limitações conhecidas do software AIDE em implantações de servidores de terceiros
 
-Essas limitações se aplicam ao Metadata Engine, aos nós de computação de dados e aos fluxos de trabalho de gerenciamento em AIDE 9.18.1.
+Essas limitações aplicam-se especificamente a implementações do software AIDE em servidores de terceiros que utilizam hardware gerenciado pelo cliente.
+
+
+
+=== Limitações do modelo de implantação
+
+* **Apenas clusters de três nós**
++
+A implantação do software AIDE em servidores de terceiros requer exatamente três nós. Não é possível implantar com menos nós nem escalar além de três nós.
+
+* **Necessário hardware homogêneo**
++
+Todos os nós em um cluster de software AIDE em servidores de terceiros devem ter especificações de hardware idênticas (mesmo modelo de CPU, memória, configuração de rede e modelo de servidor). Configurações de hardware mistas não são suportadas.
+
+* **Apenas RHEL 9.7**
++
+As implantações do software AIDE em servidores de terceiros são compatíveis apenas com Red Hat Enterprise Linux (RHEL) 9.7 LTS. Outras distribuições Linux não são suportadas.
+
+* **Implantações em um único local apenas**
++
+O software AIDE em servidores de terceiros suporta apenas implantações de cluster em um único local. Topologias de cluster com vários locais, clusters estendidos e clusters geograficamente distribuídos não são suportadas. Todos os três nós em um cluster do software AIDE em servidores de terceiros devem residir no mesmo local físico com interconexões de baixa latência.
+
++
+
+NOTE: Para catalogar metadados de dados armazenados em locais remotos, use o peering de clusters ONTAP para conectar clusters ONTAP remotos ao seu cluster AIDE.
+
+
+
+
+
+=== Limitações do escopo do recurso
+
+* **Sem serviços que dependam de GPU**
++
+Esta versão do software AIDE em servidores de terceiros não oferece suporte a serviços baseados em GPU, incluindo vetorização, OCR (reconhecimento óptico de caracteres) e recursos de enriquecimento.
+
+* **Não há coletas de dados**
++
+A criação de coleções de dados requer a implementação completa do AIDE com recursos de GPU. O software AIDE em servidores de terceiros oferece apenas catalogação de metadados.
+
+* **Sem endpoints RAG**
++
+Os endpoints de Retrieval-Augmented Generation (RAG) para busca semântica exigem a implantação completa do AIDE. O software AIDE em servidores de terceiros não oferece suporte a embeddings vetoriais nem a recursos de busca semântica.
+
+* **Sem aplicação de política de guarda-corpo no momento da recuperação**
++
+Políticas de salvaguarda para redação em tempo de recuperação e controle de acesso exigem o uso completo do AIDE com recursos de vetorização.
+
+
+
+
+
+=== Caminhos de atualização
+
+* **O comportamento de reverter é específico da versão**
++
+É permitido reverter para uma versão anterior do pacote de software AIDE instalada, quando isso for compatível com as diretrizes da versão de destino. Siga o procedimento de reverter documentado para a sua versão.
+
+
+
+
+
+=== Sistema operacional e gerenciamento de software
+
+* **Software adicional não suportado**
++
+A execução de aplicativos ou serviços que não sejam o software AIDE em servidores de terceiros não é suportada.
+
+
+
+
+
+=== Requisitos de ONTAP e armazenamento
+
+* **ONTAP 9.18.1 ou posterior obrigatório**
++
+O software AIDE em servidores de terceiros requer ONTAP 9.18.1 ou posterior. Versões anteriores do ONTAP não são suportadas.
+
+* **Armazenamento AFX necessário**
++
+O software AIDE em servidores de terceiros deve se conectar aos sistemas de storage AFX da NetApp. Não há suporte disponível para outras plataformas ONTAP.
+
+
+
+
+
+== Limitações conhecidas para o lançamento inicial do AIDE 9.18.1U0/U1
+
+Essas limitações se aplicam ao Metadata Engine, aos nós de computação de dados e aos fluxos de trabalho de gerenciamento no AIDE 9.18.1U0/U1.
 
 
 
 === Requisitos e gerenciamento de nós de computação
 
-* **Requisito mínimo de nó de computação de dados**
+* **Requisito mínimo de NetApp DCN**
 +
-Os clusters AIDE requerem um mínimo e um máximo de 3 nós de computação de dados (DCNs) para a funcionalidade do Metadata Engine. Clusters com menos de 3 DCNs não podem ativar os recursos do Metadata Engine.
+Os clusters AIDE exigem exatamente três nós NetApp DCN para a funcionalidade do Metadata Engine. Clusters com menos de três nós NetApp DCN não podem habilitar os recursos do Metadata Engine.
 
-* **Não há suporte para adicionar nós DCN usando NetApp Console**
+* **Não há suporte para adicionar nós DCN NetApp usando o NetApp Console**
 +
-As atualizações e adições de nós DCN devem ser realizadas usando ONTAP System Manager, não através do NetApp Console.
+NetApp DCN As atualizações e adições de nós DCN devem ser realizadas usando ONTAP System Manager, não através do NetApp Console.
 
 
 
@@ -51,13 +139,13 @@ FlexCache volumes não podem ser adicionados como fontes de dados aos workspaces
 
 === Limitações de atualização e reversão de software
 
-* **Atualizações manuais de software apenas para nós DCN**
+* **Atualizações manuais de software para nós NetApp DCN apenas**
 +
-As atualizações automáticas de software para DCN clusters não são suportadas no AIDE 9.18.1. O software do nó DCN só pode ser atualizado fazendo upload da imagem a partir de um cliente local. O download de imagens de servidores externos (HTTP/FTP) não é suportado.
+As atualizações automáticas de software para NetApp DCN clusters não são suportadas no AIDE 9.18.1. NetApp DCN software só pode ser atualizado fazendo o upload da imagem a partir de um cliente local. O download de imagens de servidores externos (HTTP/FTP) não é suportado.
 
-* **Não é possível reverter o software do cluster DCN**
+* **Não é possível reverter o software do cluster NetApp DCN**
 +
-O software do cluster DCN não pode ser revertido para uma versão anterior. Somente upgrades para versões posteriores são permitidos.
+NetApp DCN O software do cluster DCN não pode ser revertido para uma versão anterior. Somente são permitidas atualizações para versões mais recentes.
 
 * **Sem reversão ONTAP de clusters de armazenamento AFX**
 +

@@ -1,0 +1,124 @@
+---
+sidebar: sidebar 
+permalink: metadata-search/explore-metadata.html 
+keywords: aide, mde, data explorer, metadata engine, search, export, custom tags, download, csv, workspace, filter, file metadata 
+summary: Como usuário do AIDE com uma implantação somente de software do AIDE, use as opções do Metadata Engine no AI Data Engine Console para pesquisar, filtrar e exportar metadados de arquivos, para que você possa encontrar rapidamente os arquivos de que precisa. 
+---
+= Explore e exporte metadados de arquivos do workspace
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Como um usuário do AIDE com uma implantação somente de software do AIDE, você pode usar as opções do Metadata Engine no AI Data Engine Console para pesquisar e filtrar metadados de arquivos usando o Metadata Engine. Você pode aplicar filtros padrão, pesquisar por tags personalizadas e exportar seus resultados como arquivos CSV para análise offline ou uso posterior.
+
+
+NOTE: Em implantações somente de software do AIDE, sem uma licença completa do AIDE, você tem acesso total à funcionalidade do Metadata Engine, mas não pode criar ou gerenciar coleções de dados ou guardrails. link:../faq-aide.html["Saiba mais sobre as opções de implantação e licenciamento"].
+
+.Antes de começar
+* Você precisa de privilégios de _administrador de armazenamento_, _engenheiro de dados_ ou _cientista de dados_ no AIDE Console e acesso a pelo menos um espaço de trabalho.
+* Um administrador de storage tem:
++
+** Criou um ou mais workspaces no ONTAP System Manager.
+** Atribuímos a você, como usuário ou grupo, acesso aos espaços de trabalho relevantes usando link:../install-setup/configure-oidc.html["OpenID Connect (OIDC)"].
+
+
+* A extração de metadados para o espaço de trabalho foi concluída e o espaço de trabalho está em  `Ready` estado.
+
+
+
+
+== Sign in no AIDE Console
+
+.Passos
+. Em um navegador, acesse a URL do AIDE Console:
++
+`\https://<cluster_management_ip>/console`
+
+. Autentique-se através do provedor OIDC da sua organização.
+. Confirme se o *Explorador de Dados* está disponível no painel de navegação à esquerda.
++
+
+NOTE: Em implantações somente de software do AIDE, sem uma licença completa do AIDE, o *Data Explorer* é a página inicial padrão.
+
+
+
+.Resultado
+Você está conectado ao AIDE Console e pode ver os espaços de trabalho aos quais tem acesso.
+
+
+
+== Abra um espaço de trabalho no Data Explorer
+
+.Passos
+. No painel de navegação à esquerda, selecione *Explorador de Dados > Espaços de Trabalho*.
+. Analise a lista de espaços de trabalho disponíveis para você.
+. Selecione o espaço de trabalho que deseja explorar.
+. Selecione *Explorar* para abrir a página de pesquisa e filtro de metadados de arquivos para esse espaço de trabalho.
+
+
+.Resultado
+A página de pesquisa do Data Explorer é aberta, com o escopo definido para o espaço de trabalho selecionado.
+
+
+
+== Pesquisar e filtrar metadados de arquivos
+
+.Passos
+. Na página de pesquisa do Data Explorer, utilize qualquer combinação dos filtros disponíveis para refinar seus resultados:
++
+** Insira um termo de pesquisa na barra de pesquisa para encontrar nomes de arquivos ou atributos de metadados.
++
+
+NOTE: As consultas de pesquisa diferenciam maiúsculas de minúsculas.
+
+** Aplique filtros de metadados padrão (por exemplo, tipo de arquivo, tamanho ou data).
++
+
+NOTE: O filtro *Classificação* não está disponível no Data Explorer.
+
+
+
+
+
+.Resultado
+A tabela exibe todos os arquivos que correspondem à sua consulta de pesquisa ou aos filtros aplicados.
+
+
+
+== Crie e utilize tags personalizadas
+
+.Passos
+. Para criar tags personalizadas, acesse a página de pesquisa do Data Explorer e selecione *Filtros avançados*.
+. Selecione *Adicionar novas tags*.
+. Adicione uma ou mais tags personalizadas para filtrar os resultados da sua pesquisa por uma combinação de atributos que não estão incluídos nos filtros padrão.
+. Selecione *Filtrar* para aplicar seus filtros de tags personalizados aos resultados da pesquisa.
+. Analise os resultados da pesquisa exibidos na tabela da lista de arquivos.
+
+
+.Resultado
+A tabela exibe todos os arquivos que correspondem às suas entradas de tags personalizadas.
+
+
+
+== Baixar resultados da pesquisa para CSV
+
+.Passos
+. Acima da tabela de resultados da pesquisa, selecione image:icon_download_file.png["Ícone de download do arquivo"].
++
+Uma mensagem informativa sobre o progresso do download é exibida até que o download seja concluído.
+
+. Acompanhe o indicador de progresso do download acima da tabela de resultados. Downloads maiores indicarão o progresso do download de arquivos em lote ou o número de linhas em um arquivo CSV que está sendo processado.
+. Opcional: para interromper o download antes de sua conclusão, clique em *Cancelar download*.
+
+
+.Resultado
+Um ou mais arquivos CSV são baixados para o seu sistema local. Cada arquivo contém os nomes dos arquivos e as colunas de metadados visíveis na tabela de resultados da pesquisa no momento do download.
+
+
+
+== Qual é o próximo passo?
+
+* link:../faq-aide.html["Saiba mais sobre a implantação e o licenciamento do AIDE"]
+

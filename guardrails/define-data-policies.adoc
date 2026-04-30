@@ -19,7 +19,7 @@ Utilize esses procedimentos para definir essas políticas no AIDE Console para q
 * Você precisa de privilégios de _administrador de storage_ no AIDE Console (`\https://<cluster_management_ip>/console` para criar e gerenciar políticas globais.
 * Você possui um AIDE cluster com nós de computação de dados implantados e íntegros.
 * link:../install-setup/configure-oidc.html["OpenID Connect (OIDC)"] está configurado e sua função de IdP está mapeada para uma função de administrador do AIDE que permite o gerenciamento de políticas de dados.
-* A licença do software AIDE está instalada de forma que os recursos de Data Guardrails e inferência estejam ativados.
+* A licença de serviços premium do AIDE é instalada para que os recursos de proteção e inferência sejam ativados para as funcionalidades de governança de dados.
 * Existe pelo menos um espaço de trabalho, ou você se coordenou com o administrador para entender quais fontes de dados (volumes) serão usadas nos espaços de trabalho.
 
 

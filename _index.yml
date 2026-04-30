@@ -16,26 +16,27 @@ indexpage:
     links:
     - title: Saiba mais sobre AI Data Engine
       url: "/get-started/learn-about.html"
-    - title: Arquitetura AIDE
-      url: "/get-started/aide-architecture.html"
     - title: O que há de novo
       url: "/release-notes/whats-new.html"
     - title: Limitações conhecidas
       url: "/release-notes/known-limitations.html"
-    - title: Início rápido do AIDE
+    - title: Guia de início rápido para o software AIDE em servidores de terceiros
+      url: "/get-started/quick-start-mde-only.html"
+    - title: Guia rápido para implantação do NetApp DCN
       url: "/get-started/quick-start.html"
     - title: FAQ sobre AIDE
       url: "/faq-aide.html"
-  - title: Instalar e configurar
+  - title: Instale hardware compatível com AIDE
     links:
-    - title: Fluxo de trabalho de instalação de data compute nodes
-      url: "/install-setup/install-workflow.html"
-    - title: Requisitos de instalação
-      url: "/install-setup/install-setup-requirements.html"
-    - title: Hardware de cabos
-      url: "/install-setup/cable-hardware.html"
-    - title: Ligar o sistema
-      url: "/install-setup/power-on-hardware.html"
+    - title: Instalar fluxo de trabalho de servidor de terceiros
+      url: "/install-aide-server/install-workflow.html"
+    - title: Instalar fluxo de trabalho do nó de computação de dados fornecido pela
+        NetApp
+      url: "/install-dcn/install-workflow.html"
+  - title: Instale e configure o software AIDE
+    links:
+    - title: Instale AIDE como software
+      url: "/install-setup/install-aide-as-software.html"
     - title: Configurar AIDE cluster
       url: "/install-setup/cluster-setup-afx.html"
     - title: Configurar autenticação OIDC
@@ -50,6 +51,8 @@ indexpage:
       url: "/workspaces/assign-users-to-workspace.html"
     - title: Gerenciar workspaces
       url: "/administer/manage-workspace.html"
+    - title: Explore e exporte metadados de arquivos
+      url: "/metadata-search/explore-metadata.html"
   - title: Administrar e monitorar
     links:
     - title: Visualizar dashboard e status de cluster

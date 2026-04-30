@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: install-aide-server/deploy-hardware.html 
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, hardware, deploy, mde, third-party servers, cabinet, rail kit, bezel, cable management 
+summary: Aprenda como instalar os kits de trilhos e fixar os nós de computação de dados no gabinete. 
+---
+= Instale seus servidores de terceiros para AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Instale e fixe seus servidores de terceiros no gabinete.
+
+Para servidores de terceiros, consulte a documentação de instalação do seu modelo de servidor específico para obter instruções de instalação.
+
+.Qual é o próximo passo?
+Depois de instalar os servidores de terceiros, link:cable-hardware.html["Conecte os nós de computação de dados para AIDE"].

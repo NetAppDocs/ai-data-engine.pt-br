@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: install-aide-server/install-workflow.html 
+keywords: aide, ai, data engine, ai data engine, afx, afx 1k, install, setup, workflow, metadata engine, mde, third-party servers, hardware installation, cabling, power on, ontap cluster 
+summary: Comece a instalação e configuração do seu AI Data Engine em servidores de terceiros e implemente-os em seu ambiente ONTAP. 
+---
+= Fluxo de trabalho de instalação e configuração do AI Data Engine em servidores de terceiros
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para instalar e configurar o AI Data Engine software em servidores de terceiros, você instala e conecta os componentes de hardware, liga o sistema e configura seu cluster ONTAP.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Um"]link:aide-mde-server-hardware-requirements.html["Revise os requisitos de instalação do hardware"]
+[role="quick-margin-para"]
+Certifique-se de que você já possui um sistema de storage AFX 1K instalado e, em seguida, revise os requisitos de hardware para instalar servidores de terceiro ou nós de computação de dados fornecidos pela NetApp. Para obter informações sobre a instalação do sistema de storage AFX 1K, consulte link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["Documentação de instalação do sistema de storage AFX 1K"^].
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Dois"]link:deploy-hardware.html["Instale os servidores de terceiros"]
+[role="quick-margin-para"]
+Servidores de terceiros devem ser instalados de acordo com as instruções fornecidas pelo fabricante para o modelo específico do seu servidor.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Três"]link:cable-hardware.html["Conecte seus servidores de terceiros por cabo"]
+[role="quick-margin-para"]
+Para conectar o hardware, primeiro conecte os servidores de terceiros à sua rede de dados e, em seguida, conecte os servidores de terceiros aos switches do cluster.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatro"]link:power-on-hardware.html["Ligue seus servidores de terceiros"]
+[role="quick-margin-para"]
+Após instalar o rack e conectar os cabos do hardware, você deve ligar os servidores de terceiro e os nós controladores do sistema de storage AFX, caso ainda não estejam ligados.

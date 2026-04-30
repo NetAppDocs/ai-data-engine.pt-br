@@ -33,7 +33,7 @@ Como administrador de storage, você pode usar ONTAP System Manager para acessar
 ** Verifique a contagem e o status dos **Data compute nodes**.
 ** Verifique se há alertas:
 +
-*** Problemas com nós da DCN ou problemas de conectividade
+*** Problemas no nó de computação de dados ou de conectividade
 *** Espaços de trabalho ou coleta de dados com erro (por exemplo, falhas na publicação de coleta)
 
 
@@ -55,12 +55,12 @@ Como administrador de storage, você pode usar ONTAP System Manager para acessar
 
 
 
-== Visualizar dados DCN sobre a saúde e utilização
+== Visualizar integridade e utilização do nó de computação de dados
 
 . No painel de navegação, selecione *Cluster* e depois *Overview*.
 . Selecione a guia *Data compute*.
 +
-Esta aba mostra todos os nós DCN no cluster com:
+Esta aba mostra todos os nós de computação de dados no cluster com:
 
 +
 ** Nome do nó, modelo, número de série e versão do software
@@ -70,14 +70,14 @@ Esta aba mostra todos os nós DCN no cluster com:
 ** Quaisquer indicadores de erro em nível de nó
 
 
-. Expanda um nó DCN para abrir a visualização detalhada e verifique:
+. Expanda um nó de computação de dados para abrir a visualização detalhada e verifique:
 +
 ** Uso de CPU e memória do sistema
 ** Uso de memória da GPU
 ** Problemas de hardware ou serviço relatados
 
 
-. Selecione *Cabeamento* na página *Cluster > Visão geral* para verificar se os nós do DCN estão corretamente cabeados aos switches do cluster e para identificar quaisquer problemas de porta ou link.
+. Selecione *Cabeamento* na página *Cluster > Visão geral* para verificar se os nós de computação de dados estão corretamente conectados aos switches do cluster e para identificar quaisquer problemas de porta ou link.
 
 
 
@@ -130,7 +130,7 @@ Esta aba mostra todos os nós DCN no cluster com:
 ** Opcionalmente, abra os detalhes para ver as contagens de:
 +
 *** Volumes
-*** LIFs com tipo `Data compute network` (usado para comunicação DCN-ONTAP)
+*** LIFs com tipo  `Data compute network` (usado para comunicação entre nós de computação de dados e ONTAP)
 
 
 
@@ -158,10 +158,10 @@ IMPORTANT: Não modifique os metadados da Storage VM, os relacionamentos SnapMir
 . No painel de navegação, selecione *Eventos & Jobs* e depois *System alerts*.
 . Analise quaisquer alertas ativos relacionados a:
 +
-** Saúde ou conectividade do nó DCN
+** Integridade ou conectividade do nó de computação de dados
 ** Problemas de rede do mecanismo de dados
 ** Erros no espaço de trabalho ou na coleta de dados
-** Incompatibilidade de versões de software entre ONTAP e DCN cluster
+** Incompatibilidade de versões de software entre ONTAP e o cluster de nós de computação de dados
 
 
 . Conforme necessário, configure os destinos de notificação (por exemplo, email, syslog) em *Cluster > Settings > Notification management* para garantir que os alertas relacionados ao AIDE sejam encaminhados para suas ferramentas operacionais.

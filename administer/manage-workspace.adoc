@@ -68,7 +68,7 @@ Você pode ajustar o nome, a descrição, o intervalo de atualização e (se lic
 +
 ** Atualize *Name* e *Description* conforme necessário.
 ** Ajuste o *intervalo de atualização* (frequência de atualização de metadados) dentro do intervalo permitido (horas e dias).
-** Se uma licença AIDE estiver instalada, você pode selecionar *Guardrail policy*.
+** Se uma licença de serviços premium da AIDE estiver instalada, você pode selecionar *Guardrail policy*.
 
 
 . Selecione *Save*.

@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: administer/dcn-add-node.html 
 keywords: aide, ai data engine, data compute node, dcn, add dcn, expand dcn cluster 
-summary:  
+summary: 'Você pode adicionar nós de computação de dados como parte da criação de um novo AI Data Engine (AIDE) cluster ou da expansão de um cluster existente.' 
 ---
 = Adicione nós de computação de dados ao seu cluster do AI Data Engine
 :allow-uri-read: 
@@ -11,22 +11,22 @@ summary:
 
 
 [role="lead"]
-Você pode adicionar nós de computação de dados (DCNs) como parte da criação de um novo cluster AI Data Engine (AIDE) ou da expansão de um cluster existente. O fluxo de trabalho consiste em descobrir e configurar os nós usando o ONTAP System Manager.
+Você pode adicionar nós de computação de dados como parte da criação de um novo cluster do AI Data Engine (AIDE) ou da expansão de um cluster existente. O fluxo de trabalho consiste em descobrir e configurar os nós usando ONTAP System Manager.
 
 
 
 == Prepare-se para adicionar nós
 
-Existem várias considerações ao adicionar nós DCN.
+Ao adicionar nós de computação de dados, considere o seguinte.
 
-.Ao criar um novo AIDE cluster
-São necessários exatamente três nós DCN para um novo cluster AIDE.
+.Número mínimo de nós de computação de dados
+São necessários exatamente três nós de computação de dados disponíveis para um novo AIDE cluster.
 
 .Instalação e endereçamento de hardware
 Certifique-se de que os seguintes pré-requisitos sejam atendidos:
 
-* O novo DCN hardware está instalado no rack, ligado e conectado aos switches do cluster.
-* Você tem um intervalo de endereços IP disponível para a subnet de backend do DCN para o ONTAP.
+* O novo hardware de computação de dados foi instalado no rack, ligado e conectado aos switches do cluster.
+* Você tem um intervalo de endereços IP disponível para os nós de computação de dados na sub-rede de backend do ONTAP.
 * O cluster ONTAP foi inicializado e está acessível a partir da LIF de gerenciamento do cluster.
 
 
@@ -34,58 +34,55 @@ Certifique-se de que os seguintes pré-requisitos sejam atendidos:
 Você precisa de privilégios de _administrador de storage_ para executar tarefas de criação ou expansão de cluster AIDE.
 
 .Compatibilidade de software
-Consulte a seguinte documentação para confirmar se o hardware e as versões de software do seu DCN são compatíveis com o seu cluster ONTAP:
+Consulte a seguinte documentação para confirmar se as versões de hardware e software de computação de dados são compatíveis com o seu cluster ONTAP:
 
-* link:../administer/upgrades-aide-summary.html["O software DCN é compatível com a versão do ONTAP"].
+* link:../administer/upgrades-aide-summary.html["O software AIDE é compatível com a versão do ONTAP"].
 
 
 Durante a operação de adição de nós, System Manager confirmará se os novos nós executam uma versão de software compatível com:
 
-* A versão efetiva do ONTAP (ECV) do cluster, caso esta seja a primeira junção do DCN.
-* A versão do cluster DCN existente, caso já existam DCNs presentes.
+* A versão efetiva do cluster ONTAP, caso este seja o primeiro nó de computação de dados adicionado.
+* A versão existente do cluster de computação de dados se os nós de computação de dados já estiverem presentes.
 
 
 Se um nó for incompatível:
 
-* Um erro é exibido ao lado do DCN afetado na caixa de diálogo *Adicionar*.
-* Primeiro, você deve atualizar o DCN (ou ONTAP, conforme o caso) para uma versão compatível.
+* Um erro é exibido ao lado do nó de computação de dados afetado na caixa de diálogo *Adicionar*.
+* Primeiro, você deve atualizar o software do nó de computação de dados (ou ONTAP, conforme o caso) para uma versão compatível.
 
 
 
 
 == Adicione os nós de computação de dados
 
-Você adiciona nós DCN como parte da criação de um novo cluster AIDE ou da expansão de um cluster existente.
+Adicione nós de computação de dados como parte da criação de um novo AIDE cluster ou da expansão de um cluster existente.
 
 .Passos
 . No System Manager, selecione *Dashboard* no painel de navegação e, em seguida, o cartão *Health*.
 . Confirme se há nós para adicionar e selecione *View details* para exibir a lista.
 +
-A lista contém nós descobertos que ainda não fazem parte do AIDE cluster
+A lista contém nós descobertos que ainda não fazem parte do AIDE cluster.
 
 . Alternativamente, você pode selecionar *Cluster* e *Overview* e a guia *Data compute* para ver a lista.
 . Na parte inferior da página de computação de dados, selecione *Adicionar* acima da lista de nós.
-. Na caixa de diálogo *Adicionar nós de computação de dados*, selecione os nós DCN que deseja adicionar.
-+
-Você pode opcionalmente renomear nós individuais antes de adicioná-los.
-
+. Na caixa de diálogo *Adicionar nós*, selecione os nós de computação de dados que deseja adicionar.
 . Se esta for a primeira vez que você está adicionando nós e não houver uma sub-rede de backend, selecione *Adicionar sub-rede* e forneça:
 +
 ** Nome da sub-rede (para uso interno)
 ** Endereço e máscara de sub-rede
-** Intervalo de endereços IP para DCN e nós ONTAP nesta rede de back-end
+** Intervalo de endereços IP para nós de computação de dados e nós ONTAP na rede de back-end
 +
-System Manager valida se o intervalo inclui endereços IP livres suficientes para todos os DCNs que estão sendo adicionados, todos os nós ONTAP no cluster e IPs flutuantes adicionais no nível do cluster usados para comunicação entre o DCN e o ONTAP.
+System Manager valida se o intervalo inclui endereços IP livres suficientes para todos os nós de computação de dados que estão sendo adicionados, todos os nós ONTAP no cluster e IPs flutuantes adicionais em nível de cluster usados para a comunicação entre o nó de computação de dados e o ONTAP.
 
 
 
-. Se você adicionou a sub-rede de backend ou se ela já existe:
+. Faça o seguinte independentemente de você ter adicionado a sub-rede de backend ou se ela já existir:
 +
 .. Analise os endereços IP disponíveis.
 .. Se necessário, selecione *Editar sub-rede* e amplie o intervalo de IP.
 +
 *** Você só pode aumentar o intervalo. Reduzir ou alterar a sub-rede não é compatível.
-*** Alterar a sub-rede ou o intervalo de IP pode exigir a recriação do cluster Kubernetes subjacente nos DCNs e pode levar vários minutos.
+*** Alterar a sub-rede ou o intervalo de endereço IP pode exigir a recriação do cluster Kubernetes subjacente nos nós de computação de dados e pode levar vários minutos.
 
 
 
@@ -96,23 +93,35 @@ System Manager valida se o intervalo inclui endereços IP livres suficientes par
 ** Máscara de rede
 ** Gateway (se necessário para o seu ambiente)
 +
-O endereço IP único será balanceado entre as DCNs e usado como endereço de frontend para AIDE Console e APIs relacionadas.
+O endereço IP único será distribuído entre os nós de computação de dados e usado como endereço de frontend para AIDE Console e APIs relacionadas.
 
 
 
 . Analise os nós selecionados, a sub-rede de back-end e as configurações da interface de serviço do Data Engine.
 . Selecione *Add* e aguarde a conclusão da operação. System Manager executará as seguintes ações:
 +
-** Adicione os nós selecionados ao cluster DCN
-** Provisione a rede de backend e adicione nós ao cluster DCN baseado em Kubernetes
-** Atualiza os metadados internos para descoberta de DCN
+** Adicione os nós selecionados ao cluster de computação de dados
+** Provisione a rede de backend e adicione nós ao cluster de computação de dados baseado em Kubernetes
+** Atualizar metadados internos para descoberta de nós de computação de dados
 
 
 . Após a conclusão, selecione *Cluster* e *Overview* e confirme:
 +
-.. Em *Computação de dados*, os novos DCNs aparecem como parte do cluster
-.. Todos os nós estão *saudáveis*
-.. Verifique se o cartão *Saúde* do dashboard mostra a contagem de nós atualizada
+** Em *Computação de dados*, os novos nós de computação de dados aparecem online como parte do cluster
+** Todos os nós estão *saudáveis*
+** A versão do AIDE é exibida corretamente para cada nó
+** Verifique se o cartão *Saúde* do dashboard mostra a contagem de nós atualizada
+
+
+. (Opcional) Após todos os nós ingressarem no cluster, verifique se todos os serviços iniciam corretamente.
++
+.. Verifique o status do pod do Kubernetes:
++
+[source, bash]
+----
+kubectl get pods -n aide-system
+----
+.. Confirme se todos os pods exibem o status *Running* ou *Completed*.
 
 
 

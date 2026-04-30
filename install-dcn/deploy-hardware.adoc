@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
-permalink: install-setup/deploy-hardware.html 
-keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, hardware, deploy, 
+permalink: install-dcn/deploy-hardware.html 
+keywords: aide, ai, data engine, ai data engine, dcn, data compute node, afx, afx 1k, install, setup, hardware, deploy, mde, third-party servers, netapp data compute nodes, cabinet, rail kit, bezel, cable management 
 summary: Aprenda como instalar os kits de trilhos e fixar os nós de computação de dados no gabinete. 
 ---
 = Instale seus nós de computação de dados para AI Data Engine
@@ -11,7 +11,9 @@ summary: Aprenda como instalar os kits de trilhos e fixar os nós de computaçã
 
 
 [role="lead"]
-Instale e proteja seus nós de data compute no gabinete.
+Instale e proteja seus servidores de terceiros ou nós de computação de dados fornecidos pela NetApp no gabinete.
+
+Para instalar os nós de computação de dados fornecidos pela NetApp, você precisa instalar os kits de trilhos para os nós de computação de dados, fixar os nós de computação de dados no gabinete e conectar dispositivos de gerenciamento de cabos na parte traseira do sistema para uma organização adequada dos cabos.
 
 .Antes de começar
 * Certifique-se de que você tenha as instruções embaladas com o kit de trilhos.
@@ -34,4 +36,4 @@ NOTE: Em geral, os switches devem ser instalados no centro do gabinete. As prate
 
 
 .Qual é o próximo passo?
-Depois de instalar os nós de computação de dados, link:cable-hardware.html["Conecte os nós de computação de dados para AIDE"].
+Depois de instalar os nós de computação de dados, link:cable-overview.html["Analise os requisitos de cabeamento para os nós de computação de dados do AIDE"].

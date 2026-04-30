@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: install-aide-server/power-on-hardware.html 
+keywords: aide, ai, data engine, ai data engine, third-party server, afx, afx 1k, power on, 
+summary: Ligue cada shelf para atribuir um shelf ID exclusivo, ligue os nós do controlador AFX e fixe os cabos de alimentação. 
+---
+= Ligue seus servidores de terceiros para AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Após instalar o rack e conectar os cabos do hardware, você deve ligar os servidores de terceiro e os nós controladores do sistema de storage AFX, caso ainda não estejam ligados.
+
+Para servidores de terceiros, consulte a documentação de instalação do seu modelo específico para obter instruções de inicialização.
+
+.Qual é o próximo passo?
+Depois de ativar seus servidores de terceiros, link:../install-setup/install-aide-as-software.html["instale o AI Data Engine software"].

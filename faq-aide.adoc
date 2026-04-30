@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: faq-aide.html 
-keywords: aide, ai data engine, faq, ontap, requirements, user types, features, integration, licensing 
+keywords: aide, ai data engine, faq, ontap, requirements, user types, features, integration, licensing, byos 
 summary: 'Perguntas frequentes sobre NetApp AI Data Engine (AIDE), abrangendo visão geral do produto, requisitos, tipos de usuários, principais recursos, integração e licenciamento.' 
 ---
 = Perguntas frequentes sobre NetApp AI Data Engine
@@ -39,38 +39,57 @@ Os principais usuários do AIDE incluem:
 
 == Requisitos e implantação
 
-.Que hardware é necessário?
-AIDE requer sistemas AFX para implantação (incluindo um controlador AFX, um gabinete de discos e um switch de rede), mas pode usar dados de cluster de clusters executando ONTAP 9 usando SnapMirror e peering de cluster. Pelo menos quatro nós de controlador AFX são necessários para implantações do AIDE, a fim de garantir alta disponibilidade e desempenho.
+.Quais são as opções de implantação disponíveis para AIDE?
+AIDE oferece duas opções de implantação:
 
-AIDE é executado em um nó de computação de dados NetApp (DCN). Três DCNs são necessários. O DCN hospeda o software AIDE, que inclui o Metadata Engine, Data Sync, Data Curator e Data Guardrails.
+* *NetApp data compute nodes (DCN) deployment*: AIDE é executado em nós de computação de dados fornecidos pela NetApp com recursos de GPU integrados, oferecendo todas as funcionalidades do AIDE, incluindo metadados, vetorização e endpoints RAG.
+* *AIDE software em servidores de terceiros*: O AIDE software é executado em servidores RHEL 9.7 fornecidos pelo cliente, utilizando hardware de terceiros compatível. Uma implantação básica do Metadata Engine oferece recursos de catalogação e descoberta de metadados, mas não inclui recursos dependentes de GPU.
 
-.Posso usar minha própria DCN?
-Não. O DCN é um nó de hardware de computação de dados fornecido pela NetApp e é o único mecanismo de implantação para AIDE.
 
-.Qual é o número mínimo de DCNs necessário?
-São necessários exatamente três DCNs.
+.Que hardware é necessário para implantações do NetApp DCN?
+NetApp DCN exige implementações de sistemas AFX (incluindo um controlador AFX, um gabinete de discos e um switch de rede) e três nós de computação de dados NetApp. São necessários pelo menos quatro nós de controlador AFX para garantir alta disponibilidade e desempenho.
 
-.Qual sistema operacional é executado nos DCN?
-Os DCNs executam uma pilha de software fornecida pela NetApp com AIDE.
+.Que hardware é necessário para implantações do software AIDE com a funcionalidade básica do Metadata Engine em servidores de terceiros?
+O software AIDE com a funcionalidade básica do Metadata Engine, para implantações em servidores de terceiros, requer:
+
+* Três servidores adquiridos pelo cliente de fornecedores credenciados
+* RHEL 9.7 LTS instalado em todos os servidores
+* Sistema de storage AFX executando ONTAP 9.18.1 ou posterior para storage persistente
+
+
+link:./install-aide-server/aide-mde-server-hardware-requirements.html["Para obter especificações adicionais, saiba mais sobre os requisitos de hardware de servidor de terceiros"].
+
+.Posso usar meus próprios servidores para o AIDE completo com recursos de GPU?
+AIDE v1.0.0 oferece suporte básico ao Metadata Engine em servidores de terceiro com hardware adquirido pelo cliente. Recursos completos do AIDE com funcionalidades de GPU exigem hardware NetApp DCN.
+
+.Qual é o número mínimo de NetApp DCNs necessários?
+São necessários exatamente três NetApp DCNs.
+
+.Qual sistema operacional é executado nos nós AIDE?
+O sistema operacional depende do seu tipo de implantação:
+
+* *NetApp DCN*: pilha de software fornecida e gerenciada pela NetApp
+* *AIDE software com funcionalidade básica do Metadata Engine em servidores de terceiros*: Red Hat Enterprise Linux (RHEL) 9.7 LTS, instalado e gerenciado pelo cliente
+
 
 .O AIDE pode ser implantado sem o AFX?
-Não. AIDE requer AFX para implantação. AIDE usa Trident para consumir os volumes do AFX para storage interno (volumes persistentes). O cluster AFX que fornece storage para AIDE pode ser emparelhado com um sistema ou cluster ONTAP 9. Ele usa o emparelhamento de clusters e SnapMirror para sincronizar dados do cluster ONTAP remoto para o sistema AFX.
+Não. AIDE requer AFX para implantação. AIDE utiliza  https://docs.netapp.com/us-en/trident/["Trident"^] para consumir os volumes do AFX para storage interno (volumes persistentes). O cluster AFX que fornece storage para AIDE pode ser emparelhado com um sistema ou cluster ONTAP 9. Ele utiliza o emparelhamento de clusters e SnapMirror para sincronizar dados do cluster ONTAP remoto para o sistema AFX.
 
 
 
 == Gerenciamento e interfaces
 
 .AIDE Console faz parte do NetApp Console ou é uma interface separada?
-AIDE Console é uma interface de gerenciamento separada que é executada em DCNs. Você usa AIDE Console para gerenciar serviços do AIDE, como Data Guardrails e Data Curator. Você também pode usar ONTAP System Manager para monitorar o cluster do AIDE.
+AIDE Console é uma interface de gerenciamento separada que é executada em NetApp DCNs. Você usa AIDE Console para gerenciar serviços do AIDE, como Data Guardrails e Data Curator. Você também pode usar ONTAP System Manager para monitorar o cluster AIDE.
 
 
 
 == Recursos e funcionalidades
 
 .Quais são os principais recursos do AIDE?
-Existem quatro principais recursos do AIDE:
+AIDE oferece quatro funcionalidades principais, cuja disponibilidade depende do tipo de deployment:
 
-.Metadata Engine
+.Metadata Engine (disponível em todas as implementações)
 * Gera automaticamente uma visualização estruturada, atualizada e interativa dos seus dados.
 * Funciona com dados armazenados no ONTAP.
 * Permite que profissionais de dados colaborem com administradores de storage para encontrar e compreender dados.
@@ -78,26 +97,49 @@ Existem quatro principais recursos do AIDE:
 * A capacidade de extração e catalogação de metadados foi desenvolvida especificamente para AIDE, funciona de forma contínua e aproveita recursos do ONTAP, como snapshots.
 
 
-.Sincronização de dados
+.Sincronização de dados (disponível em todas as implementações)
 * Mantém a atualização dos dados automaticamente conforme os dados de origem são alterados sem intervenção manual.
 * Os administradores definem o intervalo de atualização de dados em dias ou horas.
 * Proporciona mobilidade de dados incremental e sincronização em todos os dados para eliminar cópias redundantes de dados de IA.
 
 
-.Data Guardrails
+.Data Guardrails (NetApp DCN apenas com a licença necessária)
 * Identifica e protege automaticamente dados confidenciais ao longo de todo o ciclo de vida dos dados. É acessível através do AIDE Console.
 * Analisa, classifica e categoriza dados continuamente.
 * Identifica dados confidenciais (como PII) e riscos.
 * Facilita a criação de políticas para o tratamento automático de dados confidenciais em conformidade com os padrões da empresa e normas regulamentares.
-* Oferece redação automática de dados confidenciais para proteção de dados.
-* Restringe o acesso a arquivos confidenciais conforme necessário.
+* A aplicação completa das políticas (redação automática e restrição de acesso) requer recursos de vetorização disponíveis apenas em implementações de NetApp DCN.
+* O software AIDE com Metadata Engine funcionalidade básica em servidores de terceiro suporta a marcação de metadados baseada em classificadores, mas não a aplicação de Data Guardrails.
 
 
-.Data Curator
+.Data Curator (NetApp DCN apenas com a licença necessária)
 * Permite que cientistas de dados pesquisem em todo o storage em busca de dados relevantes.
 * Cria coleções de dados selecionados com dados existentes nos volumes do AFX.
 * Gera representações vetoriais na camada de storage para reduzir dados brutos e aumentar o desempenho.
 * Fornece um endpoint de recuperação para aplicações de IA com busca semântica vetorial e reclassificação.
+
+
+
+NOTE: O software AIDE com funcionalidade básica do Metadata Engine em servidores de terceiros inclui os recursos Metadata Engine e Data Sync. Data Guardrails e Data Curator requerem recursos de GPU disponíveis em NetApp DCN deployments.
+
+.Quais recursos estão disponíveis com o AIDE software em servidores de terceiros em comparação com o NetApp DCN?
+O software AIDE em servidores de terceiros oferece recursos focados em metadados:
+
+*Disponível com o software AIDE com funcionalidade básica do Metadata Engine em servidores de terceiros*:
+
+* Criação e gestão de workspaces
+* Extração e catalogação automatizadas de metadados
+* Busca e filtragem de metadados via APIs REST
+* Sincronização de dados para atualização automática de dados
+* Funcionalidade de exportação de metadados
+
+
+*Não disponível com o software AIDE com Metadata Engine funcionalidade básica em servidores de terceiros*:
+
+* Serviços dependentes de GPU (vetorização, OCR, enriquecimento)
+* Coleções de dados e incorporações vetoriais
+* Pontos finais RAG para pesquisa semântica
+* Aplicação da política de Data Guardrails no momento da recuperação
 
 
 
@@ -108,7 +150,7 @@ Existem quatro principais recursos do AIDE:
 AIDE pode se conectar a vários clusters ONTAP usando SnapMirror e peering de clusters, permitindo visibilidade centralizada dos metadados.
 
 .Onde os metadados são armazenados?
-AIDE armazena metadados no cluster AFX conectado usando um volume persistente fornecido pelo AFX. Os DCNs usam armazenamento local para operações internas.
+AIDE armazena metadados no cluster AFX conectado usando um volume persistente fornecido pelo AFX. Os nós de computação de dados usam armazenamento local para operações internas.
 
 .O AIDE Metadata Engine classifica dados?
 Não. AIDE Metadata Engine cataloga metadados do sistema de arquivos e fornece APIs para consultar esses metadados catalogados.
@@ -129,17 +171,26 @@ AIDE fornece um endpoint de API RAG acessível por meio de chamadas diretas à A
 
 
 
-== Implantação e licenciamento
-
-.Quais são as opções de implantação?
-AIDE é implementado localmente na infraestrutura AFX com DCNs. Ele se integra diretamente com instalações AFX do NetApp ONTAP.
+== Licenciamento
 
 .Como o AIDE é licenciado?
-AIDE requer uma licença de software para executar Data Guardrails e Data Curator.
+O licenciamento do AIDE depende do tipo de implantação e dos recursos necessários:
 
-Se você precisar apenas do Metadata Engine, a licença ONTAP One, que está incluída em todos os sistemas AFX, concede direito apenas às funcionalidades do Metadata Engine.
+*Implantações do NetApp DCN*:
+
+* Data Guardrails e Data Curator exigem a licença de serviços premium do AIDE
+* Metadata Engine e os recursos de Data Sync estão incluídos na licença ONTAP One (incluída em todos os sistemas AFX)
+
+
+*AIDE software com Metadata Engine funcionalidade básica em servidores de terceiros*:
+
+* A licença ONTAP One concede direito aos recursos Metadata Engine e Data Sync
+* Data Guardrails e Data Curator não estão disponíveis para implantações da funcionalidade básica do Metadata Engine em servidores de terceiros
+
 
 .Informações relacionadas
 * link:./install-setup/install-license-task.html["Instale licenças AIDE no ONTAP System Manager"]
 * link:./get-started/aide-architecture.html["Saiba mais sobre a arquitetura e os componentes do AIDE"]
+* link:./release-notes/whats-new.html["O que há de novo no AIDE"]
+* link:./release-notes/known-limitations.html["Limitações conhecidas do AIDE"]
 

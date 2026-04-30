@@ -17,7 +17,7 @@ AI Data Engine (AIDE) fornece três interfaces principais para interação do us
 
 == ONTAP System Manager
 
-ONTAP System Manager é uma interface Web projetada para administradores de storage. Ele fornece fluxos de trabalho para configuração de cluster, gerenciamento de espaço de trabalho, monitoramento de DCN e aplicação de políticas de guardrail.
+ONTAP System Manager é uma interface Web projetada para administradores de storage. Ele fornece fluxos de trabalho para configuração de cluster, gerenciamento de espaço de trabalho, monitoramento de nós de computação de dados e aplicação de políticas de Data Guardrails.
 
 
 

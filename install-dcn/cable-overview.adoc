@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
-permalink: install-setup/cable-overview.html 
-keywords: aide, ai data engine, cable, overview, cabling, hardware, switches, cluster network, host network, data compute nodes 
+permalink: install-dcn/cable-overview.html 
+keywords: aide, ai data engine, cable, overview, cabling, hardware, switches, cluster network, host network, data compute nodes, compute nodes 
 summary: Saiba mais sobre a configuração de cabeamento para Data Compute Node, incluindo o uso de slots de E/S, tipos de cabos e requisitos de conexão para redes de host e cluster. 
 ---
 = Requisitos para cabeamento de Data Compute Node para AI Data Engine
@@ -13,13 +13,9 @@ summary: Saiba mais sobre a configuração de cabeamento para Data Compute Node,
 [role="lead"]
 Os nós de Data Compute se integram ao seu sistema de storage AFX 1K por meio de conexões de rede do host e de rede do cluster. Revise a configuração dos slots de E/S, os tipos de cabos e os requisitos de conexão para sua implantação.
 
+NetApp-fornecidos nós de computação de dados se conectam aos mesmos switches de cluster que os nós controladores do AFX 1K, ampliando seu sistema de storage com recursos de computação otimizados para cargas de trabalho de IA e aprendizado de máquina.
 
-
-== Configuração de cabeamento
-
-Os nós de computação de dados se conectam aos mesmos switches de cluster que os nós controladores do AFX 1K, estendendo seu sistema de storage com recursos de computação otimizados para cargas de trabalho de AI e machine learning.
-
-A configuração inicial do AI Data Engine (AIDE) suporta um mínimo de três nós de computação de dados. Para obter detalhes completos sobre a configuração e as prioridades dos slots, consulte link:https://hwu.netapp.com["NetApp Hardware Universe"^].
+A configuração inicial do AI Data Engine (AIDE) suporta um mínimo de três nós de computação de dados.
 
 image::../media/drw_aide-dcn_back_slots_labeled_ieops-2646.svg[Numeração de slots em um Data Compute Node]
 
@@ -63,7 +59,7 @@ Slot de E/S no Data Compute Node.
 |===
 
 
-== Configuração do slot de E/S
+== NetApp-configuração de slot de E/S do nó de computação de dados fornecida
 
 O Data Compute Node utiliza um esquema de numeração de slots específico que difere das configurações de servidor padrão. Compreender o layout dos slots é essencial para a correta instalação dos cabos.
 
@@ -79,7 +75,7 @@ O Data Compute Node utiliza um esquema de numeração de slots específico que d
 
 
 
-== Conexões de rede
+== NetApp-conexões de rede de nós de computação de dados fornecidos
 
 Os nós de computação de dados requerem dois tipos de conexões de rede para se integrarem ao sistema de storage AFX 1K.
 
@@ -113,15 +109,15 @@ Atribuições de portas:
 
 == Componentes de hardware suportados
 
-Os nós de computação de dados requerem cabos e switches específicos para garantir a conectividade e o desempenho adequados com o sistema de storage AFX 1K.
+NetApp-fornecidos nós de computação de dados requerem cabos e switches específicos para garantir a conectividade e o desempenho adequados com o sistema de storage AFX 1K.
 
 [cols="2,3,6"]
 |===
-| *Data Compute Node* | *Switches compatíveis* | *Cabos compatíveis* 
+| *Nó de computação* | *Switches compatíveis* | *Cabos compatíveis* 
 
 
  a| 
-Data compute nodes (mínimo de três necessários)
+NetApp-nós de computação de dados fornecidos (mínimo de três necessários)
  a| 
 * Cisco Nexus 9332D-GX2B (400GbE)
 * Cisco Nexus 9364D-GX2A (400GbE)
@@ -136,15 +132,15 @@ Data compute nodes (mínimo de três necessários)
 * Cabos RJ-45 para conexões de gerenciamento
 
 
-|===
 
 NOTE: Os cabos breakout fornecem quatro conexões de 100GbE a partir de cada porta do switch de 400GbE. Conecte a extremidade de 400GbE aos switches e a extremidade de 100GbE às portas de E/S do Data Compute Node.
 
+|===
 
 
 == Orientação do cabo
 
-Ao conectar cabos aos Data Compute Node, a orientação correta dos cabos garante conexões confiáveis.
+Ao conectar cabos aos nós de computação, a orientação correta dos cabos garante conexões confiáveis.
 
 Os diagramas de cabeamento nos procedimentos de instalação mostram ícones de seta indicando a orientação correta (para cima ou para baixo) da aba de puxar do conector do cabo ao inserir um conector em uma porta. Ao inserir o conector, você deve sentir um clique ao encaixá-lo no lugar. Se você não sentir o clique, remova-o, vire-o e tente novamente.
 
@@ -154,4 +150,4 @@ image:../media/drw_cable_pull_tab_direction_ieops-1699.svg["Direção da aba de 
 CAUTION: Manuseie cuidadosamente os componentes delicados do conector ao encaixá-los no lugar.
 
 .Qual é o próximo passo?
-Após revisar a configuração de cabeamento, link:cable-hardware.html["conecte o hardware"] para seus Data Compute Nodes.
+Após revisar a configuração dos cabos, link:cable-hardware.html["Conecte o hardware para seus nós de computação de dados"].

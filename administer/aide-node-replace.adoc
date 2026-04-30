@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: administer/aide-node-replace.html 
 keywords: ai data engine, aide, data compute node, dcn, replace node, node replacement, cluster maintenance 
-summary: 'Você precisa substituir um nó de computação de dados (DCN) em seu AI Data Engine (AIDE) cluster se ele parar de funcionar ou precisar ser trocado devido a falha de hardware, upgrade ou manutenção. Isso garante que o cluster do AI Data Engine (AIDE) permaneça íntegro e operacional. O procedimento pode ser realizado sem interromper os serviços em andamento.' 
+summary: 'Você precisa substituir um nó de computação de dados em seu AI Data Engine (AIDE) cluster se ele parar de funcionar ou precisar ser trocado devido a falha de hardware, upgrade ou manutenção.' 
 ---
 = Substitua um nó no seu cluster do AI Data Engine
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Você precisa substituir um nó de computação de dados (DCN) em seu 
 
 
 [role="lead"]
-Você precisa substituir um nó de computação de dados (DCN) em seu AI Data Engine (AIDE) cluster se ele parar de funcionar ou precisar ser trocado devido a falha de hardware, upgrade ou manutenção. Isso garante que o cluster do AI Data Engine (AIDE) permaneça íntegro e operacional. O procedimento pode ser realizado sem interromper os serviços em andamento.
+Você precisa substituir um nó de computação de dados no seu AI Data Engine (AIDE) cluster se ele parar de funcionar ou precisar ser trocado devido a falha de hardware, upgrade ou manutenção. Isso garante que o cluster do AI Data Engine (AIDE) permaneça íntegro e operacional. O procedimento pode ser realizado sem interromper os serviços em andamento.
 
 
 
@@ -43,9 +43,9 @@ Você deve estar ciente das seguintes restrições ao substituir um nó no AIDE 
 
 
 
-== Substitua um nó DCN no seu cluster AIDE
+== Substitua um nó de computação de dados no seu cluster AIDE
 
-Você pode substituir um nó DCN em seu AIDE cluster usando o seguinte procedimento.
+Você pode substituir um nó de computação de dados em seu cluster AIDE usando o seguinte procedimento.
 
 .Passos
 . Remova fisicamente o nó com defeito

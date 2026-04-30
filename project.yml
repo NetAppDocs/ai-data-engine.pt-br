@@ -16,6 +16,7 @@ sidebar:
   - section: get-started
   - section: workspaces
   - section: administer
+  - section: metadata
   - section: vectorization
   - section: guardrails
   - section: rest
