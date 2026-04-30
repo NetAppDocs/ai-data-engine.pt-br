@@ -38,6 +38,7 @@ Você precisa de uma forma de se conectar à internet ou ao servidor correto par
 * ONTAP 9.18.1 ou posterior está em execução no seu cluster ONTAP AFX
 * Exatamente três servidores que atendem aos requisitos mínimos de hardware (CPU, memória, NIC, armazenamento) estão em execução
 * Red Hat Enterprise Linux (RHEL) 9.7 está instalado em cada servidor
+* Há pelo menos 70GB de espaço livre disponível na  `/var` partição para particionamento do subsistema de disco
 
 
 .O plano de rede foi definido

@@ -91,7 +91,8 @@ Para cada servidor de terceiros, são utilizadas seis portas no total para o sof
 | *Velocidade da rede*  a| 
 As seguintes velocidades de rede são suportadas para executar o AI Data Engine software em servidores de terceiros:
 
-*** *Portas de cluster e dados* - 100 GbE ou superior recomendado
+*** *Portas de cluster* - 100 GbE
+*** *Portas de dados* - 100 GbE ou superior
 *** *Porta de gerenciamento* - 1 GbE ou superior
 
 
@@ -99,6 +100,9 @@ As seguintes velocidades de rede são suportadas para executar o AI Data Engine 
 
 | *Espaço em disco*  a| 
 512GB ou mais
+
+
+NOTE: 70 GB de espaço livre devem estar disponíveis no diretório  `/var` para particionamento do subsistema de disco.
 
 |===
 

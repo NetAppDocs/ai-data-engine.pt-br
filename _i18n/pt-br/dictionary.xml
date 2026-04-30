@@ -1662,7 +1662,6 @@
   <block id="4fa750938e627d95c84431bc3528a153" category="list-text">1 para rede de gerenciamento, caso seja necessária alta disponibilidade (opcional)</block>
   <block id="084484f546dc7b7df1c1f8ed107cdc21" category="cell">*Velocidade da rede*</block>
   <block id="dfa7b355bc6bab0a3ce139e0d7540eb0" category="paragraph">As seguintes velocidades de rede são suportadas para executar o AI Data Engine software em servidores de terceiros:</block>
-  <block id="5ede41017f539d42e682bbfb3faf6d04" category="list-text">*Portas de cluster e dados* - 100 GbE ou superior recomendado</block>
   <block id="838012d228c3c3d617a61988a5fc930e" category="list-text">*Porta de gerenciamento* - 1 GbE ou superior</block>
   <block id="7c00f9894ca6b38a23fb9b69473ada72" category="cell">*Espaço em disco*</block>
   <block id="66df935ed66d4870af7a77f59631aae2" category="paragraph">512GB ou mais</block>
@@ -2012,4 +2011,8 @@
   <block id="8f22fb35d5382da461659034aa6039bf" category="paragraph"><block ref="8f22fb35d5382da461659034aa6039bf" category="inline-link-rx"></block></block>
   <block id="8ab556ff062f8c224e9495f1da8b7b94" category="inline-link">Aviso para AIDE 9.18.1U0/U1</block>
   <block id="14a3a534854cc17b1e553ccbcab67fc6" category="paragraph"><block ref="14a3a534854cc17b1e553ccbcab67fc6" category="inline-link-rx"></block></block>
+  <block id="b427264ac55612a09df441c083a5be58" category="list-text">*Portas de cluster* - 100 GbE</block>
+  <block id="4dc9c19a04d32de350820f8c791d4549" category="list-text">*Portas de dados* - 100 GbE ou superior</block>
+  <block id="4f3eeca6d4d23f25126a03e95582b561" category="admonition">70 GB de espaço livre devem estar disponíveis no diretório <block ref="ca905eb4a00d34150573153a09e2e79b" prefix=" " category="inline-code"></block> para particionamento do subsistema de disco.</block>
+  <block id="d08d1c32d6d6d840c9c83428502147ad" category="list-text">Há pelo menos 70GB de espaço livre disponível na <block ref="ca905eb4a00d34150573153a09e2e79b" prefix=" " category="inline-code"></block> partição para particionamento do subsistema de disco</block>
 </blocks>
