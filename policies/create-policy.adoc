@@ -1,0 +1,100 @@
+---
+sidebar: sidebar 
+permalink: policies/create-policy.html 
+keywords: create policy, save query, policy, filters, actions, automation 
+summary: Salve os critérios de filtro da investigação como uma política nomeada para que você possa acompanhar o mesmo agrupamento de dados ao longo do tempo e receber notificações quando as condições mudarem. 
+---
+= Criar uma política no AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Crie uma política quando você quiser monitorar uma condição de dados recorrente sem repetir a mesma investigação manualmente. Por exemplo, um gerente de governança de dados pode salvar uma política de "arquivos grandes e obsoletos" para rastrear esse agrupamento em ciclos de verificação e receber uma atualização por e-mail quando a contagem de arquivos afetados mudar.
+
+
+
+[[about-policies]]
+== Sobre políticas
+
+As políticas salvam os critérios de filtro que você define em Investigation como uma regra reutilizável. O AI Data Engine avalia cada política em relação ao catálogo de metadados após cada ciclo de verificação. Você pode abrir uma política a qualquer momento para ver o conjunto de resultados correspondentes atual. Se você anexar uma ação Delete, o AI Data Engine removerá os arquivos correspondentes após cada ciclo de verificação. Se você anexar uma notificação por e-mail, o AI Data Engine enviará uma atualização quando a contagem de arquivos afetados mudar.
+
+
+
+[[choose-a-policy-action]]
+== Escolha uma ação de política
+
+Uma política é um conjunto de filtros salvo com uma ação opcional associada:
+
+* *Apenas monitorar (sem ação)*: acompanhe o agrupamento correspondente ao longo do tempo sem tomar nenhuma ação. Use esta opção quando desejar visibilidade sem se comprometer com uma resposta automatizada.
+* *Enviar notificação por e-mail*: Notifique o usuário por e-mail quando a contagem de arquivos correspondentes mudar.
+* *Excluir permanentemente*: remova permanentemente e automaticamente todos os arquivos correspondentes após cada ciclo de verificação, sem necessidade de confirmação adicional. Esta ação é irreversível. Verifique se seus critérios de filtro são precisos e se você tem autorização para excluir os arquivos identificados antes de anexar esta ação.
+
+
+
+
+[[create-a-policy-from-investigation]]
+== Criar uma política a partir da investigação
+
+.Antes de começar
+* Para associar uma ação de exclusão ou notificação por e-mail, você precisa ter a função de _administrador do AI Data Engine_. A função de _visualizador do AI Data Engine_ pode criar políticas somente de monitoramento.
+
+
+.Passos
+. No NetApp Console, navegue até *Governança* > *AI Data Engine* > *Investigação*.
+. Aplique um ou mais filtros que identifiquem os arquivos que você quer que a política tenha como alvo.
++
+Por exemplo: *Tipo de arquivo* = .vmdk E *Hora do último acesso* > 365 dias.
+
++
+Analise a tabela de resultados para confirmar se o conjunto de filtros captura o agrupamento de dados pretendido.
+
+. Na barra de ações do filtro, selecione *Criar política*.
+. Insira um *nome da política*.
+. Opcionalmente, insira uma *Descrição* (até 500 caracteres).
+. Analise a expressão de critérios de filtro (por exemplo,  `last_access_time <= 3 Years AND file_size >= 5GiB`) para confirmar se ela reflete suas seleções.
+. Para associar uma ação, selecione uma das seguintes opções em *Ação*:
++
+** *Apenas monitorar (nenhuma ação)* (padrão): a política é salva como uma condição de somente monitoramento.
+** *Enviar notificação por e-mail*: envia uma notificação por e-mail ao destinatário especificado.
+** *Excluir permanentemente*: nenhuma entrada adicional é necessária.
++
+
+CAUTION: A ação "Excluir permanentemente" exclui automática e irreversivelmente todos os arquivos que correspondem a esta política após cada ciclo de verificação. Verifique seus critérios de filtro e confirme se você tem autorização para excluir esses arquivos antes de salvar.
+
+
+
+. Selecione *Criar*.
+
+
+.Resultado
+A política é salva e exibida na página link:manage-policies.html["Políticas"]. Se você associou uma ação, o AI Data Engine aplica essa ação aos arquivos que correspondem aos critérios da política.
+
+
+
+[[example-identify-cold-archive-files]]
+== Exemplo: identificar arquivos de arquivamento inativos
+
+O exemplo a seguir cria uma política para enviar uma notificação por e-mail quando forem detectados arquivos que não são acessados há mais de um ano.
+
+. Na seção Investigação, aplique estes filtros:
++
+** *Hora do último acesso* > 365 dias
+
+
+. Selecione *Criar policy*.
+. Insira o nome da política: *Arquivos inativos — sem acesso por 1 ano*.
+. Selecione a ação *Enviar notificação por e-mail* e insira o endereço de e-mail do destinatário.
+. Selecione *Criar*.
+
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:manage-policies.html["Gerenciar políticas"]
+* link:../investigate/take-actions.html["Tome medidas com base nos seus dados"]
+* link:../investigate/investigate-data.html["Analise seus dados"]
+

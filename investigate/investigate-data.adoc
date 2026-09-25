@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: investigate/investigate-data.html 
+keywords: investigate, metadata, unstructured, structured, directories, cold data, stale data, permissions, reclaimable storage 
+summary: Use a visualização Investigação para explorar o armazenamento baseado em arquivos, tabelas de banco de dados e estruturas de diretórios em seus sistemas conectados. Selecione a guia que corresponde ao que você está procurando. 
+---
+= Analise seus dados no AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando você precisa entender o que está consumindo armazenamento, identificar quais tabelas de banco de dados estão crescendo sem controle ou encontrar diretórios com acesso excessivamente permissivo, use filtros de metadados para investigar seus dados em todos os sistemas conectados.
+
+
+
+[[choose-a-starting-point]]
+== Escolha um ponto de partida
+
+Selecione *Investigation* na navegação à esquerda para abrir a visualização. Você também pode abrir a visualização Investigation no painel, selecionando *Investigate* na tabela _Top data resources by reclaimable storage_, que aplica automaticamente um filtro para esse recurso.
+
+A seção *Investigação* está organizada em três abas. Selecione a aba que corresponde ao tipo de dados que você está investigando.
+
+[cols="1,2,1"]
+|===
+| Aba | Use quando você quiser | Mais informações 
+
+
+| *Não estruturado* | Encontre dados baseados em arquivos frios, obsoletos ou duplicados em volumes NFS e SMB/CIFS | link:investigate-unstructured.html["Investigar dados não estruturados"] 
+
+
+| *Estruturados* | Identifique tabelas de banco de dados grandes demais ou não utilizadas que consomem armazenamento | link:investigate-structured.html["Investigar dados estruturados"] 
+
+
+| *Diretórios* | Auditar permissões em nível de diretório e encontrar caminhos amplamente acessíveis | link:investigate-directories.html["Investigar diretórios"] 
+|===
+A contagem de resumo e o tamanho total na parte superior da página são atualizados para refletir a guia ativa (por exemplo, "dados não estruturados (400M) | 5,7 PiB").
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:investigate-unstructured.html["Investigar dados não estruturados"]
+* link:investigate-structured.html["Investigar dados estruturados"]
+* link:investigate-directories.html["Investigar diretórios"]
+* link:use-filters.html["Trabalhar com filtros"]
+* link:take-actions.html["Tome medidas com base nos seus dados"]
+

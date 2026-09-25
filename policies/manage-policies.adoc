@@ -1,0 +1,71 @@
+---
+sidebar: sidebar 
+permalink: policies/manage-policies.html 
+keywords: manage policies, edit policy, enable policy, disable policy, delete policy 
+summary: Revise suas políticas salvas para ver quais arquivos correspondem atualmente a cada conjunto de critérios e remova as políticas de que você não precisa mais. 
+---
+= Gerenciar políticas no AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando você quiser revisar quais das suas políticas salvas correspondem aos dados, comparar a quantidade de arquivos afetados para priorizar ações ou remover políticas de que você não precisa mais, use a página Políticas. Por exemplo, um administrador de storage com várias políticas de dados frios pode comparar a quantidade de arquivos afetados para decidir quais agrupamentos de dados precisam de atenção primeiro.
+
+Cada listagem de políticas mostra a quantidade de arquivos e objetos que atualmente correspondem aos seus critérios. Use essa contagem para identificar quais políticas estão capturando ativamente dados que valem a pena revisar.
+
+
+
+[[check-which-files-match-a-policy]]
+== Verifique quais arquivos correspondem a uma política
+
+Antes de editar ou excluir uma política, revise os arquivos aos quais ela corresponde atualmente para confirmar se os critérios ainda estão capturando os dados corretos.
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Políticas*.
+. Abra o menu de ações ao lado da política e selecione *Investigar resultados*.
+
+
+
+
+[[edit-a-policy]]
+== Editar uma política
+
+.Antes de começar
+* Você precisa ter a função de _administrador do AI Data Engine_.
+
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Políticas*.
+. Abra o menu de ações da política que deseja editar e selecione *Editar política*.
+. Atualize o nome, a descrição ou a ação conforme necessário.
+. Selecione *Salvar*.
+
+
+
+
+[[delete-a-policy]]
+== Excluir uma política
+
+.Antes de começar
+* Você precisa ter a função de _administrador do AI Data Engine_.
+
+
+
+CAUTION: A exclusão é permanente e não pode ser desfeita.
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Políticas*.
+. Abra o menu de ações da política que deseja excluir e selecione *Excluir política*.
+. Confirme a exclusão na caixa de diálogo de visualização prévia.
+
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:create-policy.html["Criar uma política"]
+* link:../investigate/take-actions.html["Tome medidas com base nos seus dados"]
+

@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: deploy/deployment-overview.html 
+keywords: deployment, aide lite, aide enterprise, kubernetes, vm, deployment modes, sizing 
+summary: Implante o AI Data Engine como AIDE Lite ou como AIDE Enterprise, caso seu ambiente exija alta disponibilidade baseada em Kubernetes. 
+---
+= Saiba mais sobre a implementação do AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Implante o AI Data Engine como o AIDE Lite, uma instalação em uma única máquina virtual. Se o seu ambiente exigir alta disponibilidade baseada em Kubernetes em grande escala, você poderá implantar o AIDE Enterprise.
+
+
+
+[[aide-lite]]
+== O AIDE Lite
+
+O AIDE Lite é instalado em uma única máquina virtual Linux. Você não precisa ter conhecimento de Kubernetes, pois o instalador provisiona o k3s automaticamente.
+
+O AIDE Lite está disponível em três tamanhos: Small, Medium e Large, para ambientes com até aproximadamente 200 milhões, 1 bilhão e 3 bilhões de arquivos, respectivamente. Para obter informações completas sobre dimensionamento de máquina virtual e requisitos de sistema operacional, consulte link:aide-requirements.html["Requisitos do AIDE"]. Esses tamanhos são linhas de base recomendadas, não limites rígidos; consulte link:aide-requirements.html#flexible-sizing-lite["diretrizes flexíveis de dimensionamento"] para saber o que influencia o dimensionamento e como ampliar ainda mais.
+
+
+
+[[aide-enterprise]]
+== O AIDE Enterprise
+
+Implante o AIDE Enterprise se o seu ambiente exigir alta disponibilidade, tolerância de falhas, atualizações contínuas ou escalabilidade horizontal além do maior tamanho do AIDE Lite. O AIDE Enterprise é implantado como um cluster Kubernetes de vários nós em um cluster RKE2 provisionado e gerenciado pelo cliente.
+
+AIDE Enterprise está disponível em três tamanhos, Small, Medium e Large, para ambientes com até aproximadamente 1 bilhão, 3 bilhões e 6 bilhões de arquivos, respectivamente. Para o dimensionamento completo de nós e os requisitos de cluster, consulte link:aide-requirements.html["Requisitos do AIDE"]. Esses tamanhos são linhas de base recomendadas, não limites rígidos: ambientes com mais de 6 bilhões de arquivos são compatíveis por meio de escalabilidade horizontal. Consulte link:aide-requirements.html#flexible-sizing-enterprise["diretrizes flexíveis de dimensionamento"] para obter detalhes.
+
+
+
+[[deployment-process]]
+== Processo de implantação
+
+NetApp Console não provisiona a infraestrutura para AI Data Engine. Você prepara uma máquina Linux ou um cluster que atenda aos requisitos e, em seguida, copia o comando de instalação pré-gerado do NetApp Console e o executa no host de destino. O comando inicializa o ambiente de execução e implanta a pilha do AI Data Engine automaticamente. Durante a instalação, o instalador solicita que você confirme o endereço IP do host de destino e o ID do usuário antes de prosseguir com a instalação.
+
+As instalações do AIDE Lite geralmente são concluídas em 45 minutos. As instalações do AIDE Enterprise geralmente são concluídas em 30 minutos. O instalador inclui tempos limite e novas tentativas incorporados para lidar com problemas temporários enquanto os componentes são iniciados.
+
+
+
+[[deployment-mode-reference]]
+== Referência do modo de implantação
+
+[cols="1h,2,2"]
+|===
+|  | O AIDE Lite | O AIDE Enterprise 
+
+
+| Modelo de implantação | Uma única máquina virtual Linux | Cluster Kubernetes com vários nós (RKE2 provisionado pelo cliente) 
+
+
+| Taxa de varredura | 50 milhões a 1 bilhão de arquivos/dia, varia conforme o tamanho | De 250 milhões a 2 bilhões de arquivos/dia, varia conforme o tamanho 
+
+
+| Máx. de arquivos (tamanho grande) | Aproximadamente 3 bilhões | Aproximadamente 6 bilhões 
+|===
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:aide-requirements.html["Requisitos do AIDE"]
+* link:deploy-aide-lite.html["Implantar o AI Data Engine — Lite"]
+* link:deploy-enterprise.html["Implantar AI Data Engine — Enterprise"]
+

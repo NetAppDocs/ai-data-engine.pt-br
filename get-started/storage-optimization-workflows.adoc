@@ -1,0 +1,106 @@
+---
+sidebar: sidebar 
+permalink: get-started/storage-optimization-workflows.html 
+keywords: storage optimization, cold data, stale data, retention, workflow, dashboard, investigate, policy 
+summary: Use fluxos completamente para conduzir uma descoberta do painel por meio de investigação, ação e monitoramento contínuo de políticas. 
+---
+= Explore os fluxos de trabalho de otimização de armazenamento no AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Esses fluxos de trabalho do AI Data Engine levam você da identificação de um problema de armazenamento no painel de controle, passando pela investigação e ação, até a implementação de uma política de monitoramento contínuo. Cada fluxo de trabalho segue o mesmo caminho: painel de controle, investigação, ação e salvamento como política.
+
+
+
+[[identify-and-act-on-cold-data]]
+== Identifique e aja com base em dados frios
+
+.Cenário
+Você percebe no painel que um recurso de armazenamento possui uma grande quantidade de dados sinalizados como frios. Os arquivos frios não foram acessados dentro do limite configurado para dados frios, que por padrão é de um ano e pode ser configurado em *Configuration* > *Settings*.
+
+.Passos
+. Em link:../investigate/understand-dashboard.html["o painel"], identifique o recurso com a maior concentração de dados inativos e selecione *Investigar*.
+. Em link:../investigate/investigate-unstructured.html["Investigação"], confirme os recursos usando o filtro *Último acesso* configurado para corresponder ao seu limite de dados frios configurado (padrão: *1+ ano*).
+. Analise os resultados para decidir link:../investigate/take-actions.html["se deve etiquetar, arquivar ou excluir"] os arquivos correspondentes.
+. Se valer a pena monitorar esses recursos continuamente, link:../policies/create-policy.html["salvar o conjunto de filtros como uma política"] para que você seja notificado quando novos arquivos se tornarem inativos.
+
+
+
+
+[[identify-and-act-on-stale-data]]
+== Identifique e aja com base em dados desatualizados
+
+.Cenário
+Arquivos que ainda são acessados ocasionalmente, mas não são modificados há anos, são classificados como obsoletos quando ficam fora do limite de obsolescência da sua organização (padrão: três anos desde o último acesso ou modificação).
+
+
+NOTE: Esse limite pode ser configurado em *Configuration* > *Settings*.
+
+.Passos
+. A partir de link:../investigate/understand-dashboard.html["o painel"], identifique um recurso com uma quantidade significativa de dados desatualizados.
+. Em link:../investigate/investigate-unstructured.html["Investigação"], aplique o filtro *Última modificação* definido para seu limite de obsolescência (padrão *3+ anos*).
+. Analise os resultados para decidir link:../investigate/take-actions.html["se deve etiquetar, arquivar ou excluir"] os arquivos correspondentes.
+. link:../policies/create-policy.html["Salve o conjunto de filtros como uma política"] para rastrear esses recursos em varreduras subsequentes.
+
+
+
+
+[[manage-data-retention-compliance]]
+== Gerenciar a conformidade com a retenção de dados
+
+.Cenário
+Sua organização exige que arquivos com mais de uma determinada idade sejam revisados para retenção. O limite de retenção padrão no AI Data Engine é de sete anos ou mais desde a criação do arquivo. Você pode ajustar esse limite para corresponder às políticas de conformidade e retenção da sua organização.
+
+
+NOTE: Esse limite pode ser configurado em *Configuration* > *Settings*.
+
+.Passos
+. Em link:../investigate/investigate-unstructured.html["Investigação"], aplique o filtro *Última criação* definido para seu limite de retenção (padrão *7+ anos*).
+. Analise os resultados com as partes interessadas relevantes antes de tomar qualquer medida. Os arquivos sinalizados para retenção geralmente são monitorados em vez de excluídos automaticamente.
+. link:../policies/create-policy.html["Criar uma política"] com uma ação somente de monitoramento ou de notificação por e-mail para que você seja alertado quando novos arquivos atingirem o limite de retenção, em vez de agir nesses recursos apenas uma vez.
+
+
+
+
+[[find-and-eliminate-duplicate-files]]
+== Encontre e elimine arquivos duplicados
+
+.Cenário
+Existem várias cópias idênticas dos mesmos arquivos em diferentes volumes ou compartilhamentos, um problema comum em ambientes com tarefas de backup, migrações de dados ou pastas de projeto compartilhadas.
+
+.Passos
+. Em link:../investigate/investigate-unstructured.html["Investigação"], selecione *Adicionar filtro* e depois selecione *Duplicados*.
+. Analise os resultados. Os arquivos listados possuem uma ou mais cópias idênticas em outros locais do catálogo.
+. Selecione os arquivos nos quais deseja agir e escolha link:../investigate/take-actions.html["uma ação"]. Arquive ou exclua duplicatas confirmadas que tenham uma cópia original em outro local.
+. link:../policies/create-policy.html["Salvar o filtro como uma política"] para monitorar o acúmulo de duplicatas ao longo do tempo e receber notificações quando a contagem aumentar.
+
+
+
+
+[[target-cleanup-by-data-owner]]
+== Limpeza de destino pelo proprietário dos dados
+
+.Cenário
+Os dados que atendem aos limites de dados frios e obsoletos da sua organização estão distribuídos entre vários proprietários. Identificar quais proprietários de dados detêm o maior número de arquivos nessas categorias pode ajudar você a priorizar a limpeza.
+
+.Passos
+. Em link:../investigate/understand-dashboard.html["o painel"], localize a tabela _Top data owners by reclaimable storage_.
+. Selecione uma linha de proprietário para abrir link:../investigate/investigate-unstructured.html["Investigação"] filtrado para os arquivos desse proprietário.
+. Analise os resultados e decida quais link:../investigate/take-actions.html["se deve etiquetar, arquivar ou excluir"] arquivos usar.
+. link:../policies/create-policy.html["Salve o conjunto de filtros como uma política"] para monitorar como os dados potencialmente recuperáveis desse proprietário mudam ao longo do tempo.
+
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:../investigate/understand-dashboard.html["Avalie a utilização do storage no painel."]
+* link:../investigate/investigate-data.html["Analise seus dados"]
+* link:../investigate/investigate-unstructured.html["Investigar dados não estruturados"]
+* link:../investigate/take-actions.html["Tome medidas com base nos seus dados"]
+* link:../policies/create-policy.html["Criar uma política"]
+

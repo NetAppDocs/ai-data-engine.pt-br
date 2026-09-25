@@ -1,0 +1,162 @@
+---
+sidebar: sidebar 
+permalink: investigate/take-actions.html 
+keywords: actions, tag, archive, delete, data lifecycle, storage optimization, breadcrumb 
+summary: Tome medidas em relação aos arquivos que você identificou como inativos, antigos ou obsoletos, arquivando-os, marcando itens para rastreamento ou excluindo permanentemente o que você não precisa mais. 
+---
+= Tome medidas em seus dados no AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Após identificar os arquivos usando os filtros definidos, você pode tomar medidas diretas para aplicar as políticas de ciclo de vida dos dados da sua organização. Por exemplo, um administrador de storage que filtra para encontrar terabytes de snapshots de VM não acessados em mais de um ano pode arquivá-los em massa em um compartilhamento de storage frio ou excluí-los, dependendo dos requisitos de retenção e das políticas de negócios.
+
+.Sobre esta tarefa
+Para executar uma ação, selecione um ou mais itens na tabela de resultados da investigação usando as caixas de seleção. A barra de ferramentas de ação é ativada com quatro opções: *Excluir*, *Arquivar*, *Copiar* e *Marcar*.
+
+As ações disponíveis para você dependem da função atribuída a você:
+
+[cols="2,1,1"]
+|===
+| Ação | Administrador do AI Data Engine | Visualizador do AI Data Engine 
+
+
+| Marcação | Sim | Sim 
+
+
+| Arquivo | Sim | - 
+
+
+| Copiar | Sim | - 
+
+
+| Excluir | Sim | - 
+|===
+Para uma descrição completa das funções, consulte link:../administer/manage-users-roles.html["Gerenciar usuários e funções"].
+
+
+
+[[decide-what-to-do]]
+== Decida o que fazer
+
+Escolha uma ação com base no seu grau de certeza em relação aos dados:
+
+[cols="1,2"]
+|===
+| Ação | Quando usar 
+
+
+| Marcação | Você precisa de mais tempo ou precisa coordenar com outra equipe antes de se comprometer a arquivar ou excluir. A marcação rastreia os arquivos sem alterar sua localização. 
+
+
+| Arquivo | Os dados ainda podem ter valor, mas não pertencem ao storage primário. O arquivamento os move para um destino de menor custo, mantendo a possibilidade de recuperação. 
+
+
+| Copiar | Os dados devem existir em um segundo local, por exemplo, para fins de backup ou migração. A cópia preserva o original no mesmo local. 
+
+
+| Excluir | Os dados não são mais necessários e não têm requisitos de retenção. A exclusão é permanente, portanto use-a somente quando você tiver certeza. 
+|===
+Quando os dados ainda puderem ter valor ou exigirem uma análise mais aprofundada, opte por etiquetá-los, arquivá-los ou copiá-los em vez de excluí-los. Exclua-os somente quando tiver certeza de que é seguro removê-los permanentemente.
+
+
+
+[[archive-files]]
+== Arquivar arquivos
+
+O arquivamento move os arquivos para um destino de storage frio via NFS ou SMB/CIFS. Opcionalmente, você pode deixar um arquivo de trilha no local original.
+
+.Antes de começar
+* Você precisa ter a função de _administrador do AI Data Engine_.
+
+
+.Passos
+. Na visualização de investigação, selecione os arquivos que você deseja arquivar.
+. Selecione *Archive*.
+. Na caixa de diálogo Arquivar, selecione o protocolo do volume de destino:
++
+** *NFS*: insira o caminho da pasta de destino do NFS.
+** *CIFS*: insira o caminho da pasta de destino CIFS no formato `\\Hostname\share_name`. Forneça as credenciais do Active Directory: insira o nome de usuário no formato `domain\user` ou `user@domain` e insira a senha.
+
+
+. Para criar um arquivo de trilha de navegação no local original, habilite *Deixar breadcrumb*.
++
+Um arquivo de trilha de navegação ajuda os usuários a entender por que um arquivo foi movido.
+
+. Selecione *Archive*.
+
+
+
+
+[[copy-files]]
+== Copiar arquivos
+
+A cópia duplica arquivos em um volume de destino sem removê-los do local original.
+
+.Antes de começar
+* Você precisa ter a função de _administrador do AI Data Engine_.
+
+
+.Passos
+. Na visualização Investigação, selecione os arquivos que você deseja copiar.
+. Selecione *Copiar*.
+. Na caixa de diálogo Copiar, selecione o protocolo do volume de destino:
++
+** *NFS*: insira o caminho da pasta de destino do NFS.
+** *CIFS*: insira o caminho da pasta de destino CIFS no formato `\\Hostname\share_name`. Forneça as credenciais do Active Directory: insira o nome de usuário no formato `domain\user` ou `user@domain` e insira a senha.
+
+
+. Selecione *Copiar*.
+
+
+
+
+[[delete-files]]
+== Excluir arquivos
+
+A exclusão remove permanentemente os arquivos do armazenamento e essa ação não pode ser desfeita.
+
+
+CAUTION: A exclusão é permanente e não pode ser desfeita. Esta ação exclui os arquivos de origem mesmo que contenham dados ativos.
+
+.Antes de começar
+* Você precisa ter a função de _administrador do AI Data Engine_.
+
+
+.Passos
+. Na visualização Investigação, selecione os arquivos que você deseja excluir.
+. Selecione *Delete*.
+. Na caixa de diálogo Excluir, digite *excluir permanentemente* no campo de confirmação.
+. Selecione *Delete*.
+
+
+.Resultado
+Os arquivos selecionados são excluídos permanentemente do armazenamento.
+
+
+
+[[tag-files]]
+== Arquivos de tag
+
+A etiquetagem aplica uma etiqueta comercial aos arquivos para classificação e rastreamento.
+
+.Passos
+. Na visualização Investigação, selecione os arquivos que você deseja etiquetar.
+. Selecione *Tag*.
+. Insira ou selecione as etiquetas a aplicar (por exemplo, "candidato a arquivamento").
+. Confirme para aplicar as tags.
+
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:investigate-data.html["Analise seus dados"]
+* link:investigate-unstructured.html["Investigar dados não estruturados"]
+* link:use-filters.html["Trabalhar com filtros"]
+* link:../policies/create-policy.html["Criar uma política"]
+* link:../administer/manage-users-roles.html["Gerenciar usuários e funções"]
+

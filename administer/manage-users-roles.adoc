@@ -1,0 +1,108 @@
+---
+sidebar: sidebar 
+permalink: administer/manage-users-roles.html 
+keywords: roles, users, permissions, AI data engine administrator, AI data engine viewer 
+summary: Controle o acesso atribuindo a cada usuário a função de administrador ou de visualizador. Saiba mais sobre as duas funções e suas permissões. 
+---
+= Gerencie usuários e funções no AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Controle o que cada usuário pode visualizar e fazer no AI Data Engine atribuindo a eles uma função de administrador ou de visualizador. Antes que sua equipe comece a usar o AI Data Engine, atribua a cada usuário a função que corresponda ao nível de acesso necessário.
+
+Você atribui funções por meio das configurações de organização do Console do NetApp. O AI Data Engine oferece suporte a duas funções.
+
+
+
+[[available-roles]]
+== Funções disponíveis
+
+
+
+[[ai-data-engine-administrator]]
+=== Administrador do AI Data Engine
+
+A função de administrador do AI Data Engine fornece acesso completo a todos os recursos do AI Data Engine. NetApp recomenda atribuir essa função a no máximo dois ou três usuários por implantação.
+
+
+
+[[ai-data-engine-viewer]]
+=== Visualizador do AI Data Engine
+
+A função de visualizador do AI Data Engine fornece acesso limitado ao AI Data Engine. Os visualizadores podem visualizar informações, exportar relatórios, etiquetar arquivos e criar políticas somente de monitoramento, mas não podem modificar configurações nem executar ações com arquivos, como arquivar, copiar ou excluir.
+
+
+
+[[permissions-by-role]]
+== Permissões por função
+
+[cols="3,1,1"]
+|===
+| Capacidade | Administrador do AI Data Engine | Visualizador do AI Data Engine 
+
+
+| Gerenciar usuários e funções | Sim | - 
+
+
+| Gerenciar recursos de dados | Sim | - 
+
+
+| Configuração do sistema | Sim | - 
+
+
+| Visualizar painéis | Sim | Sim 
+
+
+| Pesquisar metadados (Investigação) | Sim | Sim 
+
+
+| Exportar relatórios | Sim | Sim 
+
+
+| Criar políticas somente de monitoramento | Sim | Sim 
+
+
+| Criar políticas com ações | Sim | - 
+
+
+| Ações: etiquetar | Sim | Sim 
+
+
+| Ações: arquivar, copiar, excluir | Sim | - 
+
+
+| Gerenciar tags de negócios | Sim | Sim 
+|===
+
+
+[[assign-a-role-to-a-user]]
+== Atribua uma função a um usuário
+
+Você atribui funções no NetApp Console, não no próprio AI Data Engine.
+
+.Passos
+. No NetApp Console, acesse *Membros*.
+. Faça um dos seguintes procedimentos:
++
+** Para adicionar um novo usuário, selecione *Adicionar usuário* e insira o endereço de e-mail do usuário.
+** Para atualizar um usuário existente, selecione o usuário na lista.
+
+
+. Selecione a organização, a pasta ou o projeto e, em seguida, escolha a categoria *Data Service*.
+. Atribua a função de *administrador do AI Data Engine* ou *visualizador do AI Data Engine*.
+. Salve suas alterações.
+
+
+O usuário recebe um convite por e-mail e pode acessar o AI Data Engine após aceitá-lo.
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:../investigate/take-actions.html["Tome medidas com base nos seus dados"]
+* link:../policies/create-policy.html["Criar uma política"]
+

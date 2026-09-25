@@ -1,0 +1,132 @@
+---
+sidebar: sidebar 
+permalink: investigate/use-filters.html 
+keywords: filters, metadata filters, file type, last accessed, last modified, tags, policy, investigation 
+summary: Referência dos filtros de metadados disponíveis na visualização Investigation do AI Data Engine. 
+---
+= Filtros de metadados no AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+A visualização Investigation do AI Data Engine fornece filtros de metadados para restringir seus resultados a um agrupamento de dados específico. Aplique um ou mais filtros simultaneamente para definir os arquivos que você deseja examinar ou nos quais deseja agir.
+
+
+
+[[time-filters]]
+== Filtros de tempo
+
+[cols="1,2"]
+|===
+| Filtro | Descrição 
+
+
+| Última criação | Filtre os arquivos pela data em que foram criados. 
+
+
+| Última modificação | Filtre os arquivos pela data em que eles foram modificados pela última vez. 
+
+
+| Último acesso | Filtre os arquivos pela data em que eles foram acessados pela última vez. Use esse filtro para identificar dados frios ou obsoletos. 
+
+
+| Hora da descoberta | Filtre os arquivos pela data em que o AI Data Engine os detectou pela primeira vez durante a verificação. 
+|===
+
+
+[[file-attribute-filters]]
+== Filtros de atributos de arquivo
+
+[cols="1,2"]
+|===
+| Filtro | Descrição 
+
+
+| Tipo de arquivo | Filtre por extensão de arquivo ou classificação de tipo. Selecione um ou mais tipos de arquivo da lista. 
+
+
+| Tamanho do arquivo | Filtre por tamanho do arquivo. Insira um valor mínimo, um valor máximo ou um intervalo. 
+
+
+| Caminho do arquivo/diretório | Filtre pelo caminho completo ou parcial do arquivo ou do diretório que o contém. 
+
+
+| Proprietário do arquivo/diretório | Filtre pelo usuário ou grupo proprietário do arquivo ou diretório. 
+
+
+| Hash do arquivo | Filtre pelo valor de hash de um arquivo para encontrar arquivos específicos ou confirmar conteúdo duplicado. 
+
+
+| Duplicados | Filtre para exibir apenas os arquivos que têm cópias duplicadas detectadas no catálogo. 
+
+
+| Tipo de diretório | Filtre por tipo de diretório. Aplica-se à aba Diretórios. 
+|===
+
+
+[[source-filters]]
+== Filtros de origem
+
+[cols="1,2"]
+|===
+| Filtro | Descrição 
+
+
+| Contêiner de dados | Filtre para um volume ou compartilhamento específico. 
+
+
+| Sistema | Filtrar para um cluster específico. 
+
+
+| Tipo de sistema | Filtrar por tipo de sistema de storage. 
+|===
+
+
+[[governance-filters]]
+== Filtros de governança
+
+[cols="1,2"]
+|===
+| Filtro | Descrição 
+
+
+| Tags | Filtrar arquivos que tenham uma etiqueta comercial específica aplicada. 
+
+
+| Política | Filtre os arquivos que correspondem a uma política salva específica. Os nomes das políticas aparecem na lista de filtros. 
+|===
+
+
+[[access-filters]]
+== Filtros de acesso
+
+[cols="1,2"]
+|===
+| Filtro | Descrição 
+
+
+| Número de usuários com acesso | Filtre os arquivos pelo número de usuários ou grupos que têm acesso. Use isso para identificar dados amplamente acessíveis. 
+
+
+| Permissão de usuários/grupos | Filtre os arquivos por um usuário ou grupo específico que tenha permissões de acesso. 
+|===
+
+
+[[combining-filters]]
+== Combinando filtros
+
+Os filtros são combinados com lógica AND, o que significa que os resultados devem corresponder a todos os filtros aplicados simultaneamente.
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:investigate-data.html["Analise seus dados"]
+* link:investigate-unstructured.html["Investigar dados não estruturados"]
+* link:investigate-structured.html["Investigar dados estruturados"]
+* link:investigate-directories.html["Investigar diretórios"]
+* link:../policies/create-policy.html["Criar uma política"]
+

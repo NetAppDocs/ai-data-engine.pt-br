@@ -1,0 +1,88 @@
+---
+sidebar: sidebar 
+permalink: data-sources/connect-data-source.html 
+keywords: connect, data source, storage system, scanned systems, configuration, scan, NFS, CIFS, StorageGRID, database, file shares, console agent, scope, content intelligence, activate 
+summary: Conecte os sistemas de armazenamento ao AI Data Engine concluindo o assistente de integração da fonte de dados e, em seguida, ative a verificação para iniciar a coleta de metadados. 
+---
+= Conecte uma fonte de dados ao AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O AI Data Engine examina seus sistemas de storage para coletar e analisar metadados. Para adicionar uma fonte de dados, conclua o assistente de integração. O assistente coleta detalhes de conexão, escopo da varredura e configurações para o seu tipo de fonte. Depois de adicionar o sistema, ative a varredura para iniciar a coleta de metadados.
+
+.Antes de começar
+* Você precisa ter privilégios de _AI Data Engine administrator_ para conectar e configurar fontes de dados no AI Data Engine.
+* Descubra sistemas de armazenamento no NetApp Console usando um Console Agent antes de adicioná-los ao AI Data Engine. Isso se aplica a todos os tipos de armazenamento compatíveis, incluindo clusters ONTAP locais, o Cloud Volumes ONTAP, o Amazon FSx for NetApp ONTAP, o Google Cloud NetApp Volumes e o Azure NetApp Files. Para clusters ONTAP locais, consulte link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html["Descubra os clusters ONTAP locais"] na documentação do NetApp Console. A descoberta direta não habilita serviços de dados como o AI Data Engine.
+* Verifique se as conexões de rede necessárias para que o AI Data Engine acesse suas fontes de dados estão abertas. Consulte link:../deploy/aide-requirements.html["Requisitos do AI Data Engine"].
+
+
+
+
+[[add-a-data-source]]
+== Adicionar uma fonte de dados
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Configuração*.
+. Na guia *Sistemas verificados*, selecione *Adicionar sistema*.
+. Selecione um tipo de origem:
++
+[cols="1,2"]
+|===
+| Tipo de origem | Descrição 
+
+
+| *Grupo de compartilhamento de arquivos* | Adicione compartilhamentos de arquivos NFS ou SMB/CIFS da nuvem ou locais como um grupo nomeado. 
+
+
+| *Banco de dados* | Adicione um servidor de banco de dados para analisar os esquemas selecionados. 
+
+
+| o *StorageGRID* | Analise os dados do NetApp StorageGRID usando o protocolo S3. 
+|===
+. Insira os detalhes da conexão para o seu tipo de origem:
++
+[cols="1,3"]
+|===
+| Tipo de origem | Detalhes necessários 
+
+
+| *Grupo de compartilhamento de arquivos* | Um nome para o grupo de compartilhamento e, em seguida, os detalhes do host de compartilhamento e do caminho. 
+
+
+| *Banco de dados* | Tipo de banco de dados, host, porta e credenciais de autenticação. 
+
+
+| o *StorageGRID* | Nome do sistema, URL do endpoint S3, chave de acesso do S3 e chave secreta. 
+|===
+. Revise suas seleções e selecione *Confirm* para adicionar a fonte de dados.
+
+
+
+
+[[activate-scanning]]
+== Ativar digitalização
+
+Após configurar uma fonte de dados, a verificação não inicia automaticamente. Você precisa ativar a verificação para cada sistema.
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Configuração*.
+. Na aba *Sistemas digitalizados*, localize o sistema que você deseja digitalizar.
+. Selecione *Ativar verificações*.
+
+
+.Resultado
+O status do sistema é atualizado na guia Sistemas verificados para mostrar que a verificação está em andamento. Para monitorar o progresso da verificação e verificar se o AI Data Engine está indexando os recursos de dados, consulte link:manage-data-sources.html["Gerenciar fontes de dados"] e link:monitor-scanning-health.html["Monitore a integridade da digitalização"].
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:manage-data-sources.html["Gerenciar fontes de dados"]
+* link:../deploy/aide-requirements.html["Requisitos do AI Data Engine"]
+* link:../investigate/understand-dashboard.html["Avalie a utilização do storage no painel."]
+* link:monitor-scanning-health.html["Monitore a integridade da digitalização"]
+

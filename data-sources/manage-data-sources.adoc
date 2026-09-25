@@ -1,0 +1,157 @@
+---
+sidebar: sidebar 
+permalink: data-sources/manage-data-sources.html 
+keywords: manage, data source, storage system, scanned systems, pause scanning, resume scanning, scan all, retry scans, CIFS credentials, DP volumes, deactivate, scan status, scan errors, scanning toggle 
+summary: Monitore o status da varredura e gerencie suas fontes de dados conectadas, incluindo pausar varreduras, editar credenciais, habilitar o acesso ao volume DP e desativar sistemas. 
+---
+= Gerencie as fontes de dados no AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Após conectar as fontes de dados, você pode monitorar o status da verificação e gerenciá-las na guia *Sistemas verificados*. Use estes procedimentos para pausar ou retomar a verificação, atualizar credenciais, ajustar as configurações de acesso aos dados e desativar sistemas que você não precisa mais verificar.
+
+
+
+[[view-scan-status-and-details]]
+== Veja o status e os detalhes da digitalização
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Configuração*.
+. Na aba *Sistemas digitalizados*, localize o sistema que você deseja analisar.
+. Selecione a linha do sistema para abrir a visualização detalhada.
++
+A visualização detalhada mostra:
+
++
+** Uma visão geral do status com o progresso atual da digitalização
+** Um detalhamento dos estados da verificação de recursos de dados: em execução, concluída, pausada e erros
+** Modo de permissão de digitalização (por exemplo, "digitalizar sem permissões de gravação")
++
+Se ocorrerem erros de verificação, expanda os detalhes do erro para ver quais volumes ou compartilhamentos foram afetados e o motivo da falha.
+
+
+
+
+
+
+
+[[pause-scanning]]
+== Pausar a digitalização
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Configuração*.
+. Na aba *Sistemas verificados*, localize o sistema que você deseja pausar.
+. Selecione a linha do sistema para abrir a visualização detalhada.
+. Selecione *Pausar*.
+
+
+
+
+[[resume-scanning]]
+== Retomar a digitalização
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Configuração*.
+. Na aba *Sistemas verificados*, localize o sistema pausado.
+. Selecione a linha do sistema para abrir a visualização detalhada.
+. Selecione *Resume*.
+
+
+
+
+[[scan-all-data-resources]]
+== Analisar todos os recursos de dados
+
+Acione uma varredura imediata de todos os recursos de dados em um sistema. Use isso para atualizar metadados após uma alteração significativa nos dados.
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Configuração*.
+. Na aba *Sistemas digitalizados*, localize o sistema que você deseja digitalizar.
+. Selecione o menu de ações ao lado do sistema.
+. Selecione *Verificar todos os volumes* (há uma opção equivalente no menu de ações para compartilhamentos e buckets).
+
+
+
+
+[[retry-failed-scans]]
+== Repetir verificações com falha
+
+Reencaminhe os recursos de dados que estiverem em estado de falha ou erro. Resolva primeiro a causa raiz, como um problema de credencial, erro de rede ou problema de permissão, antes de tentar novamente.
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Configuração*.
+. Na aba *Sistemas verificados*, localize o sistema com verificações com falha.
+. Selecione o menu de ações ao lado do sistema.
+. Selecione *Tentar novamente todas as verificações*.
+
+
+
+
+[[edit-cifs-credentials]]
+== Editar credenciais do CIFS
+
+Atualize as credenciais que o AI Data Engine usa para autenticar em compartilhamentos SMB/CIFS.
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Configuração*.
+. Na aba *Sistemas verificados*, localize o sistema SMB/CIFS.
+. Selecione a linha do sistema para abrir a visualização detalhada.
+. Selecione *Editar credenciais CIFS*.
+. Insira o nome de usuário e a senha atualizados e selecione *Salvar*.
+
+
+
+
+[[enable-or-disable-access-to-dp-volumes]]
+== Habilitar ou desabilitar o acesso aos volumes DP
+
+Os volumes de proteção de dados (DP) são volumes de destino do NetApp SnapMirror. Por padrão, o AI Data Engine não verifica os volumes DP. Você pode ativar ou desativar o acesso aos volumes DP por sistema.
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Configuração*.
+. Na aba *Sistemas digitalizados*, localize o sistema.
+. Selecione a linha do sistema para abrir a visualização detalhada.
+. Selecione *Ativar acesso aos volumes DP* ou *Desativar acesso aos volumes DP*.
+
+
+
+
+[[enable-or-disable-scanning-of-specific-shares-buckets-or-volumes]]
+== Ative ou desative a verificação de compartilhamentos, buckets ou volumes específicos
+
+Após conectar e analisar uma fonte de dados, você pode ativar ou desativar a análise de volumes ou compartilhamentos individuais sem precisar reconfigurar todo o sistema. Use isso para refinar o escopo da análise após a configuração inicial. Por exemplo, você pode querer excluir volumes que contenham dados que você não precisa analisar ou adicionar volumes que não foram selecionados ou não estavam disponíveis durante a análise inicial.
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Configuração*.
+. Na aba *Sistemas verificados*, localize o sistema que você deseja atualizar.
+. Selecione *Ver detalhes* na linha do sistema.
+. Na lista de recursos de dados, localize o volume, bucket ou compartilhamento que você deseja alterar.
+. Use a opção *Verificação* para ativar ou desativar a verificação desse recurso.
+
+
+
+
+[[deactivate-ai-data-engine-for-a-system]]
+== Desativar o AI Data Engine para um sistema
+
+Desativar um sistema interrompe todas as varreduras e o remove da cobertura de varredura ativa. A configuração do sistema é preservada, e você pode reativá-lo a qualquer momento selecionando *Activate scans* na linha do sistema.
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Configuração*.
+. Na aba *Sistemas verificados*, localize o sistema que você deseja desativar.
+. Selecione o menu de ações ao lado do sistema.
+. Selecione *Desativar AI Data Engine*.
+
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:connect-data-source.html["Conecte uma fonte de dados"]
+* link:monitor-scanning-health.html["Monitore a integridade da digitalização"]
+* link:../investigate/understand-dashboard.html["Avalie a utilização do storage no painel."]
+

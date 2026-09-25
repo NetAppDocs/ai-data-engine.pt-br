@@ -1,0 +1,76 @@
+---
+sidebar: sidebar 
+permalink: investigate/investigate-directories.html 
+keywords: investigate, directories, permissions, org-wide access, open access, directory owner, overly permissive, exposed directories 
+summary: Audite as permissões em nível de diretório em seus sistemas de armazenamento para encontrar caminhos amplamente acessíveis, verificar quem tem acesso e salvar as descobertas como uma política reutilizável. 
+---
+= Investigue diretórios no AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando precisar identificar quais diretórios estão expostos a mais usuários do que o pretendido, filtre por permissões para encontrar pastas abertas para toda a organização. Por exemplo, um administrador de segurança que vê diretórios expostos sinalizados no painel pode encontrar todos os diretórios com acesso para toda a organização, verificar quem tem permissões de leitura e gravação e criar uma política para monitorar novas exposições após cada verificação.
+
+.Antes de começar
+* Pelo menos uma fonte de dados deve estar conectada e realizando varreduras. Consulte link:../data-sources/connect-data-source.html["Conecte uma fonte de dados"].
+
+
+
+
+[[find-broadly-accessible-directories]]
+== Encontre diretórios amplamente acessíveis
+
+Use filtros de permissão para identificar diretórios que estejam acessíveis além do público-alvo pretendido.
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Investigação*.
+. Selecione a aba *Diretórios*.
++
+A tabela exibe o nome do diretório (caminho completo), o contêiner de dados, o proprietário do diretório, o tipo de diretório e o sistema.
+
+. Selecione *Adicionar filtro* e, em seguida, selecione *Abrir permissões*.
+. Defina o filtro como *Open to organization* para exibir diretórios acessíveis a toda a organização.
++
+A tabela de resultados é atualizada para mostrar os diretórios que correspondem aos critérios de permissão, incluindo a data do último acesso e o status da permissão.
+
+
+
+Para obter uma lista completa dos filtros disponíveis, consulte link:use-filters.html["Trabalhar com filtros"].
+
+
+
+[[review-directory-permissions]]
+== Revisar as permissões do diretório
+
+Selecione uma linha do diretório para abrir o painel de detalhes e verificar quem tem acesso.
+
+O painel de detalhes mostra o tipo de diretório, o sistema, o proprietário do diretório e um resumo das permissões (por exemplo, "Aberto para a organização"). Selecione *Exibir permissões* para ver um detalhamento do acesso de leitura e gravação para cada usuário ou grupo com acesso ao diretório.
+
+Use estas informações para confirmar se o nível de acesso é intencional antes de criar uma política ou entrar em contato com o proprietário do diretório.
+
+
+
+[[save-findings-as-a-policy]]
+== Salvar descobertas como uma política
+
+Após filtrar para identificar diretórios amplamente acessíveis, salve os critérios como uma política para monitorar novas exposições após cada ciclo de varredura.
+
+.Passos
+. Com os filtros de permissão aplicados, selecione *Criar política* na barra de ferramentas de filtro.
+. Preencha o formulário da apólice. Consulte link:../policies/create-policy.html["Criar uma política"].
+
+
+Para baixar os resultados filtrados da guia Diretórios, selecione image:icon_download_file.png["Download"].
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:use-filters.html["Trabalhar com filtros"]
+* link:../policies/create-policy.html["Criar uma política"]
+* link:../administer/manage-users-roles.html["Gerenciar usuários e funções"]
+* link:understand-dashboard.html["Avalie a utilização do storage no painel."]
+

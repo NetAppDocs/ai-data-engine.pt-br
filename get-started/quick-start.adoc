@@ -1,0 +1,34 @@
+---
+sidebar: sidebar 
+permalink: get-started/quick-start.html 
+keywords: quick start, deploy, connect, investigate, policies 
+summary: Coloque o AI Data Engine em funcionamento implantando o serviço, conectando seus sistemas de storage e iniciando sua primeira investigação. 
+---
+= Guia rápido para AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Coloque o AI Data Engine em funcionamento implantando o serviço, conectando seus sistemas de storage e iniciando sua primeira investigação.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Um"]Requisitos de revisão
+[role="quick-margin-para"]
+Analise o link:../deploy/aide-requirements.html["Requisitos do AIDE"] e o link:../deploy/deployment-overview.html["saiba mais sobre os modos de implantação"] para determinar se deve instalar o AIDE Lite ou o AIDE Enterprise.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Dois"] Implantar o AI Data Engine
+[role="quick-margin-para"]
+Implante link:../deploy/deploy-aide-lite.html["O AIDE Lite"] ou link:../deploy/deploy-enterprise.html["O AIDE Enterprise"] pelo NetApp Console. A página de configuração orienta você na seleção do local da instalação, do tamanho da configuração e na execução do comando de instalação.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Três"] Conecte uma fonte de dados
+[role="quick-margin-para"]
+link:../data-sources/connect-data-source.html["Conecte uma fonte de dados"] para iniciar a digitalização. O AI Data Engine cataloga os metadados do sistema de arquivos dos sistemas de armazenamento que você especificar.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Quatro"] Explore seus dados
+[role="quick-margin-para"]
+Abra o link:../investigate/understand-dashboard.html["painel"] para ver insights de otimização de armazenamento ou acesse o link:../investigate/investigate-data.html["Investigação"] para pesquisar e filtrar seus metadados diretamente.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Cinco"]Criar uma política
+[role="quick-margin-para"]
+link:../policies/create-policy.html["Salve seus filtros de investigação como uma política"] para monitorar arquivos que correspondam aos mesmos critérios ao longo do tempo. Você pode configurar uma política para enviar uma notificação, excluir permanentemente os arquivos correspondentes ou acompanhar os resultados.

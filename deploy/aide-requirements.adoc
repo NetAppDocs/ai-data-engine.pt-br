@@ -1,0 +1,312 @@
+---
+sidebar: sidebar 
+permalink: deploy/aide-requirements.html 
+keywords: requirements, prerequisites, networking, ports, vm, kubernetes, sizing, flexible sizing, scaling, capacity planning 
+summary: Analise os requisitos de infraestrutura e rede antes de implementar o AI Data Engine. 
+---
+= Requisitos do AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de implementar o AI Data Engine, revise os requisitos de rede, dimensionamento de VM e sistema operacional para o seu ambiente.
+
+
+
+[[networking-requirements]]
+== Requisitos de rede
+
+As seguintes conexões de rede devem estar abertas:
+
+[cols="2,1,1,1,2"]
+|===
+| Conexão | Porta | Protocolo | Direção | Propósito 
+
+
+| Agente de console para o NetApp Console | 443 | TCP | Saída | HTTPS: conectividade com o NetApp Console 
+
+
+| Agente de console para ONTAP | 443 | TCP | Saída | HTTPS: descoberta de cluster ONTAP 
+
+
+| Agente de console para AI Data Engine | 80, 443, 8080, 9000 | TCP | Bidirecional | Comunicação entre o Console Agent e o AI Data Engine 
+
+
+| AI Data Engine para o ONTAP (NFS) | 111, 2049 | TCP/UDP | Para storage | Acesso à fonte de dados NFS 
+
+
+| AI Data Engine para o ONTAP (SMB/CIFS) | 139, 445 | TCP/UDP | Para storage | Acesso à fonte de dados SMB/CIFS 
+
+
+| AI Data Engine para o Active Directory | 389, 636, 3268, 3269 | TCP/UDP | Saída | LDAP (389), LDAPS (636) e Catálogo Global (3268, 3269) para autenticação de usuário e varredura SMB/CIFS. A porta 389 usa TCP e UDP; todas as outras portas usam apenas TCP. 
+
+
+| AI Data Engine para os serviços da NetApp / Registro de contêineres | 443 | TCP | Saída | HTTPS: downloads de artefatos e obtenções de imagens de contêiner (AWS S3 e ECR) 
+|===
+
+
+[[outbound-internet-access]]
+=== Acesso à internet de saída
+
+Para uma instalação online, os seguintes endpoints devem estar acessíveis a partir do host do AI Data Engine:
+
+[cols="2,2,1"]
+|===
+| Endpoint | Propósito | Escopo 
+
+
+| `\https://api.console.netapp.com` | Comunicação do NetApp Console | Ambos 
+
+
+| `\https://netapp-cloud-account.auth0.com` | Autenticação centralizada do usuário | Ambos 
+
+
+| `\https://auth0.com` | Serviços de autenticação | Ambos 
+
+
+| `\https://582244788873.dkr.ecr.us-west-2.amazonaws.com` | O NetApp container registry (imagens de contêiner do AIDE) | Ambos 
+
+
+| `\https://582244788873.dkr-ecr.us-west-2.on.aws` | O registro de contêineres NetApp (acesso ao endpoint dualstack/virtual private cloud (VPC)) | Ambos 
+
+
+| `\https://api.ecr.us-west-2.amazonaws.com` | API do AWS ECR (autenticação e recuperação do manifesto da imagem) | Ambos 
+
+
+| `\https://prod-us-west-2-starport-layer-bucket.s3.us-west-2.amazonaws.com` | AWS S3 (armazenamento da camada de imagem do contêiner ECR) | Ambos 
+
+
+| `\https://prod-us-west-2-starport-layer-bucket.s3.amazonaws.com` | AWS S3 (armazenamento da camada de imagem do contêiner ECR) | Ambos 
+
+
+| `\https://s3.us-west-2.amazonaws.com` | AWS S3 (script de wrapper do instalador, gráficos Helm e catálogo de versões de componentes) | Ambos 
+
+
+| `\https://s3.amazonaws.com` | AWS S3 (script de wrapper do instalador, gráficos Helm e catálogo de versões de componentes) | Ambos 
+
+
+| `\https://sts.us-west-2.amazonaws.com` | AWS STS (troca temporária de credenciais para acesso ao registro e ao S3) | Ambos 
+
+
+| `\https://support.compliance.api.bluexp.netapp.com` | Imagens de software, manifestos e modelos; streaming de logs e métricas | Ambos 
+
+
+| `\https://dseasb33srnrn.cloudfront.net` | CloudFront rede de entrega de conteúdo para distribuição de software | Ambos 
+
+
+| `\http://packages.ubuntu.com` | Pacotes de pré-requisito do Ubuntu | Somente Lite (Ubuntu) 
+
+
+| `\http://archive.ubuntu.com` | Arquivo de pacotes do Ubuntu | Somente Lite (Ubuntu) 
+
+
+| `\http://security.ubuntu.com` | Arquivo de pacotes de segurança do Ubuntu | Somente Lite (Ubuntu) 
+
+
+| `\https://get.k3s.io` | download do ambiente de execução k3s (iniciado pelo instalador) | Apenas Lite 
+
+
+| `\https://get.helm.sh` | Download do Helm (iniciado pelo instalador) | Apenas Lite 
+|===
+AI Data Engine também depende do NetApp Console para autenticação centralizada e serviços de console. Consulte link:https://docs.netapp.com/us-en/console-setup-admin/reference-networking-saas-console.html["requisitos de acesso à rede para o NetApp Console"^] para ver os endpoints necessários para a conectividade do Console e do agente do Console.
+
+Antes de iniciar a implantação, verifique se a resolução de DNS para esses endpoints está funcionando no host do AI Data Engine.
+
+
+
+[[aide-lite-requirements]]
+== Requisitos do AIDE Lite
+
+
+
+[[vm-sizing]]
+[[lite-vm-sizes]]
+=== Dimensionamento de VMs
+
+Esses tamanhos são configurações básicas recomendadas, otimizadas para uma janela inicial de varredura de três a quatro dias, e não limites rígidos. Consulte <<flexible-sizing-lite,Diretrizes flexíveis de dimensionamento>> para saber o que influencia esses números e como escalá-los além deles.
+
+[cols="1,1,1,1,1,1,1,1"]
+|===
+| Tamanho | vCPU | RAM | Disco | IOPS de armazenamento | Taxa de transferência de storage | Rede | Arquivos aproximados 
+
+
+| Pequeno | 16 | 64 GB | 500 GB | 8.000 | 1.000 MB/s | 1 GbE | 200 milhões 
+
+
+| Médio | 32 | 128 GB | 2 TB | 12.000 | 1.500 MB/s | 1 GbE | 1 bilhão 
+
+
+| Grande | 96 | 192 GB | 6 TB | 16.000 | 2.000 MB/s | 10 GbE | 3 bilhões 
+|===
+
+NOTE: Recomenda-se o uso de SSD NVMe ou outro armazenamento de estado sólido para todos os tamanhos de implantação. Os valores de disco nesta tabela refletem apenas o armazenamento do volume de dados do AIDE. Se o sistema operacional, o runtime do k3s e os dados do AIDE compartilharem um único disco, adicione aproximadamente 65 GB ao valor de disco para o tamanho escolhido. Por exemplo, uma implantação Small em um único disco requer aproximadamente 565 GB no total.
+
+
+
+[[flexible-sizing-guidelines]]
+[[flexible-sizing-lite]]
+=== Diretrizes flexíveis de dimensionamento
+
+<<lite-vm-sizes,Configurações pequena, média e grande>>são valores de referência recomendados para um período inicial de verificação de três a quatro dias, e não limites rígidos impostos pelo software.
+
+O que influencia as recomendações de dimensionamento::
++
+--
+* *Número total de arquivos e diretórios*: o número total de objetos a serem catalogados é o principal fator que determina os requisitos de computação e armazenamento. Um número maior de objetos exige proporcionalmente mais memória, CPU e armazenamento.
+* *Estrutura de diretórios*: o uso de recursos varia de acordo com a profundidade de aninhamento dos diretórios e como os arquivos são distribuídos entre compartilhamentos e volumes. Estruturas profundamente aninhadas ou altamente fragmentadas podem exigir mais recursos do que a mesma quantidade de arquivos em uma hierarquia mais plana.
+* *Taxa de transferência de varredura necessária*: a velocidade de conclusão inicial do catálogo está diretamente ligada à alocação de CPU e memória. O provisionamento abaixo do tamanho recomendado reduz a taxa de transferência e estende a janela de varredura inicial.
+* *Desempenho de armazenamento*: recomenda-se fortemente o uso de armazenamento de alto desempenho. A indexação de metadados e o processamento de eventos exigem IOPS e taxa de transferência sustentados, proporcionais ao tamanho da implementação.
+
+
+--
+O que acontece se você usar um tamanho menor do que o necessário?::
++
+--
+O provisionamento abaixo do tamanho recomendado não impede a instalação nem causa falhas no serviço. O sistema permanece operacional e a verificação continua, mas você pode esperar o seguinte:
+
+* *Duração inicial do catálogo estendida*: a redução da capacidade computacional diminui o número de objetos verificados por dia. Por exemplo, uma implementação destinada a 3 bilhões de objetos, mas provisionada com um tamanho menor, pode levar significativamente mais tempo do que a meta de três a quatro dias.
+* *Redução da taxa de transferência contínua de ingestão*: novos eventos de arquivo e atualizações incrementais de varredura são processados mais lentamente sob carga sustentada.
+* *Risco de capacidade de storage*: uma capacidade de storage insuficiente em relação à contagem total de objetos pode levar o índice de metadados aos limites de capacidade. Normalmente, você pode resolver isso expandindo a capacidade de storage, sem a necessidade de uma reimplantação completa.
+
+
+--
+Aumente a capacidade quando precisar de mais capacidade::
++
+--
+O AIDE Lite é executado em uma única VM, portanto o escalonamento é vertical:
+
+* Aumente a quantidade de vCPU, memória ou storage na VM do host.
+* Não é necessário reconfigurar nem reinstalar o cluster.
++
+
+NOTE: O AIDE Lite não oferece suporte a alta disponibilidade nem com escalabilidade horizontal. Se o seu ambiente exceder consistentemente 3 bilhões de arquivos ou se você precisar de alta disponibilidade e tolerância de falhas, implante link:deploy-enterprise.html["O AIDE Enterprise"].
+
+
+
+--
+
+
+
+
+[[operating-system]]
+=== Sistema operacional
+
+[cols="1,2"]
+|===
+| SO | Versões suportadas 
+
+
+| Ubuntu | 22.04 LTS, 24.04 LTS (24.04 LTS recomendado) 
+
+
+| Red Hat Enterprise Linux (RHEL) | 8.x, 9.x 
+|===
+
+
+[[additional-prerequisites]]
+=== Pré-requisitos adicionais
+
+* Você precisa ter acesso root ou sudo na máquina virtual de destino para executar o instalador.
+* É necessária uma conexão de rede mínima de 1 GbE (10 GbE para implantações grandes).
+* O host de destino deve ter o bash 4.0 ou posterior, o curl e o tar disponíveis.
+* O instalador baixa e inicializa automaticamente `k3s`, `helm`, `kubectl` e `jq`. Não é necessário pré-instalar essas ferramentas na máquina virtual de destino.
+* As portas 6443 (TCP), 10250 (TCP) e 8472 (UDP) devem estar livres no host antes de o instalador iniciar. Se um firewall do host (`firewalld` no RHEL ou  `ufw` no Ubuntu) estiver ativo, permita essas portas e o CIDR do pod k3s (`10.44.0.0/16`) e o CIDR do serviço (`10.45.0.0/16`) antes de executar o instalador. Consulte a documentação do firewall do seu sistema operacional para ver os comandos necessários.
+* Em sistemas RHEL com SELinux em modo Enforcing, o instalador configura automaticamente os pacotes de política SELinux necessários. Nenhuma configuração manual do SELinux é necessária.
+
+
+
+
+[[aide-enterprise-requirements]]
+== Requisitos do AIDE Enterprise
+
+* Você tem acesso ao kubectl com privilégios de administrador de cluster na máquina a partir da qual executa o instalador.
+* Você tem permissões de Sudo (ou root) na máquina a partir da qual executa o comando de instalação.
+* O RKE2 v1.34 ou posterior (v1.36.x recomendado) está instalado no cluster de destino.
+* O host do instalador baixa e inicializa automaticamente `helm`, `kubectl` e `jq` por meio de `--tools-dir`. Não é necessário pré-instalar essas ferramentas na máquina de gerenciamento.
+* Uma StorageClass configurada (nome padrão `aide-sc`) está disponível no cluster e é usada para os serviços de suporte com estado do AIDE.
+* Um servidor NFS com pelo menos um caminho exportado está disponível, usado para o volume de dados de configuração do AIDE e snapshots de índice compartilhados.
+* Um namespace Kubernetes de destino (padrão `aide`) já existe no cluster; o instalador não o cria.
+
+
+
+NOTE: O armazenamento NVMe ou SSD de alto desempenho é recomendado para todas as implementações de nós Enterprise.
+
+
+
+[[node-sizing]]
+[[enterprise-vm-sizes]]
+=== Dimensionamento de nós
+
+Esses tamanhos são configurações de cluster de linha de base recomendadas, otimizadas para uma janela de verificação inicial de aproximadamente três dias, e não limites rígidos de capacidade. AIDE Enterprise oferece suporte a ambientes com mais de 6 bilhões de arquivos por meio de escalabilidade horizontal. Consulte <<flexible-sizing-enterprise,Diretrizes flexíveis de dimensionamento>> para obter detalhes.
+
+[cols="1,1,1,1,1,1,1,1,1"]
+|===
+| Tamanho | Nós | vCPU por nó | RAM por nó | Disco por nó | IOPS de storage por nó | Taxa de transferência de storage por nó | Rede por nó | Arquivos aproximados 
+
+
+| Pequeno | 3 | 32 | 128 GB | ~1,3TB | 8.000 | 1.000 MB/s | 1 GbE | 1 bilhão 
+
+
+| Médio | 6 | 48 | 192 GB | ~2TB | 12.000 | 1.500 MB/s | 10 GbE | 3 bilhões 
+
+
+| Grande | 9 | 64 | 256 GB | ~2,7TB | 16.000 | 2.000 MB/s | 10 GbE | 6 bilhões 
+|===
+
+
+[[flexible-sizing-guidelines]]
+[[flexible-sizing-enterprise]]
+=== Diretrizes flexíveis de dimensionamento
+
+<<enterprise-vm-sizes,Configurações pequena, média e grande>> são configurações básicas de cluster recomendadas para uma janela de verificação inicial de aproximadamente três dias, e não limites rígidos de capacidade impostos pelo software. O AIDE Enterprise suporta ambientes com mais de 3 bilhões de arquivos por meio de escalabilidade horizontal entre os nós do cluster.
+
+O que influencia as recomendações de dimensionamento::
++
+--
+* *Número total de arquivos e diretórios*: o número total de objetos é o principal fator determinante dos requisitos de armazenamento e computação. Ambientes maiores exigem nós de cluster adicionais para distribuir a carga de processamento e manter o desempenho.
+* *Replicação de alta disponibilidade*: implantações corporativas habilitam a replicação de dados entre nós por padrão para tolerância de falhas. A replicação aumenta os requisitos totais de storage e memória em comparação com uma implantação equivalente em um único nó.
+* *Número de nós e distribuição da carga de trabalho*: a taxa de transferência de processamento e a capacidade total do catálogo aumentam proporcionalmente ao número de nós no cluster. Nós adicionais distribuem tanto a carga de trabalho de indexação quanto a capacidade de storage pelo cluster.
+* *Taxa de transferência de varredura necessária*: a alocação de CPU e memória em todo o cluster determina a taxa de varredura diária e a rapidez com que o catálogo inicial é concluído.
+* *Desempenho de armazenamento por nó*: recomenda-se fortemente o uso de armazenamento de alto desempenho em cada nó, e a capacidade total do cluster aumenta proporcionalmente ao número de nós.
+
+
+--
+O que acontece se você usar um tamanho menor do que o necessário?::
++
+--
+O provisionamento abaixo do tamanho recomendado não impede a instalação nem causa falhas graves. Os impactos práticos incluem:
+
+* *Duração inicial do catálogo estendida*: menos nós ou recursos reduzidos por nó diminuem a taxa de transferência, prolongando proporcionalmente a janela inicial do catálogo.
+* *Aumento da latência de processamento sob carga máxima*: memória insuficiente em todo o cluster pode causar aumento da latência de processamento durante períodos de ingestão de alto volume. As operações em andamento não são interrompidas, mas a taxa de transferência sustentada é reduzida.
+* *Risco de capacidade de storage*: capacidade de storage insuficiente no cluster para a contagem de objetos de destino pode levar o índice de metadados a se aproximar dos limites de capacidade. Você pode resolver isso expandindo o storage nos nós existentes (sem interrupção) ou adicionando um nó de storage dedicado.
+
+
+--
+Aumente a capacidade quando precisar de mais capacidade::
++
+--
+O AIDE Enterprise oferece escalabilidade horizontal sem necessidade de reimplantação:
+
+* Adicione nós de trabalho para aumentar a CPU e a memória disponíveis para o processamento de varreduras e a ingestão de eventos.
+* Adicione nós de storage dedicados para aumentar a capacidade total do catálogo. Esta é a principal forma de dimensionar ambientes além do maior tamanho de implantação predefinido.
+* Aumente a capacidade para além de 6 bilhões de arquivos adicionando mais nós ao cluster. Entre em contato com seu NetApp representante para obter orientações sobre o dimensionamento de nós em escalas personalizadas.
++
+
+NOTE: A adição de nós a um cluster Enterprise existente não interrompe as operações de varredura em andamento, mas coordene a alteração durante um período de baixa atividade.
+
+
+
+--
+
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:deployment-overview.html["Visão geral da implantação do AIDE"]
+* link:deploy-aide-lite.html["Implantar o AI Data Engine — Lite"]
+* link:deploy-enterprise.html["Implantar AI Data Engine — Enterprise"]
+

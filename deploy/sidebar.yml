@@ -1,0 +1,12 @@
+---
+section: deploy
+title: Implantar
+entries:
+- title: Saiba mais sobre a implantação do AIDE
+  url: "/deploy/deployment-overview.html"
+- title: Requisitos do AIDE
+  url: "/deploy/aide-requirements.html"
+- title: Implantar o AIDE Lite
+  url: "/deploy/deploy-aide-lite.html"
+- title: Implantar o AIDE Enterprise
+  url: "/deploy/deploy-enterprise.html"

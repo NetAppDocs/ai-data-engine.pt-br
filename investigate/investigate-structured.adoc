@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: investigate/investigate-structured.html 
+keywords: investigate, structured, database, tables, schema, oversized, unused, DB server, table size, discovered time 
+summary: Encontre tabelas de banco de dados grandes demais ou não utilizadas em seus servidores de banco de dados conectados e salve suas descobertas como uma política de governança reutilizável. 
+---
+= Investigue os dados estruturados no AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando o storage de banco de dados cresce inesperadamente, filtre pelos metadados da tabela para encontrar quais tabelas estão superdimensionadas ou não apresentaram atividade desde que foram descobertas pela primeira vez. Por exemplo, um administrador de storage pode identificar tabelas grandes que não mudaram desde uma varredura inicial e, em seguida, coordenar com o proprietário do banco de dados para avaliar se elas ainda são necessárias.
+
+.Antes de começar
+* Pelo menos uma fonte de dados de banco de dados deve estar conectada e realizando varredura. Consulte link:../data-sources/connect-data-source.html["Conecte uma fonte de dados"].
+
+
+
+
+[[review-the-database-table-listing]]
+== Analise a lista de tabelas do banco de dados
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Investigação*.
+. Selecione a aba *Structured*.
++
+A tabela exibe o nome da tabela do banco de dados, o esquema, o servidor do banco de dados, a hora em que foi descoberta, as dimensões da tabela (colunas × linhas) e o tamanho da tabela.
+
+
+
+
+
+[[identify-oversized-or-unused-tables]]
+== Identifique tabelas muito grandes ou não utilizadas
+
+Use filtros para restringir a lista às tabelas com maior probabilidade de oferecer oportunidades de recuperação.
+
+.Passos
+. Selecione *Adicionar filtro* e, em seguida, selecione *Tempo descoberto*.
+. Defina o intervalo para exibir tabelas que estiveram presentes em vários ciclos de varredura, por exemplo tabelas descobertas pela primeira vez há mais de um ano.
+. Para refinar ainda mais, selecione *Adicionar filtro* novamente e filtre por servidor de banco de dados ou esquema para se concentrar em um sistema específico.
++
+Os filtros aplicados aparecem como etiquetas abaixo da barra de filtros. Os resultados são atualizados à medida que você adiciona cada filtro.
+
+
+
+Para obter uma lista completa dos filtros disponíveis, consulte link:use-filters.html["Trabalhar com filtros"].
+
+
+
+[[review-table-details]]
+== Revise os detalhes da tabela
+
+Selecione uma linha da tabela para abrir o painel de detalhes e avaliar se a tabela é candidata à recuperação.
+
+O painel de detalhes mostra o servidor de banco de dados, o esquema, as dimensões da tabela, o tamanho da tabela e o horário da descoberta. Use essas informações para determinar se a tabela cresceu desde a descoberta ou permanece inalterada.
+
+
+NOTE: Antes de agir nas tabelas do banco de dados, coordene com o proprietário do banco de dados para confirmar que a tabela não é mais necessária.
+
+
+
+[[save-findings-as-a-policy]]
+== Salvar descobertas como uma política
+
+Após aplicar os filtros que identificam as tabelas de interesse, salve os critérios para monitoramento contínuo.
+
+.Passos
+. Selecione *Criar política* na barra de ferramentas de filtro.
+. Preencha o formulário da apólice. Consulte link:../policies/create-policy.html["Criar uma política"].
+
+
+Para baixar os resultados filtrados da guia Structured, selecione image:icon_download_file.png["Download"].
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:use-filters.html["Trabalhar com filtros"]
+* link:../policies/create-policy.html["Criar uma política"]
+* link:../data-sources/connect-data-source.html["Conecte uma fonte de dados"]
+* link:understand-dashboard.html["Avalie a utilização do storage no painel."]
+

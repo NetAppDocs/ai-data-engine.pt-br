@@ -1,0 +1,74 @@
+---
+sidebar: sidebar 
+permalink: administer/configure-settings.html 
+keywords: cold threshold, stale threshold, configuration, settings, data classification, cold data, stale data 
+summary: Configure os limites de tempo que o AI Data Engine usa para classificar os dados como frios ou obsoletos em todo o seu ambiente. 
+---
+= Configure os limites de dados frios e obsoletos no AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O AI Data Engine classifica arquivos como frios ou obsoletos com base em limites de tempo definidos por você. Esses limites afetam quais dados aparecem nos resumos do painel, quais arquivos aparecem quando você aplica filtros de arquivos frios ou obsoletos na Investigação e quais arquivos as políticas segmentam. Defina limites que correspondam às práticas de classificação e retenção de dados da sua organização e ajudem você a identificar os dados que considera importantes monitorar.
+
+
+
+[[what-is-cold-and-stale-data]]
+== O que são dados frios e obsoletos?
+
+Dados frios:: Arquivos que não foram acessados dentro do limite configurado para dados frios. Os dados frios são uma métrica fundamental que sua organização pode usar para identificar storage que pode ser otimizado de acordo com suas políticas de retenção e de negócios.
+Dados desatualizados:: Arquivos que não foram acessados ou modificados dentro do limite configurado para dados obsoletos. Os dados obsoletos incluem arquivos que são acessados ocasionalmente, mas não foram modificados recentemente, e que sua organização pode monitorar ou gerenciar de acordo com suas políticas.
+
+
+
+NOTE: Os valores de limite padrão são padrões do produto fornecidos como ponto de partida. Eles não representam períodos de retenção legais, de conformidade ou padrão do setor. Defina limites que reflitam as políticas e os requisitos específicos da sua organização.
+
+As alterações em qualquer um dos limites entram em vigor após a conclusão do próximo ciclo de varredura.
+
+
+
+[[configure-the-cold-data-threshold]]
+== Configure o limite de dados frios
+
+.Antes de começar
+* Você precisa ter a função de _administrador do AI Data Engine_.
+
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Configuração*.
+. Selecione *Configurações*.
+. Selecione *Editar* para *definição de dados frios*.
+. Defina a propriedade do arquivo como *Último acesso* ou *Última modificação*.
+. Defina o limite de tempo. O padrão é um ano.
+. Selecione *Salvar*.
+
+
+
+
+[[configure-the-stale-data-threshold]]
+== Configure o limite de dados obsoletos
+
+.Antes de começar
+* Você precisa ter a função de _administrador do AI Data Engine_.
+
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Configuração*.
+. Selecione *Configurações*.
+. Selecione *Editar* para *a definição de dados desatualizados*.
+. Defina a propriedade do arquivo como *Último acesso* ou *Última modificação*.
+. Defina o limite de tempo. O padrão é de três anos.
+. Selecione *Salvar*.
+
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:../investigate/understand-dashboard.html["Saiba mais sobre o painel do AI Data Engine"]
+* link:../get-started/storage-optimization-workflows.html["Explore fluxos de trabalho de otimização de armazenamento"]
+* link:manage-users-roles.html["Gerenciar usuários e funções"]
+

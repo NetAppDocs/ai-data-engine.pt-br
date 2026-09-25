@@ -1,0 +1,895 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blocks>
+  <block id="f8c4fea7e7cf7f7ef0388b1a5482f73c" category="summary">Configure os limites de tempo que o AI Data Engine usa para classificar os dados como frios ou obsoletos em todo o seu ambiente.</block>
+  <block id="307f340773d2ec521a24b7d47748d7a9" category="doc">Configure os limites de dados frios e obsoletos no AI Data Engine</block>
+  <block id="685b95cce8c6b31584d6cbc499744d76" category="paragraph">O AI Data Engine classifica arquivos como frios ou obsoletos com base em limites de tempo definidos por você. Esses limites afetam quais dados aparecem nos resumos do painel, quais arquivos aparecem quando você aplica filtros de arquivos frios ou obsoletos na Investigação e quais arquivos as políticas segmentam. Defina limites que correspondam às práticas de classificação e retenção de dados da sua organização e ajudem você a identificar os dados que considera importantes monitorar.</block>
+  <block id="61fe78e998733806cbb9289d9a334133" category="section-title">O que são dados frios e obsoletos?</block>
+  <block id="b5e9abb7d0603dc93a1c7f770d525201" category="list-text">Dados frios</block>
+  <block id="ffd32e72e017c9e3f551aaa0f1f073c0" category="list-text">Arquivos que não foram acessados dentro do limite configurado para dados frios. Os dados frios são uma métrica fundamental que sua organização pode usar para identificar storage que pode ser otimizado de acordo com suas políticas de retenção e de negócios.</block>
+  <block id="58f9985309ad441d05540492b96a7afd" category="list-text">Dados desatualizados</block>
+  <block id="02ab08a8615eca8247a792a9e857afa8" category="list-text">Arquivos que não foram acessados ou modificados dentro do limite configurado para dados obsoletos. Os dados obsoletos incluem arquivos que são acessados ocasionalmente, mas não foram modificados recentemente, e que sua organização pode monitorar ou gerenciar de acordo com suas políticas.</block>
+  <block id="82df3679be1205e2d375ad745e4b1726" category="admonition">Os valores de limite padrão são padrões do produto fornecidos como ponto de partida. Eles não representam períodos de retenção legais, de conformidade ou padrão do setor. Defina limites que reflitam as políticas e os requisitos específicos da sua organização.</block>
+  <block id="10cde949b73468c8fce425af672f3b72" category="paragraph">As alterações em qualquer um dos limites entram em vigor após a conclusão do próximo ciclo de varredura.</block>
+  <block id="895804863a97a03a3e03470d02478133" category="section-title">Configure o limite de dados frios</block>
+  <block id="135b308ed83c53f1516b7c754566d1c4" category="list-title">Antes de começar</block>
+  <block id="44afa8c12ba5016087097eac7b7ece41" category="list-text">Você precisa ter a função de _administrador do AI Data Engine_.</block>
+  <block id="f3a29486bed19a90f2da6d007818b427" category="list-title">Passos</block>
+  <block id="d724be4a2aa2baccee94826f1af0c6ac" category="list-text">Na interface do usuário do AI Data Engine, selecione *Configuração*.</block>
+  <block id="376ec8b3e51e6597fb939c31a3fe0e59" category="list-text">Selecione *Configurações*.</block>
+  <block id="14f363037c6a0b83c2c86a312d5db12a" category="list-text">Selecione *Editar* para *definição de dados frios*.</block>
+  <block id="39f725773719f7e03fa6969dd0b4d925" category="list-text">Defina a propriedade do arquivo como *Último acesso* ou *Última modificação*.</block>
+  <block id="7eead87b8cc9c7fcfb53634c53faf69d" category="list-text">Defina o limite de tempo. O padrão é um ano.</block>
+  <block id="10492389e94efdebbb66f7b0cd8a1324" category="list-text">Selecione *Salvar*.</block>
+  <block id="0803d30fefe8c23b3667222268afa94b" category="section-title">Configure o limite de dados obsoletos</block>
+  <block id="af4ec082fbd0c524e89b1c1edfde19a4" category="list-text">Selecione *Editar* para *a definição de dados desatualizados*.</block>
+  <block id="e927212088bb79337374c3f698de2179" category="list-text">Defina o limite de tempo. O padrão é de três anos.</block>
+  <block id="30f60d67f457bb040dffde52197a54da" category="section-title">Informações relacionadas</block>
+  <block id="da04d3e23ca53cd49a0abe6e25b1632b" category="inline-link-macro">Saiba mais sobre o painel do AI Data Engine</block>
+  <block id="72a44204a778b5f38d69fa2db6cd3e9d" category="list-text"><block ref="72a44204a778b5f38d69fa2db6cd3e9d" category="inline-link-macro-rx"></block></block>
+  <block id="f47313cb11c7179c014c38c757ea3524" category="inline-link-macro">Explore fluxos de trabalho de otimização de armazenamento</block>
+  <block id="12e1c9d43b7fa4b8afa0d962af8d6f6a" category="list-text"><block ref="12e1c9d43b7fa4b8afa0d962af8d6f6a" category="inline-link-macro-rx"></block></block>
+  <block id="015653ee347fd187160fa2a4e0cc0018" category="inline-link-macro">Gerenciar usuários e funções</block>
+  <block id="e4a085ef6af4b1e82ee2f0d60ce0893a" category="list-text"><block ref="e4a085ef6af4b1e82ee2f0d60ce0893a" category="inline-link-macro-rx"></block></block>
+  <block id="d3ee3c86b87e2394d5115800bd00579c" category="summary">Controle o acesso atribuindo a cada usuário a função de administrador ou de visualizador. Saiba mais sobre as duas funções e suas permissões.</block>
+  <block id="9f4346dd22f2a2d61f9ceb9a382e7def" category="doc">Gerencie usuários e funções no AI Data Engine</block>
+  <block id="6e922598602274a9fa1bfc4867a30553" category="paragraph">Controle o que cada usuário pode visualizar e fazer no AI Data Engine atribuindo a eles uma função de administrador ou de visualizador. Antes que sua equipe comece a usar o AI Data Engine, atribua a cada usuário a função que corresponda ao nível de acesso necessário.</block>
+  <block id="e2a36e2d6394d346a30e4bc9ed6037a5" category="paragraph">Você atribui funções por meio das configurações de organização do Console do NetApp. O AI Data Engine oferece suporte a duas funções.</block>
+  <block id="5f30ddc6ba978a38568dd0166ca854f8" category="section-title">Funções disponíveis</block>
+  <block id="2626c6ebd52cec6b4931c3a9ef69c567" category="section-title">Administrador do AI Data Engine</block>
+  <block id="938afc897dbf7f9f917594f75c742375" category="paragraph">A função de administrador do AI Data Engine fornece acesso completo a todos os recursos do AI Data Engine. NetApp recomenda atribuir essa função a no máximo dois ou três usuários por implantação.</block>
+  <block id="71e4642cc01f7e5c4bf1d9b2e6eb6c1a" category="section-title">Visualizador do AI Data Engine</block>
+  <block id="e96d3cd421b701e01b78e94b49c5bad2" category="paragraph">A função de visualizador do AI Data Engine fornece acesso limitado ao AI Data Engine. Os visualizadores podem visualizar informações, exportar relatórios, etiquetar arquivos e criar políticas somente de monitoramento, mas não podem modificar configurações nem executar ações com arquivos, como arquivar, copiar ou excluir.</block>
+  <block id="f015140812f0bc60ae7d3bffbfe93e84" category="section-title">Permissões por função</block>
+  <block id="fa97f6975c9b94a252d204cd22159ff4" category="cell">Capacidade</block>
+  <block id="93cba07454f06a4a960172bbd6e2a435" category="cell">Sim</block>
+  <block id="336d5ebc5436534e61d16e63ddfca327" category="cell">-</block>
+  <block id="a88a417ad9c2be56b616cd48d8e21f83" category="cell">Gerenciar recursos de dados</block>
+  <block id="3c4e32d95f12c00d16a76057a7af18f6" category="cell">Configuração do sistema</block>
+  <block id="3967d8036668c2f89130ca845de9d4a4" category="cell">Visualizar painéis</block>
+  <block id="f5c67558060302f363b758762a776d1b" category="cell">Pesquisar metadados (Investigação)</block>
+  <block id="0993273353cc9f49309ecd350c0dd2bb" category="cell">Exportar relatórios</block>
+  <block id="a7cf128c8cf9d2177ce397028ee0f199" category="cell">Criar políticas somente de monitoramento</block>
+  <block id="6faf562d55c6575c8fee54b7ee423082" category="cell">Criar políticas com ações</block>
+  <block id="a292a883937f7bfd9a8ed960542159e0" category="cell">Ações: etiquetar</block>
+  <block id="0b29f28b6f97e633b987fa1519ec84f5" category="cell">Ações: arquivar, copiar, excluir</block>
+  <block id="31d10a37fb8885408a38171daea61807" category="cell">Gerenciar tags de negócios</block>
+  <block id="8b53b00f5352fcc616e0371c614127ff" category="section-title">Atribua uma função a um usuário</block>
+  <block id="2e4a4d8d918b5db6fd6dccf54e4310b9" category="paragraph">Você atribui funções no NetApp Console, não no próprio AI Data Engine.</block>
+  <block id="0d87fb6d34ff9ec127d1fb7fe40d2873" category="list-text">No NetApp Console, acesse *Membros*.</block>
+  <block id="365d382b2d9ecca9b0d40171c69b38ff" category="list-text">Faça um dos seguintes procedimentos:</block>
+  <block id="4013279dd0be7a6765daac734d254b85" category="list-text">Para adicionar um novo usuário, selecione *Adicionar usuário* e insira o endereço de e-mail do usuário.</block>
+  <block id="d3bd0996721400f8f6c60a50c1e195fb" category="list-text">Para atualizar um usuário existente, selecione o usuário na lista.</block>
+  <block id="2a206a44a0a994c82b461831f93b69c4" category="list-text">Selecione a organização, a pasta ou o projeto e, em seguida, escolha a categoria *Data Service*.</block>
+  <block id="8e4308c1d564d9b777d03434bab61b0a" category="list-text">Atribua a função de *administrador do AI Data Engine* ou *visualizador do AI Data Engine*.</block>
+  <block id="345e93a96b6e66cb9274dbad975c0db2" category="list-text">Salve suas alterações.</block>
+  <block id="8edc5b73c3c2a64166547be39158f048" category="paragraph">O usuário recebe um convite por e-mail e pode acessar o AI Data Engine após aceitá-lo.</block>
+  <block id="4fce3801c71d07e76b130137410b84e6" category="inline-link-macro">Tome medidas com base nos seus dados</block>
+  <block id="83f4e51e2352c106bc442855cebb5115" category="list-text"><block ref="83f4e51e2352c106bc442855cebb5115" category="inline-link-macro-rx"></block></block>
+  <block id="437f900a689b3effaba13525bf426e50" category="inline-link-macro">Criar uma política</block>
+  <block id="a6ba65d5603bedd3e970c59f52c864db" category="list-text"><block ref="a6ba65d5603bedd3e970c59f52c864db" category="inline-link-macro-rx"></block></block>
+  <block id="9fcf5c684f11b7bbbd6635da90d62ee7" category="summary">Conecte os sistemas de armazenamento ao AI Data Engine concluindo o assistente de integração da fonte de dados e, em seguida, ative a verificação para iniciar a coleta de metadados.</block>
+  <block id="c7b2e3a558f93c05a2ce9d80b8c8c8e0" category="doc">Conecte uma fonte de dados ao AI Data Engine</block>
+  <block id="1bd7981e3d7c792404f8fdfaa6c1c50c" category="paragraph">O AI Data Engine examina seus sistemas de storage para coletar e analisar metadados. Para adicionar uma fonte de dados, conclua o assistente de integração. O assistente coleta detalhes de conexão, escopo da varredura e configurações para o seu tipo de fonte. Depois de adicionar o sistema, ative a varredura para iniciar a coleta de metadados.</block>
+  <block id="81ce10edb3d458fc62131464f0c20994" category="list-text">Você precisa ter privilégios de _AI Data Engine administrator_ para conectar e configurar fontes de dados no AI Data Engine.</block>
+  <block id="c5fbee6586294d81141f8dd158707985" category="inline-link-macro">Descubra os clusters ONTAP locais</block>
+  <block id="2e3c75f22a9ebeae23565b189a21c411" category="list-text">Descubra sistemas de armazenamento no NetApp Console usando um Console Agent antes de adicioná-los ao AI Data Engine. Isso se aplica a todos os tipos de armazenamento compatíveis, incluindo clusters ONTAP locais, o Cloud Volumes ONTAP, o Amazon FSx for NetApp ONTAP, o Google Cloud NetApp Volumes e o Azure NetApp Files. Para clusters ONTAP locais, consulte <block ref="e85b78baa8f4e35e46a2387467739692" category="inline-link-macro-rx"></block> na documentação do NetApp Console. A descoberta direta não habilita serviços de dados como o AI Data Engine.</block>
+  <block id="9f91522d43e1c5f4a996c9a8384dc391" category="inline-link-macro">Requisitos do AI Data Engine</block>
+  <block id="1742041af0b9f3a717b5cf211479fdf3" category="list-text">Verifique se as conexões de rede necessárias para que o AI Data Engine acesse suas fontes de dados estão abertas. Consulte <block ref="54a8e181914f652a26e1c9bb92d0a23f" category="inline-link-macro-rx"></block>.</block>
+  <block id="f721e2f5905762b503bdc11996948f52" category="section-title">Adicionar uma fonte de dados</block>
+  <block id="1036f7c00460b9a45a9e5412bd73af32" category="list-text">Na guia *Sistemas verificados*, selecione *Adicionar sistema*.</block>
+  <block id="6802dbdc8935d97c254889cc48e9da6f" category="list-text">Selecione um tipo de origem:</block>
+  <block id="f99f3d1bb0801fc90897db0098fc2b36" category="cell">Tipo de origem</block>
+  <block id="b5a7adde1af5c87d7fd797b6245c2a39" category="cell">Descrição</block>
+  <block id="7906bd4892f76d110c19711b10d6974f" category="cell">*Grupo de compartilhamento de arquivos*</block>
+  <block id="7df6468497d58e41a37e6f7f67ce8061" category="cell">Adicione compartilhamentos de arquivos NFS ou SMB/CIFS da nuvem ou locais como um grupo nomeado.</block>
+  <block id="7a8d3dc7f0e719542e9e706dbca4f3ec" category="cell">*Banco de dados*</block>
+  <block id="96c6bed08ddd7b750ad14c5944284278" category="cell">Adicione um servidor de banco de dados para analisar os esquemas selecionados.</block>
+  <block id="cc8eee99371af0beb4dcd80f722b6a62" category="cell">o *StorageGRID*</block>
+  <block id="aa9f5a1aee11febeadd1b489d3f65550" category="cell">Analise os dados do NetApp StorageGRID usando o protocolo S3.</block>
+  <block id="163998c3867b69d394de852cc2153a1c" category="list-text">Insira os detalhes da conexão para o seu tipo de origem:</block>
+  <block id="6f06467ad05e46080f77c6d42084a566" category="cell">Detalhes necessários</block>
+  <block id="e073a5abe29c11bef13a47c04d7cae9c" category="cell">Um nome para o grupo de compartilhamento e, em seguida, os detalhes do host de compartilhamento e do caminho.</block>
+  <block id="136c6f0aa925fb0bfd7463700ddf1674" category="cell">Tipo de banco de dados, host, porta e credenciais de autenticação.</block>
+  <block id="c2551511c0e16fab930f47dceceb01a4" category="cell">Nome do sistema, URL do endpoint S3, chave de acesso do S3 e chave secreta.</block>
+  <block id="9fc6176ce15bcce9331a1e20d5b5f6c8" category="list-text">Revise suas seleções e selecione *Confirm* para adicionar a fonte de dados.</block>
+  <block id="bafd4c151b05d8865cbb162dbec61687" category="section-title">Ativar digitalização</block>
+  <block id="397e7ff470834102f1db8c0e1d7f00c6" category="paragraph">Após configurar uma fonte de dados, a verificação não inicia automaticamente. Você precisa ativar a verificação para cada sistema.</block>
+  <block id="5c36c141c7bd019c9ed19a66aa3d7d5f" category="list-text">Na aba *Sistemas digitalizados*, localize o sistema que você deseja digitalizar.</block>
+  <block id="75f33db49e0e6285bb693013ad8eff4f" category="list-text">Selecione *Ativar verificações*.</block>
+  <block id="8eea62084ca7e541d918e823422bd82e" category="paragraph-title">Resultado</block>
+  <block id="a184e20ed5e6a5b8da09e0b40c163e0c" category="inline-link-macro">Gerenciar fontes de dados</block>
+  <block id="e2a06367a28bf2533a5c602b27e1216b" category="inline-link-macro">Monitore a integridade da digitalização</block>
+  <block id="af9bbf23b5e3a1331dfcb40555ee9bd1" category="paragraph">O status do sistema é atualizado na guia Sistemas verificados para mostrar que a verificação está em andamento. Para monitorar o progresso da verificação e verificar se o AI Data Engine está indexando os recursos de dados, consulte <block ref="9bb912d6e599634eb2e0e0bb63292cd7" category="inline-link-macro-rx"></block> e <block ref="8e1e532fb417ff9d34e2ce12ba4bb87b" category="inline-link-macro-rx"></block>.</block>
+  <block id="9bb912d6e599634eb2e0e0bb63292cd7" category="list-text"><block ref="9bb912d6e599634eb2e0e0bb63292cd7" category="inline-link-macro-rx"></block></block>
+  <block id="54a8e181914f652a26e1c9bb92d0a23f" category="list-text"><block ref="54a8e181914f652a26e1c9bb92d0a23f" category="inline-link-macro-rx"></block></block>
+  <block id="0a85e5de3bf2e7da2454dd1ebb06df4c" category="inline-link-macro">Avalie a utilização do storage no painel.</block>
+  <block id="e4e3dec594fae827f2c546b2c4243be2" category="list-text"><block ref="e4e3dec594fae827f2c546b2c4243be2" category="inline-link-macro-rx"></block></block>
+  <block id="8e1e532fb417ff9d34e2ce12ba4bb87b" category="list-text"><block ref="8e1e532fb417ff9d34e2ce12ba4bb87b" category="inline-link-macro-rx"></block></block>
+  <block id="71bed252a0d725056daf3e51c5fbeb5b" category="summary">Monitore o status da varredura e gerencie suas fontes de dados conectadas, incluindo pausar varreduras, editar credenciais, habilitar o acesso ao volume DP e desativar sistemas.</block>
+  <block id="3d934a56ae9bd1e2d3693013e9b1ade0" category="doc">Gerencie as fontes de dados no AI Data Engine</block>
+  <block id="54c980376574e881b2271b2d860072c8" category="paragraph">Após conectar as fontes de dados, você pode monitorar o status da verificação e gerenciá-las na guia *Sistemas verificados*. Use estes procedimentos para pausar ou retomar a verificação, atualizar credenciais, ajustar as configurações de acesso aos dados e desativar sistemas que você não precisa mais verificar.</block>
+  <block id="8caae32095ed52cd3c05e55becafb858" category="section-title">Veja o status e os detalhes da digitalização</block>
+  <block id="f9bad9406ac312c31d212aa25120ecf2" category="list-text">Na aba *Sistemas digitalizados*, localize o sistema que você deseja analisar.</block>
+  <block id="3676bd988230e578436a0e1c5ea94daf" category="list-text">Selecione a linha do sistema para abrir a visualização detalhada.</block>
+  <block id="6545e1699002538b5f0ee518b09298e4" category="paragraph">A visualização detalhada mostra:</block>
+  <block id="fa84b834db75064714082c0dd20223d0" category="list-text">Uma visão geral do status com o progresso atual da digitalização</block>
+  <block id="5751b8d5629d88c078d6299f86965140" category="list-text">Um detalhamento dos estados da verificação de recursos de dados: em execução, concluída, pausada e erros</block>
+  <block id="ab61d82ed3b9442ae09a2640f7f66122" category="list-text">Modo de permissão de digitalização (por exemplo, "digitalizar sem permissões de gravação")</block>
+  <block id="942284f04c1abc207bb6a052c78839bb" category="paragraph">Se ocorrerem erros de verificação, expanda os detalhes do erro para ver quais volumes ou compartilhamentos foram afetados e o motivo da falha.</block>
+  <block id="b1652f66588933fdd998c84f1fc371b5" category="section-title">Pausar a digitalização</block>
+  <block id="5d6211b0ed7d27d92b93a574d2c87b14" category="list-text">Na aba *Sistemas verificados*, localize o sistema que você deseja pausar.</block>
+  <block id="549087ff6c78cd133e60eae091dcb474" category="list-text">Selecione *Pausar*.</block>
+  <block id="bf2a5339c0e847663ee371977a8739e6" category="section-title">Retomar a digitalização</block>
+  <block id="f39b13071aeb5402471aa32f93666962" category="list-text">Na aba *Sistemas verificados*, localize o sistema pausado.</block>
+  <block id="f9d637e15d973238afdaad997d440a45" category="list-text">Selecione *Resume*.</block>
+  <block id="03a27bda0a3fbf35292e887abf9530c0" category="section-title">Analisar todos os recursos de dados</block>
+  <block id="174876884410e05a752f3369d44a1be4" category="paragraph">Acione uma varredura imediata de todos os recursos de dados em um sistema. Use isso para atualizar metadados após uma alteração significativa nos dados.</block>
+  <block id="d526d76ea93c408bf96f0d8f6492d4a2" category="list-text">Selecione o menu de ações ao lado do sistema.</block>
+  <block id="eb6687d5f8c164fc44228bdf2efa6e92" category="list-text">Selecione *Verificar todos os volumes* (há uma opção equivalente no menu de ações para compartilhamentos e buckets).</block>
+  <block id="de18a9c7b461766a9e15f645a9277626" category="section-title">Repetir verificações com falha</block>
+  <block id="62f3db64bafc9a9f3332553e7caf974e" category="paragraph">Reencaminhe os recursos de dados que estiverem em estado de falha ou erro. Resolva primeiro a causa raiz, como um problema de credencial, erro de rede ou problema de permissão, antes de tentar novamente.</block>
+  <block id="163c73c5c480913ef1fd9beaede8aa79" category="list-text">Na aba *Sistemas verificados*, localize o sistema com verificações com falha.</block>
+  <block id="3773ecec1d9bf175c40c3e00905fa3a8" category="list-text">Selecione *Tentar novamente todas as verificações*.</block>
+  <block id="9e95c1bf1f55b0dd3fa35ac05987ff47" category="section-title">Editar credenciais do CIFS</block>
+  <block id="6b4f460b09df7f7d04473cce3f5c2091" category="paragraph">Atualize as credenciais que o AI Data Engine usa para autenticar em compartilhamentos SMB/CIFS.</block>
+  <block id="20c1653420c6e86abf3dc395a5235f15" category="list-text">Na aba *Sistemas verificados*, localize o sistema SMB/CIFS.</block>
+  <block id="1c8399981fc0cb7f53cf4e4c1b840982" category="list-text">Selecione *Editar credenciais CIFS*.</block>
+  <block id="1f41fef264384b90868d40a821202c24" category="list-text">Insira o nome de usuário e a senha atualizados e selecione *Salvar*.</block>
+  <block id="414649aab6b69f900857f6d64b790c98" category="section-title">Habilitar ou desabilitar o acesso aos volumes DP</block>
+  <block id="6efc4789000f4a114ada7d2f9cfeb19f" category="paragraph">Os volumes de proteção de dados (DP) são volumes de destino do NetApp SnapMirror. Por padrão, o AI Data Engine não verifica os volumes DP. Você pode ativar ou desativar o acesso aos volumes DP por sistema.</block>
+  <block id="f024fd7ca7740cd729663e0e315fb029" category="list-text">Na aba *Sistemas digitalizados*, localize o sistema.</block>
+  <block id="a7a9e665c4b73f67405d0bcefd63e223" category="list-text">Selecione *Ativar acesso aos volumes DP* ou *Desativar acesso aos volumes DP*.</block>
+  <block id="afed3d052e427b3d85d5eee2e3322141" category="section-title">Ative ou desative a verificação de compartilhamentos, buckets ou volumes específicos</block>
+  <block id="ecdf26f68c4c61e174bec07cbdde9a3f" category="paragraph">Após conectar e analisar uma fonte de dados, você pode ativar ou desativar a análise de volumes ou compartilhamentos individuais sem precisar reconfigurar todo o sistema. Use isso para refinar o escopo da análise após a configuração inicial. Por exemplo, você pode querer excluir volumes que contenham dados que você não precisa analisar ou adicionar volumes que não foram selecionados ou não estavam disponíveis durante a análise inicial.</block>
+  <block id="705ef84a0de672a6a79522e15cbd6ef2" category="list-text">Na aba *Sistemas verificados*, localize o sistema que você deseja atualizar.</block>
+  <block id="0d556b4ab9d1db6d4a1b749f3386759a" category="list-text">Selecione *Ver detalhes* na linha do sistema.</block>
+  <block id="c3af1519c6123af458cb90ec91542a4f" category="list-text">Na lista de recursos de dados, localize o volume, bucket ou compartilhamento que você deseja alterar.</block>
+  <block id="14b27b75a1d120ea9e666d3db0941436" category="list-text">Use a opção *Verificação* para ativar ou desativar a verificação desse recurso.</block>
+  <block id="41935257476ba80c261ff080a271a7d3" category="section-title">Desativar o AI Data Engine para um sistema</block>
+  <block id="a20a23b2ca54961af6236cefa5ef356b" category="paragraph">Desativar um sistema interrompe todas as varreduras e o remove da cobertura de varredura ativa. A configuração do sistema é preservada, e você pode reativá-lo a qualquer momento selecionando *Activate scans* na linha do sistema.</block>
+  <block id="b5ed7919704c41d347e419e3f07f7aee" category="list-text">Na aba *Sistemas verificados*, localize o sistema que você deseja desativar.</block>
+  <block id="41f7ed8100607003b6ffe45c6005c1ff" category="list-text">Selecione *Desativar AI Data Engine*.</block>
+  <block id="712644c5607df8e9083327eca1c82101" category="inline-link-macro">Conecte uma fonte de dados</block>
+  <block id="2724dae3d4fe6872691d5034cb03bbd3" category="list-text"><block ref="2724dae3d4fe6872691d5034cb03bbd3" category="inline-link-macro-rx"></block></block>
+  <block id="d744fa90fe44a5904aea919dfca837ea" category="summary">Confirme se a digitalização está funcionando e se os resultados da sua investigação refletem os dados atuais.</block>
+  <block id="11a16707e401e546365bdd295c6a352c" category="doc">Monitore a integridade da digitalização no AI Data Engine</block>
+  <block id="470523a2048e77f6dc9db3dec1e18161" category="paragraph">Antes de agir com base em um painel ou em um resultado de investigação, confirme se os dados subjacentes estão atualizados. Verifique se a varredura está funcionando e se seus resultados refletem dados atualizados.</block>
+  <block id="2a0b481e4f870b99102f077085800e16" category="section-title">Verifique o status da varredura e a cobertura</block>
+  <block id="9d474a5a515fcc0d55b42b0cf37c092d" category="paragraph">Confirme se todos os seus sistemas de storage estão conectados e sendo verificados.</block>
+  <block id="9cc9537fabb2431661a21bfb76403c12" category="list-text">Na aba *Sistemas verificados*, confirme se todos os sistemas de storage que você espera ver estão listados e habilitados para verificação.</block>
+  <block id="84a5093fdc653e7495c6bbc2f37f5561" category="list-text">Selecione *Exibir detalhes* em uma linha do sistema para revisar o progresso da verificação e quaisquer erros. Consulte <block ref="0b2fcdd8d4d9682bfd2c6d6258375c8a" category="inline-link-macro-rx"></block> para obter detalhes.</block>
+  <block id="b5488e9b98687008f2ea983e9dffd258" category="section-title">Validar se os resultados da investigação refletem os dados atuais</block>
+  <block id="a0a61f82fe136888cc21e0515930a76a" category="paragraph">Se o painel mostrar uma grande quantidade de dados frios ou obsoletos, confirme se os números estão atualizados antes de tomar decisões com base neles.</block>
+  <block id="38f706e282df2c74bca3ccf3f3d0fb9b" category="list-text">Verifique a data e hora da última verificação de cada sistema de storage que contribui para o problema. Um sistema que não foi verificado recentemente pode subestimar ou superestimar a quantidade de dados inativos e obsoletos.</block>
+  <block id="4212d3ae3d1d779b3e6d2793eb980dd6" category="list-text">Confirme se a cobertura da varredura está completa para esse sistema. Uma varredura parcial (pausada, em andamento ou com erros) significa que alguns dados ainda não foram avaliados.</block>
+  <block id="adc853eb6e5b5878e13573f1fa83cfcb" category="list-text">Aguarde o próximo ciclo de varredura ou resolva o erro subjacente se a cobertura parecer incompleta.</block>
+  <block id="3540fa5efa78b3ae6e9c7d52a1e7d21a" category="list-text"><block ref="3540fa5efa78b3ae6e9c7d52a1e7d21a" category="inline-link-macro-rx"></block></block>
+  <block id="949195768b714c50c6fc8c9385a74cc5" category="inline-link-macro">Analise seus dados</block>
+  <block id="a7b69c2f48ed01caa5360edd3b7e1922" category="list-text"><block ref="a7b69c2f48ed01caa5360edd3b7e1922" category="inline-link-macro-rx"></block></block>
+  <block id="3feb21bfc5c576b8b0ba88831f152f9e" category="summary">Analise os requisitos de infraestrutura e rede antes de implementar o AI Data Engine.</block>
+  <block id="f0d98a4bfed3e44ea9936088be5b51be" category="paragraph">Antes de implementar o AI Data Engine, revise os requisitos de rede, dimensionamento de VM e sistema operacional para o seu ambiente.</block>
+  <block id="9251700e586dc1a410f2e755a8643751" category="section-title">Requisitos de rede</block>
+  <block id="6cd7be1b5f82b01b11188317c9ab762d" category="paragraph">As seguintes conexões de rede devem estar abertas:</block>
+  <block id="c2cc7082a89c1ad6631a2f66af5f00c0" category="cell">Conexão</block>
+  <block id="60aaf44d4b562252c04db7f98497e9aa" category="cell">Porta</block>
+  <block id="888a77f5ac0748b6c8001822417df8b6" category="cell">Protocolo</block>
+  <block id="02674a4ef33e11c879283629996c8ff8" category="cell">Direção</block>
+  <block id="261addf78c7b2c961032b3dd08ba0b1f" category="cell">Propósito</block>
+  <block id="74ebb19c002aeb0737bde4301280551b" category="cell">Agente de console para o NetApp Console</block>
+  <block id="13f3cf8c531952d72e5847c4183e6910" category="cell">443</block>
+  <block id="b136ef5f6a01d816991fe3cf7a6ac763" category="cell">TCP</block>
+  <block id="4c32be4a0b4f48cdd593aef35fd69e44" category="cell">Saída</block>
+  <block id="79c4d4839679effbb0de35f32d5b0348" category="cell">HTTPS: conectividade com o NetApp Console</block>
+  <block id="ae7fb447812f3f8ffd319804eaaf9c57" category="cell">Agente de console para ONTAP</block>
+  <block id="48d083b082abdc6a89158d0e6ae2d159" category="cell">HTTPS: descoberta de cluster ONTAP</block>
+  <block id="3cda5bf04bdb0f0bc3387861b3f93fde" category="cell">Agente de console para AI Data Engine</block>
+  <block id="bfd0e75d565a2e7a467f23c7d6ed5272" category="cell">80, 443, 8080, 9000</block>
+  <block id="abd4328c725637aabedbd02d3b7ffd40" category="cell">Bidirecional</block>
+  <block id="6c2a2f48b6d12c7baaa10e3a9ae2f62f" category="cell">Comunicação entre o Console Agent e o AI Data Engine</block>
+  <block id="931d680d6a5460c1d2622564222f587f" category="cell">AI Data Engine para o ONTAP (NFS)</block>
+  <block id="7a7f881d4d3190005bfe3277c48286d2" category="cell">111, 2049</block>
+  <block id="8962b8350728e2f6eb9cbbb07ca70d86" category="cell">TCP/UDP</block>
+  <block id="aa488fb4d7657cdf6ee20912242f78c9" category="cell">Para storage</block>
+  <block id="c286f6ab35109c987f8d1c719c99357d" category="cell">Acesso à fonte de dados NFS</block>
+  <block id="593471079242cfe64460e1a9f77827e9" category="cell">AI Data Engine para o ONTAP (SMB/CIFS)</block>
+  <block id="bb9d171c99ee8c2dd5ace360b8c91105" category="cell">139, 445</block>
+  <block id="ef43abd9c133e1911593104b252ec139" category="cell">Acesso à fonte de dados SMB/CIFS</block>
+  <block id="8adeec70074c625307a8b338e365abb6" category="cell">AI Data Engine para o Active Directory</block>
+  <block id="ce4eb690b25a002b5241b04f64c1e5a3" category="cell">389, 636, 3268, 3269</block>
+  <block id="aaf48608e56973323dc5fd5ed96df4e0" category="cell">LDAP (389), LDAPS (636) e Catálogo Global (3268, 3269) para autenticação de usuário e varredura SMB/CIFS. A porta 389 usa TCP e UDP; todas as outras portas usam apenas TCP.</block>
+  <block id="2db1dab3ddb9f419528a22df20d91148" category="cell">AI Data Engine para os serviços da NetApp / Registro de contêineres</block>
+  <block id="b7ac7d300206d5941ec66379a70e21c9" category="cell">HTTPS: downloads de artefatos e obtenções de imagens de contêiner (AWS S3 e ECR)</block>
+  <block id="c8f224037ea295aeec347c94779d9932" category="section-title">Acesso à internet de saída</block>
+  <block id="fe5ca1427b7b25600877465e2b007712" category="paragraph">Para uma instalação online, os seguintes endpoints devem estar acessíveis a partir do host do AI Data Engine:</block>
+  <block id="2a6ba72e93aa7fa676d07973ed2716bb" category="cell">Endpoint</block>
+  <block id="5d113f2038d289f391614c39043629e8" category="cell">Escopo</block>
+  <block id="97a10868af176d2bb0b0e075c08558b7" category="cell"><block ref="8ace43f907c71d8be7768e59cf9e21dc" prefix="" category="inline-code"></block></block>
+  <block id="6061d3eb59dc8de0365754ba1b7fa241" category="cell">Comunicação do NetApp Console</block>
+  <block id="130c5b3473c57faa76e2a1c54e26f88e" category="cell">Ambos</block>
+  <block id="cbb66f5f0c7ca4b7d24f549b094bdc89" category="cell"><block ref="300f031c227ed1b4448a8bb51abec2bb" prefix="" category="inline-code"></block></block>
+  <block id="f819285916732af4c9441637a0f0e6f3" category="cell">Autenticação centralizada do usuário</block>
+  <block id="43cb0bffdd9d5ded05a3424ff4e965da" category="cell"><block ref="fdb51f8a262ef532926feb44b010cb72" prefix="" category="inline-code"></block></block>
+  <block id="80a6f28c09d348797265c4baa8b846a2" category="cell">Serviços de autenticação</block>
+  <block id="d7f881d10d719addec3155de4baf22eb" category="cell"><block ref="51fe8074caa966b7d305454c11b1d09d" prefix="" category="inline-code"></block></block>
+  <block id="4dc4e4dd4f2622ff339cec2e9b258777" category="cell">O NetApp container registry (imagens de contêiner do AIDE)</block>
+  <block id="b300e728158ca5abf567ee6842739ef7" category="cell"><block ref="8d1a277a7868d38ae6878e8c44088c86" prefix="" category="inline-code"></block></block>
+  <block id="6ff6699f108d036de7d8b3307cbba639" category="cell">O registro de contêineres NetApp (acesso ao endpoint dualstack/virtual private cloud (VPC))</block>
+  <block id="728781c2f7cdb1f4c5cae712d25a3521" category="cell"><block ref="910449e9fd785da87d5f385fac95cee8" prefix="" category="inline-code"></block></block>
+  <block id="27eab3a38e9c960cd387dd0fcb59b25e" category="cell">API do AWS ECR (autenticação e recuperação do manifesto da imagem)</block>
+  <block id="b3bd75f12ce9b0acd43d20cbcdc48fcb" category="cell"><block ref="7ca098361cdcac8376224541f6a154c1" prefix="" category="inline-code"></block></block>
+  <block id="465fa38be0e889a6f4f5eea4bfe44907" category="cell">AWS S3 (armazenamento da camada de imagem do contêiner ECR)</block>
+  <block id="42f24633638dc7dcd28fb8f99b7b7345" category="cell"><block ref="d1d564ee4aa9ec56fade21c33a8fa4ed" prefix="" category="inline-code"></block></block>
+  <block id="5f307da0cc037fccf5156a0b4ee1113d" category="cell"><block ref="ff032e02260ff014601b07ec7a62ebb1" prefix="" category="inline-code"></block></block>
+  <block id="5443ee8394dc795513c17308df8c608c" category="cell">AWS S3 (script de wrapper do instalador, gráficos Helm e catálogo de versões de componentes)</block>
+  <block id="7ded7b42d1eca3a189946f71087a85aa" category="cell"><block ref="da2b821a15b81caba3d4b0ea9a59ff1e" prefix="" category="inline-code"></block></block>
+  <block id="aa0b7e03e09f090a4bf285bf5ccb013f" category="cell"><block ref="392fdd4737637bf98a0b2e0d58c55d8b" prefix="" category="inline-code"></block></block>
+  <block id="a8d7819f8fcc49a13bd5e04efc4bb73d" category="cell">AWS STS (troca temporária de credenciais para acesso ao registro e ao S3)</block>
+  <block id="e01bbe0a773568d8b2d943c725bc4a98" category="cell"><block ref="ecaf91bb6d35ab95086ca1e072f979e8" prefix="" category="inline-code"></block></block>
+  <block id="3ed1acda8d7511c7f0e269b4d06365c2" category="cell">Imagens de software, manifestos e modelos; streaming de logs e métricas</block>
+  <block id="113661af05a54ad30f2cf875f2085a8c" category="cell"><block ref="8c4749a6c91d5b5be3fa16d5adfdfcd0" prefix="" category="inline-code"></block></block>
+  <block id="c6c113e5074b85b3ee7783cc7a256ee6" category="cell">CloudFront rede de entrega de conteúdo para distribuição de software</block>
+  <block id="154a7dea0b63eaedaeebe172e4e534dd" category="cell"><block ref="6a2ac7d8f0e16e23be3e2fab90d9833f" prefix="" category="inline-code"></block></block>
+  <block id="dd1e8a369ffb5c425f5295170150f923" category="cell">Pacotes de pré-requisito do Ubuntu</block>
+  <block id="a41cf9dbadca9500ac38067b535c8cf0" category="cell">Somente Lite (Ubuntu)</block>
+  <block id="a507356b394570536b9953261b512550" category="cell"><block ref="8a37b484d48f7ab19209f20f88161503" prefix="" category="inline-code"></block></block>
+  <block id="638435f38da637d50db5ecf629602caa" category="cell">Arquivo de pacotes do Ubuntu</block>
+  <block id="0b20abf458365869110b9a53c5f48b0f" category="cell"><block ref="d85007fc604c0187d8c7f0a0905426d5" prefix="" category="inline-code"></block></block>
+  <block id="73e4a059e9e92b2539973611852c265b" category="cell">Arquivo de pacotes de segurança do Ubuntu</block>
+  <block id="eb1b835842ecab36376189c338d3e249" category="cell"><block ref="9efd15cdc3b59f15ddb128b87d2bc31a" prefix="" category="inline-code"></block></block>
+  <block id="afcd81bacefaa3b77cbbea478e2ee10f" category="cell">download do ambiente de execução k3s (iniciado pelo instalador)</block>
+  <block id="6f5c0b49665b73d6c115ce1c02b0a641" category="cell">Apenas Lite</block>
+  <block id="84e4ea8324474b00a6eda8b69e242e21" category="cell"><block ref="a8563316869b25370e1b9ac9741eff2d" prefix="" category="inline-code"></block></block>
+  <block id="13dfeaaa930b5f416523dd975c27cf87" category="cell">Download do Helm (iniciado pelo instalador)</block>
+  <block id="474410b6ac258b996077d7027389646f" category="inline-link-macro">requisitos de acesso à rede para o NetApp Console</block>
+  <block id="c7da5317ad58b7d0506fb53736221000" category="paragraph">AI Data Engine também depende do NetApp Console para autenticação centralizada e serviços de console. Consulte <block ref="6f746cd707dc96e510abd18d2b8a9632" category="inline-link-macro-rx"></block> para ver os endpoints necessários para a conectividade do Console e do agente do Console.</block>
+  <block id="2c20fbdcf9b7401db8516a896c4e0033" category="paragraph">Antes de iniciar a implantação, verifique se a resolução de DNS para esses endpoints está funcionando no host do AI Data Engine.</block>
+  <block id="a3ac66e285684389dd120cdd1d91a5a6" category="section-title">Requisitos do AIDE Lite</block>
+  <block id="5227f9d83b477a63e6c0e89a04230d28" category="section-title">Dimensionamento de VMs</block>
+  <block id="e40651cfbb74f24098d1e77f279d26fc" category="inline-xref">Diretrizes flexíveis de dimensionamento</block>
+  <block id="5239445f5c0400ffad13f96e85ca912d" category="paragraph">Esses tamanhos são configurações básicas recomendadas, otimizadas para uma janela inicial de varredura de três a quatro dias, e não limites rígidos. Consulte <block ref="fdfdda200a4cf41e7b7263540f25f221" category="inline-xref-macro-rx"></block> para saber o que influencia esses números e como escalá-los além deles.</block>
+  <block id="6f6cb72d544962fa333e2e34ce64f719" category="cell">Tamanho</block>
+  <block id="5d56dbd20d9ee1ab8a722ff12e331953" category="cell">vCPU</block>
+  <block id="e53619c1fe611a51eeeb8d148ba6e532" category="cell">RAM</block>
+  <block id="380dbc8d9d2c8a17f6ebb0b2c62d3e85" category="cell">Disco</block>
+  <block id="83b43ea2a270ae284e57558dfbd904a4" category="cell">IOPS de armazenamento</block>
+  <block id="d942498bbf676ede690f93fe6f4eba33" category="cell">Taxa de transferência de storage</block>
+  <block id="eec89088ee408b80387155272b113256" category="cell">Rede</block>
+  <block id="a00581fb76f430c52622665705a127d6" category="cell">Arquivos aproximados</block>
+  <block id="2660064e68655415da2628c2ae2f7592" category="cell">Pequeno</block>
+  <block id="c74d97b01eae257e44aa9d5bade97baf" category="cell">16</block>
+  <block id="7fffe4f81cc10365684f8c3ef5dfc752" category="cell">64 GB</block>
+  <block id="47a5e6e39f64ff5d5dfb25da1aa3f3f2" category="cell">500 GB</block>
+  <block id="b7bc1c544eac128f494cbef4dde51844" category="cell">8.000</block>
+  <block id="253904cf11e154c1467da791e2916dff" category="cell">1.000 MB/s</block>
+  <block id="542a51a19678b099661225e50ca14113" category="cell">1 GbE</block>
+  <block id="007104a26459cf001f34b5b588ae4d6b" category="cell">200 milhões</block>
+  <block id="87f8a6ab85c9ced3702b4ea641ad4bb5" category="cell">Médio</block>
+  <block id="6364d3f0f495b6ab9dcf8d3b5c6e0b01" category="cell">32</block>
+  <block id="da41e52384d87f5c6c3e5e945da60a14" category="cell">128 GB</block>
+  <block id="4399cdb8f35c7f54994fbd6ad16ae51d" category="cell">2 TB</block>
+  <block id="29ca150c07f43a7c676ecb487e3b8100" category="cell">12.000</block>
+  <block id="37b2db17d6593a3788376bf9bb6c1535" category="cell">1.500 MB/s</block>
+  <block id="8452946a913c5da5d0753b575bc8e7b6" category="cell">1 bilhão</block>
+  <block id="3a69b34ce86dacb205936a8094f6c743" category="cell">Grande</block>
+  <block id="26657d5ff9020d2abefe558796b99584" category="cell">96</block>
+  <block id="a10c56d6d6012a90b60e77f2248ee70f" category="cell">192 GB</block>
+  <block id="ab4bf7c1be6270d2b6e2a29d2048d9ba" category="cell">6 TB</block>
+  <block id="5fd87da18bd5a2e29a0cc852c332a1ba" category="cell">16.000</block>
+  <block id="97fcefbae965abf290381c16b678b7ec" category="cell">2.000 MB/s</block>
+  <block id="f813d4c41b3987dfffdcc0cea30c64cf" category="cell">10 GbE</block>
+  <block id="68c08a4d5037c95bc8fba88bfb68be34" category="cell">3 bilhões</block>
+  <block id="8d13605af92cc217c85c4ad45d6f7c6e" category="admonition">Recomenda-se o uso de SSD NVMe ou outro armazenamento de estado sólido para todos os tamanhos de implantação. Os valores de disco nesta tabela refletem apenas o armazenamento do volume de dados do AIDE. Se o sistema operacional, o runtime do k3s e os dados do AIDE compartilharem um único disco, adicione aproximadamente 65 GB ao valor de disco para o tamanho escolhido. Por exemplo, uma implantação Small em um único disco requer aproximadamente 565 GB no total.</block>
+  <block id="f8a25fbf01ad745086d3090cb86949e9" category="inline-xref">Configurações pequena, média e grande</block>
+  <block id="2c63324398e340bc0cfa20633d950a5d" category="paragraph"><block ref="63c192fbfe28a904fef2370327d0b606" category="inline-xref-macro-rx"></block>são valores de referência recomendados para um período inicial de verificação de três a quatro dias, e não limites rígidos impostos pelo software.</block>
+  <block id="5616873f83786e41d208235efcb21dfa" category="list-text">O que influencia as recomendações de dimensionamento</block>
+  <block id="b3175af68c1f955a338904f52f52c31b" category="list-text">*Número total de arquivos e diretórios*: o número total de objetos a serem catalogados é o principal fator que determina os requisitos de computação e armazenamento. Um número maior de objetos exige proporcionalmente mais memória, CPU e armazenamento.</block>
+  <block id="477c48bec7aa8153b71c2fa6775007ea" category="list-text">*Estrutura de diretórios*: o uso de recursos varia de acordo com a profundidade de aninhamento dos diretórios e como os arquivos são distribuídos entre compartilhamentos e volumes. Estruturas profundamente aninhadas ou altamente fragmentadas podem exigir mais recursos do que a mesma quantidade de arquivos em uma hierarquia mais plana.</block>
+  <block id="ae5bdffd41c2fa1109349cdb30a487d8" category="list-text">*Taxa de transferência de varredura necessária*: a velocidade de conclusão inicial do catálogo está diretamente ligada à alocação de CPU e memória. O provisionamento abaixo do tamanho recomendado reduz a taxa de transferência e estende a janela de varredura inicial.</block>
+  <block id="5255e30ce3becd1a8dad5261847352e9" category="list-text">*Desempenho de armazenamento*: recomenda-se fortemente o uso de armazenamento de alto desempenho. A indexação de metadados e o processamento de eventos exigem IOPS e taxa de transferência sustentados, proporcionais ao tamanho da implementação.</block>
+  <block id="21d3030790ee8dd6aedf4b3d3bd85241" category="list-text">O que acontece se você usar um tamanho menor do que o necessário?</block>
+  <block id="976dca6e7f73b47bd2e65fc64fda0297" category="paragraph">O provisionamento abaixo do tamanho recomendado não impede a instalação nem causa falhas no serviço. O sistema permanece operacional e a verificação continua, mas você pode esperar o seguinte:</block>
+  <block id="3392722f1bd8a79d8ce9aa1291375d35" category="list-text">*Duração inicial do catálogo estendida*: a redução da capacidade computacional diminui o número de objetos verificados por dia. Por exemplo, uma implementação destinada a 3 bilhões de objetos, mas provisionada com um tamanho menor, pode levar significativamente mais tempo do que a meta de três a quatro dias.</block>
+  <block id="04f33df6364dce086ab124fb023f1189" category="list-text">*Redução da taxa de transferência contínua de ingestão*: novos eventos de arquivo e atualizações incrementais de varredura são processados mais lentamente sob carga sustentada.</block>
+  <block id="0e2dd61bf6532387db4ae20e0fdd6b94" category="list-text">*Risco de capacidade de storage*: uma capacidade de storage insuficiente em relação à contagem total de objetos pode levar o índice de metadados aos limites de capacidade. Normalmente, você pode resolver isso expandindo a capacidade de storage, sem a necessidade de uma reimplantação completa.</block>
+  <block id="1a3127d574918312a4ab223c9e789fd8" category="list-text">Aumente a capacidade quando precisar de mais capacidade</block>
+  <block id="843313627dc8ca4704eddce4be151a81" category="paragraph">O AIDE Lite é executado em uma única VM, portanto o escalonamento é vertical:</block>
+  <block id="6c662a2b269371b61f3191b2ada2b39e" category="list-text">Aumente a quantidade de vCPU, memória ou storage na VM do host.</block>
+  <block id="6a09047df4598fb150581654b18f4fec" category="list-text">Não é necessário reconfigurar nem reinstalar o cluster.</block>
+  <block id="d23bfd9ad7bd0c9a791c088e9bd2252f" category="inline-link-macro">O AIDE Enterprise</block>
+  <block id="0da03b32810b54d59826c030fc38e4e3" category="admonition">O AIDE Lite não oferece suporte a alta disponibilidade nem com escalabilidade horizontal. Se o seu ambiente exceder consistentemente 3 bilhões de arquivos ou se você precisar de alta disponibilidade e tolerância de falhas, implante <block ref="d382e1cc179a193668ba420fcde06e3a" category="inline-link-macro-rx"></block>.</block>
+  <block id="696c660ff8d9323e55146a6dbd4e4088" category="section-title">Sistema operacional</block>
+  <block id="17bc10091293fdc562a6db69940ee924" category="cell">SO</block>
+  <block id="2e5d14f7919ff3c6138e7845aec4f915" category="cell">Versões suportadas</block>
+  <block id="3d945423f8e9496c429a5d8c65b4604f" category="cell">Ubuntu</block>
+  <block id="91cf600280a31c34bee92cbbf232fbb4" category="cell">22.04 LTS, 24.04 LTS (24.04 LTS recomendado)</block>
+  <block id="eb13ea1edb52f2f7cdf4b15544892c06" category="cell">Red Hat Enterprise Linux (RHEL)</block>
+  <block id="2faf5144932acddbc582e2735ccfaf81" category="cell">8.x, 9.x</block>
+  <block id="4a08abf9b8a46798cdcd3d6fa7855a47" category="section-title">Pré-requisitos adicionais</block>
+  <block id="d9f20d148982fcb9954271f9773f9faa" category="list-text">Você precisa ter acesso root ou sudo na máquina virtual de destino para executar o instalador.</block>
+  <block id="d0841e0c68b47eabc71d450da0eb4198" category="list-text">É necessária uma conexão de rede mínima de 1 GbE (10 GbE para implantações grandes).</block>
+  <block id="be09bfe2a7cb95c01696de8958129e58" category="list-text">O host de destino deve ter o bash 4.0 ou posterior, o curl e o tar disponíveis.</block>
+  <block id="e659b40d2126ceff49df127acc731bb5" category="list-text">O instalador baixa e inicializa automaticamente<block ref="8adf56ad116be901bc1c46fc138f5e35" prefix=" " category="inline-code"></block>,<block ref="e7d07ed8aa8dd8cafce4a527a523d6c5" prefix=" " category="inline-code"></block>,<block ref="0f12ee5c9f1dd90158580f1c292b0d37" prefix=" " category="inline-code"></block> e<block ref="d8757fb4e9ea07606d23a1ef5a4b8d4e" prefix=" " category="inline-code"></block>. Não é necessário pré-instalar essas ferramentas na máquina virtual de destino.</block>
+  <block id="bdbae2c2c4e32ec6c1ad43c90a2e0cb1" category="list-text">As portas 6443 (TCP), 10250 (TCP) e 8472 (UDP) devem estar livres no host antes de o instalador iniciar. Se um firewall do host <block ref="7ba21652408bcade58b8719451511f2a" prefix="(" category="inline-code"></block> no RHEL ou <block ref="43a8c9840722971d7bc00f689aaba839" prefix=" " category="inline-code"></block> no Ubuntu) estiver ativo, permita essas portas e o CIDR do pod k3s <block ref="4cc0d71210465fa62867c07617a07f7c" prefix="(" category="inline-code"></block>) e o CIDR do serviço <block ref="1791b22edf57421226fdd571bb029cc8" prefix="(" category="inline-code"></block>) antes de executar o instalador. Consulte a documentação do firewall do seu sistema operacional para ver os comandos necessários.</block>
+  <block id="d695202087632e6b4642eb352ae1d72e" category="list-text">Em sistemas RHEL com SELinux em modo Enforcing, o instalador configura automaticamente os pacotes de política SELinux necessários. Nenhuma configuração manual do SELinux é necessária.</block>
+  <block id="d7df956ed8a6009f2697e7ea59f768d5" category="section-title">Requisitos do AIDE Enterprise</block>
+  <block id="4fa7f8915ea18c5e59f278f803e53f3c" category="list-text">Você tem acesso ao kubectl com privilégios de administrador de cluster na máquina a partir da qual executa o instalador.</block>
+  <block id="6cae2059ae7f40a8509d44cf4088d007" category="list-text">Você tem permissões de Sudo (ou root) na máquina a partir da qual executa o comando de instalação.</block>
+  <block id="1af43e39f476169c4e7048fa30b0d2c7" category="list-text">O RKE2 v1.34 ou posterior (v1.36.x recomendado) está instalado no cluster de destino.</block>
+  <block id="76fb8e768567e341c1a0798fe4e633d9" category="list-text">O host do instalador baixa e inicializa automaticamente<block ref="e7d07ed8aa8dd8cafce4a527a523d6c5" prefix=" " category="inline-code"></block>,<block ref="0f12ee5c9f1dd90158580f1c292b0d37" prefix=" " category="inline-code"></block> e<block ref="d8757fb4e9ea07606d23a1ef5a4b8d4e" prefix=" " category="inline-code"></block> por meio de<block ref="50bc6b145cdb10db9c46326848e35a5f" prefix=" " category="inline-code"></block>. Não é necessário pré-instalar essas ferramentas na máquina de gerenciamento.</block>
+  <block id="27c33c218c2b02ddcbe36e59b26e901d" category="list-text">Uma StorageClass configurada (nome padrão<block ref="92bf138b666c1c986bd7a1a4dcae9436" prefix=" " category="inline-code"></block>) está disponível no cluster e é usada para os serviços de suporte com estado do AIDE.</block>
+  <block id="ce5ab936ac40869458236d23365a7973" category="list-text">Um servidor NFS com pelo menos um caminho exportado está disponível, usado para o volume de dados de configuração do AIDE e snapshots de índice compartilhados.</block>
+  <block id="488ff87aea5a8d31ced927df06aa9dc3" category="list-text">Um namespace Kubernetes de destino (padrão<block ref="87a4f89dbcdda862656068534d7005a9" prefix=" " category="inline-code"></block>) já existe no cluster; o instalador não o cria.</block>
+  <block id="80193bec93acbe5d566695e92ff40775" category="admonition">O armazenamento NVMe ou SSD de alto desempenho é recomendado para todas as implementações de nós Enterprise.</block>
+  <block id="3aaf805fc23f2d38628eb9e6dc9e212b" category="section-title">Dimensionamento de nós</block>
+  <block id="a7241bce0d45d1d8412b2bdb9a2eec8e" category="paragraph">Esses tamanhos são configurações de cluster de linha de base recomendadas, otimizadas para uma janela de verificação inicial de aproximadamente três dias, e não limites rígidos de capacidade. AIDE Enterprise oferece suporte a ambientes com mais de 6 bilhões de arquivos por meio de escalabilidade horizontal. Consulte <block ref="11b0da32332d2d0d9386ce7e27a30ee4" category="inline-xref-macro-rx"></block> para obter detalhes.</block>
+  <block id="187c6ad3a74cc93ac6c2229d398e383e" category="cell">Nós</block>
+  <block id="1bfd2220d8fe0d16364a1fbbcb55ddc7" category="cell">vCPU por nó</block>
+  <block id="b35eb28fbdaf65ec1327e79b53c92e28" category="cell">RAM por nó</block>
+  <block id="423216f082fec9a07efd841cf2b73c0a" category="cell">Disco por nó</block>
+  <block id="34d27416cf2043f878a1146074999ee9" category="cell">IOPS de storage por nó</block>
+  <block id="809af93b75fb9d00ddf2e6804ac26921" category="cell">Taxa de transferência de storage por nó</block>
+  <block id="9d5bc42a1c7b5a6800df499cdffee6e5" category="cell">Rede por nó</block>
+  <block id="eccbc87e4b5ce2fe28308fd9f2a7baf3" category="cell">3</block>
+  <block id="1afcf8ebd4c358721fd35f9b14bffaaf" category="cell">~1,3TB</block>
+  <block id="1679091c5a880faf6fb5e6087eb1b2dc" category="cell">6</block>
+  <block id="642e92efb79421734881b53e1e1b18b6" category="cell">48</block>
+  <block id="afed790d874c2e5b39e05619b86defab" category="cell">~2TB</block>
+  <block id="45c48cce2e2d7fbdea1afc51c7c6ad26" category="cell">9</block>
+  <block id="ea5d2f1c4608232e07d3aa3d998e5135" category="cell">64</block>
+  <block id="93bc489a942be947d2726505e1ca48b3" category="cell">256 GB</block>
+  <block id="c37f4c58f39bdadb53567758084c00fe" category="cell">~2,7TB</block>
+  <block id="f11053ee708ace18a04905ad93419736" category="cell">6 bilhões</block>
+  <block id="34feeb41c12a81b277887e38b0e1ee6c" category="paragraph"><block ref="bfc30cc05666392ab558bedcc9f91c20" category="inline-xref-macro-rx"></block> são configurações básicas de cluster recomendadas para uma janela de verificação inicial de aproximadamente três dias, e não limites rígidos de capacidade impostos pelo software. O AIDE Enterprise suporta ambientes com mais de 3 bilhões de arquivos por meio de escalabilidade horizontal entre os nós do cluster.</block>
+  <block id="e7b02f4784ecd28afb8997ce3e05d184" category="list-text">*Número total de arquivos e diretórios*: o número total de objetos é o principal fator determinante dos requisitos de armazenamento e computação. Ambientes maiores exigem nós de cluster adicionais para distribuir a carga de processamento e manter o desempenho.</block>
+  <block id="25086dd45e0992ec487556de2c24cc04" category="list-text">*Replicação de alta disponibilidade*: implantações corporativas habilitam a replicação de dados entre nós por padrão para tolerância de falhas. A replicação aumenta os requisitos totais de storage e memória em comparação com uma implantação equivalente em um único nó.</block>
+  <block id="4a47b233159281b95c6ff76fd60442fa" category="list-text">*Número de nós e distribuição da carga de trabalho*: a taxa de transferência de processamento e a capacidade total do catálogo aumentam proporcionalmente ao número de nós no cluster. Nós adicionais distribuem tanto a carga de trabalho de indexação quanto a capacidade de storage pelo cluster.</block>
+  <block id="fc768cfdf2ef096f800a1266bbff12b3" category="list-text">*Taxa de transferência de varredura necessária*: a alocação de CPU e memória em todo o cluster determina a taxa de varredura diária e a rapidez com que o catálogo inicial é concluído.</block>
+  <block id="bca9080545e2ebb3d3f268550dacf9ca" category="list-text">*Desempenho de armazenamento por nó*: recomenda-se fortemente o uso de armazenamento de alto desempenho em cada nó, e a capacidade total do cluster aumenta proporcionalmente ao número de nós.</block>
+  <block id="a6cb150774c57ec4d46f3f0687ffced7" category="paragraph">O provisionamento abaixo do tamanho recomendado não impede a instalação nem causa falhas graves. Os impactos práticos incluem:</block>
+  <block id="160c5350b70126814b2fba75f7af8cff" category="list-text">*Duração inicial do catálogo estendida*: menos nós ou recursos reduzidos por nó diminuem a taxa de transferência, prolongando proporcionalmente a janela inicial do catálogo.</block>
+  <block id="8c76ce7c020db553216deba2dc8f5401" category="list-text">*Aumento da latência de processamento sob carga máxima*: memória insuficiente em todo o cluster pode causar aumento da latência de processamento durante períodos de ingestão de alto volume. As operações em andamento não são interrompidas, mas a taxa de transferência sustentada é reduzida.</block>
+  <block id="182dadf1fe353e7cc124c0b9ccdfd5fa" category="list-text">*Risco de capacidade de storage*: capacidade de storage insuficiente no cluster para a contagem de objetos de destino pode levar o índice de metadados a se aproximar dos limites de capacidade. Você pode resolver isso expandindo o storage nos nós existentes (sem interrupção) ou adicionando um nó de storage dedicado.</block>
+  <block id="0cfd3ae232b1f5c6e4b55c8d7488d43f" category="paragraph">O AIDE Enterprise oferece escalabilidade horizontal sem necessidade de reimplantação:</block>
+  <block id="9eaa27fc36031cf7508a6c9afb5da59b" category="list-text">Adicione nós de trabalho para aumentar a CPU e a memória disponíveis para o processamento de varreduras e a ingestão de eventos.</block>
+  <block id="2613221086922fe4c4c02f9bb4e826a6" category="list-text">Adicione nós de storage dedicados para aumentar a capacidade total do catálogo. Esta é a principal forma de dimensionar ambientes além do maior tamanho de implantação predefinido.</block>
+  <block id="66176e61e735a415fff25c70d428be82" category="list-text">Aumente a capacidade para além de 6 bilhões de arquivos adicionando mais nós ao cluster. Entre em contato com seu NetApp representante para obter orientações sobre o dimensionamento de nós em escalas personalizadas.</block>
+  <block id="bc9887c630f44bf1747981259d20312d" category="admonition">A adição de nós a um cluster Enterprise existente não interrompe as operações de varredura em andamento, mas coordene a alteração durante um período de baixa atividade.</block>
+  <block id="8676992f5e93250096176880b5305a01" category="inline-link-macro">Visão geral da implantação do AIDE</block>
+  <block id="d3556613131e318e5f2d2a7ee8d38a7c" category="list-text"><block ref="d3556613131e318e5f2d2a7ee8d38a7c" category="inline-link-macro-rx"></block></block>
+  <block id="07a3b4a364ef4ea2f66e179b22b2c081" category="inline-link-macro">Implantar o AI Data Engine — Lite</block>
+  <block id="10bda37ec504bc21475c363f87d039b7" category="list-text"><block ref="10bda37ec504bc21475c363f87d039b7" category="inline-link-macro-rx"></block></block>
+  <block id="9780340266e04ab00f8baf827c278456" category="inline-link-macro">Implantar AI Data Engine — Enterprise</block>
+  <block id="b8ffd49b161a0bafa7ac79af99a078d4" category="list-text"><block ref="b8ffd49b161a0bafa7ac79af99a078d4" category="inline-link-macro-rx"></block></block>
+  <block id="bf432db974914045dbdb141a94746102" category="summary">Implante o AIDE Lite a partir do NetApp Console usando o assistente de implantação.</block>
+  <block id="f7c39236be6bd435ec42b2fa2cf0b64d" category="doc">Implantar o AI Data Engine Lite</block>
+  <block id="b1099081e00f8989d9694c85a0c5923a" category="paragraph">Implante o AIDE Lite a partir do NetApp Console usando o assistente de implantação. O assistente orienta você na seleção do seu local de instalação, na escolha de um tamanho de configuração e na execução do comando de instalação no seu host de destino.</block>
+  <block id="6c197e358af4189fc5967ff9d49f6db4" category="list-text">Você tem permissões de _Administrador da organização_ ou superiores no NetApp Console.</block>
+  <block id="1f4a2d6200ad6e55158f5376f5cc28b6" category="list-text">As permissões de sudo (ou root) são necessárias no host de destino para executar o comando de instalação.</block>
+  <block id="6d7bfbfb328e91017c8160aec407be19" category="inline-link-macro">Requisitos do AIDE</block>
+  <block id="65eacaaf3bea1fd7a8594828320cd9f6" category="list-text">Seu ambiente atende a todos os pré-requisitos descritos em <block ref="0be0e04edd1e19a89ae931415ae02878" category="inline-link-macro-rx"></block>.</block>
+  <block id="c38a91b64338659be48390e7b59b98be" category="inline-link">é implantado</block>
+  <block id="b2c5da1f5dc6f7356acb47cf3ba444d1" category="list-text">Um agente do NetApp Console<block ref="b73290be3504f0507d7e45d060da298b" category="inline-link-rx"></block> e acessível a partir do host do AI Data Engine. O IP do Console Agent é necessário para executar o comando de instalação.</block>
+  <block id="174790ce4804262cdbb778690ee4a907" category="list-text">No NetApp Console, navegue até *Governança* &gt; *AI Data Engine*.</block>
+  <block id="48602d83d5d9910704adcce3b2ee67e6" category="paragraph">A página inicial do AI Data Engine é exibida.</block>
+  <block id="5bb86b97d5261c3f0e5705b4f80cac36" category="list-text">Selecione *Implantar o AI Data Engine*.</block>
+  <block id="f365e3c1684ae4b1c44970f25e545b04" category="list-text">Selecione a opção de implantação *Lite* e selecione *Avançar*.</block>
+  <block id="a2c58206f4ee0d23ded834a18b1daf1f" category="list-text">Copie o comando de instalação pré-configurado exibido no assistente para um editor.</block>
+  <block id="96285c2d71bcec3ce19882c295253e45" category="list-text">Selecione o tamanho da sua configuração:</block>
+  <block id="91a62ce5f728453d53ed8d0c2a936aec" category="list-text">*Pequeno*: recomendado para ambientes com até aproximadamente 200 milhões de arquivos.</block>
+  <block id="8682893534f62c0d0aff25d6d8c85d96" category="list-text">*Médio (Padrão)*: recomendado para ambientes com até aproximadamente 1 bilhão de arquivos.</block>
+  <block id="8f83f7fa2261b412d2fa290f60ffe9e8" category="list-text">*Grande*: recomendado para ambientes com até aproximadamente 3 bilhões de arquivos.</block>
+  <block id="d46a5933f9f2e7d0d06362ecd5dfa041" category="inline-link-macro">diretrizes flexíveis de dimensionamento</block>
+  <block id="b7f0cfda97f42693a8f1e2398887a994" category="paragraph">Esses tamanhos são linhas de base recomendadas, não limites rígidos. Consulte <block ref="6b8e74170b14d312ab21928a851153d3" category="inline-link-macro-rx"></block> se o seu ambiente estiver fora desses intervalos.</block>
+  <block id="83ac9607e5958c0984c3f28f18cdc1a1" category="list-text">Para configurações pequenas ou grandes, ajuste o comando de instalação de acordo com o tamanho escolhido:<block ref="8f650be051c9eec5eab6770e03ffce31" prefix=" " category="inline-code"></block></block>
+  <block id="ac18774dc2dba5258b649f18aa8155de" category="list-text">Execute o comando de instalação com quaisquer ajustes de tamanho da configuração no seu host de destino.</block>
+  <block id="d1a3d9894253a2d72545899e3a59192e" category="admonition">A instalação leva cerca de 45 minutos para ser concluída. Podem ocorrer tempos limite e novas tentativas, o que é normal.</block>
+  <block id="85e6b359225d41261774c22bf2bf080a" category="list-text">Quando solicitado, confirme o endereço IP do host e o ID do usuário para continuar a instalação.</block>
+  <block id="c9ef0d99fbf5ed26a85b92f55e6b6c6e" category="list-text">Acompanhe a tela de progresso até que a tela de sucesso apareça e exiba "AI Data Engine implantado".</block>
+  <block id="e9b6d2f0d9b694914f20877d3f88c18f" category="inline-link-macro">conectar uma fonte de dados</block>
+  <block id="db4300c03495773caef1471c598e802e" category="paragraph">O AI Data Engine foi implantado e conectado ao NetApp Console. Agora você pode <block ref="8616a87379e9890bdf232e0c72419049" category="inline-link-macro-rx"></block> para começar a digitalização.</block>
+  <block id="83eac39203f6a78bfab5f05109f06f07" category="summary">Implante o AIDE Enterprise a partir do NetApp Console usando o assistente de implantação.</block>
+  <block id="c2cf1d98d36dbefbfe09eae2488f7247" category="doc">Implantar o AI Data Engine Enterprise</block>
+  <block id="330f7c265828f01dee99afee070313b1" category="paragraph">Implante o AIDE Enterprise a partir do NetApp Console usando o assistente de implantação. O assistente orienta você na seleção do seu local de instalação, na escolha de um tamanho de configuração e na execução do comando de instalação no seu cluster RKE2.</block>
+  <block id="1a86a03f19ece1eb1fdd892e27ea3956" category="list-text">Seu cluster RKE2 atende aos pré-requisitos do nó Enterprise descritos em <block ref="0be0e04edd1e19a89ae931415ae02878" category="inline-link-macro-rx"></block>.</block>
+  <block id="6689cb476023c6c1c9be0efa2539934e" category="list-text">São necessárias permissões de sudo (ou root) na máquina a partir da qual você executa o comando de instalação.</block>
+  <block id="87f9897a401f495b9a1facf1d7bd910d" category="list-text">Um servidor NFS com um caminho exportado está disponível e acessível a partir do cluster para o volume de configuração do AIDE.</block>
+  <block id="9dda54b0355e711b7bf378cb95fb1046" category="list-text">Um agente da NetApp Console<block ref="b73290be3504f0507d7e45d060da298b" category="inline-link-rx"></block> acessível a partir dos nós do cluster. O endereço IP do Console Agent é necessário para executar o comando de instalação.</block>
+  <block id="bb51b81f5223e5f0c8bc58ed7e50a5f4" category="list-text">O kubectl está disponível na máquina a partir da qual você executa o comando de instalação, com acesso de administrador de cluster ao cluster de destino.</block>
+  <block id="8da2dfbfcb5791d3d926eab6d4e00ae7" category="list-text">O namespace Kubernetes de destino (padrão<block ref="87a4f89dbcdda862656068534d7005a9" prefix=" " category="inline-code"></block>) já existe no cluster antes de você executar o comando de instalação.</block>
+  <block id="6d673c33bc8499857dfcdafd62d54f4b" category="list-text">Uma StorageClass configurada (nome padrão:<block ref="92bf138b666c1c986bd7a1a4dcae9436" prefix=" " category="inline-code"></block>) está disponível no cluster e é usada para os serviços de suporte com estado do AIDE.</block>
+  <block id="44e1a4e1589f76ddf1eeaa489bc4cc29" category="list-text">Selecione a opção de implantação *Enterprise* e selecione *Avançar*.</block>
+  <block id="9b58efe1f18455876debd5dc57e57729" category="list-text">*Pequeno*: recomendado para ambientes com até aproximadamente 1 bilhão de arquivos.</block>
+  <block id="a756d5b5aaf4cf555459970b4520faf5" category="list-text">*Médio (Padrão)*: recomendado para ambientes com até aproximadamente 3 bilhões de arquivos.</block>
+  <block id="8774ee0c7f760cf14a59d6eb9c2c926d" category="list-text">*Grande*: recomendado para ambientes com até aproximadamente 6 bilhões de arquivos.</block>
+  <block id="97632a3bfddd2d43a6ad9e18867b01c4" category="paragraph">Esses tamanhos são valores de referência recomendados, não limites rígidos. O AIDE Enterprise oferece suporte a ambientes com mais de 6 bilhões de arquivos por meio de escalabilidade horizontal; consulte <block ref="89c154f2a0e84f293476bfb9d47ae425" category="inline-link-macro-rx"></block> para obter detalhes.</block>
+  <block id="394b930dc1b5023622cb49ed7c298b31" category="list-text">Execute o comando de instalação com quaisquer ajustes de tamanho da configuração no seu host de destino com acesso kubectl ao seu cluster RKE2.</block>
+  <block id="f9556a416fe39ca723fd3ecd6f571ded" category="admonition">A instalação leva cerca de 30 minutos para ser concluída. Podem ocorrer tempos limite e novas tentativas, o que é normal.</block>
+  <block id="869ef2cf26ae6a981846da827aae59f0" category="paragraph">O AI Data Engine Enterprise foi implantado e conectado ao NetApp Console. Agora você pode <block ref="8616a87379e9890bdf232e0c72419049" category="inline-link-macro-rx"></block> para iniciar a digitalização.</block>
+  <block id="fb2aa9495542bd13d3605c929812c980" category="summary">Implante o AI Data Engine como AIDE Lite ou como AIDE Enterprise, caso seu ambiente exija alta disponibilidade baseada em Kubernetes.</block>
+  <block id="2241eca142f39ffb460bb2bf4661c568" category="doc">Saiba mais sobre a implementação do AI Data Engine</block>
+  <block id="7647c2aafe383ffd0d50b64929b2f530" category="paragraph">Implante o AI Data Engine como o AIDE Lite, uma instalação em uma única máquina virtual. Se o seu ambiente exigir alta disponibilidade baseada em Kubernetes em grande escala, você poderá implantar o AIDE Enterprise.</block>
+  <block id="a76e498c33f6c726c7b3b1e63f3c9f86" category="section-title">O AIDE Lite</block>
+  <block id="b8f59a240d3f4b57a1c6c7e4cc02d32d" category="paragraph">O AIDE Lite é instalado em uma única máquina virtual Linux. Você não precisa ter conhecimento de Kubernetes, pois o instalador provisiona o k3s automaticamente.</block>
+  <block id="6dc3f2c5a4a07cf906856038dc455b60" category="paragraph">O AIDE Lite está disponível em três tamanhos: Small, Medium e Large, para ambientes com até aproximadamente 200 milhões, 1 bilhão e 3 bilhões de arquivos, respectivamente. Para obter informações completas sobre dimensionamento de máquina virtual e requisitos de sistema operacional, consulte <block ref="0be0e04edd1e19a89ae931415ae02878" category="inline-link-macro-rx"></block>. Esses tamanhos são linhas de base recomendadas, não limites rígidos; consulte <block ref="6b8e74170b14d312ab21928a851153d3" category="inline-link-macro-rx"></block> para saber o que influencia o dimensionamento e como ampliar ainda mais.</block>
+  <block id="e56291a61f22a59964581e4b089d9646" category="paragraph">Implante o AIDE Enterprise se o seu ambiente exigir alta disponibilidade, tolerância de falhas, atualizações contínuas ou escalabilidade horizontal além do maior tamanho do AIDE Lite. O AIDE Enterprise é implantado como um cluster Kubernetes de vários nós em um cluster RKE2 provisionado e gerenciado pelo cliente.</block>
+  <block id="511a454fc3a3987519fe85b03965f6c8" category="paragraph">AIDE Enterprise está disponível em três tamanhos, Small, Medium e Large, para ambientes com até aproximadamente 1 bilhão, 3 bilhões e 6 bilhões de arquivos, respectivamente. Para o dimensionamento completo de nós e os requisitos de cluster, consulte <block ref="0be0e04edd1e19a89ae931415ae02878" category="inline-link-macro-rx"></block>. Esses tamanhos são linhas de base recomendadas, não limites rígidos: ambientes com mais de 6 bilhões de arquivos são compatíveis por meio de escalabilidade horizontal. Consulte <block ref="89c154f2a0e84f293476bfb9d47ae425" category="inline-link-macro-rx"></block> para obter detalhes.</block>
+  <block id="0c5241f126b35cf2419c66ba39a5a298" category="section-title">Processo de implantação</block>
+  <block id="46597a2025eee9696dd502828e25e3d5" category="paragraph">NetApp Console não provisiona a infraestrutura para AI Data Engine. Você prepara uma máquina Linux ou um cluster que atenda aos requisitos e, em seguida, copia o comando de instalação pré-gerado do NetApp Console e o executa no host de destino. O comando inicializa o ambiente de execução e implanta a pilha do AI Data Engine automaticamente. Durante a instalação, o instalador solicita que você confirme o endereço IP do host de destino e o ID do usuário antes de prosseguir com a instalação.</block>
+  <block id="0d7f0465ec681cb9f6e5a8be3b1a0396" category="paragraph">As instalações do AIDE Lite geralmente são concluídas em 45 minutos. As instalações do AIDE Enterprise geralmente são concluídas em 30 minutos. O instalador inclui tempos limite e novas tentativas incorporados para lidar com problemas temporários enquanto os componentes são iniciados.</block>
+  <block id="c9ff479d3b0a5190f9c70e082837c411" category="section-title">Referência do modo de implantação</block>
+  <block id="d41d8cd98f00b204e9800998ecf8427e" category="cell"></block>
+  <block id="a0e3089d312c100208595d685b4104d2" category="cell">Modelo de implantação</block>
+  <block id="e944d7416ffeeaf9a68e8ef9da608c26" category="cell">Uma única máquina virtual Linux</block>
+  <block id="1a92dd236bb30572af26007d261a2e83" category="cell">Cluster Kubernetes com vários nós (RKE2 provisionado pelo cliente)</block>
+  <block id="4b650ef1239cf58ca9b3eb4dddac9322" category="cell">Taxa de varredura</block>
+  <block id="91a6bef895437e73680f6f013deb9588" category="cell">50 milhões a 1 bilhão de arquivos/dia, varia conforme o tamanho</block>
+  <block id="78fd22e45655dd97ace1673f19b03c74" category="cell">De 250 milhões a 2 bilhões de arquivos/dia, varia conforme o tamanho</block>
+  <block id="ccb52e04a2105113dc40fe0f8716aea1" category="cell">Máx. de arquivos (tamanho grande)</block>
+  <block id="a499f695d0cd8cd297f733cd1289a331" category="cell">Aproximadamente 3 bilhões</block>
+  <block id="d6a79615f28b6194d592e29ba6f5f964" category="cell">Aproximadamente 6 bilhões</block>
+  <block id="0be0e04edd1e19a89ae931415ae02878" category="list-text"><block ref="0be0e04edd1e19a89ae931415ae02878" category="inline-link-macro-rx"></block></block>
+  <block id="c565a648dc1d9e80e46687a0fc1cdfe6" category="summary">Saiba mais sobre os componentes do AI Data Engine e como eles trabalham juntos para catalogar metadados dos seus sistemas de storage.</block>
+  <block id="abb2753fee0210c75705619ab94e6ceb" category="doc">Arquitetura do AI Data Engine</block>
+  <block id="fccc76f1cda27ea29c381a63456dc242" category="paragraph">O AI Data Engine (AIDE) consiste em um Metadata Engine e uma estrutura de políticas. Esses recursos trabalham em conjunto para extrair metadados dos seus sistemas de storage, catalogá-los em um índice pesquisável e permitir que você defina consultas salvas para identificar e agir sobre arquivos que correspondam a critérios específicos.</block>
+  <block id="05bbb43b3d923283e0b6ffafd088f41f" category="section-title">Componentes</block>
+  <block id="9a8bc3c76ae750342ae6d6959e6d4931" category="paragraph">Você interage principalmente com o AI Data Engine por meio de quatro áreas funcionais: o painel, a investigação, as políticas e a configuração. Essas áreas funcionais são alimentadas pelos seguintes componentes subjacentes.</block>
+  <block id="1dcad9443ae8987b7175c4cdf8acb9f9" category="section-title">Metadata Engine</block>
+  <block id="7539b92c776f337a385f300efb36fd59" category="paragraph">O Metadata Engine é o principal recurso do AI Data Engine. Ele verifica os sistemas de storage conectados para extrair metadados do sistema de arquivos e armazena esses metadados em um catálogo pesquisável. O Metadata Engine atualiza o catálogo a cada ciclo de varredura, detectando adições, alterações e exclusões em seus sistemas de storage.</block>
+  <block id="5423702a1b6fd3820d9dbf88027fcfb9" category="section-title">Agente do NetApp Console</block>
+  <block id="857facec419107b5214ee8fa6aac760e" category="paragraph">O AI Data Engine requer um Agente de Console NetApp implantado em seu ambiente. O Agente de Console é um componente de plataforma NetApp de uso geral que mantém a conectividade entre seu ambiente local e o NetApp Console. Ele gerencia a autenticação e a comunicação entre seu site e o serviço AIDE.</block>
+  <block id="ae339237ba250f3e9622bc068691a4a4" category="inline-link-macro">Documentação do agente do NetApp Console</block>
+  <block id="b4536b8eef87e734777da5e22580bed8" category="admonition">O Agente de Console não é específico do AI Data Engine. Se você já tiver um Agente de Console implantado para outros serviços da NetApp, poderá usar o mesmo agente. Para obter instruções de implantação do Agente de Console, consulte a <block ref="2f66cea022adc2ad8169604b656a336f" category="inline-link-macro-rx"></block>.</block>
+  <block id="6762973af9b127d271f0d2b2aea0bc96" category="section-title">Modelos de implantação</block>
+  <block id="7e55a28dcce8cb14e4d27ea41261d95e" category="paragraph">O AI Data Engine suporta dois modelos de implantação:</block>
+  <block id="ac4f9e11413c44efe69404bc36ec291c" category="list-text">Implantação em uma única máquina virtual, ideal para ambientes menores. Disponível nas configurações Small, Medium e Large, com base no número de arquivos a serem catalogados.</block>
+  <block id="d8624879f2df7108b28170d3c8d0cf6a" category="list-text">Implantação de cluster com vários nós baseada em Kubernetes para ambientes maiores que exigem alta disponibilidade.</block>
+  <block id="932b129d9e40853fb53d785a7bbb7acd" category="paragraph">O AIDE Enterprise tem escalabilidade desde uma configuração de três nós que suporta até aproximadamente um bilhão de arquivos e 250 milhões de arquivos por dia até uma configuração de nove nós que suporta até aproximadamente seis bilhões de arquivos e dois bilhões de arquivos por dia. Consulte <block ref="374da513b9cc4d9fde319e2e3de4220b" category="inline-link-macro-rx"></block> para obter detalhes sobre o dimensionamento dos nós. Nós adicionais podem expandir a capacidade para além de seis bilhões de arquivos. Consulte <block ref="678b19a1fca5ae4e7fd0a6867698af36" category="inline-link-macro-rx"></block> para obter detalhes sobre a escalabilidade horizontal.</block>
+  <block id="1558fd62a25c3c5839314d3d05591cff" category="inline-link-macro">Saiba mais sobre as opções de implantação</block>
+  <block id="7522e35bcf6b4e765785f2c02ab88732" category="paragraph"><block ref="c85626c591e7dabf2ef44243c8154bd8" category="inline-link-macro-rx"></block>.</block>
+  <block id="51e229527022b23ef548bfc016bfb0ac" category="section-title">Fluxo de dados</block>
+  <block id="d48e37a5e6e17429470acd5447f7d7a2" category="list-text">O AI Data Engine é implantado no seu ambiente local.</block>
+  <block id="6466ed6a7617c9156b9142fd84ca463e" category="list-text">Você adiciona os sistemas de armazenamento que deseja que o AIDE catalogue em *Configuração &gt; Sistemas*. Os sistemas compatíveis incluem o NetApp ONTAP, o StorageGRID, sistemas de banco de dados e qualquer sistema NAS ou de storage de objetos que exponha os protocolos NFS, SMB/CIFS ou S3.</block>
+  <block id="4335b6439217fbe3a78bc483bbb8e2db" category="list-text">O Metadata Engine monta compartilhamentos usando os protocolos NFS e SMB/CIFS e examina os sistemas de arquivos para extrair metadados de arquivos.</block>
+  <block id="ec7c0cda0b856c7b0ef27518243b5770" category="list-text">Os metadados são indexados no catálogo.</block>
+  <block id="e08465e99912650826365007e8296ccf" category="list-text">O painel exibe insights de storage do catálogo.</block>
+  <block id="614bf6aec561c6163de8df0a75ec10e0" category="list-text">A função Investigation permite consultar diretamente o catálogo com filtros de metadados.</block>
+  <block id="f76213c17fe77d7795d2575f82e6a911" category="list-text">Você pode salvar critérios de pesquisa como políticas e executá-las novamente para identificar e agir sobre os arquivos correspondentes.</block>
+  <block id="af377abffc86ee018a19a7a84fa2e12c" category="admonition">Após o Metadata Engine concluir a verificação de todos os volumes configurados, ele inicia imediatamente uma nova rodada de verificação, analisando novamente os sistemas de arquivos para detectar adições, alterações e exclusões.</block>
+  <block id="75d38d77f71f859f0e6bfa05a8868b12" category="inline-link-macro">Saiba mais sobre AI Data Engine</block>
+  <block id="26e666e2e4e46660c91e74754caac64f" category="list-text"><block ref="26e666e2e4e46660c91e74754caac64f" category="inline-link-macro-rx"></block></block>
+  <block id="e24b77f89668ee9cb97930aad67c47cb" category="inline-link-macro">Saiba mais sobre a implantação do AIDE</block>
+  <block id="71a1e4d97605fe8774b49ca1dce1bf4f" category="list-text"><block ref="71a1e4d97605fe8774b49ca1dce1bf4f" category="inline-link-macro-rx"></block></block>
+  <block id="c161c41ee580d32d31bdc317b8636009" category="summary">Saiba mais sobre o AI Data Engine, que oferece visibilidade dos dados estruturados e não estruturados armazenados em seus sistemas de storage.</block>
+  <block id="10205b2b1a0570eb1e538ad453946b06" category="paragraph">O AI Data Engine é um serviço de inteligência de metadados que oferece visibilidade dos dados estruturados e não estruturados armazenados em seus sistemas de storage. Ao analisar seus sistemas de storage e catalogar os metadados do sistema de arquivos, o AI Data Engine ajuda você a identificar oportunidades de otimização de storage, investigar seus dados e aplicar políticas de governança ao analisar os metadados no local, sem mover ou copiar dados.</block>
+  <block id="5b78c83d95e5745d473240203777c774" category="section-title">O que o AI Data Engine faz</block>
+  <block id="93ac98d7e0f46af4be06d763ca8e4d9b" category="paragraph">O AI Data Engine examina sistemas de storage conectados para extrair metadados do sistema de arquivos e cria um catálogo que é atualizado após cada ciclo de verificação. A partir desse catálogo, você pode:</block>
+  <block id="851d3089d23f602e41cb88e4a24c7049" category="list-text">Visualize insights de otimização de armazenamento em um painel, incluindo quais proprietários de dados possuem armazenamento potencialmente recuperável, como arquivos que atendem aos limites de inatividade e obsolescência da sua organização e arquivos duplicados</block>
+  <block id="d4cf1ae8d3de1580dd4b64635c327386" category="list-text">Analise seus dados usando filtros de metadados flexíveis para criar agrupamentos de dados direcionados</block>
+  <block id="365d4efead84b227551ff1b66a19925b" category="list-text">Crie políticas que salvam os critérios de investigação como regras reutilizáveis</block>
+  <block id="df7ad139df65c04c4945d61374956c8b" category="list-text">Execute ações nos dados: marque, arquive, copie ou exclua arquivos que correspondam aos critérios da política</block>
+  <block id="149bf441b327b46f1cee6927c3821fb9" category="section-title">Otimização de storage e governança de dados</block>
+  <block id="652d2454860d7fc35944afe99e879614" category="paragraph">O AI Data Engine se concentra na otimização do storage e no gerenciamento do ciclo de vida de dados estruturados e dados não estruturados armazenados nos seus sistemas de storage.</block>
+  <block id="0c46a9a4d5421afa53e0965858a40308" category="section-title">Quem usa AI Data Engine</block>
+  <block id="64f79c32b0b61631101d478d31e9f7d3" category="paragraph">O AI Data Engine foi projetado para os seguintes usuários:</block>
+  <block id="cd407958cd82f6304bcf61eaf827f40c" category="list-text">*Administradores de storage* que precisam identificar e monitorar quais proprietários de dados têm arquivos que atendem aos limites de dados inativos e obsoletos da sua organização, identificar arquivos duplicados e avaliar oportunidades de otimização de storage.</block>
+  <block id="ba9f66e96d3a72c260292e7e433d9c1e" category="list-text">*Equipes de operações de TI* que precisam de uma visão centralizada dos dados estruturados e não estruturados existentes em seu ambiente de storage.</block>
+  <block id="f5d8c539c573d98ed75c16e6120b556e" category="section-title">Onde o AI Data Engine reside</block>
+  <block id="2e41d1b0867653660816d43d38a3d448" category="paragraph">Você acessa o AI Data Engine por meio do NetApp Console, em *Governança &gt; AI Data Engine*. Você o implanta como o AIDE Lite, uma instalação de máquina virtual única, em uma infraestrutura Linux gerenciada por você, seja como uma máquina virtual em sua conta de nuvem ou como uma máquina em seu ambiente local. Se o seu ambiente exigir alta disponibilidade baseada em Kubernetes em larga escala, você poderá implantar o AIDE Enterprise em vez disso.</block>
+  <block id="e3d3e027f48463eb78e548236f017140" category="paragraph">O AI Data Engine analisa dados nos sistemas ONTAP e StorageGRID da NetApp, bem como em sistemas não NetApp que oferecem suporte aos protocolos NFS, SMB/CIFS ou S3.</block>
+  <block id="5195f9c28c95a19d82dbbab0c1b03be8" category="list-text"><block ref="5195f9c28c95a19d82dbbab0c1b03be8" category="inline-link-macro-rx"></block></block>
+  <block id="06ad314b340900d226b1196e1fe289e9" category="inline-link-macro">Início rápido</block>
+  <block id="bdeb5cd25a7dbc37504b3514d1fd7016" category="list-text"><block ref="bdeb5cd25a7dbc37504b3514d1fd7016" category="inline-link-macro-rx"></block></block>
+  <block id="977e38bc044068997869d10e6979a705" category="list-text"><block ref="977e38bc044068997869d10e6979a705" category="inline-link-macro-rx"></block></block>
+  <block id="4c1a261e30da6a55a9b3726af88508d4" category="summary">Coloque o AI Data Engine em funcionamento implantando o serviço, conectando seus sistemas de storage e iniciando sua primeira investigação.</block>
+  <block id="0faf8679fa64c37768334eb399f37dcc" category="doc">Guia rápido para AI Data Engine</block>
+  <block id="06c2cea18679d64399783748fa367bdd" category="inline-image-macro">Um</block>
+  <block id="a8f814495d9a5097386d4d0fa44d053b" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block>Requisitos de revisão</block>
+  <block id="d95edcb83173c645e4cdae7d65d60d50" category="inline-link-macro">saiba mais sobre os modos de implantação</block>
+  <block id="bc643586ebbdea3a67e8e78803edef1d" category="paragraph">Analise o <block ref="374da513b9cc4d9fde319e2e3de4220b" category="inline-link-macro-rx"></block> e o <block ref="1fb19d6de740c7259fc64be5fec6d5ce" category="inline-link-macro-rx"></block> para determinar se deve instalar o AIDE Lite ou o AIDE Enterprise.</block>
+  <block id="aada29daee1d64ed0fe907043855cb7e" category="inline-image-macro">Dois</block>
+  <block id="5508a1321b4a833f86a54cc7821a3b51" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block> Implantar o AI Data Engine</block>
+  <block id="8b64721c44a2f53b46f63f848ac39d35" category="paragraph">Implante <block ref="f746162465c96a1adff24c92f0728c5e" category="inline-link-macro-rx"></block> ou <block ref="eb04f2a0df94baa820b9a7e6f474747f" category="inline-link-macro-rx"></block> pelo NetApp Console. A página de configuração orienta você na seleção do local da instalação, do tamanho da configuração e na execução do comando de instalação.</block>
+  <block id="ca8a2087e5557e317599344687a57391" category="inline-image-macro">Três</block>
+  <block id="1c588aa33f42b4c4c20be39616a29ded" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block> Conecte uma fonte de dados</block>
+  <block id="96542a64c03a6496363376fdc6a2fbc6" category="paragraph"><block ref="3540fa5efa78b3ae6e9c7d52a1e7d21a" category="inline-link-macro-rx"></block> para iniciar a digitalização. O AI Data Engine cataloga os metadados do sistema de arquivos dos sistemas de armazenamento que você especificar.</block>
+  <block id="981b8fcee42e1e726a67a2b9a98ea6e9" category="inline-image-macro">Quatro</block>
+  <block id="be456a52157be16e2bb64e80582b27c7" category="paragraph-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block> Explore seus dados</block>
+  <block id="dc7161be3dbf2250c8954e560cc35060" category="inline-link-macro">painel</block>
+  <block id="5cbac16d406ddfc92080f39efa7437d8" category="inline-link-macro">Investigação</block>
+  <block id="fb3b1d7b841806f690ee73aaa0c8d14c" category="paragraph">Abra o <block ref="fb0f058ee96ad213f6425340e1f6e497" category="inline-link-macro-rx"></block> para ver insights de otimização de armazenamento ou acesse o <block ref="baf11e96ddb5cf9a99e9104cce3d98fd" category="inline-link-macro-rx"></block> para pesquisar e filtrar seus metadados diretamente.</block>
+  <block id="e5d9de39f7ca1ba2637e5640af3ae8aa" category="inline-image-macro">Cinco</block>
+  <block id="27daab068a7cde6f0b947da706cd9c7a" category="paragraph-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block>Criar uma política</block>
+  <block id="434a141f3cf546ea041658ccf5e2e280" category="inline-link-macro">Salve seus filtros de investigação como uma política</block>
+  <block id="90d578959921e40c779e3651e77e209f" category="paragraph"><block ref="bf586bccd0bf27b6e1fabd9280d26067" category="inline-link-macro-rx"></block> para monitorar arquivos que correspondam aos mesmos critérios ao longo do tempo. Você pode configurar uma política para enviar uma notificação, excluir permanentemente os arquivos correspondentes ou acompanhar os resultados.</block>
+  <block id="fdb19c6fec05b54408b4b0f903fd81ee" category="summary">Use fluxos completamente para conduzir uma descoberta do painel por meio de investigação, ação e monitoramento contínuo de políticas.</block>
+  <block id="1df62125b1fa407d537cb4d69ea2cea4" category="doc">Explore os fluxos de trabalho de otimização de armazenamento no AI Data Engine</block>
+  <block id="b7a7e43957c3e85adef192b310b6b3d2" category="paragraph">Esses fluxos de trabalho do AI Data Engine levam você da identificação de um problema de armazenamento no painel de controle, passando pela investigação e ação, até a implementação de uma política de monitoramento contínuo. Cada fluxo de trabalho segue o mesmo caminho: painel de controle, investigação, ação e salvamento como política.</block>
+  <block id="2e48f83a3b8559bc839f287b372ae63a" category="section-title">Identifique e aja com base em dados frios</block>
+  <block id="54861efdd06fc309e1c9a420feff98eb" category="paragraph-title">Cenário</block>
+  <block id="3b84a859e68974b8b6a7c2e5209e8031" category="paragraph">Você percebe no painel que um recurso de armazenamento possui uma grande quantidade de dados sinalizados como frios. Os arquivos frios não foram acessados dentro do limite configurado para dados frios, que por padrão é de um ano e pode ser configurado em *Configuration* &gt; *Settings*.</block>
+  <block id="44e6a1f5dab90577824d8f22e1988fde" category="inline-link-macro">o painel</block>
+  <block id="a9ff44ea6a5fe6dc227b4ea55b034864" category="list-text">Em <block ref="8f8592489ae57c27af5c107a0d44dae6" category="inline-link-macro-rx"></block>, identifique o recurso com a maior concentração de dados inativos e selecione *Investigar*.</block>
+  <block id="47f41e739fa983e85fc6c87ce98479c5" category="list-text">Em <block ref="52e9ed5e3e773251fd429eeb0045af22" category="inline-link-macro-rx"></block>, confirme os recursos usando o filtro *Último acesso* configurado para corresponder ao seu limite de dados frios configurado (padrão: *1+ ano*).</block>
+  <block id="af03039d1382ef8676c4fdd8760440cf" category="inline-link-macro">se deve etiquetar, arquivar ou excluir</block>
+  <block id="e9ed6d698e78f62a0321650cd016f395" category="list-text">Analise os resultados para decidir <block ref="3efcafeea256ec5f5f80d2df60560120" category="inline-link-macro-rx"></block> os arquivos correspondentes.</block>
+  <block id="7ef0163ee717bd6fd04d7eeb49b51058" category="inline-link-macro">salvar o conjunto de filtros como uma política</block>
+  <block id="5b5ae5eda1079bc84d33033a52fa0bd2" category="list-text">Se valer a pena monitorar esses recursos continuamente, <block ref="7d8ac40ed60791213197ab6f4e0c9736" category="inline-link-macro-rx"></block> para que você seja notificado quando novos arquivos se tornarem inativos.</block>
+  <block id="0d10005b6bd2a6b85eb9f287e40da0fe" category="section-title">Identifique e aja com base em dados desatualizados</block>
+  <block id="90fe85823d1212c8a3b704aa6c8ded5c" category="paragraph">Arquivos que ainda são acessados ocasionalmente, mas não são modificados há anos, são classificados como obsoletos quando ficam fora do limite de obsolescência da sua organização (padrão: três anos desde o último acesso ou modificação).</block>
+  <block id="b0c4d387a50a45d4f64e0a353764db5a" category="admonition">Esse limite pode ser configurado em *Configuration* &gt; *Settings*.</block>
+  <block id="7bdb301d8f2bd1bc4dc8ff7228adae25" category="list-text">A partir de <block ref="8f8592489ae57c27af5c107a0d44dae6" category="inline-link-macro-rx"></block>, identifique um recurso com uma quantidade significativa de dados desatualizados.</block>
+  <block id="1456972c0c54611fb33073481d7d23b9" category="list-text">Em <block ref="52e9ed5e3e773251fd429eeb0045af22" category="inline-link-macro-rx"></block>, aplique o filtro *Última modificação* definido para seu limite de obsolescência (padrão *3+ anos*).</block>
+  <block id="ee0e6032122c761b81fc2cd66a35b691" category="inline-link-macro">Salve o conjunto de filtros como uma política</block>
+  <block id="b35a68b716804484978c21c7594fcad8" category="list-text"><block ref="537d965580da49e1e6c3a096271213f7" category="inline-link-macro-rx"></block> para rastrear esses recursos em varreduras subsequentes.</block>
+  <block id="1c26e78563d9a7bad5cd8730fb3014eb" category="section-title">Gerenciar a conformidade com a retenção de dados</block>
+  <block id="a255165b7b7823a623dbb6b105440b3f" category="paragraph">Sua organização exige que arquivos com mais de uma determinada idade sejam revisados para retenção. O limite de retenção padrão no AI Data Engine é de sete anos ou mais desde a criação do arquivo. Você pode ajustar esse limite para corresponder às políticas de conformidade e retenção da sua organização.</block>
+  <block id="1882b006574819130803840fe1b9469b" category="list-text">Em <block ref="52e9ed5e3e773251fd429eeb0045af22" category="inline-link-macro-rx"></block>, aplique o filtro *Última criação* definido para seu limite de retenção (padrão *7+ anos*).</block>
+  <block id="5913dad45eb7f4d4c33e3d5282acecea" category="list-text">Analise os resultados com as partes interessadas relevantes antes de tomar qualquer medida. Os arquivos sinalizados para retenção geralmente são monitorados em vez de excluídos automaticamente.</block>
+  <block id="9ccc4a73e855e5fd0cf236f7725bec04" category="list-text"><block ref="a6ba65d5603bedd3e970c59f52c864db" category="inline-link-macro-rx"></block> com uma ação somente de monitoramento ou de notificação por e-mail para que você seja alertado quando novos arquivos atingirem o limite de retenção, em vez de agir nesses recursos apenas uma vez.</block>
+  <block id="03490a48891dc30405298515cb0a2ec1" category="section-title">Encontre e elimine arquivos duplicados</block>
+  <block id="ef14c05b00c07359bf1b4ea88e94054e" category="paragraph">Existem várias cópias idênticas dos mesmos arquivos em diferentes volumes ou compartilhamentos, um problema comum em ambientes com tarefas de backup, migrações de dados ou pastas de projeto compartilhadas.</block>
+  <block id="f9ca2405c30ced0ee904d9e0f97cf9a0" category="list-text">Em <block ref="52e9ed5e3e773251fd429eeb0045af22" category="inline-link-macro-rx"></block>, selecione *Adicionar filtro* e depois selecione *Duplicados*.</block>
+  <block id="01d46cb938e4d511d3e9999a33fcf5f9" category="list-text">Analise os resultados. Os arquivos listados possuem uma ou mais cópias idênticas em outros locais do catálogo.</block>
+  <block id="7742546bbb754d84caafaa114682a8fa" category="inline-link-macro">uma ação</block>
+  <block id="7314dc8edb48e7722955c7e114704518" category="list-text">Selecione os arquivos nos quais deseja agir e escolha <block ref="969e8bd9170e1e99801569561e044682" category="inline-link-macro-rx"></block>. Arquive ou exclua duplicatas confirmadas que tenham uma cópia original em outro local.</block>
+  <block id="b0c0d5d2684f243b989c8f373fd49af4" category="inline-link-macro">Salvar o filtro como uma política</block>
+  <block id="c9ff8855af97bd1a12a7e6912ad77df9" category="list-text"><block ref="46439728f888d79fb7cc9b685ae19ce6" category="inline-link-macro-rx"></block> para monitorar o acúmulo de duplicatas ao longo do tempo e receber notificações quando a contagem aumentar.</block>
+  <block id="5f142691dc2e5880dde4fa4e8308addd" category="section-title">Limpeza de destino pelo proprietário dos dados</block>
+  <block id="eb825210e78145b21120ef3c8c285534" category="paragraph">Os dados que atendem aos limites de dados frios e obsoletos da sua organização estão distribuídos entre vários proprietários. Identificar quais proprietários de dados detêm o maior número de arquivos nessas categorias pode ajudar você a priorizar a limpeza.</block>
+  <block id="d18055bb263b716bd2926c7fbc634768" category="list-text">Em <block ref="8f8592489ae57c27af5c107a0d44dae6" category="inline-link-macro-rx"></block>, localize a tabela _Top data owners by reclaimable storage_.</block>
+  <block id="4b9bd7dec241c003603e9ba36f85a4e9" category="list-text">Selecione uma linha de proprietário para abrir <block ref="52e9ed5e3e773251fd429eeb0045af22" category="inline-link-macro-rx"></block> filtrado para os arquivos desse proprietário.</block>
+  <block id="8826c83ac41b279afb2deb64b8e4f22d" category="list-text">Analise os resultados e decida quais <block ref="3efcafeea256ec5f5f80d2df60560120" category="inline-link-macro-rx"></block> arquivos usar.</block>
+  <block id="e2b9c3b26ba26fd50d8e5ea52baf5615" category="list-text"><block ref="537d965580da49e1e6c3a096271213f7" category="inline-link-macro-rx"></block> para monitorar como os dados potencialmente recuperáveis desse proprietário mudam ao longo do tempo.</block>
+  <block id="099b7eb42ed02e26b076249d7bc9e248" category="inline-link-macro">Investigar dados não estruturados</block>
+  <block id="86f84a6aeae2c3ff3b735d8e60ef5504" category="list-text"><block ref="86f84a6aeae2c3ff3b735d8e60ef5504" category="inline-link-macro-rx"></block></block>
+  <block id="4e17f6659f1ce957a9128ff286ebb060" category="summary">Use a visualização Investigação para explorar o armazenamento baseado em arquivos, tabelas de banco de dados e estruturas de diretórios em seus sistemas conectados. Selecione a guia que corresponde ao que você está procurando.</block>
+  <block id="679e69e9bdc70ba02f2657d93510fff9" category="doc">Analise seus dados no AI Data Engine</block>
+  <block id="44da94769eacd19020729f27fef9441d" category="paragraph">Quando você precisa entender o que está consumindo armazenamento, identificar quais tabelas de banco de dados estão crescendo sem controle ou encontrar diretórios com acesso excessivamente permissivo, use filtros de metadados para investigar seus dados em todos os sistemas conectados.</block>
+  <block id="3082e4bef0a9c97ce9f133bff6ea5eb5" category="section-title">Escolha um ponto de partida</block>
+  <block id="18102ed05bb0a8ff6f88556fda449b9c" category="paragraph">Selecione *Investigation* na navegação à esquerda para abrir a visualização. Você também pode abrir a visualização Investigation no painel, selecionando *Investigate* na tabela _Top data resources by reclaimable storage_, que aplica automaticamente um filtro para esse recurso.</block>
+  <block id="b4554dcd354d221900b1346138e1cd61" category="paragraph">A seção *Investigação* está organizada em três abas. Selecione a aba que corresponde ao tipo de dados que você está investigando.</block>
+  <block id="5c6ba25104401c9ee0650230fc6ba413" category="cell">Aba</block>
+  <block id="e214b95958c9f93ea16e42f7db6cc60d" category="cell">Use quando você quiser</block>
+  <block id="ab066b3292d8ab61ef3b5c77169cdd19" category="cell">Mais informações</block>
+  <block id="c7187f6fea22a59bf7665d6a00bc979f" category="cell">*Não estruturado*</block>
+  <block id="df48daaf43ed83934872f416dc296e9a" category="cell">Encontre dados baseados em arquivos frios, obsoletos ou duplicados em volumes NFS e SMB/CIFS</block>
+  <block id="81764035d4bb7622fe386f2c8b866f2d" category="cell"><block ref="81764035d4bb7622fe386f2c8b866f2d" category="inline-link-macro-rx"></block></block>
+  <block id="5eca2bb7beed7342cca1106688651049" category="cell">*Estruturados*</block>
+  <block id="f0c49b1f5a3d381d7e5aaf049286da6b" category="cell">Identifique tabelas de banco de dados grandes demais ou não utilizadas que consomem armazenamento</block>
+  <block id="4a85d1ee07bb8b9d1edfdad83663f695" category="inline-link-macro">Investigar dados estruturados</block>
+  <block id="56e5a25f46de7fd625c2a35f379b85a5" category="cell"><block ref="56e5a25f46de7fd625c2a35f379b85a5" category="inline-link-macro-rx"></block></block>
+  <block id="6f81d7719620f85dcacb3a3a4375a869" category="cell">*Diretórios*</block>
+  <block id="85076b52dccc264b25239b17f908a37d" category="cell">Auditar permissões em nível de diretório e encontrar caminhos amplamente acessíveis</block>
+  <block id="c3752096b16f86b02150e9d64aeefb03" category="inline-link-macro">Investigar diretórios</block>
+  <block id="243090fac4ef0153c4d49200a899b55c" category="cell"><block ref="243090fac4ef0153c4d49200a899b55c" category="inline-link-macro-rx"></block></block>
+  <block id="2febbf7b97a1bd1e8bf90649b86ce36f" category="paragraph">A contagem de resumo e o tamanho total na parte superior da página são atualizados para refletir a guia ativa (por exemplo, "dados não estruturados (400M) | 5,7 PiB").</block>
+  <block id="03469f3b31a2702640b0a64e1fae7825" category="inline-link-macro">Trabalhar com filtros</block>
+  <block id="4b141310f8c42d32665587f57a3d5e06" category="list-text"><block ref="4b141310f8c42d32665587f57a3d5e06" category="inline-link-macro-rx"></block></block>
+  <block id="0a32a9c8f26d2c4f95b1f16b549ee04a" category="list-text"><block ref="0a32a9c8f26d2c4f95b1f16b549ee04a" category="inline-link-macro-rx"></block></block>
+  <block id="acc5764f7cffbcb72bf1a80039f58b45" category="summary">Audite as permissões em nível de diretório em seus sistemas de armazenamento para encontrar caminhos amplamente acessíveis, verificar quem tem acesso e salvar as descobertas como uma política reutilizável.</block>
+  <block id="0112ff7d7742da75e2844fccf8e0c00d" category="doc">Investigue diretórios no AI Data Engine</block>
+  <block id="6613a2040255dc6982fe712823bd450a" category="paragraph">Quando precisar identificar quais diretórios estão expostos a mais usuários do que o pretendido, filtre por permissões para encontrar pastas abertas para toda a organização. Por exemplo, um administrador de segurança que vê diretórios expostos sinalizados no painel pode encontrar todos os diretórios com acesso para toda a organização, verificar quem tem permissões de leitura e gravação e criar uma política para monitorar novas exposições após cada verificação.</block>
+  <block id="99cf048b4570a503827b433537bf7a58" category="list-text">Pelo menos uma fonte de dados deve estar conectada e realizando varreduras. Consulte <block ref="3540fa5efa78b3ae6e9c7d52a1e7d21a" category="inline-link-macro-rx"></block>.</block>
+  <block id="51572c9a667a33a3847aef86b292e654" category="section-title">Encontre diretórios amplamente acessíveis</block>
+  <block id="87e928f2a1c66c783997d4245415120c" category="paragraph">Use filtros de permissão para identificar diretórios que estejam acessíveis além do público-alvo pretendido.</block>
+  <block id="f2a60bd092547b3abe2cf0a9d1abe8e2" category="list-text">Na interface do usuário do AI Data Engine, selecione *Investigação*.</block>
+  <block id="10ba159cb5ee1b6139fccac82d24494d" category="list-text">Selecione a aba *Diretórios*.</block>
+  <block id="453c1a03af4844925b9c44be0f0a776e" category="paragraph">A tabela exibe o nome do diretório (caminho completo), o contêiner de dados, o proprietário do diretório, o tipo de diretório e o sistema.</block>
+  <block id="bf1cef9127c9e6edc37958d8a4037666" category="list-text">Selecione *Adicionar filtro* e, em seguida, selecione *Abrir permissões*.</block>
+  <block id="aa0dd989b4d2622818bfe9976fab25fe" category="list-text">Defina o filtro como *Open to organization* para exibir diretórios acessíveis a toda a organização.</block>
+  <block id="dd386e911c1b569dfc2cf3427f37d663" category="paragraph">A tabela de resultados é atualizada para mostrar os diretórios que correspondem aos critérios de permissão, incluindo a data do último acesso e o status da permissão.</block>
+  <block id="f2d7a774ed1ac216d1452a55765e4201" category="paragraph">Para obter uma lista completa dos filtros disponíveis, consulte <block ref="4b141310f8c42d32665587f57a3d5e06" category="inline-link-macro-rx"></block>.</block>
+  <block id="c790c517b487eb008ec91ccb9c64b087" category="section-title">Revisar as permissões do diretório</block>
+  <block id="23fdcec5412294db96c0d0fa0caa9028" category="paragraph">Selecione uma linha do diretório para abrir o painel de detalhes e verificar quem tem acesso.</block>
+  <block id="3cad8b69ba020943e96d17a6e54caf82" category="paragraph">O painel de detalhes mostra o tipo de diretório, o sistema, o proprietário do diretório e um resumo das permissões (por exemplo, "Aberto para a organização"). Selecione *Exibir permissões* para ver um detalhamento do acesso de leitura e gravação para cada usuário ou grupo com acesso ao diretório.</block>
+  <block id="7ba5f74e28642cd22f893052cee01692" category="paragraph">Use estas informações para confirmar se o nível de acesso é intencional antes de criar uma política ou entrar em contato com o proprietário do diretório.</block>
+  <block id="31bfae586bf76c48ae93881709c7e146" category="section-title">Salvar descobertas como uma política</block>
+  <block id="cba82d10856d128f229e20e00b1e9a2a" category="paragraph">Após filtrar para identificar diretórios amplamente acessíveis, salve os critérios como uma política para monitorar novas exposições após cada ciclo de varredura.</block>
+  <block id="29d02aa1a491ca6fa24ed83bafd47040" category="list-text">Com os filtros de permissão aplicados, selecione *Criar política* na barra de ferramentas de filtro.</block>
+  <block id="4fbab17ed9ad970e5548a7d1d4569e6b" category="list-text">Preencha o formulário da apólice. Consulte <block ref="a6ba65d5603bedd3e970c59f52c864db" category="inline-link-macro-rx"></block>.</block>
+  <block id="801ab24683a4a8c433c6eb40c48bcd9d" category="inline-image-macro">Download</block>
+  <block id="ac81d0c9d07b55c8f3e61604209babad" category="paragraph">Para baixar os resultados filtrados da guia Diretórios, selecione <block ref="5cdab54312f4c99b6053532c2103d660" category="inline-image-macro-rx" type="image"></block>.</block>
+  <block id="d59f12356f9957c4b4ff227159fcf4ce" category="list-text"><block ref="d59f12356f9957c4b4ff227159fcf4ce" category="inline-link-macro-rx"></block></block>
+  <block id="882b7cd90ab9c836a860233e4f0eead8" category="list-text"><block ref="882b7cd90ab9c836a860233e4f0eead8" category="inline-link-macro-rx"></block></block>
+  <block id="b91af9e0d2dba364d6d2a561af5363cd" category="summary">Encontre tabelas de banco de dados grandes demais ou não utilizadas em seus servidores de banco de dados conectados e salve suas descobertas como uma política de governança reutilizável.</block>
+  <block id="b1a1fd02deed95037828a36a7179afbf" category="doc">Investigue os dados estruturados no AI Data Engine</block>
+  <block id="1e41100e4bae97b934039a13901ff517" category="paragraph">Quando o storage de banco de dados cresce inesperadamente, filtre pelos metadados da tabela para encontrar quais tabelas estão superdimensionadas ou não apresentaram atividade desde que foram descobertas pela primeira vez. Por exemplo, um administrador de storage pode identificar tabelas grandes que não mudaram desde uma varredura inicial e, em seguida, coordenar com o proprietário do banco de dados para avaliar se elas ainda são necessárias.</block>
+  <block id="c8cd110517c3b92d3347f4ec9aa59bfb" category="list-text">Pelo menos uma fonte de dados de banco de dados deve estar conectada e realizando varredura. Consulte <block ref="3540fa5efa78b3ae6e9c7d52a1e7d21a" category="inline-link-macro-rx"></block>.</block>
+  <block id="4bbbe5b15760624da31d87f512b3cc15" category="section-title">Analise a lista de tabelas do banco de dados</block>
+  <block id="43d29d6a732a4589622f09b5ac4afdf9" category="list-text">Selecione a aba *Structured*.</block>
+  <block id="1ecc9fc79ee3d69d421d06063a731522" category="paragraph">A tabela exibe o nome da tabela do banco de dados, o esquema, o servidor do banco de dados, a hora em que foi descoberta, as dimensões da tabela (colunas × linhas) e o tamanho da tabela.</block>
+  <block id="5ad9d9ad516549de5fb814e3b5b35506" category="section-title">Identifique tabelas muito grandes ou não utilizadas</block>
+  <block id="6a0c39f9c98f5df1491258dd20bb772d" category="paragraph">Use filtros para restringir a lista às tabelas com maior probabilidade de oferecer oportunidades de recuperação.</block>
+  <block id="382d8811bbc95deb4119e6f0dfd639c3" category="list-text">Selecione *Adicionar filtro* e, em seguida, selecione *Tempo descoberto*.</block>
+  <block id="3b3db3939971236d8ce2306dd9d88c2d" category="list-text">Defina o intervalo para exibir tabelas que estiveram presentes em vários ciclos de varredura, por exemplo tabelas descobertas pela primeira vez há mais de um ano.</block>
+  <block id="df9b75f54ade626477192154c29e9801" category="list-text">Para refinar ainda mais, selecione *Adicionar filtro* novamente e filtre por servidor de banco de dados ou esquema para se concentrar em um sistema específico.</block>
+  <block id="ce7f610ced968febc3cd61a9bb7cdefb" category="paragraph">Os filtros aplicados aparecem como etiquetas abaixo da barra de filtros. Os resultados são atualizados à medida que você adiciona cada filtro.</block>
+  <block id="4dd34ef90a77f1d09391c45476e798b3" category="section-title">Revise os detalhes da tabela</block>
+  <block id="fd3754f4f7b2ef38094a8fc62525fab1" category="paragraph">Selecione uma linha da tabela para abrir o painel de detalhes e avaliar se a tabela é candidata à recuperação.</block>
+  <block id="84287206d3f05ec7283ab9d5a52c461c" category="paragraph">O painel de detalhes mostra o servidor de banco de dados, o esquema, as dimensões da tabela, o tamanho da tabela e o horário da descoberta. Use essas informações para determinar se a tabela cresceu desde a descoberta ou permanece inalterada.</block>
+  <block id="07ac78891bad6396bded1a9176f8e297" category="admonition">Antes de agir nas tabelas do banco de dados, coordene com o proprietário do banco de dados para confirmar que a tabela não é mais necessária.</block>
+  <block id="25f30c6941a078ab089edf63b56bd24d" category="paragraph">Após aplicar os filtros que identificam as tabelas de interesse, salve os critérios para monitoramento contínuo.</block>
+  <block id="3f6002a9d5a412d0cfc083657206daed" category="list-text">Selecione *Criar política* na barra de ferramentas de filtro.</block>
+  <block id="39760bf31d6d1280fffe7fdda7c2f0f5" category="paragraph">Para baixar os resultados filtrados da guia Structured, selecione <block ref="5cdab54312f4c99b6053532c2103d660" category="inline-image-macro-rx" type="image"></block>.</block>
+  <block id="66b7953990a2c19a573306360e644fe9" category="summary">Encontre e classifique arquivos como frios, obsoletos ou grandes em volumes NFS e SMB/CIFS usando filtros de metadados. Em seguida, revise os resultados, tome as medidas apropriadas ou salve seus critérios de filtro como uma política reutilizável.</block>
+  <block id="e641dbbcf92be8ee6a73622ebe033070" category="doc">Investigue dados não estruturados no AI Data Engine</block>
+  <block id="1c4dfb9d2f2d457842021d37ab190421" category="paragraph">Quando o armazenamento baseado em arquivos cresce inesperadamente, filtre por data do último acesso, tamanho do arquivo e proprietário para descobrir quais arquivos estão consumindo capacidade. Por exemplo, um administrador de storage pode identificar terabytes de snapshots de máquinas virtuais que não foram acessados em mais de um ano e avaliar se deve arquivá-los, excluí-los ou retê-los.</block>
+  <block id="ba342bb770d37972475e46fec4007716" category="section-title">Encontre arquivos inativos ou obsoletos por data do último acesso</block>
+  <block id="8ab92643f17b04229c9edd9da18a21b5" category="inline-link-macro">Configure os limites para dados frios e obsoletos</block>
+  <block id="28f4c25388d7d09ca2a87d44d5c9a79f" category="paragraph">Use filtros baseados em data para identificar arquivos que não foram acessados dentro dos limites de dados inativos ou obsoletos da sua organização. Os limites podem ser configurados em *Configuration* &gt; *Settings*. Consulte <block ref="5b2f6a0e7f285ed05b047fba791060b7" category="inline-link-macro-rx"></block>.</block>
+  <block id="81b39180656b54592301851e11944e31" category="paragraph">A aba Não estruturada está selecionada por padrão.</block>
+  <block id="24446f194b4e840f6a8fc2e8d83584fa" category="list-text">Selecione *Adicionar filtro* e, em seguida, selecione *Último acesso*.</block>
+  <block id="69c7c55399371b6a9da3b5a279f6218f" category="list-text">Selecione um intervalo de tempo que corresponda ao seu limite de dados frios, por exemplo *mais de 1 ano*.</block>
+  <block id="75a212d69d73a2bed522805ef8d11c80" category="list-text">Para focar nos maiores consumidores, selecione *Adicionar filtro* novamente, depois selecione *Tamanho do arquivo* e defina um valor mínimo, por exemplo *&gt;1 GiB*.</block>
+  <block id="93161565eff7dd1bcd7695ef334eb442" category="paragraph">Os filtros aplicados aparecem como etiquetas abaixo da barra de filtros. A tabela de resultados e a contagem de itens são atualizadas à medida que você adiciona cada filtro.</block>
+  <block id="c064ea72a2e73b982c10fdbee1cc2f42" category="section-title">Agrupar resultados por proprietário</block>
+  <block id="27e3ceb3bbe18fe6b8cbfdbf811dadc1" category="paragraph">Agrupar por proprietário ajuda você a entender quem detém a maior quantidade de dados potencialmente recuperáveis antes de decidir onde agir.</block>
+  <block id="77327dffbe725494ad0395784b0923ab" category="list-text">Com os filtros aplicados, selecione a opção *Visualizar por* no menu suspenso.</block>
+  <block id="22e027d4752aaf407ea183c679494a52" category="list-text">Selecione *Proprietário*.</block>
+  <block id="bd41ceeb815c1a7689b77f615b603cd5" category="paragraph">Os resultados são reorganizados para mostrar a contagem total de arquivos e o tamanho por proprietário. Selecione qualquer linha de proprietário para expandir e ver seus arquivos individuais.</block>
+  <block id="13102176d90562c915296329d372cf05" category="section-title">Revise os detalhes do arquivo</block>
+  <block id="e45fbe0fa3391072b64ce7b218c7f9cd" category="paragraph">Selecione qualquer linha de arquivo para abrir o painel de detalhes e confirme se o arquivo corresponde ao escopo desejado antes de tomar qualquer providência.</block>
+  <block id="570232dc9d8301751d1f0df3d7d6ded5" category="paragraph">O painel de detalhes mostra o sistema do arquivo, o repositório de storage, o proprietário do arquivo e quaisquer tags ou políticas aplicadas. Verifique o sistema e o proprietário antes do arquivamento ou da exclusão.</block>
+  <block id="739c8a225ec9d4388a87cbff74a364d6" category="section-title">Aja com base nos resultados ou salve como uma política</block>
+  <block id="9115023d9a2299cdbb6c4094a3b32978" category="paragraph">Após identificar os arquivos que você deseja abordar, selecione um ou mais itens usando as caixas de seleção na tabela de resultados.</block>
+  <block id="1da1c3b62b44c3206eda6a0bfaa3608b" category="list-text">Para tomar uma ação imediata, consulte <block ref="0a32a9c8f26d2c4f95b1f16b549ee04a" category="inline-link-macro-rx"></block>.</block>
+  <block id="4dfc97cca55649475fd1827176bf7835" category="list-text">Para salvar os critérios de filtro para monitoramento contínuo, selecione *Criar política* na barra de ferramentas de filtro. Consulte <block ref="a6ba65d5603bedd3e970c59f52c864db" category="inline-link-macro-rx"></block>.</block>
+  <block id="c53e81a36cf6536770e3901db796b77b" category="paragraph">Para baixar os resultados filtrados da guia Dados não estruturados, selecione <block ref="5cdab54312f4c99b6053532c2103d660" category="inline-image-macro-rx" type="image"></block>.</block>
+  <block id="466cb045e839cbb73b8cad13c419eadc" category="summary">Tome medidas em relação aos arquivos que você identificou como inativos, antigos ou obsoletos, arquivando-os, marcando itens para rastreamento ou excluindo permanentemente o que você não precisa mais.</block>
+  <block id="c6cdf2484e43853022e3d34a4196e735" category="doc">Tome medidas em seus dados no AI Data Engine</block>
+  <block id="cb54b53eef654e8ada475149b79f002c" category="paragraph">Após identificar os arquivos usando os filtros definidos, você pode tomar medidas diretas para aplicar as políticas de ciclo de vida dos dados da sua organização. Por exemplo, um administrador de storage que filtra para encontrar terabytes de snapshots de VM não acessados em mais de um ano pode arquivá-los em massa em um compartilhamento de storage frio ou excluí-los, dependendo dos requisitos de retenção e das políticas de negócios.</block>
+  <block id="bbe48fb854ea022537208eeeff822f91" category="paragraph-title">Sobre esta tarefa</block>
+  <block id="728d5066b3e522f53ee9bb1aa1cceff2" category="paragraph">Para executar uma ação, selecione um ou mais itens na tabela de resultados da investigação usando as caixas de seleção. A barra de ferramentas de ação é ativada com quatro opções: *Excluir*, *Arquivar*, *Copiar* e *Marcar*.</block>
+  <block id="3b701cb2531be0b00189872b17d5f0c9" category="paragraph">As ações disponíveis para você dependem da função atribuída a você:</block>
+  <block id="004bf6c9a40003140292e97330236c53" category="cell">Ação</block>
+  <block id="c101058e7ea21bbbf2a5ac893088e90b" category="cell">Marcação</block>
+  <block id="e727b00944f81e1d0a95c12886ac4641" category="cell">Arquivo</block>
+  <block id="5fb63579fc981698f97d55bfecb213ea" category="cell">Copiar</block>
+  <block id="f2a6c498fb90ee345d997f888fce3b18" category="cell">Excluir</block>
+  <block id="95649a07a392f0eeb3ca64399627eba1" category="paragraph">Para uma descrição completa das funções, consulte <block ref="d59f12356f9957c4b4ff227159fcf4ce" category="inline-link-macro-rx"></block>.</block>
+  <block id="db1d23e5179a9fe160dcc88e195ec706" category="section-title">Decida o que fazer</block>
+  <block id="147b072cafab1c2dd42e22e5d15301b6" category="paragraph">Escolha uma ação com base no seu grau de certeza em relação aos dados:</block>
+  <block id="098576d35c2d491f4817320ed47b6aaa" category="cell">Quando usar</block>
+  <block id="0f9189cdc3e0a037abe09638c750c872" category="cell">Você precisa de mais tempo ou precisa coordenar com outra equipe antes de se comprometer a arquivar ou excluir. A marcação rastreia os arquivos sem alterar sua localização.</block>
+  <block id="b2ec648a2d141cdfffc053e7b6563866" category="cell">Os dados ainda podem ter valor, mas não pertencem ao storage primário. O arquivamento os move para um destino de menor custo, mantendo a possibilidade de recuperação.</block>
+  <block id="7a513a3c28a8f669fd4aca87edc7d4ff" category="cell">Os dados devem existir em um segundo local, por exemplo, para fins de backup ou migração. A cópia preserva o original no mesmo local.</block>
+  <block id="bc3816ab076629adfe40a0bb74253630" category="cell">Os dados não são mais necessários e não têm requisitos de retenção. A exclusão é permanente, portanto use-a somente quando você tiver certeza.</block>
+  <block id="3a86a1f3200bc13f3e6e25cd8c63f387" category="paragraph">Quando os dados ainda puderem ter valor ou exigirem uma análise mais aprofundada, opte por etiquetá-los, arquivá-los ou copiá-los em vez de excluí-los. Exclua-os somente quando tiver certeza de que é seguro removê-los permanentemente.</block>
+  <block id="b94cf9b41dc14b08e350609a8dda9851" category="section-title">Arquivar arquivos</block>
+  <block id="d583e1dacb23bebde940fa5e8d865f0e" category="paragraph">O arquivamento move os arquivos para um destino de storage frio via NFS ou SMB/CIFS. Opcionalmente, você pode deixar um arquivo de trilha no local original.</block>
+  <block id="1570687f8725a213b4a686f6ac4fdae2" category="list-text">Na visualização de investigação, selecione os arquivos que você deseja arquivar.</block>
+  <block id="2c77adf5fa1de4ed37a6e14d2212f074" category="list-text">Selecione *Archive*.</block>
+  <block id="f54b7c864a181cded9240ed6104e3daf" category="list-text">Na caixa de diálogo Arquivar, selecione o protocolo do volume de destino:</block>
+  <block id="cd500862e33a75abfb5031fad39b1142" category="list-text">*NFS*: insira o caminho da pasta de destino do NFS.</block>
+  <block id="3935da95b9989cca3c105737826afe11" category="list-text">*CIFS*: insira o caminho da pasta de destino CIFS no formato<block ref="fe92c67c0b14ced5563463f4fafedf55" prefix=" " category="inline-code"></block>. Forneça as credenciais do Active Directory: insira o nome de usuário no formato<block ref="17d3c626ba751e0e94dda4f25e2f7917" prefix=" " category="inline-code"></block> ou<block ref="6dbef44fd2513f0adc2001ca12b9ab28" prefix=" " category="inline-code"></block> e insira a senha.</block>
+  <block id="057781ed20a2756d33dd5357cc3202fe" category="list-text">Para criar um arquivo de trilha de navegação no local original, habilite *Deixar breadcrumb*.</block>
+  <block id="58a462660ae302250a4d780d0b3e6c75" category="paragraph">Um arquivo de trilha de navegação ajuda os usuários a entender por que um arquivo foi movido.</block>
+  <block id="558f28628ba8ab4cb8420949524832d3" category="section-title">Copiar arquivos</block>
+  <block id="02a8733c4bf7bb8ff585c8b99ea9c13d" category="paragraph">A cópia duplica arquivos em um volume de destino sem removê-los do local original.</block>
+  <block id="a058b0c45ff3df328bd80e228d5ce518" category="list-text">Na visualização Investigação, selecione os arquivos que você deseja copiar.</block>
+  <block id="ff721def565be95c3cfffe25fdb400a0" category="list-text">Selecione *Copiar*.</block>
+  <block id="672c6ba1d9b352d97c0a978b29edc305" category="list-text">Na caixa de diálogo Copiar, selecione o protocolo do volume de destino:</block>
+  <block id="19e43848563797a6f937c7895b604754" category="section-title">Excluir arquivos</block>
+  <block id="febaf5fabe3319f93b2fe563154ea639" category="paragraph">A exclusão remove permanentemente os arquivos do armazenamento e essa ação não pode ser desfeita.</block>
+  <block id="78ed60cd08755488e6329393322735be" category="admonition">A exclusão é permanente e não pode ser desfeita. Esta ação exclui os arquivos de origem mesmo que contenham dados ativos.</block>
+  <block id="2502b05a7977f127e7281b538960066d" category="list-text">Na visualização Investigação, selecione os arquivos que você deseja excluir.</block>
+  <block id="0f024621e0673f1f4e657983682d6e72" category="list-text">Selecione *Delete*.</block>
+  <block id="0dd343f5a1b1a1c2fe813f560aebc821" category="list-text">Na caixa de diálogo Excluir, digite *excluir permanentemente* no campo de confirmação.</block>
+  <block id="72e2db7d480025db5af43c2aac619bc7" category="paragraph">Os arquivos selecionados são excluídos permanentemente do armazenamento.</block>
+  <block id="df35ebac2a41097b9917523bd3c2bc09" category="section-title">Arquivos de tag</block>
+  <block id="44449c40b94c6968d500d3ac0000d80f" category="paragraph">A etiquetagem aplica uma etiqueta comercial aos arquivos para classificação e rastreamento.</block>
+  <block id="8e257df1aecf26a0f56609f5b258ac48" category="list-text">Na visualização Investigação, selecione os arquivos que você deseja etiquetar.</block>
+  <block id="2aef7b9ad66d778cf2b4d09ef8ca9e20" category="list-text">Selecione *Tag*.</block>
+  <block id="4a928d09a792f7bb80c2f5c0cd76c45d" category="list-text">Insira ou selecione as etiquetas a aplicar (por exemplo, "candidato a arquivamento").</block>
+  <block id="e0c82a884434f7335c9d93b81ff581a8" category="list-text">Confirme para aplicar as tags.</block>
+  <block id="1a00c6d70a5f287fa08a2f560298aaaf" category="list-text"><block ref="1a00c6d70a5f287fa08a2f560298aaaf" category="inline-link-macro-rx"></block></block>
+  <block id="e8feacb52d9a8d1ca3dc8fece412de38" category="summary">Avalie a integridade do storage em todo o seu ambiente, identifique onde o storage potencialmente recuperável está concentrado e decida quais sistemas ou proprietários de dados investigar primeiro.</block>
+  <block id="e51a89894bc2fbb0eac3aacc1ae7e58e" category="doc">Avalie a integridade do storage com o painel do AI Data Engine</block>
+  <block id="b943da8162c47c91e3486439e26e1301" category="paragraph">Antes de decidir o que investigar, você precisa entender o estado do seu storage. Quanto do storage atende aos limites de classificação de dados frios e obsoletos da sua organização, e quais sistemas ou proprietários detêm a maior quantidade de dados nessas categorias? Por exemplo, um administrador de storage que responde a um alerta de capacidade pode ver que uma grande parte do storage verificado contém dados frios e, em seguida, detalhar o sistema de maior impacto para começar a investigar imediatamente.</block>
+  <block id="c3f8d99caf13f1c9cc868c7e63ac0b27" category="paragraph">No NetApp Console, selecione *Governança* &gt; *AI Data Engine UI*. O painel é aberto por padrão.</block>
+  <block id="91e4a9de07cf0d0c9175eae1427f1f38" category="section-title">Entenda quanto armazenamento é afetado</block>
+  <block id="c8e00eaecbe5dcb031f4ca326e46a4c6" category="paragraph">O painel de resumo mostra a dimensão do problema em todo o ambiente analisado:</block>
+  <block id="7ef3152904e46ae7f94840efc09c3b92" category="list-text">*Dados frios*: storage não acessado dentro do limite de dados frios (padrão: um ano). Sua organização pode avaliar esses dados de acordo com suas políticas de retenção e governança.</block>
+  <block id="d712d7ee942e358c4009c49431ef2f2d" category="list-text">*Dados obsoletos*: storage que não foi acessado nem modificado dentro do limite de dados obsoletos (padrão: três anos). Os dados obsoletos podem exigir revisão de acordo com as políticas de ciclo de vida dos dados da sua organização antes de decidir sobre ações como arquivamento ou exclusão.</block>
+  <block id="cc2f4d57c9484a23c4a96fc8f23b8656" category="list-text">*Diretórios expostos*: diretórios com configurações de acesso excessivamente permissivas. Esses representam um risco de governança independente do consumo de armazenamento.</block>
+  <block id="10f5b659d787bd27e2a927247a54a851" category="list-text">*Recursos de dados*: a quantidade de volumes, compartilhamentos e buckets atualmente analisados.</block>
+  <block id="4032aca872e761b4f5e049b7efe7b33b" category="list-text">*Total de arquivos verificados*: o número total de arquivos indexados em todos os recursos de dados verificados.</block>
+  <block id="5ecd0a2f3bf7cb827b44868e8678c44a" category="paragraph">Os limites para dados frios e obsoletos refletem suas configurações e podem ser alterados em *Configuração* &gt; *Configurações*. Os valores padrão são os padrões do produto e não representam períodos de retenção legais, de conformidade ou padrão do setor. Consulte <block ref="5b2f6a0e7f285ed05b047fba791060b7" category="inline-link-macro-rx"></block>.</block>
+  <block id="4c1929bca68da328a7aa87cbf4e79c82" category="paragraph">O gráfico _Storage ativo versus recuperável_ mostra a proporção de dados ativos em comparação com dados frios e obsoletos em todos os recursos analisados. Uma alta proporção de dados frios, obsoletos ou duplicados pode indicar uma oportunidade significativa de otimização de storage.</block>
+  <block id="13350d4cdc4449515291e667e2318234" category="paragraph">Os filtros *Sistema* e *Tipo de sistema* controlam o escopo do painel. Se um sistema de storage não aparecer na lista de filtros, consulte <block ref="3540fa5efa78b3ae6e9c7d52a1e7d21a" category="inline-link-macro-rx"></block>.</block>
+  <block id="8b361c02b649d493e4f9211584d129e7" category="section-title">Identificar oportunidades de otimização de armazenamento</block>
+  <block id="4bab448286926edb332cf3552e879598" category="paragraph">Use o painel de resumo e o gráfico para identificar e priorizar oportunidades de otimização de armazenamento:</block>
+  <block id="2e8488475a072fccfcc2119d2b03ea22" category="list-text">Priorize os recursos que têm o maior tamanho potencialmente recuperável, em vez daqueles com o maior tamanho total. Um sistema pequeno, composto principalmente por dados inativos ou obsoletos, pode ser um recurso melhor para você avaliar primeiro do que um sistema grande e predominantemente ativo.</block>
+  <block id="b1bb6fb4de70db88e5ce6c82540ddb6d" category="list-text">Procure grandes concentrações de dados frios ou obsoletos em vez de arquivos isolados. Dezenas de terabytes de dados que atendam ao seu limite de obsolescência em um único recurso justificam uma avaliação; arquivos isolados podem não exigir nenhuma ação.</block>
+  <block id="9b7c190f314417a73c41881f5ea8e249" category="section-title">Passe do painel de controle para a investigação</block>
+  <block id="e17f5b218ebb105d6297d499db8bf9ab" category="paragraph">Quando você identificar um recurso ou proprietário que valha a pena investigar, use as tabelas na parte inferior do painel para acessar diretamente os detalhes.</block>
+  <block id="e7ef56695ea04d5a8ed28ad8f4c0057d" category="inline-link-macro">Não estruturado</block>
+  <block id="f60bce136c62f7ab3c73aa4f0d5fcae9" category="inline-link-macro">Diretórios</block>
+  <block id="f902c7ef331eec27ba7c19c76dd13ea7" category="paragraph">A tabela _Principais recursos de dados por storage recuperável_ lista seus recursos de storage verificados, classificados pela proporção de dados duplicados ou que atendem aos limites de dados inativos e obsoletos da sua organização. Selecione qualquer linha para abrir a visualização Investigation filtrada para esse recurso. A partir daí, use a guia <block ref="2ffd1417cc35a965547bb2150ad9550e" category="inline-link-macro-rx"></block> para identificar arquivos inativos ou obsoletos, ou a guia <block ref="6d961a2a6fb0e60e8e41943755ff0165" category="inline-link-macro-rx"></block> para auditar a exposição de permissões.</block>
+  <block id="10160b4a6005b5e64e6bb3c6cd4ce9f4" category="paragraph">A tabela _Principais proprietários de dados por armazenamento recuperável_ mostra quais proprietários de dados possuem dados potencialmente recuperáveis. Selecione qualquer linha para abrir a visualização <block ref="7c7d8a698a0c8312e3f60c4049c831eb" category="inline-link-macro-rx"></block> filtrada para os arquivos desse proprietário. A partir daí, você pode revisar os resultados, agir com base neles ou salvá-los como uma política.</block>
+  <block id="5b2f6a0e7f285ed05b047fba791060b7" category="list-text"><block ref="5b2f6a0e7f285ed05b047fba791060b7" category="inline-link-macro-rx"></block></block>
+  <block id="29f269506dea333c951e5bdd24f562e8" category="summary">Referência dos filtros de metadados disponíveis na visualização Investigation do AI Data Engine.</block>
+  <block id="3f1e5985ebe63ee48079ec674c8e712c" category="doc">Filtros de metadados no AI Data Engine</block>
+  <block id="32098fe855860a385d3e78e6f21bddba" category="paragraph">A visualização Investigation do AI Data Engine fornece filtros de metadados para restringir seus resultados a um agrupamento de dados específico. Aplique um ou mais filtros simultaneamente para definir os arquivos que você deseja examinar ou nos quais deseja agir.</block>
+  <block id="4f0571511f3798371fc4148cfd519ee4" category="section-title">Filtros de tempo</block>
+  <block id="d7778d0c64b6ba21494c97f77a66885a" category="cell">Filtro</block>
+  <block id="12707aedcfa4c45ecea0e99004cb9c09" category="cell">Última criação</block>
+  <block id="6c4f535cc063708aa94771d54aac42fc" category="cell">Filtre os arquivos pela data em que foram criados.</block>
+  <block id="fe8430e1398bb650f70a7f4ac687f688" category="cell">Última modificação</block>
+  <block id="932670db976eb5163da370a9844d60a2" category="cell">Filtre os arquivos pela data em que eles foram modificados pela última vez.</block>
+  <block id="54bc6f9dec592e510fe90ddcb5c6e572" category="cell">Último acesso</block>
+  <block id="fae6ad3654612fb7f673d44ed469f25d" category="cell">Filtre os arquivos pela data em que eles foram acessados pela última vez. Use esse filtro para identificar dados frios ou obsoletos.</block>
+  <block id="eed7cc7f64269eb19a98b58ae0d79b6f" category="cell">Hora da descoberta</block>
+  <block id="0cd081aab0fdbd4873a2df7b40288c7e" category="cell">Filtre os arquivos pela data em que o AI Data Engine os detectou pela primeira vez durante a verificação.</block>
+  <block id="478b6b0fb2364dfbd840a53ccc181cdf" category="section-title">Filtros de atributos de arquivo</block>
+  <block id="e539fd665e202f536325140d87d7bf72" category="cell">Tipo de arquivo</block>
+  <block id="451bd265f7d7e6ef80f9660ce3f8938b" category="cell">Filtre por extensão de arquivo ou classificação de tipo. Selecione um ou mais tipos de arquivo da lista.</block>
+  <block id="a00fe904aecabd4bff74d8776e6da2c5" category="cell">Tamanho do arquivo</block>
+  <block id="ab46ef9ee6c9aeb566a0052138ce96fe" category="cell">Filtre por tamanho do arquivo. Insira um valor mínimo, um valor máximo ou um intervalo.</block>
+  <block id="39ef84f61972b7a15df8579366a81c58" category="cell">Caminho do arquivo/diretório</block>
+  <block id="c15d26ebf6d6ddcb7b27630b29418303" category="cell">Filtre pelo caminho completo ou parcial do arquivo ou do diretório que o contém.</block>
+  <block id="bca27ee6b79f497c1dda149cd12ce9f6" category="cell">Proprietário do arquivo/diretório</block>
+  <block id="19642f59edd25d4d972fe6baaccee253" category="cell">Filtre pelo usuário ou grupo proprietário do arquivo ou diretório.</block>
+  <block id="116279f96a5a5a07b36a9ed5e3b30ae8" category="cell">Hash do arquivo</block>
+  <block id="c0714ffda0184867f1dc524ff0e5e420" category="cell">Filtre pelo valor de hash de um arquivo para encontrar arquivos específicos ou confirmar conteúdo duplicado.</block>
+  <block id="763275034b3bde5ad4f0fb074a35e741" category="cell">Duplicados</block>
+  <block id="32faa42aebad484f8da6541b5505c7e0" category="cell">Filtre para exibir apenas os arquivos que têm cópias duplicadas detectadas no catálogo.</block>
+  <block id="c3a9830be43f6515257f3979e66816fd" category="cell">Tipo de diretório</block>
+  <block id="6354853e63c8ea1bdaef8b483969bac2" category="cell">Filtre por tipo de diretório. Aplica-se à aba Diretórios.</block>
+  <block id="f6ee46e7a4dcaeef127cb631d4d71eba" category="section-title">Filtros de origem</block>
+  <block id="0a2e90839e516c5beec6a6b2383bebbb" category="cell">Contêiner de dados</block>
+  <block id="18f84adbe62810f511dc08313445b852" category="cell">Filtre para um volume ou compartilhamento específico.</block>
+  <block id="a45da96d0bf6575970f2d27af22be28a" category="cell">Sistema</block>
+  <block id="b4e6aff3dc86a2a0b3d147648dcffc93" category="cell">Filtrar para um cluster específico.</block>
+  <block id="09a501049563e4eed9d4a3de0e0ef779" category="cell">Tipo de sistema</block>
+  <block id="817145c1a1deab51f396b987565b3847" category="cell">Filtrar por tipo de sistema de storage.</block>
+  <block id="1b3b8b36365509a34458842ab634d447" category="section-title">Filtros de governança</block>
+  <block id="189f63f277cd73395561651753563065" category="cell">Tags</block>
+  <block id="088563aec15dfe81a18f529521715ea6" category="cell">Filtrar arquivos que tenham uma etiqueta comercial específica aplicada.</block>
+  <block id="51359e8b51c63b87d50cb1bab73380e2" category="cell">Política</block>
+  <block id="a7958d6b539c348235ccc6bee16e5ce1" category="cell">Filtre os arquivos que correspondem a uma política salva específica. Os nomes das políticas aparecem na lista de filtros.</block>
+  <block id="9f6155ee2fa8065bc4074b1d7c733d3f" category="section-title">Filtros de acesso</block>
+  <block id="81593873baa2c232be0bc3600b554eb3" category="cell">Número de usuários com acesso</block>
+  <block id="7b94fe52ebacb5ec60b2cc5908f95eab" category="cell">Filtre os arquivos pelo número de usuários ou grupos que têm acesso. Use isso para identificar dados amplamente acessíveis.</block>
+  <block id="1f5111136feebd2cebb509caf39d84ea" category="cell">Permissão de usuários/grupos</block>
+  <block id="2c6c8d72b780de32255fbc74be0e6042" category="cell">Filtre os arquivos por um usuário ou grupo específico que tenha permissões de acesso.</block>
+  <block id="56dc1022c52105e2bab579a7c3eb86ec" category="section-title">Combinando filtros</block>
+  <block id="30b3b28cbcc9fe320c89ccf0cd63c711" category="paragraph">Os filtros são combinados com lógica AND, o que significa que os resultados devem corresponder a todos os filtros aplicados simultaneamente.</block>
+  <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">Avisos legais</block>
+  <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="paragraph">Avisos legais fornecem acesso a declarações de direitos autorais, marcas registradas, patentes e mais.</block>
+  <block id="6016a2b341113bf496b719905398ecd2" category="section-title">Direitos autorais</block>
+  <block id="52009bb7ee17227f566cd26a02caee56" category="inline-link-macro"><block ref="52009bb7ee17227f566cd26a02caee56" category="inline-link-rx"></block></block>
+  <block id="a1a9afcf552a769c282769271829889a" category="paragraph"><block ref="a1a9afcf552a769c282769271829889a" category="inline-link-macro-rx"></block></block>
+  <block id="126a02652da6de02962cf1b654fd6376" category="section-title">Marcas registradas</block>
+  <block id="c4ce4761e466527d26b3e3d5ed1006fd" category="paragraph">NETAPP, o logotipo da NETAPP e as marcas listadas na página de Marcas Registradas da NetApp são marcas registradas da NetApp, Inc. Outros nomes de empresas e produtos podem ser marcas registradas de seus respectivos proprietários.</block>
+  <block id="f99aa604031e5049799e73b5c3748a98" category="inline-link-macro"><block ref="f99aa604031e5049799e73b5c3748a98" category="inline-link-rx"></block></block>
+  <block id="5d545fe5152641e2ebe654e336e520e5" category="paragraph"><block ref="5d545fe5152641e2ebe654e336e520e5" category="inline-link-macro-rx"></block></block>
+  <block id="be89498d2f8a22ce47c02ba9795fe2af" category="section-title">Patentes</block>
+  <block id="d0b19d36be2c5f16e9aef46c8a452d3d" category="paragraph">A lista atual de patentes detidas pela NetApp pode ser encontrada em:</block>
+  <block id="88e5eabd3917048b6927c42496b98f86" category="inline-link-macro"><block ref="88e5eabd3917048b6927c42496b98f86" category="inline-link-rx"></block></block>
+  <block id="dd38f906b37d412de7d1c1dcf4cbf31c" category="paragraph"><block ref="dd38f906b37d412de7d1c1dcf4cbf31c" category="inline-link-macro-rx"></block></block>
+  <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">Política de privacidade</block>
+  <block id="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-macro"><block ref="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-rx"></block></block>
+  <block id="2352c4e1f4d0024ade0869e00e6243f4" category="paragraph"><block ref="2352c4e1f4d0024ade0869e00e6243f4" category="inline-link-macro-rx"></block></block>
+  <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">Código aberto</block>
+  <block id="9b73989307c1975dfa4d5e1581e4afe8" category="paragraph">Os arquivos de notificação fornecem informações sobre direitos autorais e licenças de terceiro usados no software NetApp.</block>
+  <block id="93d6496a69f6384320dab15ccadbc4e8" category="inline-link-macro">Aviso para o AI Data Engine</block>
+  <block id="7ab36480d3c1a530e02ac892b3191e4a" category="paragraph"><block ref="7ab36480d3c1a530e02ac892b3191e4a" category="inline-link-macro-rx"></block></block>
+  <block id="e7dc26f23cfcebf955f51e9ec20046b1" category="summary">Salve os critérios de filtro da investigação como uma política nomeada para que você possa acompanhar o mesmo agrupamento de dados ao longo do tempo e receber notificações quando as condições mudarem.</block>
+  <block id="0e276db5651852f12c3a3c7be8b2939e" category="doc">Criar uma política no AI Data Engine</block>
+  <block id="ede0a89e2e37ef9e8c3495af56db91eb" category="paragraph">Crie uma política quando você quiser monitorar uma condição de dados recorrente sem repetir a mesma investigação manualmente. Por exemplo, um gerente de governança de dados pode salvar uma política de "arquivos grandes e obsoletos" para rastrear esse agrupamento em ciclos de verificação e receber uma atualização por e-mail quando a contagem de arquivos afetados mudar.</block>
+  <block id="f52de95261912772fdb0cf144dbe03b4" category="section-title">Sobre políticas</block>
+  <block id="a5fa586a92013c5c97e29689057b2cb1" category="paragraph">As políticas salvam os critérios de filtro que você define em Investigation como uma regra reutilizável. O AI Data Engine avalia cada política em relação ao catálogo de metadados após cada ciclo de verificação. Você pode abrir uma política a qualquer momento para ver o conjunto de resultados correspondentes atual. Se você anexar uma ação Delete, o AI Data Engine removerá os arquivos correspondentes após cada ciclo de verificação. Se você anexar uma notificação por e-mail, o AI Data Engine enviará uma atualização quando a contagem de arquivos afetados mudar.</block>
+  <block id="a6386166765944cb85899326a6b2c476" category="section-title">Escolha uma ação de política</block>
+  <block id="c64d18b33c4649a44b2628b0bb93ef7c" category="paragraph">Uma política é um conjunto de filtros salvo com uma ação opcional associada:</block>
+  <block id="0c38824176557eba4a1f516f7b088c6a" category="list-text">*Apenas monitorar (sem ação)*: acompanhe o agrupamento correspondente ao longo do tempo sem tomar nenhuma ação. Use esta opção quando desejar visibilidade sem se comprometer com uma resposta automatizada.</block>
+  <block id="c2e1f4c774ea10b57abefcb31aa76536" category="list-text">*Enviar notificação por e-mail*: Notifique o usuário por e-mail quando a contagem de arquivos correspondentes mudar.</block>
+  <block id="cb68685abc4007772bf80e880f6ac0b8" category="list-text">*Excluir permanentemente*: remova permanentemente e automaticamente todos os arquivos correspondentes após cada ciclo de verificação, sem necessidade de confirmação adicional. Esta ação é irreversível. Verifique se seus critérios de filtro são precisos e se você tem autorização para excluir os arquivos identificados antes de anexar esta ação.</block>
+  <block id="e1b7f70c1cf13a700c2cf801fe8ab552" category="section-title">Criar uma política a partir da investigação</block>
+  <block id="238cdb076cf9e0d915750e9789485a70" category="list-text">Para associar uma ação de exclusão ou notificação por e-mail, você precisa ter a função de _administrador do AI Data Engine_. A função de _visualizador do AI Data Engine_ pode criar políticas somente de monitoramento.</block>
+  <block id="b2aa56915b8338c2ab4bb92754d8c8b0" category="list-text">No NetApp Console, navegue até *Governança* &gt; *AI Data Engine* &gt; *Investigação*.</block>
+  <block id="4556be3d18976a94e35e9505a84ce0a8" category="list-text">Aplique um ou mais filtros que identifiquem os arquivos que você quer que a política tenha como alvo.</block>
+  <block id="3c5d0d0d1c86fad21c867f867ba470c0" category="paragraph">Por exemplo: *Tipo de arquivo* = .vmdk E *Hora do último acesso* &gt; 365 dias.</block>
+  <block id="af8e50ebd71c84b70d4d016cc5af3ace" category="paragraph">Analise a tabela de resultados para confirmar se o conjunto de filtros captura o agrupamento de dados pretendido.</block>
+  <block id="2a2288a0330a9617d3c0853f85e68419" category="list-text">Na barra de ações do filtro, selecione *Criar política*.</block>
+  <block id="8a37796b9da962274f41ca52f950bc99" category="list-text">Insira um *nome da política*.</block>
+  <block id="9915d257811585adeea12f4d8e40cc73" category="list-text">Opcionalmente, insira uma *Descrição* (até 500 caracteres).</block>
+  <block id="d334da0bb32759f8d5a78f143560afcd" category="list-text">Analise a expressão de critérios de filtro (por exemplo, <block ref="9ece38ef1bce889b5cd8f71bfea85fdc" prefix=" " category="inline-code"></block>) para confirmar se ela reflete suas seleções.</block>
+  <block id="f77f4eb500540d8520b974e5058db78e" category="list-text">Para associar uma ação, selecione uma das seguintes opções em *Ação*:</block>
+  <block id="f07b095e62dc1ddbd4bf74cc9ca2b983" category="list-text">*Apenas monitorar (nenhuma ação)* (padrão): a política é salva como uma condição de somente monitoramento.</block>
+  <block id="5942095503f6d7e1e26b60a2a6e62d7f" category="list-text">*Enviar notificação por e-mail*: envia uma notificação por e-mail ao destinatário especificado.</block>
+  <block id="92b84f78dfb45bf70e508b01224589fc" category="list-text">*Excluir permanentemente*: nenhuma entrada adicional é necessária.</block>
+  <block id="e396b1ac5c2d912ca6a8b13ed0e05a07" category="admonition">A ação "Excluir permanentemente" exclui automática e irreversivelmente todos os arquivos que correspondem a esta política após cada ciclo de verificação. Verifique seus critérios de filtro e confirme se você tem autorização para excluir esses arquivos antes de salvar.</block>
+  <block id="bf18811faac9b8e4fcaebab51afd1113" category="list-text">Selecione *Criar*.</block>
+  <block id="9e476387322a5c250893cf9c5c4ce78c" category="inline-link-macro">Políticas</block>
+  <block id="ce31e5e1b0f1c49223168a724c959c80" category="paragraph">A política é salva e exibida na página <block ref="94996367e765be6e764d9bd137e8806b" category="inline-link-macro-rx"></block>. Se você associou uma ação, o AI Data Engine aplica essa ação aos arquivos que correspondem aos critérios da política.</block>
+  <block id="2fdca2ba1ed7693e487bec5025936503" category="section-title">Exemplo: identificar arquivos de arquivamento inativos</block>
+  <block id="8d0110cf0e0c534d680481796f5a88f5" category="paragraph">O exemplo a seguir cria uma política para enviar uma notificação por e-mail quando forem detectados arquivos que não são acessados há mais de um ano.</block>
+  <block id="e86db3241da52f3960cf869272355591" category="list-text">Na seção Investigação, aplique estes filtros:</block>
+  <block id="d91d018dd5cfcadde4007e74098c07ea" category="list-text">*Hora do último acesso* &gt; 365 dias</block>
+  <block id="db92c743d97601150bbdfa11bf3cf66b" category="list-text">Selecione *Criar policy*.</block>
+  <block id="874c7fe25e0efe0e2f1f89158d6b2375" category="list-text">Insira o nome da política: *Arquivos inativos — sem acesso por 1 ano*.</block>
+  <block id="ce8113155f35b52456a2501ac34f598f" category="list-text">Selecione a ação *Enviar notificação por e-mail* e insira o endereço de e-mail do destinatário.</block>
+  <block id="e7326f303b8abf78625da7d8f22fa0b4" category="inline-link-macro">Gerenciar políticas</block>
+  <block id="e9ba76d54e1aa8410ae34a053e8340ea" category="list-text"><block ref="e9ba76d54e1aa8410ae34a053e8340ea" category="inline-link-macro-rx"></block></block>
+  <block id="56a7a067af00ee6bab27db9405ac066d" category="summary">Revise suas políticas salvas para ver quais arquivos correspondem atualmente a cada conjunto de critérios e remova as políticas de que você não precisa mais.</block>
+  <block id="74ec5da2fefa69fddb2881fbc2dbd402" category="doc">Gerenciar políticas no AI Data Engine</block>
+  <block id="ff4836632ff67a727c02672236e6e643" category="paragraph">Quando você quiser revisar quais das suas políticas salvas correspondem aos dados, comparar a quantidade de arquivos afetados para priorizar ações ou remover políticas de que você não precisa mais, use a página Políticas. Por exemplo, um administrador de storage com várias políticas de dados frios pode comparar a quantidade de arquivos afetados para decidir quais agrupamentos de dados precisam de atenção primeiro.</block>
+  <block id="64c6e97782938b65828124df5bf425e3" category="paragraph">Cada listagem de políticas mostra a quantidade de arquivos e objetos que atualmente correspondem aos seus critérios. Use essa contagem para identificar quais políticas estão capturando ativamente dados que valem a pena revisar.</block>
+  <block id="369b015b44433288d8d9f44f10b8f01c" category="section-title">Verifique quais arquivos correspondem a uma política</block>
+  <block id="f1d0cd6ff1faaa9828ee3daf3aa01b7c" category="paragraph">Antes de editar ou excluir uma política, revise os arquivos aos quais ela corresponde atualmente para confirmar se os critérios ainda estão capturando os dados corretos.</block>
+  <block id="fb1f704e8084c654c300bf0b7e8f6abd" category="list-text">Na interface do usuário do AI Data Engine, selecione *Políticas*.</block>
+  <block id="1e62455bacaf81600fe41fd0658e0acf" category="list-text">Abra o menu de ações ao lado da política e selecione *Investigar resultados*.</block>
+  <block id="fb6e9d876191a4c0c156e739e377be59" category="section-title">Editar uma política</block>
+  <block id="7bce56498401ba4fb04b8af6d984b307" category="list-text">Abra o menu de ações da política que deseja editar e selecione *Editar política*.</block>
+  <block id="b43ad3d67481f4076cbc1f9453c9b41c" category="list-text">Atualize o nome, a descrição ou a ação conforme necessário.</block>
+  <block id="8b6af900279ab887f7d317420c8ef15c" category="section-title">Excluir uma política</block>
+  <block id="6da2239d74d67983073e7b7ef1decbb0" category="admonition">A exclusão é permanente e não pode ser desfeita.</block>
+  <block id="55c29241fe1686604368df5845be9163" category="list-text">Abra o menu de ações da política que deseja excluir e selecione *Excluir política*.</block>
+  <block id="172a47418c24bf93ca97612514cafed3" category="list-text">Confirme a exclusão na caixa de diálogo de visualização prévia.</block>
+  <block id="28fa47d57487a7a01a693e7abece3024" category="list-text"><block ref="28fa47d57487a7a01a693e7abece3024" category="inline-link-macro-rx"></block></block>
+  <block id="a80dc868c7fe91b119b830460ef35842" category="summary">As limitações conhecidas identificam funcionalidades que não têm suporte nesta versão do AI Data Engine.</block>
+  <block id="df210d5dd27498fc443f259d10010182" category="doc">Limitações conhecidas no AI Data Engine</block>
+  <block id="c1d0108537baf61ec55a7c0d2bf2865c" category="paragraph">As limitações conhecidas identificam funcionalidades que não são compatíveis nesta versão do AI Data Engine ou funcionalidades que não interoperam corretamente. Analise essas limitações antes de implantar ou usar o produto.</block>
+  <block id="ea355214fd4bc7c57f471bd92918879b" category="section-title">Implantação</block>
+  <block id="b154839e03c7861cb59c16d126dfb18b" category="list-text">As implementações Lite e Enterprise são independentes</block>
+  <block id="50994614c7e6b09b219e17a7563708d8" category="list-text">O AIDE Lite e o AIDE Enterprise são modos de implantação separados. Não há um caminho de migração compatível para mover uma implantação existente de um modo para o outro.</block>
+  <block id="d7ac65d8f6471ff1370e8ad4fda2db56" category="section-title">Políticas e ações</block>
+  <block id="22d58514041f9d266de2982f62b704e1" category="list-text">As ações desencadeadas por políticas são limitadas</block>
+  <block id="1bd7116c1271070fddc738ca1e2a63ac" category="list-text">Ao criar uma política, as ações automatizadas disponíveis se limitam à exclusão permanente e à notificação por e-mail. As ações automatizadas de arquivamento e marcação de políticas não estão disponíveis nesta versão. Você pode criar uma política sem nenhuma ação para monitorar uma condição de dados ao longo do tempo.</block>
+  <block id="5e5599b4ab847835c7ed2699cdee9711" category="list-text">As tags não podem ser excluídas nem renomeadas</block>
+  <block id="f8219070c8f68fd81cbf60bf1fe96f84" category="list-text">O gerenciamento de tags não está disponível nesta versão. Depois de criar uma tag, ela permanece disponível no sistema. Você pode aplicar uma tag a itens e removê-la deles, mas não pode excluir a definição da tag em si nem corrigir um nome de tag que contenha um erro de digitação.</block>
+  <block id="33871b6190a8d5adbe8b15282054766c" category="inline-link-macro">O que há de novo</block>
+  <block id="d2cf1d75a14c1b649ad24af4f7cc016a" category="list-text"><block ref="d2cf1d75a14c1b649ad24af4f7cc016a" category="inline-link-macro-rx"></block></block>
+  <block id="42f8643eb52a942747937327c72c8361" category="inline-link-macro">Visão geral da implantação</block>
+  <block id="cd987b27c3ccd639db6b361c502cc401" category="list-text"><block ref="cd987b27c3ccd639db6b361c502cc401" category="inline-link-macro-rx"></block></block>
+  <block id="f83adadb9550a879c846995e2192c210" category="summary">Conheça as novas funcionalidades do AI Data Engine.</block>
+  <block id="44b91c30c9b87c702f04abec51577e90" category="doc">O que há de novo no AI Data Engine</block>
+  <block id="18b0745779f8b981a16d46a4004a7a76" category="section-title">AI Data Engine 1.1.0</block>
+  <block id="4803fa959f55c9868ce67add988b1bc3" category="paragraph">AI Data Engine é um serviço de inteligência de metadados, gerenciado por meio do NetApp Console, que analisa seus sistemas conectados, cria um catálogo de metadados e oferece a visibilidade e as ferramentas para otimizar o storage e governar dados em escala. Você pode implantar o AI Data Engine como <block ref="8fdf49583b6b6aae3264dbfdc5e4db3c" category="inline-link-macro-rx"></block>, ou como AIDE Enterprise, caso seu ambiente exija alta disponibilidade baseada em Kubernetes em grande escala.</block>
+  <block id="acff41ea8efa2706fc9a587f718f0796" category="paragraph">Novas funcionalidades:</block>
+  <block id="5985e93b91139d269803898603d579a6" category="inline-link-macro">Recuperar capacidade de storage</block>
+  <block id="b86b47941c4c25cee43b3c71138fd185" category="list-text"><block ref="b86b47941c4c25cee43b3c71138fd185" category="inline-link-macro-rx"></block></block>
+  <block id="28ee8cd4b89e717d7369cec556fc8ecb" category="list-text">Identifique dados frios, obsoletos e duplicados em seus sistemas conectados com base nos limites configurados e veja quais sistemas e proprietários de dados têm as maiores concentrações desses dados.</block>
+  <block id="48f8775f839e036416f7dc0d633d5f90" category="inline-link-macro">Reduza custos e riscos</block>
+  <block id="e52b3bfa6b31678effcc50ac056804c0" category="list-text"><block ref="e52b3bfa6b31678effcc50ac056804c0" category="inline-link-macro-rx"></block></block>
+  <block id="847b10ef72a08afa0a7a2bccfc9f722a" category="list-text">Filtre em todos os sistemas conectados por tempo de acesso, data de modificação, data de criação, tamanho do arquivo, status de duplicado e outros critérios para encontrar arquivos que atendam aos objetivos de gerenciamento de dados da sua organização. Aja diretamente nos resultados ou salve os critérios como uma política.</block>
+  <block id="3ff38183453704f2e6ad7755f7b18083" category="inline-link-macro">Gerencie os dados continuamente</block>
+  <block id="051b1389b635c6321bf59c8160978b9c" category="list-text"><block ref="051b1389b635c6321bf59c8160978b9c" category="inline-link-macro-rx"></block></block>
+  <block id="324524f3e5ca24846ad76aa3a39d085c" category="list-text">Salve critérios de filtro como políticas nomeadas para rastrear condições recorrentes de dados ao longo do tempo, como arquivos inativos ou muito grandes, e receba notificações quando a contagem de arquivos afetados mudar.</block>
+  <block id="a82c68dd721dede489a3f3b8e95372d3" category="inline-link-macro">Reduzir os custos de storage</block>
+  <block id="3cdd5ec3a4c7cb1197214bf213ebc152" category="list-text"><block ref="3cdd5ec3a4c7cb1197214bf213ebc152" category="inline-link-macro-rx"></block></block>
+  <block id="5ba3f47da1647119a0c451e5cddf25f4" category="list-text">Garanta o cumprimento das políticas de ciclo de vida dos dados da sua organização copiando e arquivando arquivos para destinos NFS ou SMB/CIFS, marcando itens para rastreamento ou excluindo arquivos permanentemente de acordo com seus requisitos de retenção.</block>
+  <block id="a39bf4bdcac229739d4368182e65aa6a" category="inline-link-macro">Atribua funções de administrador e visualizador</block>
+  <block id="c0d075a2db1d36d19fe844351b6f646e" category="list-text"><block ref="c0d075a2db1d36d19fe844351b6f646e" category="inline-link-macro-rx"></block></block>
+  <block id="05cd97f29840d5823c5d103c71b26a1a" category="list-text">Controle quem pode investigar dados e tomar medidas atribuindo a função de administrador ou visualizador do AI Data Engine aos usuários da sua organização.</block>
+  <block id="aa06fbb4900808cad7e234eac413020c" category="inline-link-macro">Elimine dados duplicados</block>
+  <block id="ac3a7591b6c527c7f8b4165add1344e5" category="list-text"><block ref="ac3a7591b6c527c7f8b4165add1344e5" category="inline-link-macro-rx"></block></block>
+  <block id="7b13634364ab63bb85b99711d8e97507" category="list-text">Encontre arquivos que têm cópias duplicadas em seus sistemas conectados. Filtre pelo atributo "Duplicados" ou pelo hash do arquivo para revisar e agir diretamente nos grupos duplicados.</block>
+  <block id="b35eff1ca35dd2f41cd4416cbe7b1867" category="inline-link-macro">Responsabilize os proprietários dos dados</block>
+  <block id="95ab69d3f8b9dd3c20895e2a8f620b1d" category="list-text"><block ref="95ab69d3f8b9dd3c20895e2a8f620b1d" category="inline-link-macro-rx"></block></block>
+  <block id="7dbe065509bb17277c7b17f3766f97be" category="list-text">Identifique no painel quais proprietários de dados têm as maiores concentrações de dados frios, obsoletos ou duplicados e, em seguida, filtre por proprietário ou grupo na visualização de investigação para revisar e gerenciar os resultados de acordo com suas políticas.</block>
+  <block id="482723983a4f2af954e36ff41e567451" category="inline-link-macro">Limitações conhecidas</block>
+  <block id="34e34c0debc388181c3934f84b977ddd" category="list-text"><block ref="34e34c0debc388181c3934f84b977ddd" category="inline-link-macro-rx"></block></block>
+  <block id="e72c60c273700856ad0eeb853a353e52" category="sidebar">O AI Data Engine oferece visibilidade dos dados não estruturados armazenados em seus sistemas NetApp. Use-o para identificar oportunidades de otimização de storage, investigar seus dados e aplicar políticas de ciclo de vida.</block>
+  <block id="ed67b8aec97dcec019f1b2972d70f5af" category="sidebar">Documentação do AI Data Engine</block>
+  <block id="0416d02572f9d563fa4967178dc5c5fb" category="sidebar">A documentação do AI Data Engine aborda como implantar, conectar fontes de dados e usar o AI Data Engine para otimização de storage, investigação de metadados e governança de dados.</block>
+  <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">Comece agora</block>
+  <block id="507a3a88cebc46603ce2be8eaa924eee" category="sidebar">Implantar</block>
+  <block id="11806d1dadc91ccfe2ae6f339e25a1c9" category="sidebar">Implantar o AIDE Lite</block>
+  <block id="257ce553226ee14243e41d9927b62f9a" category="sidebar">Implantar o AIDE Enterprise</block>
+  <block id="1b127134042c4fb15c087d142010cbf8" category="sidebar">Explore seus dados</block>
+  <block id="aa01e24e60b9724b9b233b2a1e85f950" category="sidebar">Use filtros</block>
+  <block id="325a8ad959d134128fc6baa371b4bbac" category="sidebar">Tome ações nos dados</block>
+  <block id="10a6be92e43e8ae9229f893030d4ea66" category="sidebar">Administrar</block>
+  <block id="a0b9d46eb31f48b358b5d002a6a61532" category="sidebar">Configurar limites de dados</block>
+  <block id="482048d0a60a52e1c59023a695b7ddf7" category="sidebar">Documentação do AI Data Engine</block>
+  <block id="dd60be60a280d7b79db7dd4b933c4f6c" category="sidebar">Use o AIDE</block>
+  <block id="c362fa2cf25cd98532ce4b3771f9fc76" category="sidebar">Conectar fontes de dados</block>
+  <block id="ec728291e475cad65a149d393bcb1011" category="sidebar">Saiba mais sobre AIDE</block>
+  <block id="0e68193094000ac3da408457283ae464" category="sidebar">Arquitetura AIDE</block>
+  <block id="1cbaf70f8f4340f5a7ef57a023be3309" category="sidebar">Investigar dados</block>
+  <block id="6b2443d2529b7b19a67154f7a04c9877" category="sidebar">Avalie a integridade do armazenamento com o painel do AIDE</block>
+  <block id="4bd61438e659088dded1d69964caccb1" category="sidebar">Gerenciar políticas e ações</block>
+  <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">Notas de lançamento</block>
+</blocks>

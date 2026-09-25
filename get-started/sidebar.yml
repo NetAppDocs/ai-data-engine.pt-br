@@ -1,0 +1,12 @@
+---
+section: get-started
+title: Comece agora
+entries:
+- title: Saiba mais sobre AIDE
+  url: "/get-started/learn-about.html"
+- title: Arquitetura AIDE
+  url: "/get-started/architecture.html"
+- title: Início rápido
+  url: "/get-started/quick-start.html"
+- title: Explore fluxos de trabalho de otimização de armazenamento
+  url: "/get-started/storage-optimization-workflows.html"

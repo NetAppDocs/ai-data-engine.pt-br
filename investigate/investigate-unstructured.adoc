@@ -1,0 +1,89 @@
+---
+sidebar: sidebar 
+permalink: investigate/investigate-unstructured.html 
+keywords: investigate, unstructured, cold data, stale data, last accessed, file size, file owner, reclaimable storage, NFS, SMB, CIFS 
+summary: Encontre e classifique arquivos como frios, obsoletos ou grandes em volumes NFS e SMB/CIFS usando filtros de metadados. Em seguida, revise os resultados, tome as medidas apropriadas ou salve seus critérios de filtro como uma política reutilizável. 
+---
+= Investigue dados não estruturados no AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando o armazenamento baseado em arquivos cresce inesperadamente, filtre por data do último acesso, tamanho do arquivo e proprietário para descobrir quais arquivos estão consumindo capacidade. Por exemplo, um administrador de storage pode identificar terabytes de snapshots de máquinas virtuais que não foram acessados em mais de um ano e avaliar se deve arquivá-los, excluí-los ou retê-los.
+
+.Antes de começar
+* Pelo menos uma fonte de dados deve estar conectada e realizando varreduras. Consulte link:../data-sources/connect-data-source.html["Conecte uma fonte de dados"].
+
+
+
+
+[[find-cold-or-stale-files-by-last-access-time]]
+== Encontre arquivos inativos ou obsoletos por data do último acesso
+
+Use filtros baseados em data para identificar arquivos que não foram acessados dentro dos limites de dados inativos ou obsoletos da sua organização. Os limites podem ser configurados em *Configuration* > *Settings*. Consulte link:../administer/configure-settings.html["Configure os limites para dados frios e obsoletos"].
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Investigação*.
++
+A aba Não estruturada está selecionada por padrão.
+
+. Selecione *Adicionar filtro* e, em seguida, selecione *Último acesso*.
+. Selecione um intervalo de tempo que corresponda ao seu limite de dados frios, por exemplo *mais de 1 ano*.
+. Para focar nos maiores consumidores, selecione *Adicionar filtro* novamente, depois selecione *Tamanho do arquivo* e defina um valor mínimo, por exemplo *>1 GiB*.
++
+Os filtros aplicados aparecem como etiquetas abaixo da barra de filtros. A tabela de resultados e a contagem de itens são atualizadas à medida que você adiciona cada filtro.
+
+
+
+Para obter uma lista completa dos filtros disponíveis, consulte link:use-filters.html["Trabalhar com filtros"].
+
+
+
+[[group-results-by-owner]]
+== Agrupar resultados por proprietário
+
+Agrupar por proprietário ajuda você a entender quem detém a maior quantidade de dados potencialmente recuperáveis antes de decidir onde agir.
+
+.Passos
+. Com os filtros aplicados, selecione a opção *Visualizar por* no menu suspenso.
+. Selecione *Proprietário*.
++
+Os resultados são reorganizados para mostrar a contagem total de arquivos e o tamanho por proprietário. Selecione qualquer linha de proprietário para expandir e ver seus arquivos individuais.
+
+
+
+
+
+[[review-file-details]]
+== Revise os detalhes do arquivo
+
+Selecione qualquer linha de arquivo para abrir o painel de detalhes e confirme se o arquivo corresponde ao escopo desejado antes de tomar qualquer providência.
+
+O painel de detalhes mostra o sistema do arquivo, o repositório de storage, o proprietário do arquivo e quaisquer tags ou políticas aplicadas. Verifique o sistema e o proprietário antes do arquivamento ou da exclusão.
+
+
+
+[[act-on-results-or-save-as-a-policy]]
+== Aja com base nos resultados ou salve como uma política
+
+Após identificar os arquivos que você deseja abordar, selecione um ou mais itens usando as caixas de seleção na tabela de resultados.
+
+* Para tomar uma ação imediata, consulte link:take-actions.html["Tome medidas com base nos seus dados"].
+* Para salvar os critérios de filtro para monitoramento contínuo, selecione *Criar política* na barra de ferramentas de filtro. Consulte link:../policies/create-policy.html["Criar uma política"].
+
+
+Para baixar os resultados filtrados da guia Dados não estruturados, selecione image:icon_download_file.png["Download"].
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:use-filters.html["Trabalhar com filtros"]
+* link:take-actions.html["Tome medidas com base nos seus dados"]
+* link:../policies/create-policy.html["Criar uma política"]
+* link:../get-started/storage-optimization-workflows.html["Explore fluxos de trabalho de otimização de armazenamento"]
+* link:understand-dashboard.html["Avalie a utilização do storage no painel."]
+

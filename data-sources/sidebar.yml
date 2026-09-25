@@ -1,0 +1,10 @@
+---
+section: data-sources
+title: Conectar fontes de dados
+entries:
+- title: Conecte uma fonte de dados
+  url: "/data-sources/connect-data-source.html"
+- title: Gerenciar fontes de dados
+  url: "/data-sources/manage-data-sources.html"
+- title: Monitore a integridade da digitalização
+  url: "/data-sources/monitor-scanning-health.html"

@@ -1,0 +1,49 @@
+---
+sidebar: sidebar 
+permalink: data-sources/monitor-scanning-health.html 
+keywords: scan health, scanning, health monitor, coverage, migration 
+summary: Confirme se a digitalização está funcionando e se os resultados da sua investigação refletem os dados atuais. 
+---
+= Monitore a integridade da digitalização no AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Antes de agir com base em um painel ou em um resultado de investigação, confirme se os dados subjacentes estão atualizados. Verifique se a varredura está funcionando e se seus resultados refletem dados atualizados.
+
+
+
+[[verify-scan-status-and-coverage]]
+== Verifique o status da varredura e a cobertura
+
+Confirme se todos os seus sistemas de storage estão conectados e sendo verificados.
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Configuração*.
+. Na aba *Sistemas verificados*, confirme se todos os sistemas de storage que você espera ver estão listados e habilitados para verificação.
+. Selecione *Exibir detalhes* em uma linha do sistema para revisar o progresso da verificação e quaisquer erros. Consulte link:../data-sources/manage-data-sources.html["Gerenciar fontes de dados"] para obter detalhes.
+
+
+
+
+[[validate-that-investigation-findings-reflect-current-data]]
+== Validar se os resultados da investigação refletem os dados atuais
+
+Se o painel mostrar uma grande quantidade de dados frios ou obsoletos, confirme se os números estão atualizados antes de tomar decisões com base neles.
+
+* Verifique a data e hora da última verificação de cada sistema de storage que contribui para o problema. Um sistema que não foi verificado recentemente pode subestimar ou superestimar a quantidade de dados inativos e obsoletos.
+* Confirme se a cobertura da varredura está completa para esse sistema. Uma varredura parcial (pausada, em andamento ou com erros) significa que alguns dados ainda não foram avaliados.
+* Aguarde o próximo ciclo de varredura ou resolva o erro subjacente se a cobertura parecer incompleta.
+
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:../data-sources/connect-data-source.html["Conecte uma fonte de dados"]
+* link:../investigate/understand-dashboard.html["Avalie a utilização do storage no painel."]
+* link:../investigate/investigate-data.html["Analise seus dados"]
+
