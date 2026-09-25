@@ -871,7 +871,6 @@
   <block id="7dbe065509bb17277c7b17f3766f97be" category="list-text">Identifique no painel quais proprietários de dados têm as maiores concentrações de dados frios, obsoletos ou duplicados e, em seguida, filtre por proprietário ou grupo na visualização de investigação para revisar e gerenciar os resultados de acordo com suas políticas.</block>
   <block id="482723983a4f2af954e36ff41e567451" category="inline-link-macro">Limitações conhecidas</block>
   <block id="34e34c0debc388181c3934f84b977ddd" category="list-text"><block ref="34e34c0debc388181c3934f84b977ddd" category="inline-link-macro-rx"></block></block>
-  <block id="e72c60c273700856ad0eeb853a353e52" category="sidebar">O AI Data Engine oferece visibilidade dos dados não estruturados armazenados em seus sistemas NetApp. Use-o para identificar oportunidades de otimização de storage, investigar seus dados e aplicar políticas de ciclo de vida.</block>
   <block id="ed67b8aec97dcec019f1b2972d70f5af" category="sidebar">Documentação do AI Data Engine</block>
   <block id="0416d02572f9d563fa4967178dc5c5fb" category="sidebar">A documentação do AI Data Engine aborda como implantar, conectar fontes de dados e usar o AI Data Engine para otimização de storage, investigação de metadados e governança de dados.</block>
   <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">Comece agora</block>
@@ -892,4 +891,5 @@
   <block id="6b2443d2529b7b19a67154f7a04c9877" category="sidebar">Avalie a integridade do armazenamento com o painel do AIDE</block>
   <block id="4bd61438e659088dded1d69964caccb1" category="sidebar">Gerenciar políticas e ações</block>
   <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">Notas de lançamento</block>
+  <block id="ac219e2fd9f167e916107df50eb88fad" category="sidebar">AI Data Engine é um serviço de inteligência de metadados, gerenciado por meio do NetApp Console, que analisa seus sistemas conectados, cria um catálogo de metadados e oferece a visibilidade e as ferramentas para otimizar o storage e governar dados em escala.</block>
 </blocks>
