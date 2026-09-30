@@ -14,6 +14,7 @@ summary: Implante o AIDE Lite a partir do NetApp Console usando o assistente de 
 Implante o AIDE Lite a partir do NetApp Console usando o assistente de implantação. O assistente orienta você na seleção do seu local de instalação, na escolha de um tamanho de configuração e na execução do comando de instalação no seu host de destino.
 
 .Antes de começar
+* Sua organização tem acesso à versão prévia privada do AI Data Engine no NetApp Console. Entre em contato com seu representante da NetApp para solicitar acesso para que você possa implantar o AI Data Engine.
 * Você tem permissões de _Administrador da organização_ ou superiores no NetApp Console.
 * As permissões de sudo (ou root) são necessárias no host de destino para executar o comando de instalação.
 * Seu ambiente atende a todos os pré-requisitos descritos em link:aide-requirements.html["Requisitos do AIDE"].
@@ -21,7 +22,7 @@ Implante o AIDE Lite a partir do NetApp Console usando o assistente de implanta�
 
 
 .Passos
-. No NetApp Console, navegue até *Governança* > *AI Data Engine*.
+. No NetApp Console, navegue até *hub de dados de IA* > *AI Data Engine*.
 +
 A página inicial do AI Data Engine é exibida.
 

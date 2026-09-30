@@ -14,6 +14,7 @@ summary: Implante o AIDE Enterprise a partir do NetApp Console usando o assisten
 Implante o AIDE Enterprise a partir do NetApp Console usando o assistente de implantação. O assistente orienta você na seleção do seu local de instalação, na escolha de um tamanho de configuração e na execução do comando de instalação no seu cluster RKE2.
 
 .Antes de começar
+* Sua organização tem acesso à versão prévia privada do AI Data Engine no NetApp Console. Entre em contato com seu representante da NetApp para solicitar acesso para que você possa implantar o AI Data Engine.
 * Você tem permissões de _Administrador da organização_ ou superiores no NetApp Console.
 * Seu cluster RKE2 atende aos pré-requisitos do nó Enterprise descritos em link:aide-requirements.html["Requisitos do AIDE"].
 * São necessárias permissões de sudo (ou root) na máquina a partir da qual você executa o comando de instalação.
@@ -25,7 +26,7 @@ Implante o AIDE Enterprise a partir do NetApp Console usando o assistente de imp
 
 
 .Passos
-. No NetApp Console, navegue até *Governança* > *AI Data Engine*.
+. No NetApp Console, navegue até *hub de dados de IA* > *AI Data Engine*.
 +
 A página inicial do AI Data Engine é exibida.
 

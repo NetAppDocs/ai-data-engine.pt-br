@@ -13,7 +13,7 @@ summary: Avalie a integridade do storage em todo o seu ambiente, identifique ond
 [role="lead"]
 Antes de decidir o que investigar, você precisa entender o estado do seu storage. Quanto do storage atende aos limites de classificação de dados frios e obsoletos da sua organização, e quais sistemas ou proprietários detêm a maior quantidade de dados nessas categorias? Por exemplo, um administrador de storage que responde a um alerta de capacidade pode ver que uma grande parte do storage verificado contém dados frios e, em seguida, detalhar o sistema de maior impacto para começar a investigar imediatamente.
 
-No NetApp Console, selecione *Governança* > *AI Data Engine UI*. O painel é aberto por padrão.
+No NetApp Console, selecione *hub de dados de IA* > *AI Data Engine UI*. O painel é aberto por padrão.
 
 
 
