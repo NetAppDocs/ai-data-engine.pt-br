@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: get-started/architecture.html 
-keywords: architecture, components, metadata engine, policy, deployment, data flow 
-summary: Saiba mais sobre os componentes do AI Data Engine e como eles trabalham juntos para catalogar metadados dos seus sistemas de storage. 
+keywords: architecture, components, metadata engine, console agent, mcp, governed ai access, deployment, data flow 
+summary: Saiba mais sobre os componentes do AI Data Engine e como eles trabalham juntos para catalogar metadados dos seus sistemas de armazenamento e fornecer acesso controlado para clientes de IA. 
 ---
 = Arquitetura do AI Data Engine
 :allow-uri-read: 
@@ -11,44 +11,57 @@ summary: Saiba mais sobre os componentes do AI Data Engine e como eles trabalham
 
 
 [role="lead"]
-O AI Data Engine (AIDE) consiste em um Metadata Engine e uma estrutura de políticas. Esses recursos trabalham em conjunto para extrair metadados dos seus sistemas de storage, catalogá-los em um índice pesquisável e permitir que você defina consultas salvas para identificar e agir sobre arquivos que correspondam a critérios específicos.
+O AI Data Engine (AIDE) é executado na infraestrutura que você fornece. O Metadata Engine examina seu storage e cria um catálogo pesquisável. O NetApp Console gerencia sua implantação por meio de um agente do Console. Uma opção de servidor Model Context Protocol (MCP) permite que os clientes de AI pesquisem o catálogo dentro dos limites que você define.
 
 
 
 [[components]]
 == Componentes
 
-Você interage principalmente com o AI Data Engine por meio de quatro áreas funcionais: o painel, a investigação, as políticas e a configuração. Essas áreas funcionais são alimentadas pelos seguintes componentes subjacentes.
+O painel, a investigação e as políticas do AI Data Engine no NetApp Console funcionam com base no catálogo de metadados. Os seguintes componentes constroem o catálogo, conectam-no ao NetApp Console e fornecem acesso governado para clientes de IA.
 
 
 
 [[metadata-engine]]
 === Metadata Engine
 
-O Metadata Engine é o principal recurso do AI Data Engine. Ele verifica os sistemas de storage conectados para extrair metadados do sistema de arquivos e armazena esses metadados em um catálogo pesquisável. O Metadata Engine atualiza o catálogo a cada ciclo de varredura, detectando adições, alterações e exclusões em seus sistemas de storage.
+O Metadata Engine é a principal funcionalidade do AI Data Engine. Ele examina as fontes de dados que você conecta, extrai metadados e os armazena em um catálogo pesquisável. Ele não lê nem classifica o conteúdo dos arquivos. O Metadata Engine atualiza o catálogo a cada ciclo de varredura, detectando adições, alterações e exclusões em seus sistemas de storage.
 
 
 
 [[netapp-console-agent]]
 === Agente do NetApp Console
 
-O AI Data Engine requer um Agente de Console NetApp implantado em seu ambiente. O Agente de Console é um componente de plataforma NetApp de uso geral que mantém a conectividade entre seu ambiente local e o NetApp Console. Ele gerencia a autenticação e a comunicação entre seu site e o serviço AIDE.
+O AI Data Engine requer um agente do NetApp Console implantado no seu ambiente. O agente do Console é um componente de plataforma de uso geral da NetApp que mantém a conectividade entre o seu ambiente e o NetApp Console. Ele gerencia a autenticação e a comunicação entre o NetApp Console e a sua implantação do AI Data Engine. Os serviços de varredura e catalogação são executados na sua implantação do AI Data Engine, não no agente do Console.
 
 
-NOTE: O Agente de Console não é específico do AI Data Engine. Se você já tiver um Agente de Console implantado para outros serviços da NetApp, poderá usar o mesmo agente. Para obter instruções de implantação do Agente de Console, consulte a link:https://docs.netapp.com/us-en/console-setup-admin/concept-agents.html["Documentação do agente do NetApp Console"].
+NOTE: O agente do Console não é específico do AI Data Engine. Se você já tiver um agente do Console implantado para outros NetApp serviços, poderá usar o mesmo agente. Para obter instruções de implantação do agente do Console, consulte a link:https://docs.netapp.com/us-en/console-setup-admin/concept-agents.html["Documentação do agente do NetApp Console"].
 
 
 
-[[deployment-models]]
-== Modelos de implantação
+[[governed-access-gateway]]
+=== Gateway de Acesso Governado
 
-O AI Data Engine suporta dois modelos de implantação:
+O Governed Access Gateway é o servidor MCP para o AI Data Engine. Ele permite que os clientes de IA pesquisem o catálogo de metadados. O gateway é executado na sua implantação do AI Data Engine, e os clientes de IA se conectam a ele por HTTPS pela sua rede corporativa ou por VPN. O agente do Console não retransmite o tráfego MCP.
 
-O AIDE Lite:: Implantação em uma única máquina virtual, ideal para ambientes menores. Disponível nas configurações Small, Medium e Large, com base no número de arquivos a serem catalogados.
-O AIDE Enterprise:: Implantação de cluster com vários nós baseada em Kubernetes para ambientes maiores que exigem alta disponibilidade.
+O Microsoft Entra ID autentica os usuários, e o gateway limita cada cliente de AI às coleções que o usuário está autorizado a pesquisar. O gateway oferece suporte apenas à pesquisa e à marcação de metadados, e somente usuários avançados podem marcar arquivos. Ele não recupera o conteúdo dos arquivos.
+
+link:../mcp/learn-about-mcp.html["Saiba mais sobre o acesso governado à IA"].
 
 
-O AIDE Enterprise tem escalabilidade desde uma configuração de três nós que suporta até aproximadamente um bilhão de arquivos e 250 milhões de arquivos por dia até uma configuração de nove nós que suporta até aproximadamente seis bilhões de arquivos e dois bilhões de arquivos por dia. Consulte link:../deploy/aide-requirements.html["Requisitos do AIDE"] para obter detalhes sobre o dimensionamento dos nós. Nós adicionais podem expandir a capacidade para além de seis bilhões de arquivos. Consulte link:../deploy/aide-requirements.html#flexible-sizing-enterprise["diretrizes flexíveis de dimensionamento"] para obter detalhes sobre a escalabilidade horizontal.
+
+[[deployment-types]]
+== Tipos de implantação
+
+O AI Data Engine suporta dois tipos de implantação. Ambos executam os serviços do AI Data Engine no Kubernetes.
+
+Implantação de nó único do AIDE:: Executa em uma única máquina virtual Linux fornecida por você. O instalador provisiona o k3s e os componentes de suporte automaticamente. Uma implantação em um único nó não oferece alta disponibilidade nem escalabilidade horizontal.
+Implantação multinó do AIDE:: Funciona em um cluster Kubernetes que você fornece e se destina a ambientes maiores que exigem alta disponibilidade.
+
+
+Para obter informações sobre plataformas compatíveis, dimensionamento e requisitos de infraestrutura, consulte link:../deploy/aide-requirements.html["Requisitos do AIDE"].
+
+Cada tipo de implantação também possui um procedimento separado para ambientes que acessam a internet somente por meio de um proxy de saída. Consulte link:../deploy/configure-proxy.html["Saiba mais sobre proxies para o AI Data Engine"].
 
 link:../deploy/deployment-overview.html["Saiba mais sobre as opções de implantação"].
 
@@ -57,17 +70,33 @@ link:../deploy/deployment-overview.html["Saiba mais sobre as opções de implant
 [[data-flow]]
 == Fluxo de dados
 
-. O AI Data Engine é implantado no seu ambiente local.
-. Você adiciona os sistemas de armazenamento que deseja que o AIDE catalogue em *Configuração > Sistemas*. Os sistemas compatíveis incluem o NetApp ONTAP, o StorageGRID, sistemas de banco de dados e qualquer sistema NAS ou de storage de objetos que exponha os protocolos NFS, SMB/CIFS ou S3.
-. O Metadata Engine monta compartilhamentos usando os protocolos NFS e SMB/CIFS e examina os sistemas de arquivos para extrair metadados de arquivos.
-. Os metadados são indexados no catálogo.
-. O painel exibe insights de storage do catálogo.
-. A função Investigation permite consultar diretamente o catálogo com filtros de metadados.
-. Você pode salvar critérios de pesquisa como políticas e executá-las novamente para identificar e agir sobre os arquivos correspondentes.
+O AI Data Engine usa dois caminhos separados: um que cria o catálogo e o disponibiliza para a NetApp Console, e outro que atende os clientes de IA.
 
 
 
-NOTE: Após o Metadata Engine concluir a verificação de todos os volumes configurados, ele inicia imediatamente uma nova rodada de verificação, analisando novamente os sistemas de arquivos para detectar adições, alterações e exclusões.
+[[metadata-scanning-and-netapp-console-access]]
+=== Varredura de metadados e acesso ao NetApp Console
+
+. Você implanta o AI Data Engine em uma infraestrutura que você gerencia e o conecta a um agente do NetApp Console.
+. Você conecta as fontes de dados que deseja que o AI Data Engine catalogue em *Fontes de dados*. Para obter mais informações, consulte link:../data-sources/connect-data-source.html["Conecte uma fonte de dados"].
+. O Metadata Engine analisa as fontes de dados para extrair metadados e os indexa no catálogo.
+. No NetApp Console, o painel exibe insights de storage do catálogo, e a Investigação permite consultar o catálogo diretamente com filtros de metadados.
+. Você pode salvar critérios de pesquisa como políticas e executá-las novamente para identificar arquivos correspondentes, além de poder agir sobre arquivos da Investigation.
+
+
+
+NOTE: O catálogo reflete metadados coletados durante a varredura. As alterações nos arquivos de origem aparecem no catálogo depois que os arquivos e diretórios afetados são verificados novamente e os resultados são indexados.
+
+
+
+[[governed-ai-access]]
+=== Acesso controlado à IA
+
+. Você configura o Microsoft Entra ID, habilita coleções para acesso de IA e escolhe quais usuários podem pesquisar em cada coleção.
+. Um usuário conecta um cliente de IA ao endpoint HTTPS do Governed Access Gateway e faz login com o Microsoft Entra ID.
+. O gateway verifica o acesso do usuário e encaminha as solicitações autorizadas para o Metadata Engine.
+. O cliente de AI pesquisa os metadados nas coleções que o usuário pode acessar e nas quais pode realizar ações.
+
 
 
 
@@ -76,4 +105,5 @@ NOTE: Após o Metadata Engine concluir a verificação de todos os volumes confi
 
 * link:learn-about.html["Saiba mais sobre AI Data Engine"]
 * link:../deploy/deployment-overview.html["Saiba mais sobre a implantação do AIDE"]
+* link:../mcp/learn-about-mcp.html["Saiba mais sobre o acesso governado à IA"]
 

@@ -1,0 +1,201 @@
+---
+sidebar: sidebar 
+permalink: mcp/configure-entra-id-mcp.html 
+keywords: mcp, governed ai access, microsoft entra id, entra, app registration, application per aide instance, scopes, app roles, redirect uri, authentication, token, entra administrator 
+summary: Como administrador do Microsoft Entra ID, registre um aplicativo dedicado para cada instância do AI Data Engine no Microsoft Entra ID, defina o URI do ID do aplicativo e o escopo compatível, crie e atribua a função do aplicativo e adicione URIs de redirecionamento para seus clientes de AI. 
+---
+= Configure o Microsoft Entra ID para o acesso à IA governado pelo AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O acesso controlado à IA no AI Data Engine (AIDE) usa o Microsoft Entra ID para autenticar os usuários. Como administrador do Microsoft Entra ID, você registra o AI Data Engine no centro de administração do Microsoft Entra, define o escopo e a função do aplicativo e adiciona URIs de redirecionamento para seus clientes de IA para que os usuários possam fazer login e trabalhar com suas coleções autorizadas.
+
+Ao concluir, forneça os valores registrados ao administrador do AI Data Engine, que conecta o AI Data Engine ao Entra ID no NetApp Console. Consulte link:connect-entra-id-aide-mcp.html["Conecte o AI Data Engine ao Microsoft Entra ID"].
+
+
+
+[[before-you-begin]]
+== Antes de começar
+
+* Você tem um locatário do Microsoft Entra ID e uma função que permite registrar aplicativos e conceder consentimento nesse locatário, como Application Administrator ou Cloud Application Administrator.
+* Você tem o nome de host do cluster AIDE que o administrador do AI Data Engine configurou em link:prepare-mcp-host.html["Prepare o host MCP"]. O nome de host deve estar em um domínio DNS registrado e verificado no seu tenant do Entra ID.
+
+
+
+
+[[how-mcp-access-works]]
+== Como funciona o acesso MCP
+
+O AI Data Engine não emite tokens nem armazena um segredo. Ele valida os tokens de acesso do Entra ID apresentados pelos clientes de IA. Quando um usuário conecta um cliente de IA, ele faz login com o Microsoft Entra ID, e o Entra ID emite um token de acesso para o aplicativo AI Data Engine. O AI Data Engine verifica o token em relação ao seu tenant do Entra ID e permite que o cliente trabalhe apenas com as coleções cujos escopos concedidos correspondem.
+
+Você registra um aplicativo dedicado no Entra ID para cada instância do AI Data Engine. Se você tiver mais de uma instalação do AI Data Engine, registre um aplicativo separado para cada uma, porque o Application ID URI é criado a partir do nome do host dessa instância. O aplicativo define o Application ID URI, o escopo e a função do aplicativo, e o seu Application (client) ID é o client ID que o administrador do AI Data Engine insere no NetApp Console e que os usuários inserem em seus clientes de AI.
+
+O Microsoft Entra ID é o único provedor de identidade compatível com o acesso à IA governado pelo AIDE.
+
+O NetApp Console não cria nem altera registros de aplicativos do Entra ID. Você conclui manualmente todas as tarefas do Entra ID neste tópico no centro de administração do Microsoft Entra.
+
+
+
+[[register-the-ai-data-engine-application-and-define-its-scope]]
+[[register-the-ai-data-engine-application]]
+== Registre o aplicativo AI Data Engine e defina seu escopo
+
+Registre um aplicativo dedicado para a instância do AI Data Engine, defina o URI do ID do aplicativo e o  `power_users`escopo. Conclua esta tarefa uma vez para cada instância do AI Data Engine. Se você tiver mais de uma instância, registre um aplicativo separado para cada instância e use um nome que a identifique.
+
+AI Data Engine reconhece o `power_users` escopo delegado. Você define o escopo no registro do aplicativo no Entra ID. O escopo não corresponde a uma função do NetApp Console, e o nome do escopo deve corresponder exatamente, incluindo a forma plural.
+
+O `power_users` escopo solicita uma sessão de usuário avançado. Uma sessão de usuário avançado pode pesquisar metadados de arquivos nas coleções às quais você concede acesso ao escopo, listar tags, criar tags e adicionar ou remover tags de arquivos. O AI Data Engine concede uma sessão de usuário avançado somente se o usuário também tiver a `AIDEPowerUsers` função de aplicativo. Consulte <<create-and-assign-the-power-user-app-role,Crie e atribua a função de aplicativo de usuário avançado>>.
+
+O valor de escopo completo que os clientes de IA solicitam é o URI de ID do aplicativo mais `/power_users`: `\https://<host>/mcp/tools/power_users`. Os clientes de IA devem solicitar esse valor exato.
+
+
+NOTE: A Microsoft pode alterar a interface do usuário do Microsoft Entra ID, portanto estas etapas podem ser diferentes do que você verá. As configurações essenciais permanecem as mesmas.
+
+.Passos
+. No centro de administração do Microsoft Entra, acesse *Registros de aplicativos* e selecione *Novo registro*.
+. Insira um nome, como  `NetApp AI Data Engine MCP - <instance>`, selecione *Somente locatário único* e selecione *Registrar*. Use um aplicativo dedicado a esta instância do AI Data Engine.
+. Na página *Visão geral*, registre o *ID do aplicativo (cliente)* e o *ID do diretório (locatário)*. O administrador do AI Data Engine insere ambos os valores no NetApp Console, e os usuários inserem o ID do aplicativo (cliente) como o ID do cliente em seus clientes de IA.
+. Abra *Manifest*, defina  `requestedAccessTokenVersion` como  `2` e salve. O AI Data Engine aceita apenas tokens de acesso v2.0.
+. Abra *Expose an API* e selecione *Add* ao lado de *Application ID URI*. Insira `\https://<host>/mcp/tools`, em que `<host>` é o nome do host do cluster AIDE que você configurou em link:prepare-mcp-host.html["Prepare o host MCP"], e salve. Registre este URI; os clientes de AI o usam para criar o escopo que solicitam.
++
+O domínio do nome do host deve ser verificado em seu tenant do Entra ID. O Entra ID aceita um URI de ID de aplicativo somente em um domínio verificado.
+
++
+
+NOTE: Se o Entra ID rejeitar o URI com o erro `Failed to add identifier URI`, verifique se `requestedAccessTokenVersion` está definido como `2` e se o domínio está verificado no seu tenant e tente novamente.
+
+. Em *Expor uma API*, selecione *Adicionar um escopo* e adicione o `power_users` escopo:
++
+** *Quem pode dar consentimento*: *administradores e usuários*, ou *somente administradores* para restringir o consentimento
+** *Nome de exibição do consentimento do administrador*: `Access AIDE as a Power User`
+** *Descrição do consentimento do administrador*: `Allows the app to access NetApp AI Data Engine as a power user on behalf of the signed-in user.`
+** *Nome de exibição do consentimento do usuário* e *Descrição do consentimento do usuário*: se você selecionar *Administradores e usuários*, insira o texto que os usuários verão ao dar seu consentimento.
+** *Estado*: *ativado*
+** Selecione *Adicionar escopo*.
+
+
+. Opcional: para ignorar a solicitação de consentimento para os usuários, em *Aplicativos cliente autorizados*, selecione *Adicionar um aplicativo cliente*, insira o ID do aplicativo (cliente) deste aplicativo, selecione o escopo  `power_users`e selecione *Adicionar aplicativo*.
+
+
+
+
+[[create-and-assign-the-power-user-app-role]]
+== Crie e atribua a função de aplicativo de usuário avançado
+
+Crie a função de usuário avançado no aplicativo AI Data Engine e atribua-a aos usuários ou grupos que utilizam o acesso controlado à IA. O nome da função deve corresponder exatamente, incluindo a forma no plural.
+
+.Passos
+. Abra *Funções do aplicativo* e selecione *Criar função do aplicativo*:
++
+** *Nome de exibição*: `AIDE Power Users`
+** *Tipos de membros permitidos*: *usuários/grupos*
+** *Valor*: `AIDEPowerUsers`
+** *Descrição*: `Grants power-user sessions in AI Data Engine.`
+** Selecione *Deseja ativar esta função do aplicativo?* e, em seguida, selecione *Aplicar*.
+
+
+. Acesse *Entra ID* > *Aplicativos corporativos* > *Todos os aplicativos*, abra o aplicativo AI Data Engine e selecione *Usuários e grupos* > *Adicionar usuário/grupo*. Selecione os usuários ou grupos que utilizam o acesso controlado à IA, selecione a `AIDE Power Users` função e selecione *Atribuir*.
+
+
+Para atribuir a função do aplicativo a grupos em vez de usuários individuais, seu locatário precisa do Microsoft Entra ID P1 ou P2. A atribuição a um grupo não se aplica aos membros de grupos aninhados.
+
+
+IMPORTANT: É necessário atribuir a função do aplicativo, e não apenas defini-la. Um usuário que não possui a função do aplicativo não terá acesso a uma sessão de usuário avançado.
+
+.Como funcionam as sessões para usuários avançados
+Um usuário obtém uma sessão de usuário avançado somente quando ambas as condições a seguir forem verdadeiras:
+
+* O usuário detém a `AIDEPowerUsers` função do aplicativo.
+* O cliente AI solicita o `power_users` escopo.
+
+
+Se um cliente solicitar `power_users` para um usuário que não tenha a função, o AI Data Engine não inicia uma sessão de usuário avançado para esse usuário.
+
+
+
+[[add-redirect-uris-for-your-ai-clients]]
+[[add-redirect-uris-for-ai-clients]]
+== Adicione URIs de redirecionamento para seus clientes de IA
+
+Adicione ao aplicativo AI Data Engine os URIs de redirecionamento que seus clientes de IA usam e permita fluxos de cliente público. Os clientes de IA fazem login com o Application (client) ID do aplicativo AI Data Engine. Eles usam PKCE, portanto você não cria um segredo do cliente.
+
+.Passos
+. No centro de administração do Microsoft Entra, abra o aplicativo AI Data Engine e acesse *Autenticação*.
+. Selecione *Adicionar uma plataforma* > *Aplicativos móveis e de desktop* e adicione os URIs de redirecionamento para os clientes de AI que você utiliza. Adicione um URI para cada callback que um cliente utiliza:
++
+[cols="1,2"]
+|===
+| Cliente | URI de redirecionamento 
+
+
+| O Claude Desktop | `\http://localhost:6491/oauth/callback` 
+
+
+| O Claude Code | `\http://localhost:8080/callback` 
+
+
+| Cursor | `\http://localhost:8787/callback` 
+
+
+| OpenCode | `\http://127.0.0.1:19876/callback` 
+|===
+. Opcional: se os usuários também fizerem login pelo Cursor na web ou pelo Cursor Agents, selecione *Adicionar uma plataforma* > *Web* e adicione `\https://www.cursor.com/agents/mcp/oauth/callback`.
+. Na guia *Configurações*, defina *Allow public client flows* como *Sim* e salve.
+. Em *Permissões da API*, adicione a permissão delegada do Microsoft Graph `offline_access` para que o cliente possa atualizar os tokens sem pedir ao usuário que faça login novamente.
+. Se o seu locatário exigir consentimento do administrador, selecione *Grant admin consent*.
+
+
+Se o login falhar com o erro  `AADSTS50011`, o URI de callback do cliente de IA não estará registrado. O erro mostra o URI exato que você deve adicionar. Adicione-o em *Aplicativos móveis e de desktop* e use a mesma porta no arquivo de configuração do cliente que você registrar aqui.
+
+
+
+[[token-expectations]]
+== Expectativas de tokens
+
+Os clientes de IA devem enviar um token de acesso Entra ID no `Authorization: Bearer` cabeçalho de cada solicitação. O AI Data Engine valida o token em todas as solicitações. Ele aceita um token somente se todas as seguintes condições forem verdadeiras:
+
+* A assinatura é válida, e o token é um token v2.0 emitido pelo seu tenant do Entra ID (emissor).
+* Seu público-alvo (`aud`) corresponde ao ID do aplicativo (cliente) do aplicativo do AI Data Engine.
+* Não expirou. Os tokens de acesso do Entra ID geralmente duram cerca de uma hora. Os clientes que solicitam `offline_access` podem atualizar os tokens sem pedir ao usuário que faça login novamente.
+
+
+Um token para uma sessão de usuário avançado contém o `power_users` escopo em sua `scp` declaração e a `AIDEPowerUsers` função do aplicativo em sua `roles` declaração.
+
+Se um token estiver ausente, expirado ou inválido, o AI Data Engine retornará  `401 Unauthorized`. Uma `401` resposta após o login geralmente significa que o Entra ID emitiu um token v1 ou que o ID do locatário ou o ID do aplicativo (cliente) no AI Data Engine não corresponde ao seu aplicativo Entra ID. Confirme se `requestedAccessTokenVersion` está definido como `2` e se os valores do provedor de identidade no NetApp Console correspondem.
+
+Se o AI Data Engine não conseguir verificar a identidade ou o escopo de um usuário, ele não retornará nenhum dado da coleção.
+
+Não é necessário configurar declarações opcionais no Entra ID para que o AI Data Engine aceite um token.
+
+
+
+[[give-the-values-to-the-ai-data-engine-administrator]]
+[[give-values-to-the-aide-administrator]]
+== Forneça os valores ao administrador do AI Data Engine
+
+Forneça ao administrador do AI Data Engine os seguintes valores. O administrador precisa deles para conectar o AI Data Engine ao Entra ID e para configurar as coleções para o MCP:
+
+* ID do diretório (locatário)
+* ID do aplicativo (cliente)
+* O URI da ID do aplicativo, `\https://<host>/mcp/tools`
+* O valor total do escopo, `\https://<host>/mcp/tools/power_users`
+
+
+.O que vem a seguir
+O administrador do AI Data Engine link:connect-entra-id-aide-mcp.html["conecta o AI Data Engine ao Microsoft Entra ID"].
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:connect-entra-id-aide-mcp.html["Conecte o AI Data Engine ao Microsoft Entra ID"]
+* link:learn-about-mcp.html["Saiba mais sobre o acesso governado à IA"]
+* link:prepare-mcp-host.html["Prepare o host MCP"]
+* link:connect-ai-clients-mcp.html["Conecte clientes de IA ao servidor MCP do AI Data Engine"]
+* link:mcp-tools-reference.html["Ferramentas MCP para acesso à IA governado pelo AI Data Engine"]
+* link:../release-notes/known-limitations.html["Limitações conhecidas"]
+

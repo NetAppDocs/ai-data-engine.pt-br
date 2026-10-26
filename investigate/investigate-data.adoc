@@ -27,7 +27,7 @@ A seção *Investigação* está organizada em três abas. Selecione a aba que c
 | Aba | Use quando você quiser | Mais informações 
 
 
-| *Não estruturado* | Encontre dados baseados em arquivos frios, obsoletos ou duplicados em volumes NFS e SMB/CIFS | link:investigate-unstructured.html["Investigar dados não estruturados"] 
+| *Não estruturado* | Encontre dados frios, obsoletos ou duplicados baseados em arquivos em volumes NFS e SMB | link:investigate-unstructured.html["Investigar dados não estruturados"] 
 
 
 | *Estruturados* | Identifique tabelas de banco de dados grandes demais ou não utilizadas que consomem armazenamento | link:investigate-structured.html["Investigar dados estruturados"] 
@@ -45,6 +45,5 @@ A contagem de resumo e o tamanho total na parte superior da página são atualiz
 * link:investigate-unstructured.html["Investigar dados não estruturados"]
 * link:investigate-structured.html["Investigar dados estruturados"]
 * link:investigate-directories.html["Investigar diretórios"]
-* link:use-filters.html["Trabalhar com filtros"]
 * link:take-actions.html["Tome medidas com base nos seus dados"]
 

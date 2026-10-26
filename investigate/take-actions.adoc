@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: investigate/take-actions.html 
-keywords: actions, tag, archive, delete, data lifecycle, storage optimization, breadcrumb 
-summary: Tome medidas em relação aos arquivos que você identificou como inativos, antigos ou obsoletos, arquivando-os, marcando itens para rastreamento ou excluindo permanentemente o que você não precisa mais. 
+keywords: actions, tag, archive, delete, copy, data lifecycle, storage optimization, breadcrumb, duplicates, clean up duplicates 
+summary: Tome providências em relação aos arquivos que você identificou como inativos, desatualizados, duplicados ou obsoletos, arquivando-os, marcando itens para rastreamento ou excluindo permanentemente o que você não precisa mais. 
 ---
 = Tome medidas em seus dados no AI Data Engine
 :allow-uri-read: 
@@ -11,10 +11,10 @@ summary: Tome medidas em relação aos arquivos que você identificou como inati
 
 
 [role="lead"]
-Após identificar os arquivos usando os filtros definidos, você pode tomar medidas diretas para aplicar as políticas de ciclo de vida dos dados da sua organização. Por exemplo, um administrador de storage que filtra para encontrar terabytes de snapshots de VM não acessados em mais de um ano pode arquivá-los em massa em um compartilhamento de storage frio ou excluí-los, dependendo dos requisitos de retenção e das políticas de negócios.
+No AI Data Engine (AIDE), você pode aplicar as políticas de ciclo de vida dos dados da sua organização arquivando, copiando, marcando ou excluindo os arquivos que você identificou com seus filtros. Por exemplo, um administrador de storage que filtra para encontrar terabytes de snapshots de VM que não foram acessados há mais de um ano pode arquivá-los em massa em um compartilhamento de storage frio ou excluí-los, dependendo dos requisitos de retenção e das políticas de negócios.
 
 .Sobre esta tarefa
-Para executar uma ação, selecione um ou mais itens na tabela de resultados da investigação usando as caixas de seleção. A barra de ferramentas de ação é ativada com quatro opções: *Excluir*, *Arquivar*, *Copiar* e *Marcar*.
+Para executar uma ação, selecione um ou mais itens na tabela de resultados da investigação usando as caixas de seleção. A barra de ferramentas de ações é ativada com quatro opções: *excluir*, *arquivar*, *copiar* e *marcar*. Para remover cópias duplicadas de um arquivo, use *Limpar duplicados*. Consulte <<Investigar e eliminar arquivos duplicados>>.
 
 As ações disponíveis para você dependem da função atribuída a você:
 
@@ -33,6 +33,9 @@ As ações disponíveis para você dependem da função atribuída a você:
 
 
 | Excluir | Sim | - 
+
+
+| Eliminar duplicados | Sim | - 
 |===
 Para uma descrição completa das funções, consulte link:../administer/manage-users-roles.html["Gerenciar usuários e funções"].
 
@@ -54,10 +57,13 @@ Escolha uma ação com base no seu grau de certeza em relação aos dados:
 | Arquivo | Os dados ainda podem ter valor, mas não pertencem ao storage primário. O arquivamento os move para um destino de menor custo, mantendo a possibilidade de recuperação. 
 
 
-| Copiar | Os dados devem existir em um segundo local, por exemplo, para fins de backup ou migração. A cópia preserva o original no mesmo local. 
+| Copiar | Os dados devem existir em um segundo local, por exemplo, para fins de backup ou migração. A cópia preserva o original no lugar. Você pode copiar para uma pasta NFS ou SMB, criar um volume FlexClone filtrado ou transferir itens com o NetApp Copy and Sync. 
 
 
 | Excluir | Os dados não são mais necessários e não têm requisitos de retenção. A exclusão é permanente, portanto use-a somente quando você tiver certeza. 
+
+
+| Eliminar duplicados | Existem cópias idênticas de um arquivo em mais de um local e você deseja manter apenas uma. Você pode marcar, arquivar ou excluir as cópias redundantes, mantendo apenas uma cópia. Excluir duplicatas é permanente. Consulte <<Investigar e eliminar arquivos duplicados>>. 
 |===
 Quando os dados ainda puderem ter valor ou exigirem uma análise mais aprofundada, opte por etiquetá-los, arquivá-los ou copiá-los em vez de excluí-los. Exclua-os somente quando tiver certeza de que é seguro removê-los permanentemente.
 
@@ -66,7 +72,13 @@ Quando os dados ainda puderem ter valor ou exigirem uma análise mais aprofundad
 [[archive-files]]
 == Arquivar arquivos
 
-O arquivamento move os arquivos para um destino de storage frio via NFS ou SMB/CIFS. Opcionalmente, você pode deixar um arquivo de trilha no local original.
+Mova arquivos que não pertencem ao storage primário para um destino de storage frio, mantendo-os recuperáveis. Opcionalmente, você pode deixar um arquivo de trilha de navegação no local original para que os usuários possam saber por que um arquivo foi movido.
+
+
+CAUTION: Copiar ou arquivar arquivos pode alterar as permissões, a propriedade, as informações de grupo e os registros de data e hora do destino. Transferências entre protocolos podem ampliar consideravelmente o acesso. Revise as configurações de segurança do destino antes de transferir dados confidenciais e verifique as permissões posteriormente.
+
+
+NOTE: As credenciais que você fornece para um destino SMB são separadas da integração com o Active Directory. Para exibir nomes de usuário e permissões no AI Data Engine, consulte link:../administer/configure-settings.html["Configurar os limites de classificação de dados e a varredura de acesso"].
 
 .Antes de começar
 * Você precisa ter a função de _administrador do AI Data Engine_.
@@ -77,38 +89,110 @@ O arquivamento move os arquivos para um destino de storage frio via NFS ou SMB/C
 . Selecione *Archive*.
 . Na caixa de diálogo Arquivar, selecione o protocolo do volume de destino:
 +
-** *NFS*: insira o caminho da pasta de destino do NFS.
-** *CIFS*: insira o caminho da pasta de destino CIFS no formato `\\Hostname\share_name`. Forneça as credenciais do Active Directory: insira o nome de usuário no formato `domain\user` ou `user@domain` e insira a senha.
+** Para *NFS*, insira o caminho da pasta de destino no formato `hostname:/path/to/destination`.
+** Para *SMB*, insira o caminho da pasta de destino SMB no formato `\\Hostname\share_name`. Selecione o método de autenticação. Para Kerberos, use o FQDN do host e deixe as credenciais em branco. Consulte link:../administer/configure-kerberos-smb.html["Autenticação Kerberos para compartilhamentos SMB/CIFS no AI Data Engine"]. Para outros métodos, forneça as credenciais do Active Directory: insira o nome de usuário no formato `domain\user` ou `user@domain` e insira a senha.
 
 
 . Para criar um arquivo de trilha de navegação no local original, habilite *Deixar breadcrumb*.
 +
 Um arquivo de trilha de navegação ajuda os usuários a entender por que um arquivo foi movido.
 
-. Selecione *Archive*.
+. Selecione *Arquivar arquivo*.
 
 
 
 
-[[copy-files]]
-== Copiar arquivos
+[[copy-selected-items]]
+== Copiar itens selecionados
 
-A cópia duplica arquivos em um volume de destino sem removê-los do local original.
+Disponibilize os itens selecionados em outro local, por exemplo, para backup ou migração. Você pode copiar itens para uma pasta NFS ou SMB, criar uma cópia filtrada de um volume ONTAP ou transferir itens usando o Copy and Sync.
+
+Escolha o método que corresponde ao seu objetivo:
+
+* *Cópia regular*: copia itens para uma pasta de destino NFS ou SMB sem alterar os arquivos originais.
+* *FlexClone*: crie uma cópia pontual de um volume do ONTAP e remova os itens que não foram incluídos na sua consulta do volume clonado. O volume original não é afetado.
+* *Sync*: transfira itens entre storage de arquivos ou de objetos, no local ou na nuvem, usando Copy and Sync.
+
 
 .Antes de começar
 * Você precisa ter a função de _administrador do AI Data Engine_.
 
 
 .Passos
-. Na visualização Investigação, selecione os arquivos que você deseja copiar.
+. No AI Data Engine, selecione *Investigation* na navegação à esquerda.
+. Use filtros para encontrar os itens que você deseja copiar e, em seguida, selecione-os na tabela de resultados.
 . Selecione *Copiar*.
-. Na caixa de diálogo Copiar, selecione o protocolo do volume de destino:
+. Conclua o procedimento para o método de cópia que você escolheu.
+
+
+
+
+[[copy-items-to-an-nfs-or-smb-folder]]
+=== Copiar itens para uma pasta NFS ou SMB
+
+Use a função "Copiar" para colocar cópias dos itens selecionados em uma pasta de destino, mantendo os arquivos originais inalterados.
+
+
+CAUTION: Copiar ou arquivar arquivos pode alterar as permissões, a propriedade, as informações de grupo e os registros de data e hora do destino. Transferências entre protocolos podem ampliar consideravelmente o acesso. Revise as configurações de segurança do destino antes de transferir dados confidenciais e verifique as permissões posteriormente.
+
+.Antes de começar
+* Verifique se o compartilhamento de destino permite acesso pelo AI Data Engine. Os compartilhamentos NFS e SMB são suportados independentemente de onde são hospedados.
+* Para um destino SMB, tenha disponíveis credenciais Kerberos ou NTLM.
+
+
+.Passos
+. Na caixa de diálogo *Copiar itens selecionados*, selecione *Cópia regular*.
+. Selecione o protocolo de destino e forneça os detalhes do destino:
 +
-** *NFS*: insira o caminho da pasta de destino do NFS.
-** *CIFS*: insira o caminho da pasta de destino CIFS no formato `\\Hostname\share_name`. Forneça as credenciais do Active Directory: insira o nome de usuário no formato `domain\user` ou `user@domain` e insira a senha.
+** Para *NFS*, insira o caminho da pasta de destino no formato `hostname:/path/to/destination`.
+** Para *SMB*, insira o caminho da pasta de destino no formato `\\hostname\share_name`. Selecione Kerberos ou NTLM como o tipo de autenticação SMB. Para Kerberos, use o FQDN do host e deixe as credenciais em branco. Consulte link:../administer/configure-kerberos-smb.html["Autenticação Kerberos para compartilhamentos SMB/CIFS no AI Data Engine"]. Para outros métodos, forneça as credenciais do Active Directory: insira o nome de usuário no formato `domain\user` ou `user@domain` e insira a senha.
 
 
-. Selecione *Copiar*.
+. Analise como a cópia pode afetar os metadados do arquivo:
++
+** As permissões, a propriedade e as informações de grupo podem ser preservadas sempre que possível. Se as identidades de origem não puderem ser mapeadas, os padrões de destino poderão ser aplicados.
+** Os registros de data e hora da origem, incluindo a hora de criação, podem não ser preservados e podem refletir a operação de cópia ou o comportamento do destino.
+** Os novos diretórios usam as permissões padrão do destino.
+** Transferências entre protocolos podem ampliar o acesso. Analise as configurações de segurança do destino antes de copiar e verifique as permissões posteriormente.
+
+
+. Selecione *Enviar*.
+
+
+
+
+[[create-a-filtered-copy-of-an-ontap-volume]]
+=== Criar uma cópia filtrada de um volume ONTAP
+
+Crie uma cópia limpa de um volume ONTAP que contenha apenas os itens da sua consulta, pronta para migração. O FlexClone cria uma cópia pontual do volume e exclui do clone apenas os itens que estão fora da sua consulta.
+
+.Antes de começar
+Confirme se todos os itens selecionados pertencem ao mesmo volume ONTAP. O volume FlexClone é criado no mesmo agregado que seu volume pai.
+
+.Passos
+. Na caixa de diálogo *Copiar itens selecionados*, selecione *FlexClone*.
+. Insira um *Nome* para o volume clonado.
+. Confirme se sua consulta inclui todos os itens que você deseja manter no volume clonado.
++
+Os itens não incluídos na consulta são excluídos do clone. O volume original não é afetado.
+
+. Selecione *Enviar*.
+
+
+
+
+[[transfer-items-using-copy-and-sync]]
+=== Transfira itens usando o Copy and Sync
+
+Transfira os itens selecionados entre locais de storage de arquivos ou de objetos, no local ou na nuvem.
+
+.Antes de começar
+Confirme se todos os itens selecionados pertencem ao mesmo repositório de storage. Se a sua seleção abranger vários repositórios, cancele a operação e selecione itens de um único repositório.
+
+.Passos
+. Na caixa de diálogo *Copiar itens selecionados*, selecione *Sincronizar*.
+. Confira a quantidade de itens a serem sincronizados e confirme se ela corresponde aos itens que você pretende transferir.
+. Selecione *Sync* para prosseguir com Copy and Sync.
 
 
 
@@ -116,7 +200,7 @@ A cópia duplica arquivos em um volume de destino sem removê-los do local origi
 [[delete-files]]
 == Excluir arquivos
 
-A exclusão remove permanentemente os arquivos do armazenamento e essa ação não pode ser desfeita.
+Remova permanentemente os arquivos que você não precisa mais e que não têm requisitos de retenção.
 
 
 CAUTION: A exclusão é permanente e não pode ser desfeita. Esta ação exclui os arquivos de origem mesmo que contenham dados ativos.
@@ -137,10 +221,84 @@ Os arquivos selecionados são excluídos permanentemente do armazenamento.
 
 
 
+[[investigate-and-clean-up-duplicate-files]]
+== Investigar e eliminar arquivos duplicados
+
+Encontre cópias duplicadas de um arquivo e remova as redundantes. Analise os metadados e as localizações das cópias e marque as duplicadas para revisão, arquive-as ou exclua permanentemente as cópias duplicadas, mantendo apenas uma cópia.
+
+.Antes de começar
+* Você precisa ter a função de _administrador do AI Data Engine_.
+
+
+.Passos
+. No NetApp Console, acesse *central de dados de IA* > *AI Data Engine*.
+. Selecione *Investigação* > *Não estruturado*.
++
+A tabela exibe os nomes dos arquivos, seus tamanhos, proprietários, sistemas e tags.
+
+. Opcional: selecione *Adicionar filtro* para restringir a lista de arquivos.
+. Selecione o nome do arquivo para abrir os detalhes.
++
+Analise o sistema do arquivo, o repositório de storage, o caminho, o tamanho, os registros de data e hora, o acesso e o proprietário. O campo *Duplicados* exibe o número de cópias duplicadas.
+
+. Ao lado de *Duplicados*, selecione *Ver detalhes*.
++
+A visualização Investigation aplica um filtro de *Duplicates* que inclui arquivos com duplicatas e um filtro de *File hash* que corresponde ao arquivo selecionado.
+
+. Analise os arquivos correspondentes e suas respectivas localizações.
+. Selecione os arquivos que você deseja limpar.
++
+Confira a contagem de *itens selecionados*.
+
+. Selecione *Limpar duplicatas*.
+. Analise o número estimado de arquivos que correspondem aos filtros atuais e que possuem cópias duplicadas.
++
+
+NOTE: A contagem é uma estimativa. As duplicatas exatas são recalculadas quando a ação é executada, e somente os arquivos confirmados como idênticos são afetados.
+
+. Decida como lidar com os duplicados:
++
+** Marque os duplicados para revisão:
++
+... Em *Action*, selecione *Tag*.
+... Selecione *Adicionar* e, em seguida, escolha a tag que deseja aplicar. Repita o processo para adicionar mais tags.
+... Selecione *Enviar*.
+
+
+** Arquive as duplicatas em um volume de destino:
++
+... Em *Ação*, selecione *Arquivar*.
+... Em *No local original*, selecione *Remover completamente* ou *Deixar um rastro*.
+... Selecione o protocolo do volume de destino. Para *NFS*, insira o caminho da pasta de destino no formato  `Hostname:/SHAREPATH`. Para *SMB*, insira o caminho da pasta de destino e selecione a autenticação *Kerberos* ou *NTLM*. Para NTLM, insira seu nome de usuário e senha do Active Directory.
+... Selecione *Enviar*.
+
+
+** Exclua as duplicatas e mantenha apenas uma cópia:
++
+
+CAUTION: A exclusão é permanente e não pode ser desfeita.
+
++
+... Em *Ação*, selecione *Excluir*.
+... Em *Manter cópia com*, selecione *Último acesso*, *Última modificação* ou *Criado*.
+... Em *No local original*, selecione *Remover completamente* ou *Deixar um rastro*.
+... Selecione *Enviar*.
+... Na caixa de diálogo *Excluir cópias duplicadas*, revise o número de arquivos a serem excluídos e as informações sobre a retenção de uma cópia.
+... Digite `permanently delete`, e depois selecione *Excluir*.
+
+
+
+
+
+
+Para sair sem enviar uma ação, selecione *Cancelar*.
+
+
+
 [[tag-files]]
 == Arquivos de tag
 
-A etiquetagem aplica uma etiqueta comercial aos arquivos para classificação e rastreamento.
+Acompanhe os arquivos que você deseja revisar novamente ou coordenar com outra equipe, sem alterar a localização deles. Por exemplo, aplique a etiqueta "Candidato a arquivar" para identificar arquivos que precisam ser revisados antes de você arquivá-los ou excluí-los.
 
 .Passos
 . Na visualização Investigação, selecione os arquivos que você deseja etiquetar.
@@ -156,7 +314,6 @@ A etiquetagem aplica uma etiqueta comercial aos arquivos para classificação e 
 
 * link:investigate-data.html["Analise seus dados"]
 * link:investigate-unstructured.html["Investigar dados não estruturados"]
-* link:use-filters.html["Trabalhar com filtros"]
 * link:../policies/create-policy.html["Criar uma política"]
 * link:../administer/manage-users-roles.html["Gerenciar usuários e funções"]
 

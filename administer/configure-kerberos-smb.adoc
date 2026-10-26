@@ -1,0 +1,78 @@
+---
+sidebar: sidebar 
+permalink: administer/configure-kerberos-smb.html 
+keywords: kerberos, smb, cifs, keytab, krb5.conf, ktutil, kdc, realm, fqdn, dns, authentication, active directory, scan service account 
+summary: Entenda como o AI Data Engine usa o Kerberos para examinar compartilhamentos SMB/CIFS sem armazenar uma senha na fonte de dados e escolha o procedimento para sua implantação de nó único ou multinó. 
+---
+= Autenticação Kerberos para compartilhamentos SMB/CIFS no AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Analise compartilhamentos SMB/CIFS usando autenticação Kerberos, para que nenhuma senha seja armazenada na fonte de dados. AI Data Engine (AIDE) atua como um cliente Kerberos. Ele usa um keytab de uma conta de serviço de varredura para obter tickets Kerberos do seu controlador de domínio Active Directory existente.
+
+A autenticação Kerberos se aplica a fontes de dados SMB/CIFS. Para mapear IDs de usuário e grupo NFS para nomes do Active Directory, consulte link:configure-ad-nfs.html["Configure o mapeamento de identidade do Active Directory para NFS"].
+
+
+
+[[how-kerberos-scanning-works]]
+== Como funciona a varredura do Kerberos
+
+Após a configuração, o AI Data Engine obtém e atualiza os tickets Kerberos automaticamente, para que você não precise gerenciar as credenciais de cada verificação.
+
+. Você cria três arquivos: um arquivo de configuração do Kerberos, um keytab para a conta de serviço de varredura e um arquivo de principal que nomeia a conta.
+. O AI Data Engine usa o keytab para obter um ticket Kerberos do seu controlador de domínio do Active Directory, que atua como o centro de distribuição de chaves Kerberos (KDC). O AI Data Engine atualiza o ticket a cada três horas.
+. Ao adicionar um compartilhamento SMB/CIFS e selecionar Kerberos como método de autenticação, o AI Data Engine verifica o compartilhamento usando o ticket.
+
+
+O AI Data Engine localiza seu controlador de domínio e seu servidor de arquivos pelo nome. O host ou os nós devem resolver ambos os nomes usando um servidor DNS que possa resolver os nomes do seu Active Directory. Se você configurar o host ou os nós para apontarem para o servidor DNS do seu Active Directory, esse servidor também deverá resolver nomes externos. Em uma implantação com vários nós, ele deve ser o único servidor de nomes em cada nó.
+
+Se você substituir o arquivo de configuração do Kerberos após a instalação, o AI Data Engine continuará usando o arquivo anterior até você reiniciar os serviços afetados. Para ver as etapas, consulte link:configure-kerberos-smb-single-node.html#update-kerberos-configuration["Atualize o arquivo de configuração do Kerberos"] para uma implantação de nó único ou link:configure-kerberos-smb-multi-node.html#update-kerberos-configuration["Atualize o arquivo de configuração do Kerberos"] para uma implantação de vários nós.
+
+
+
+[[choose-a-procedure]]
+== Escolha um procedimento
+
+Os arquivos Kerberos, os pacotes do host e as etapas de verificação dependem do seu tipo de implantação.
+
+[cols="1,2,2,2"]
+|===
+| Implantação | Onde ficam os arquivos Kerberos | Pacotes | Procedimento 
+
+
+| Nó único | No host do AI Data Engine. O arquivo de configuração do Kerberos é `/etc/krb5.conf`. | Instale as ferramentas do cliente Kerberos no host. O instalador instala `cifs-utils`. | link:configure-kerberos-smb-single-node.html["Configure o Kerberos para compartilhamentos SMB/CIFS em uma implantação de nó único do AI Data Engine"] 
+
+
+| Multinó | Na exportação NFS compartilhada que contém a configuração do AI Data Engine. Os nós não usam `/etc/krb5.conf`. | Instale as ferramentas do cliente Kerberos em um host admin. Instale `cifs-utils` em todos os nós. | link:configure-kerberos-smb-multi-node.html["Configure o Kerberos para compartilhamentos SMB/CIFS em uma implantação do AI Data Engine com vários nós"] 
+|===
+
+
+[[what-you-need]]
+== O que você precisa
+
+Reúna estes detalhes para que você possa configurar o acesso Kerberos aos compartilhamentos SMB/CIFS que deseja verificar.
+
+* Uma conta de serviço de varredura no Active Directory com acesso de leitura aos compartilhamentos SMB/CIFS que você deseja varrer. A conta deve oferecer suporte à criptografia AES256.
+* O endereço IP e o FQDN de um controlador de domínio que atua como KDC.
+* Seu domínio do Active Directory e realm do Kerberos. O realm é o domínio em maiúsculas.
+* O FQDN e o nome de compartilhamento de cada servidor de arquivos que você deseja verificar. A autenticação Kerberos não aceita um endereço IP para o servidor de arquivos.
+* Acesso à raiz ao host do AI Data Engine para uma implantação de nó único. Para uma implantação com vários nós, acesso à raiz a todos os nós e ao host admin, e `kubectl` acesso com privilégios de administrador de cluster a partir do host admin.
+* Para uma implantação com vários nós, acesse o servidor NFS de cada nó pela porta TCP 2049.
+
+
+Verifique também se o seu ambiente atende aos requisitos link:../deploy/aide-requirements.html#networking-requirements["requisitos de rede"] e aos requisitos de segurança link:../deploy/aide-requirements.html#kerberos-ad-requirements["Requisitos do Kerberos e do Active Directory"], incluindo sincronização de tempo, DNS e pacotes do host.
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:configure-kerberos-smb-single-node.html["Configure o Kerberos para compartilhamentos SMB/CIFS em uma implantação de nó único do AI Data Engine"]
+* link:configure-kerberos-smb-multi-node.html["Configure o Kerberos para compartilhamentos SMB/CIFS em uma implantação do AI Data Engine com vários nós"]
+* link:../deploy/aide-requirements.html#kerberos-ad-requirements["Requisitos do Kerberos e do Active Directory"]
+* link:../data-sources/connect-data-source.html["Conecte uma fonte de dados ao AI Data Engine"]
+* link:configure-ad-nfs.html["Configure o mapeamento de identidade do Active Directory para NFS"]
+

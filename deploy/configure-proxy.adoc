@@ -1,0 +1,139 @@
+---
+sidebar: sidebar 
+permalink: deploy/configure-proxy.html 
+keywords: proxy, outbound proxy, forward proxy, HTTPS proxy, proxy certificate, proxy authentication, install, proxy host, proxy port, allowlist, CONNECT, installer download, container runtime 
+summary: Aprenda como o AI Data Engine funciona com um proxy de encaminhamento e quais tipos de proxy e parâmetros ele suporta. 
+---
+= Saiba mais sobre proxies para o AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se o host ou cluster do seu AI Data Engine (AIDE) não conseguir acessar a internet diretamente, configure um servidor proxy de encaminhamento para que o instalador e o AI Data Engine possam baixar componentes, obter imagens de contêiner e se registrar no NetApp Console. As opções de proxy são as mesmas para implantações de nó único e de vários nós. As etapas para preparar e executar a instalação são diferentes, portanto cada tipo de implantação tem seu próprio fluxo de trabalho.
+
+As configurações de proxy se aplicam somente ao ambiente de execução do k3s e ao AI Data Engine, não ao sistema host.
+
+
+
+[[deploy-ai-data-engine-with-a-proxy]]
+== Implante o AI Data Engine com um proxy
+
+Cada tipo de implantação possui seu próprio tópico com o procedimento completo, desde a preparação do ambiente até a execução do instalador.
+
+* link:deploy-aide-single-node-proxy.html["Implante o AI Data Engine como uma implantação de nó único com um proxy"]: o instalador configura o proxy para o ambiente de execução do k3s e para o AI Data Engine, incluindo seu repositório de certificados confiáveis.
+* link:deploy-aide-multi-node-proxy.html["Implante o AI Data Engine como uma implantação de vários nós com um proxy"]: você configura o proxy de tempo de execução do contêiner e a confiança no certificado de CA em cada nó antes de executar o instalador.
+
+
+
+
+[[what-goes-through-the-proxy]]
+== O que passa pelo proxy
+
+Apenas o tráfego destinado à internet utiliza o proxy. Todos os destinos de internet do AI Data Engine usam HTTPS na porta 443, portanto seu proxy deve permitir  `CONNECT`o acesso à porta 443 para cada endpoint em link:aide-requirements.html#outbound-internet-access["Acesso à internet de saída"].
+
+O tráfego na sua rede se conecta diretamente e deve permanecer acessível sem o proxy:
+
+* O agente do Console (`--cm-host`)
+* Fontes de dados NFS, CIFS/SMB, ONTAP e StorageGRID
+* O Active Directory e LDAP
+* O servidor da API do Kubernetes e as redes internas do cluster
+
+
+
+
+[[supported-proxy-configurations]]
+== Configurações de proxy suportadas
+
+[cols="2,3,2"]
+|===
+| Configuração | Descrição | Autenticação 
+
+
+| Sem proxy | Conexão direta com a internet; nenhum proxy é usado. | Nenhum 
+
+
+| Proxy de encaminhamento HTTP | O AI Data Engine se conecta ao proxy via HTTP e cria túneis para destinos HTTPS com `CONNECT`. | Nenhuma ou autenticação básica HTTP (nome de usuário e senha) 
+
+
+| Proxy de encaminhamento HTTPS | O AI Data Engine se conecta ao proxy por meio de TLS. Se uma autoridade de certificação (CA) privada assinou o certificado do proxy, você deve fornecer o certificado da CA. | Nenhuma ou autenticação básica HTTP (nome de usuário e senha) 
+|===
+Você pode acessar o proxy pelo nome do host ou pelo endereço IPv4.
+
+
+IMPORTANT: O AI Data Engine é compatível com proxies de encaminhamento padrão que estabelecem túnel para conexões com HTTP `CONNECT`, incluindo destinos HTTPS. Se o seu proxy inspeciona o tráfego TLS, isente da inspeção os endpoints em link:aide-requirements.html#outbound-internet-access["Acesso à internet de saída"], incluindo o host de download do instalador. Proxies que inspecionam TLS e alguns outros recursos de proxy não são compatíveis. Consulte link:../release-notes/known-limitations.html["Limitações conhecidas"].
+
+O instalador usa um proxy para cada destino da internet e cada componente do AI Data Engine. As configurações de proxy são definidas durante a instalação.
+
+
+
+[[proxy-configuration-parameters]]
+[[proxy-parameters]]
+== Parâmetros de configuração do proxy
+
+[cols="2,1,3"]
+|===
+| Parâmetro | Padrão | Descrição 
+
+
+| `--proxy-host <host[:port]>` | Nenhum | Nome do host ou endereço IPv4 do proxy de encaminhamento, sem  `http://` ou  `https://`. Habilita a configuração do proxy. Aceita uma porta embutida (`host:port`). Uma porta em  `--proxy-host` tem precedência sobre  `--proxy-port`. 
+
+
+| `--proxy-port <port>` | `80` para HTTP, `443` para HTTPS | Porta na qual o proxy escuta. Ignorada se a porta já estiver incluída em `--proxy-host`. 
+
+
+| `--proxy-scheme <http|https>` | `https` | Protocolo usado para se conectar ao próprio servidor proxy. Este não é o esquema dos destinos que o proxy alcança. A maioria dos proxies de encaminhamento escuta em HTTP simples, portanto informe `--proxy-scheme http` para esses. 
+
+
+| `--proxy-ca-cert <path>` | Nenhum | Caminho para um arquivo PEM ou para um diretório simples de  `.crt` e  `.pem` arquivos, que contém o certificado da CA que assinou o certificado do proxy. O instalador lê um diretório sem percorrer os subdiretórios recursivamente e mescla os arquivos em um único pacote. Necessário para um proxy HTTPS cujo certificado é assinado por uma CA privada. Não é utilizado com um proxy HTTP. 
+
+
+| `--proxy-user <user>` | Nenhum | Nome de usuário para autenticação básica. Com um servidor proxy HTTP, o instalador avisa que as credenciais são transmitidas ao proxy sem criptografia. Requer uma senha, fornecida com `--proxy-password-file` ou inserida no prompt. 
+
+
+| `--proxy-password-file <path>` | Nenhum | Caminho para um arquivo local que contém apenas a senha do proxy, com permissões definidas como `0600` ou `0400`. Se você omitir esse parâmetro, o instalador solicitará a senha com entrada oculta. 
+
+
+| `--proxy-type <r>` | `r` | Tipo de proxy. `r` é um proxy de encaminhamento regular e é o padrão. Não altere isso. Proxies que inspecionam TLS não são suportados. 
+
+
+| `--no-proxy` | — | Desativa explicitamente a configuração de proxy e ignora as solicitações de proxy. Use somente quando o host tiver acesso direto à internet. 
+|===
+
+NOTE: O instalador não aceita `--proxy-password` ou a `PROXY_PASSWORD` variável de ambiente. Use `--proxy-password-file` ou o prompt interativo.
+
+
+
+[[the-installer-download]]
+== O download do instalador
+
+O comando de instalação copiado do NetApp Console baixa o instalador de uma rede de entrega de conteúdo e depois o executa em uma única etapa. O download não usa o proxy. Se o host de destino acessar a internet somente por meio de um proxy, você deverá baixar o instalador manualmente e executar o comando de instalação a partir do instalador extraído. Os tópicos de implantação descrevem essas etapas.
+
+
+
+[[proxy-verification]]
+== Verificação de proxy
+
+Antes de baixar qualquer coisa, o instalador realiza uma verificação no host do instalador. Essa verificação confirma se o proxy responde, se o proxy aceita suas credenciais e se o certificado do proxy é válido para o esquema escolhido. Se a verificação falhar, o instalador para e indica a causa, por exemplo, uma porta incorreta, um esquema incorreto ou uma senha rejeitada (HTTP 407).
+
+Para implantações com vários nós, a verificação abrange apenas o proxy. Ela não testa se os nós do cluster conseguem alcançar o proxy.
+
+
+
+[[change-proxy-settings-after-installation]]
+== Alterar as configurações de proxy após a instalação
+
+As configurações de proxy são definidas durante a instalação. O instalador não é executado novamente em um cluster já instalado. Para alterar o host, a porta, as credenciais ou o certificado CA do proxy após a instalação, entre em contato com o NetApp Support.
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:aide-requirements.html["Requisitos do AIDE"]
+* link:single-node-prerequisites.html["Pré-requisitos para a implantação de nó único do AIDE"]
+* link:multi-node-prerequisites.html["Pré-requisitos para a implantação de múltiplos nós do AIDE"]
+* link:deploy-aide-single-node-proxy.html["Implante o AI Data Engine como uma implantação de nó único com um proxy"]
+* link:deploy-aide-multi-node-proxy.html["Implante o AI Data Engine como uma implantação de vários nós com um proxy"]
+

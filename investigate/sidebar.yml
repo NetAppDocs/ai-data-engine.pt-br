@@ -12,7 +12,5 @@ entries:
   url: "/investigate/investigate-structured.html"
 - title: Investigar diretórios
   url: "/investigate/investigate-directories.html"
-- title: Trabalhar com filtros
-  url: "/investigate/use-filters.html"
 - title: Tome ações nos dados
   url: "/investigate/take-actions.html"

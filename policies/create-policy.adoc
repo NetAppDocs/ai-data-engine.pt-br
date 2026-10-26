@@ -56,9 +56,9 @@ Analise a tabela de resultados para confirmar se o conjunto de filtros captura o
 . Analise a expressão de critérios de filtro (por exemplo,  `last_access_time <= 3 Years AND file_size >= 5GiB`) para confirmar se ela reflete suas seleções.
 . Para associar uma ação, selecione uma das seguintes opções em *Ação*:
 +
-** *Apenas monitorar (nenhuma ação)* (padrão): a política é salva como uma condição de somente monitoramento.
+** *Somente monitoramento (nenhuma ação)* (padrão): salva a política como uma condição somente de monitoramento.
 ** *Enviar notificação por e-mail*: envia uma notificação por e-mail ao destinatário especificado.
-** *Excluir permanentemente*: nenhuma entrada adicional é necessária.
+** *Excluir permanentemente*: não requer nenhuma entrada adicional.
 +
 
 CAUTION: A ação "Excluir permanentemente" exclui automática e irreversivelmente todos os arquivos que correspondem a esta política após cada ciclo de verificação. Verifique seus critérios de filtro e confirme se você tem autorização para excluir esses arquivos antes de salvar.
@@ -69,14 +69,14 @@ CAUTION: A ação "Excluir permanentemente" exclui automática e irreversivelmen
 
 
 .Resultado
-A política é salva e exibida na página link:manage-policies.html["Políticas"]. Se você associou uma ação, o AI Data Engine aplica essa ação aos arquivos que correspondem aos critérios da política.
+O AI Data Engine salva a política, e ela aparece na link:manage-policies.html["Políticas"] página. Se você associou uma ação, o AI Data Engine aplica essa ação aos arquivos que correspondem aos critérios da política.
 
 
 
 [[example-identify-cold-archive-files]]
 == Exemplo: identificar arquivos de arquivamento inativos
 
-O exemplo a seguir cria uma política para enviar uma notificação por e-mail quando forem detectados arquivos que não são acessados há mais de um ano.
+O exemplo a seguir cria uma política que envia uma notificação por e-mail quando o AI Data Engine detecta arquivos que não foram acessados em mais de um ano.
 
 . Na seção Investigação, aplique estes filtros:
 +

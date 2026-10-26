@@ -13,8 +13,12 @@ summary: Audite as permissões em nível de diretório em seus sistemas de armaz
 [role="lead"]
 Quando precisar identificar quais diretórios estão expostos a mais usuários do que o pretendido, filtre por permissões para encontrar pastas abertas para toda a organização. Por exemplo, um administrador de segurança que vê diretórios expostos sinalizados no painel pode encontrar todos os diretórios com acesso para toda a organização, verificar quem tem permissões de leitura e gravação e criar uma política para monitorar novas exposições após cada verificação.
 
-.Antes de começar
-* Pelo menos uma fonte de dados deve estar conectada e realizando varreduras. Consulte link:../data-sources/connect-data-source.html["Conecte uma fonte de dados"].
+
+
+[[before-you-begin]]
+== Antes de começar
+
+* Você conectou pelo menos uma fonte de dados, e ela está em varredura. Consulte link:../data-sources/connect-data-source.html["Conecte uma fonte de dados"].
 
 
 
@@ -22,7 +26,7 @@ Quando precisar identificar quais diretórios estão expostos a mais usuários d
 [[find-broadly-accessible-directories]]
 == Encontre diretórios amplamente acessíveis
 
-Use filtros de permissão para identificar diretórios que estejam acessíveis além do público-alvo pretendido.
+Encontre diretórios que estejam abertos além do público pretendido, filtrando por permissões.
 
 .Passos
 . Na interface do usuário do AI Data Engine, selecione *Investigação*.
@@ -37,14 +41,12 @@ A tabela de resultados é atualizada para mostrar os diretórios que corresponde
 
 
 
-Para obter uma lista completa dos filtros disponíveis, consulte link:use-filters.html["Trabalhar com filtros"].
-
 
 
 [[review-directory-permissions]]
 == Revisar as permissões do diretório
 
-Selecione uma linha do diretório para abrir o painel de detalhes e verificar quem tem acesso.
+Confirme quem tem acesso a um diretório e se esse acesso é intencional. Selecione uma linha do diretório para abrir o painel de detalhes.
 
 O painel de detalhes mostra o tipo de diretório, o sistema, o proprietário do diretório e um resumo das permissões (por exemplo, "Aberto para a organização"). Selecione *Exibir permissões* para ver um detalhamento do acesso de leitura e gravação para cada usuário ou grupo com acesso ao diretório.
 
@@ -58,9 +60,11 @@ Use estas informações para confirmar se o nível de acesso é intencional ante
 Após filtrar para identificar diretórios amplamente acessíveis, salve os critérios como uma política para monitorar novas exposições após cada ciclo de varredura.
 
 .Passos
-. Com os filtros de permissão aplicados, selecione *Criar política* na barra de ferramentas de filtro.
+. Após aplicar seus filtros de permissão, selecione *Criar política* na barra de ferramentas de filtro.
 . Preencha o formulário da apólice. Consulte link:../policies/create-policy.html["Criar uma política"].
 
+
+Para controlar se o AI Data Engine analisa as permissões, consulte link:../administer/configure-settings.html["Configurar os limites de classificação de dados e a varredura de acesso"].
 
 Para baixar os resultados filtrados da guia Diretórios, selecione image:icon_download_file.png["Download"].
 
@@ -69,8 +73,8 @@ Para baixar os resultados filtrados da guia Diretórios, selecione image:icon_do
 [[related-information]]
 == Informações relacionadas
 
-* link:use-filters.html["Trabalhar com filtros"]
 * link:../policies/create-policy.html["Criar uma política"]
+* link:../administer/configure-settings.html["Configurar os limites de classificação de dados e a varredura de acesso"]
 * link:../administer/manage-users-roles.html["Gerenciar usuários e funções"]
 * link:understand-dashboard.html["Avalie a utilização do storage no painel."]
 

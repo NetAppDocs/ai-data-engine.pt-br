@@ -1,0 +1,74 @@
+---
+sidebar: sidebar 
+permalink: administer/monitor-deployment-health.html 
+keywords: health monitor, deployment health, system stability, pods, unhealthy pod, OOMKilled, CrashLoopBackOff, evicted, memory, disk, CPU, utilization, eviction threshold, scans paused, node health, troubleshooting 
+summary: Monitore a sua implantação do AI Data Engine para identificar cargas de trabalho não saudáveis e restrições de recursos que possam interromper a varredura e coletar informações para solução de problemas. 
+---
+= Monitore a integridade da implantação e investigue problemas no AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+O AI Data Engine (AIDE) monitor de integridade ajuda você a identificar cargas de trabalho com problemas e restrições de recursos que podem interromper a varredura. Use os detalhes de integridade para avaliar o impacto de um problema e coletar informações para solucionar problemas.
+
+
+
+[[monitor-deployment-health-and-investigate-issues]]
+== Monitore o estado da implantação e investigue problemas
+
+.Passos
+. No NetApp Console, acesse *central de dados de IA* > *AI Data Engine*.
+. Selecione *Configuração* e, em seguida, selecione *monitor de integridade*.
+. Verifique *a estabilidade do sistema* em *Status da infraestrutura* para ver se algum pod não está íntegro.
++
+Um pod com problemas não consegue executar sua carga de trabalho conforme o esperado. Os status com problemas incluem Pending, Failed, Evicted, Unknown, OOMKilled e CrashLoopBackOff.
+
+. Identifique as restrições de recursos que podem afetar sua implantação:
++
+--
+** Para uma implantação de nó único, revise *Integridade do nó*. Se o nó indicar um problema de integridade, verifique os cartões de utilização de CPU, memória e disco em busca de sinais de pressão sobre os recursos.
+** Para uma implementação com vários nós, verifique *Integridade do nó* para identificar nós com status Crítico, Aviso ou Offline. Compare as métricas disponíveis de utilização de recursos para identificar sinais de pressão sobre os recursos. Para nós offline, investigue a disponibilidade dos nós.
+
+
+--
+. Para uma implementação com vários nós, selecione *Ver detalhes* em um cartão de utilização para investigar o recurso:
++
+--
+** *utilização de CPU*: compare o uso atual com os limites de aviso e crítico.
+** *Utilização de memória*: analise o uso atual, o risco de falta de memória (OOM) e o limite de despejo.
+** *Utilização do disco*: analise o espaço disponível, o risco e o limite de interrupção.
+
+
+--
++
+Preste atenção especial aos avisos de memória e disco, pois essas condições podem interromper a verificação. Siga as ações recomendadas exibidas nos detalhes.
+
+. Para identificar as cargas de trabalho afetadas, use os filtros *Pod* e *Status* em *Pod health* para refinar a lista.
++
+Analise a carga de trabalho, o status e a utilização de recursos de cada pod afetado. Use essas informações para distinguir a pressão sobre os recursos dos pods que estão falhando, reiniciando repetidamente ou aguardando execução.
+
+. Analise as *cargas de trabalho problemáticas* para identificar aquelas que foram interrompidas ou reiniciam com frequência. Anote os horários relatados para ajudar a correlacionar esses eventos com o uso de recursos.
+. Analise as tendências de utilização de recursos para verificar se a pressão sobre os recursos é temporária ou sustentada:
++
+--
+** Para uma implementação em um único nó, consulte a *Distribuição da utilização de recursos* para o período de tempo relevante.
+** Para uma implantação com vários nós, revise *Top 20 Nodes (Utilization)* para o período relevante. Compare a utilização entre os nós e inspecione o uso de CPU, memória e disco dos nós afetados para identificar picos breves ou alta utilização sustentada.
+
+
+--
+. Se precisar de ajuda para resolver um problema, selecione image:icon_download_file.png["Download"] em *Saúde do pod* para baixar as informações do pod. Reúna os detalhes relevantes em *Informações do sistema*, incluindo o nome do host, o sistema operacional, o kernel, a versão do Console, a versão do Kubernetes e o ID da conta do Console, para compartilhar com seu administrador ou equipe de suporte.
+
+
+.Resultado
+Após tomar as medidas corretivas, retorne ao *monitor de integridade* e revise *estabilidade do sistema*, *integridade do pod*, *integridade do nó* e a utilização de recursos para confirmar se as condições relatadas foram eliminadas. Se a varredura foi interrompida, acesse *fontes de dados* para verificar se ela foi retomada. Consulte link:../data-sources/manage-data-sources.html#view-scan-status-and-details["Veja o status e os detalhes da digitalização"].
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:../data-sources/manage-data-sources.html["Gerenciar fontes de dados"]
+* link:../deploy/aide-requirements.html["Requisitos do AI Data Engine"]
+

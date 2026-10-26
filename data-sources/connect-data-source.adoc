@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: data-sources/connect-data-source.html 
-keywords: connect, data source, storage system, scanned systems, configuration, scan, NFS, CIFS, StorageGRID, database, file shares, console agent, scope, content intelligence, activate 
-summary: Conecte os sistemas de armazenamento ao AI Data Engine concluindo o assistente de integração da fonte de dados e, em seguida, ative a verificação para iniciar a coleta de metadados. 
+keywords: connect, data source, storage system, add system, scan, NFS, CIFS, SMB, StorageGRID, database, file shares, console agent, scope, activate, Kerberos 
+summary: Conecte as fontes de dados ao AI Data Engine e configure os recursos de dados que serão analisados. 
 ---
 = Conecte uma fonte de dados ao AI Data Engine
 :allow-uri-read: 
@@ -11,70 +11,137 @@ summary: Conecte os sistemas de armazenamento ao AI Data Engine concluindo o ass
 
 
 [role="lead"]
-O AI Data Engine examina seus sistemas de storage para coletar e analisar metadados. Para adicionar uma fonte de dados, conclua o assistente de integração. O assistente coleta detalhes de conexão, escopo da varredura e configurações para o seu tipo de fonte. Depois de adicionar o sistema, ative a varredura para iniciar a coleta de metadados.
+Conecte as fontes de dados que você quer que o AI Data Engine (AIDE) analise e escolha quais recursos de dados delas examinar. O AI Data Engine examina as fontes de dados conectadas para coletar metadados, e o procedimento de conexão depende do tipo de fonte.
 
-.Antes de começar
-* Você precisa ter privilégios de _AI Data Engine administrator_ para conectar e configurar fontes de dados no AI Data Engine.
-* Descubra sistemas de armazenamento no NetApp Console usando um Console Agent antes de adicioná-los ao AI Data Engine. Isso se aplica a todos os tipos de armazenamento compatíveis, incluindo clusters ONTAP locais, o Cloud Volumes ONTAP, o Amazon FSx for NetApp ONTAP, o Google Cloud NetApp Volumes e o Azure NetApp Files. Para clusters ONTAP locais, consulte link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html["Descubra os clusters ONTAP locais"] na documentação do NetApp Console. A descoberta direta não habilita serviços de dados como o AI Data Engine.
+
+
+[[before-you-begin]]
+== Antes de começar
+
+* Você precisa ter privilégios de _administrador do AI Data Engine_ para conectar e configurar as fontes de dados.
+* Para sistemas conectados por meio da descoberta do NetApp Console, use um agente do Console para descobrir os sistemas de armazenamento no NetApp Console antes de adicioná-los ao AI Data Engine. Isso se aplica a todos os tipos de armazenamento compatíveis, incluindo clusters locais do ONTAP, o Cloud Volumes ONTAP, o Amazon FSx for NetApp ONTAP, o Google Cloud NetApp Volumes e o Azure NetApp Files. Para clusters locais do ONTAP, consulte link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html["Descubra os clusters ONTAP locais"] na documentação do NetApp Console. A descoberta direta não habilita serviços de dados, como o AI Data Engine.
 * Verifique se as conexões de rede necessárias para que o AI Data Engine acesse suas fontes de dados estão abertas. Consulte link:../deploy/aide-requirements.html["Requisitos do AI Data Engine"].
+* Para examinar compartilhamentos SMB/CIFS com autenticação Kerberos, primeiro conclua o procedimento para o seu tipo de implantação em link:../administer/configure-kerberos-smb.html["Autenticação Kerberos para compartilhamentos SMB/CIFS no AI Data Engine"].
 
 
 
 
 [[add-a-data-source]]
+[[add-data-source]]
 == Adicionar uma fonte de dados
 
-.Passos
-. Na interface do usuário do AI Data Engine, selecione *Configuração*.
-. Na guia *Sistemas verificados*, selecione *Adicionar sistema*.
-. Selecione um tipo de origem:
-+
-[cols="1,2"]
-|===
-| Tipo de origem | Descrição 
-
-
-| *Grupo de compartilhamento de arquivos* | Adicione compartilhamentos de arquivos NFS ou SMB/CIFS da nuvem ou locais como um grupo nomeado. 
-
-
-| *Banco de dados* | Adicione um servidor de banco de dados para analisar os esquemas selecionados. 
-
-
-| o *StorageGRID* | Analise os dados do NetApp StorageGRID usando o protocolo S3. 
-|===
-. Insira os detalhes da conexão para o seu tipo de origem:
-+
-[cols="1,3"]
-|===
-| Tipo de origem | Detalhes necessários 
-
-
-| *Grupo de compartilhamento de arquivos* | Um nome para o grupo de compartilhamento e, em seguida, os detalhes do host de compartilhamento e do caminho. 
-
-
-| *Banco de dados* | Tipo de banco de dados, host, porta e credenciais de autenticação. 
-
-
-| o *StorageGRID* | Nome do sistema, URL do endpoint S3, chave de acesso do S3 e chave secreta. 
-|===
-. Revise suas seleções e selecione *Confirm* para adicionar a fonte de dados.
+Importe seus dados para o AI Data Engine para que você possa analisá-los. Use *Adicionar sistema* na página *Fontes de dados* para conectar um grupo de compartilhamentos de arquivos, um servidor de banco de dados ou um sistema StorageGRID. Depois de adicionar a fonte de dados, configure o escaneamento para especificar quais de seus recursos o AI Data Engine verifica para coletar metadados. Consulte <<configure-scanning>>.
 
 
 
+[[add-a-file-shares-group]]
+[[add-file-shares-group]]
+=== Adicionar um grupo de compartilhamentos de arquivos
 
-[[activate-scanning]]
-== Ativar digitalização
+Integre compartilhamentos NFS ou SMB ao AI Data Engine como um único sistema nomeado para que você possa gerenciá-los em conjunto. Crie o grupo, adicione os compartilhamentos e, em seguida, configure quais compartilhamentos verificar.
 
-Após configurar uma fonte de dados, a verificação não inicia automaticamente. Você precisa ativar a verificação para cada sistema.
+[[add-file-shares-group-prerequisites]]
+.Antes de começar
+* Identifique um nome para o grupo, o host e o caminho de cada compartilhamento.
+* Verifique se a implantação do AI Data Engine pode alcançar os servidores de compartilhamento.
+* Para NFS, configure o acesso de exportação de que o AI Data Engine precisa.
+* Para SMB, prepare o método de autenticação e o acesso necessário para ler os compartilhamentos.
+
 
 .Passos
-. Na interface do usuário do AI Data Engine, selecione *Configuração*.
-. Na aba *Sistemas digitalizados*, localize o sistema que você deseja digitalizar.
-. Selecione *Ativar verificações*.
+. Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
+. Selecione *Adicionar sistema* e depois selecione *Adicionar grupo de compartilhamento de arquivos*.
+. Digite um nome para o grupo e continue.
+. Selecione o protocolo dos compartilhamentos a serem adicionados.
+. Insira os compartilhamentos que deseja adicionar e envie-os.
++
 
+NOTE: Para compartilhamentos SMB/CIFS que usam autenticação Kerberos, insira o caminho do compartilhamento como o FQDN seguido pelo nome do compartilhamento, por exemplo `filer.corp.example.com/sharename`, e deixe as credenciais em branco. Consulte link:../administer/configure-kerberos-smb.html["Autenticação Kerberos para compartilhamentos SMB/CIFS no AI Data Engine"].
+
+. Analise o resultado de cada compartilhamento. Resolva quaisquer compartilhamentos com falha e, em seguida, adicione-os novamente.
+. Configure a varredura para o grupo. Consulte <<configure-scanning>>.
+
+
+
+
+[[add-a-database-server]]
+[[add-database]]
+=== Adicionar um servidor de banco de dados
+
+Importe os dados de um servidor de banco de dados para o AI Data Engine para que você possa analisá-los. Conecte o servidor de banco de dados e, em seguida, escolha os esquemas a serem analisados.
+
+.Antes de começar
+* Saiba o tipo de banco de dados, o nome do host do servidor ou endereço IP, a porta e as credenciais da conta de varredura.
+* Verifique se a conta tem permissão para ler os esquemas e tabelas que você deseja analisar.
+* Verifique se o AI Data Engine consegue acessar o servidor de banco de dados.
+
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
+. Selecione *Adicionar sistema* e, em seguida, selecione *Adicionar servidor de banco de dados*.
+. Selecione o tipo de banco de dados e insira os detalhes de conexão.
+. Envie os detalhes da conexão.
+. Configure a varredura para o servidor de banco de dados. Consulte <<configure-scanning>>.
+
+
+
+
+[[add-storagegrid]]
+=== Adicionar o StorageGRID
+
+Traga os dados de objetos do StorageGRID para o AI Data Engine por meio do endpoint S3 para que você possa analisá-los. Conecte o StorageGRID e, em seguida, escolha os buckets que deseja analisar.
+
+.Antes de começar
+* Prepare um nome de sistema, a URL do endpoint S3 do StorageGRID e uma chave de acesso e uma chave secreta do S3.
+* Verifique se o AI Data Engine consegue acessar o endpoint.
+
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
+. Selecione *Adicionar sistema* e, em seguida, selecione *Adicionar o StorageGRID*.
+. Insira o nome do sistema, a URL do endpoint S3, a chave de acesso e a chave secreta.
+. Envie os detalhes da conexão.
+. Configure a varredura para o StorageGRID. Consulte <<configure-scanning>>.
+
+
+
+
+[[configure-scanning]]
+== Configurar varredura
+
+Após conectar um sistema, escolha quais recursos de dados o AI Data Engine analisa para que a coleta de metadados abranja os dados que você precisa analisar. Escolha uma das seguintes abordagens:
+
+* Ative a verificação automática para todo o sistema na página *Fontes de dados*. O AI Data Engine verifica todos os recursos existentes e futuros no sistema.
+* Ative a verificação de volumes, compartilhamentos, buckets ou esquemas individuais na página *Exibir detalhes* do sistema.
+
+
+.Passos
+* Ativar a verificação automática para um sistema:
++
+.. Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
+.. Localize o sistema e ative o interruptor de varredura automática para habilitar a varredura automática.
++
+
+NOTE: Você precisa desativar a verificação automática para gerenciar a verificação de recursos individuais.
+
+
+
+* Ativar a verificação de recursos individuais:
++
+.. Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
+.. Localize o sistema e selecione *Ver detalhes*.
+.. Na lista de recursos de dados, habilite a verificação dos volumes, compartilhamentos, buckets ou esquemas que você deseja incluir.
+.. Retorne a *Fontes de dados*, localize o sistema e selecione *Ativar varreduras*.
+
+
+
+
+Para procedimentos mais detalhados em nível de recurso, consulte link:manage-data-sources.html["Gerenciar fontes de dados"].
 
 .Resultado
-O status do sistema é atualizado na guia Sistemas verificados para mostrar que a verificação está em andamento. Para monitorar o progresso da verificação e verificar se o AI Data Engine está indexando os recursos de dados, consulte link:manage-data-sources.html["Gerenciar fontes de dados"] e link:monitor-scanning-health.html["Monitore a integridade da digitalização"].
+O status do sistema na página *Fontes de dados* é atualizado para mostrar que a verificação está em andamento. A página exibe o status da verificação de cada recurso.
+
+Se as verificações pararem ou pausarem inesperadamente, consulte link:../administer/monitor-deployment-health.html["Monitore o estado da implantação e investigue problemas"].
 
 
 
@@ -83,6 +150,7 @@ O status do sistema é atualizado na guia Sistemas verificados para mostrar que 
 
 * link:manage-data-sources.html["Gerenciar fontes de dados"]
 * link:../deploy/aide-requirements.html["Requisitos do AI Data Engine"]
+* link:../administer/configure-kerberos-smb.html["Autenticação Kerberos para compartilhamentos SMB/CIFS no AI Data Engine"]
 * link:../investigate/understand-dashboard.html["Avalie a utilização do storage no painel."]
-* link:monitor-scanning-health.html["Monitore a integridade da digitalização"]
+* link:../administer/monitor-deployment-health.html["Monitore o estado da implantação e investigue problemas"]
 

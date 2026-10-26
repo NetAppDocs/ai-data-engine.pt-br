@@ -4,5 +4,15 @@ title: Administrar
 entries:
 - title: Gerenciar usuários e funções
   url: "/administer/manage-users-roles.html"
-- title: Configurar limites de dados
+- title: Configurar os limites de classificação de dados e a varredura de acesso
   url: "/administer/configure-settings.html"
+- title: Kerberos para compartilhamentos SMB/CIFS
+  url: "/administer/configure-kerberos-smb.html"
+- title: Configurar o Kerberos em um único nó
+  url: "/administer/configure-kerberos-smb-single-node.html"
+- title: Configurar Kerberos em vários nós
+  url: "/administer/configure-kerberos-smb-multi-node.html"
+- title: Configure o mapeamento de identidade do Active Directory para NFS
+  url: "/administer/configure-ad-nfs.html"
+- title: Monitorar a integridade da implantação
+  url: "/administer/monitor-deployment-health.html"

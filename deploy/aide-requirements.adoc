@@ -11,7 +11,7 @@ summary: Analise os requisitos de infraestrutura e rede antes de implementar o A
 
 
 [role="lead"]
-Antes de implementar o AI Data Engine, revise os requisitos de rede, dimensionamento de VM e sistema operacional para o seu ambiente.
+Antes de implantar o AI Data Engine (AIDE), revise os requisitos de rede, Kubernetes, dimensionamento e sistema operacional para o seu ambiente. Para uma implantação de nó único, você fornece uma VM Linux e o AI Data Engine provisiona todo o restante automaticamente. Para uma implantação de vários nós, você fornece seu próprio cluster Kubernetes.
 
 
 
@@ -28,104 +28,200 @@ As seguintes conexões de rede devem estar abertas:
 | Agente de console para o NetApp Console | 443 | TCP | Saída | HTTPS: conectividade com o NetApp Console 
 
 
-| Agente de console para ONTAP | 443 | TCP | Saída | HTTPS: descoberta de cluster ONTAP 
+| Agente de console para o ONTAP | 443 | TCP | Saída | HTTPS: descoberta de cluster ONTAP 
 
 
-| Agente de console para AI Data Engine | 80, 443, 8080, 9000 | TCP | Bidirecional | Comunicação entre o Console Agent e o AI Data Engine 
+| Agente de console para o AI Data Engine | 80, 443, 8080, 9000 | TCP | Bidirecional | Comunicação entre o agente do Console e o AI Data Engine 
+
+
+| Cliente de AI para servidor MCP | 443 | TCP | Entrada | HTTPS: acesso do cliente de IA ao nome do host do cluster AIDE a partir da sua rede corporativa ou VPN. Os clientes de IA se conectam ao nome do host na porta 443. Eles não se conectam à porta de serviço interna. 
 
 
 | AI Data Engine para o ONTAP (NFS) | 111, 2049 | TCP/UDP | Para storage | Acesso à fonte de dados NFS 
 
 
-| AI Data Engine para o ONTAP (SMB/CIFS) | 139, 445 | TCP/UDP | Para storage | Acesso à fonte de dados SMB/CIFS 
+| AI Data Engine para o ONTAP (SMB) | 139, 445 | TCP/UDP | Para storage | Acesso à fonte de dados SMB 
 
 
-| AI Data Engine para o Active Directory | 389, 636, 3268, 3269 | TCP/UDP | Saída | LDAP (389), LDAPS (636) e Catálogo Global (3268, 3269) para autenticação de usuário e varredura SMB/CIFS. A porta 389 usa TCP e UDP; todas as outras portas usam apenas TCP. 
+| Nós do cluster para servidor NFS (volume de configuração de vários nós) | 2049 | TCP | Saída | Acesso NFS à exportação que contém a configuração do AI Data Engine. Aplica-se somente a implantações com vários nós. Se você usar Kerberos, o host admin também montará essa exportação. 
 
 
-| AI Data Engine para os serviços da NetApp / Registro de contêineres | 443 | TCP | Saída | HTTPS: downloads de artefatos e obtenções de imagens de contêiner (AWS S3 e ECR) 
+| AI Data Engine para o Active Directory | 389, 636, 3268, 3269 | TCP (UDP também para 389) | Saída | LDAP (389), LDAPS (636) e Catálogo Global (3268, 3269) para autenticação de usuários, varredura SMB/CIFS e mapeamento de IDs de usuários e grupos do NFS para nomes do Active Directory. A porta 389 usa TCP e UDP; todas as outras portas usam apenas TCP. 
+
+
+| O AI Data Engine para o KDC Kerberos (controlador de domínio Active Directory) | 88 | TCP/UDP | Saída | Autenticação Kerberos para fontes de dados SMB/CIFS. Necessária apenas se você usar Kerberos. Consulte <<kerberos-ad-requirements,Requisitos do Kerberos e do Active Directory>>. 
+
+
+| O AI Data Engine para servidor DNS | 53 | TCP/UDP | Saída | Resolução de nomes para servidores de arquivos e o KDC ao usar o Kerberos 
+
+
+| O AI Data Engine para os serviços da NetApp, o registro de contêineres e a rede de entrega de conteúdo | 443 | TCP | Saída | HTTPS: o script de instalação é baixado de uma rede de entrega de conteúdo, a imagem do contêiner e o chart do Helm são obtidos do ECR, e o catálogo de componentes é baixado do S3 
 |===
 
 
 [[outbound-internet-access]]
 === Acesso à internet de saída
 
-Para uma instalação online, os seguintes endpoints devem estar acessíveis a partir do host do AI Data Engine:
+Para uma instalação online, os seguintes endpoints devem estar acessíveis. Quando uma linha especificar uma condição, o endpoint será necessário apenas nesse caso.
 
-[cols="2,2,1"]
+[cols="3,3,2,1"]
 |===
-| Endpoint | Propósito | Escopo 
+| Endpoint | Propósito | Iniciado por | Tipo de implantação 
 
 
-| `\https://api.console.netapp.com` | Comunicação do NetApp Console | Ambos 
+| `\https://582244788873.dkr.ecr.us-west-2.amazonaws.com` | NetApp registro de contêineres (imagens de contêiner do AIDE e gráficos Helm) | Runtime de contêiner e instalador | Ambos 
 
 
-| `\https://netapp-cloud-account.auth0.com` | Autenticação centralizada do usuário | Ambos 
+| `\https://582244788873.dkr-ecr.us-west-2.on.aws` | O registro de contêineres NetApp (acesso ao endpoint dualstack/virtual private cloud (VPC)) | Runtime de contêiner e instalador | Ambos 
 
 
-| `\https://auth0.com` | Serviços de autenticação | Ambos 
+| `\https://api.ecr.us-west-2.amazonaws.com` | API do AWS ECR (autenticação e recuperação do manifesto da imagem) | Runtime de contêiner e instalador | Ambos 
 
 
-| `\https://582244788873.dkr.ecr.us-west-2.amazonaws.com` | O NetApp container registry (imagens de contêiner do AIDE) | Ambos 
+| `\https://ecr.us-west-2.amazonaws.com` | Atualização da credencial do registro AWS ECR | AI Data Engine | Ambos 
 
 
-| `\https://582244788873.dkr-ecr.us-west-2.on.aws` | O registro de contêineres NetApp (acesso ao endpoint dualstack/virtual private cloud (VPC)) | Ambos 
+| `\https://prod-us-west-2-starport-layer-bucket.s3.us-west-2.amazonaws.com` | AWS S3 (armazenamento da camada de imagem do contêiner ECR) | Runtime de contêiner | Ambos 
 
 
-| `\https://api.ecr.us-west-2.amazonaws.com` | API do AWS ECR (autenticação e recuperação do manifesto da imagem) | Ambos 
+| `\https://prod-us-west-2-starport-layer-bucket.s3.amazonaws.com` | AWS S3 (armazenamento da camada de imagem do contêiner ECR) | Runtime de contêiner | Ambos 
 
 
-| `\https://prod-us-west-2-starport-layer-bucket.s3.us-west-2.amazonaws.com` | AWS S3 (armazenamento da camada de imagem do contêiner ECR) | Ambos 
+| `\https://s3.us-west-2.amazonaws.com` | AWS S3 (catálogo de versões de componentes) | Instalador e o AI Data Engine | Ambos 
 
 
-| `\https://prod-us-west-2-starport-layer-bucket.s3.amazonaws.com` | AWS S3 (armazenamento da camada de imagem do contêiner ECR) | Ambos 
+| `\https://s3.amazonaws.com` | AWS S3 (catálogo de versões de componentes) | Instalador e o AI Data Engine | Ambos 
 
 
-| `\https://s3.us-west-2.amazonaws.com` | AWS S3 (script de wrapper do instalador, gráficos Helm e catálogo de versões de componentes) | Ambos 
+| `\https://sts.us-west-2.amazonaws.com` | AWS STS (troca temporária de credenciais para acesso ao registro e ao S3) | AI Data Engine | Ambos 
 
 
-| `\https://s3.amazonaws.com` | AWS S3 (script de wrapper do instalador, gráficos Helm e catálogo de versões de componentes) | Ambos 
+| `\https://aide-version-policy.s3.us-west-2.amazonaws.com` | Operador do AI Data Engine: política de versão | AI Data Engine | Ambos 
 
 
-| `\https://sts.us-west-2.amazonaws.com` | AWS STS (troca temporária de credenciais para acesso ao registro e ao S3) | Ambos 
+| `\https://api.bluexp.netapp.com` | Registro no NetApp Console | Instalador | Ambos 
 
 
-| `\https://support.compliance.api.bluexp.netapp.com` | Imagens de software, manifestos e modelos; streaming de logs e métricas | Ambos 
+| `\https://netapp-cloud-account.auth0.com` | Autenticação do NetApp Console | AI Data Engine | Ambos 
 
 
-| `\https://dseasb33srnrn.cloudfront.net` | CloudFront rede de entrega de conteúdo para distribuição de software | Ambos 
+| `\https://api.workloads.netapp.com` | Descoberta de cargas de trabalho do FSx e da NetApp | AI Data Engine | Ambos 
 
 
-| `\http://packages.ubuntu.com` | Pacotes de pré-requisito do Ubuntu | Somente Lite (Ubuntu) 
+| `\https://api.gcp.workloads.netapp.com` | Descoberta do Google Cloud NetApp Volumes | AI Data Engine | Ambos 
 
 
-| `\http://archive.ubuntu.com` | Arquivo de pacotes do Ubuntu | Somente Lite (Ubuntu) 
+| `\https://checkip.amazonaws.com` | O monitor de integridade usa essa informação para mostrar o endereço IP público no painel de integridade. O AI Data Engine funciona sem ela. | AI Data Engine | Ambos 
 
 
-| `\http://security.ubuntu.com` | Arquivo de pacotes de segurança do Ubuntu | Somente Lite (Ubuntu) 
+| `\https://api.ipify.org` | Alternativa para obter o endereço IP público exibido no painel de integridade. O AI Data Engine funciona sem ele. | AI Data Engine | Ambos 
 
 
-| `\https://get.k3s.io` | download do ambiente de execução k3s (iniciado pelo instalador) | Apenas Lite 
+| `\https://icanhazip.com` | Alternativa para obter o endereço IP público exibido no painel de integridade. O AI Data Engine funciona sem ele. | AI Data Engine | Ambos 
 
 
-| `\https://get.helm.sh` | Download do Helm (iniciado pelo instalador) | Apenas Lite 
+| `\https://ipinfo.io` | Alternativa para obter o endereço IP público exibido no painel de integridade. O AI Data Engine funciona sem ele. | AI Data Engine | Ambos 
+
+
+| `\https://hub.docker.com` | Teste de conectividade do proxy, usado somente quando você utiliza um proxy de saída. Uma falha no teste não impede a instalação nem a execução. Este endpoint é separado dos endpoints do Docker Hub que fornecem imagens de sistema k3s. | AI Data Engine | Ambos 
+
+
+| `\https://cognito-idp.us-east-1.amazonaws.com` | Teste de conectividade de proxy, usado somente quando você utiliza um proxy de saída. Uma falha no teste não impede a instalação nem a execução. | AI Data Engine | Ambos 
+
+
+| `\https://cognito-identity.us-east-1.amazonaws.com` | Acesso ao AWS Cognito, usado para enviar métricas de uso do produto das instâncias do AI Data Engine para NetApp. Também usado para um teste de conectividade de proxy. | AI Data Engine | Ambos 
+
+
+| `\https://support.compliance.api.bluexp.netapp.com` | Transmissão de logs e métricas | AI Data Engine | Ambos 
+
+
+| `\https://login.microsoftonline.com` | Necessário apenas se você usar o acesso controlado à IA (MCP). Descoberta de locatário do Microsoft Entra ID e recuperação da chave de assinatura. | AI Data Engine | Ambos 
+
+
+| `\https://d13jb5dapseb36.cloudfront.net` | A rede de entrega de conteúdo CloudFront para scripts de instalação | Instalador | Ambos 
+
+
+| `\https://get.helm.sh` | Download do Helm | Instalador | Ambos 
+
+
+| `\https://dl.k8s.io` | Download do kubectl | Instalador | Ambos 
+
+
+| `\https://github.com` | download do jq e download do binário k3s em implantações de nó único | Instalador | Ambos 
+
+
+| `\https://release-assets.githubusercontent.com` | GitHub redirecionamentos de download | Instalador | Ambos 
+
+
+| `\https://get.k3s.io` | download do runtime k3s | Instalador | Apenas um único nó 
+
+
+| `\https://rpm.rancher.io` | pacote de política SELinux do k3s (`k3s-selinux`), no RHEL, Rocky Linux ou AlmaLinux 8 ou 9 quando os arquivos do SELinux estão presentes no host, mesmo que o SELinux esteja desativado. O instalador usa a cópia do seu repositório, se ele fornecer uma. | Instalador | Nó único apenas (família RHEL) 
+
+
+| `\https://auth.docker.io` | Autenticação do Docker Hub para imagens do sistema k3s | Runtime de contêiner | Apenas um único nó 
+
+
+| `\https://registry-1.docker.io` | Registro do Docker Hub para imagens do sistema k3s | Runtime de contêiner | Apenas um único nó 
+
+
+| `\https://production.cloudfront.docker.com` | Armazenamento de camadas de imagem do Docker Hub para imagens de sistema k3s | Runtime de contêiner | Apenas um único nó 
 |===
-AI Data Engine também depende do NetApp Console para autenticação centralizada e serviços de console. Consulte link:https://docs.netapp.com/us-en/console-setup-admin/reference-networking-saas-console.html["requisitos de acesso à rede para o NetApp Console"^] para ver os endpoints necessários para a conectividade do Console e do agente do Console.
+Os endpoints desta tabela são os mesmos quer você se conecte diretamente à internet ou através de um proxy.
+
+Se você usa um proxy, permita cada endpoint para HTTPS (`CONNECT`) na porta 443 usando os nomes de host exatos listados, sem curingas ou um ponto inicial.
+
+Permita  `d13jb5dapseb36.cloudfront.net`, que hospeda o download do instalador, pelo nome do host. Seus endereços IP são compartilhados com outros sites e mudam com frequência, portanto uma regra baseada em endereços IP deixa de funcionar.
+
+Para implantações com vários nós, os nós do cluster estabelecem as conexões do runtime de contêiner. Se o comando de instalação com vários nós do NetApp Console especificar um valor  `--registry` diferente, permita esse nome de host do registro em vez dos nomes de host do registro na tabela.
+
+Consulte link:configure-proxy.html["Saiba mais sobre proxies para o AI Data Engine"]. Para implantar com um proxy, consulte link:deploy-aide-single-node-proxy.html["Implante o AI Data Engine como uma implantação de nó único com um proxy"] ou link:deploy-aide-multi-node-proxy.html["Implante o AI Data Engine como uma implantação de vários nós com um proxy"].
+
+
+NOTE: Verifique se seus gerenciadores de pacotes possuem a configuração de proxy adequada, caso ela seja necessária em seu ambiente.
+
+AI Data Engine também depende do NetApp Console para autenticação centralizada e serviços de console. Endpoints como  `\https://api.bluexp.netapp.com` e  `\https://netapp-cloud-account.auth0.com` estão listados no link:https://docs.netapp.com/us-en/console-setup-admin/reference-networking-saas-console.html#endpoints-contacted-by-netapp-console-and-console-agents["requisitos de acesso à rede para o NetApp Console"^].
 
 Antes de iniciar a implantação, verifique se a resolução de DNS para esses endpoints está funcionando no host do AI Data Engine.
 
 
 
-[[aide-lite-requirements]]
-== Requisitos do AIDE Lite
+[[supported-kubernetes-versions]]
+[[supported-kubernetes]]
+== Versões do Kubernetes suportadas
+
+O AI Data Engine suporta apenas as distribuições e versões listadas nesta tabela.
+
+[cols="1,1,1,2"]
+|===
+| Implantação | Distribuição do Kubernetes | Versão suportada | Fornecido por 
+
+
+| AIDE de nó único | k3s | v1.35 | O instalador provisiona o k3s automaticamente. Nenhuma ação é necessária. 
+
+
+| AIDE com vários nós | RKE2 | v1.34 a v1.36 (recomenda-se a v1.36.x) | Você fornece o cluster, que pode ser compartilhado ou dedicado. 
+
+
+| AIDE com vários nós | O OpenShift | OpenShift 4.22.16 (Kubernetes v1.35.8) | Você fornece o cluster, que pode ser compartilhado ou dedicado. 
+
+
+| AIDE com vários nós | O Azure Kubernetes Service (AKS) | v1.34 para v1.36 | Você fornece o cluster, que pode ser compartilhado ou dedicado. 
+|===
+
+
+[[aide-single-node-deployment-requirements]]
+== Requisitos de implantação de nó único do AIDE
+
+Você fornece uma VM Linux, e o AI Data Engine provisiona todo o resto automaticamente, incluindo o k3s. Você não precisa configurar ou gerenciar o Kubernetes. Para preparação do host, espaço de disco e requisitos de firewall, consulte link:single-node-prerequisites.html["Pré-requisitos para a implantação de nó único do AIDE"].
 
 
 
 [[vm-sizing]]
-[[lite-vm-sizes]]
+[[single-node-vm-sizes]]
 === Dimensionamento de VMs
 
-Esses tamanhos são configurações básicas recomendadas, otimizadas para uma janela inicial de varredura de três a quatro dias, e não limites rígidos. Consulte <<flexible-sizing-lite,Diretrizes flexíveis de dimensionamento>> para saber o que influencia esses números e como escalá-los além deles.
+Esses tamanhos são configurações básicas recomendadas, otimizadas para uma janela inicial de varredura de três a quatro dias, e não limites rígidos. Consulte <<flexible-sizing-single-node,Diretrizes flexíveis de dimensionamento>> para saber o que influencia esses números e como escalá-los além deles.
 
 [cols="1,1,1,1,1,1,1,1"]
 |===
@@ -144,12 +240,15 @@ Esses tamanhos são configurações básicas recomendadas, otimizadas para uma j
 NOTE: Recomenda-se o uso de SSD NVMe ou outro armazenamento de estado sólido para todos os tamanhos de implantação. Os valores de disco nesta tabela refletem apenas o armazenamento do volume de dados do AIDE. Se o sistema operacional, o runtime do k3s e os dados do AIDE compartilharem um único disco, adicione aproximadamente 65 GB ao valor de disco para o tamanho escolhido. Por exemplo, uma implantação Small em um único disco requer aproximadamente 565 GB no total.
 
 
+NOTE: Em uma implementação de nó único, utilize armazenamento em blocos, e não NFS, para o volume de dados do AIDE. O armazenamento baseado em NFS pode causar baixo desempenho.
+
+
 
 [[flexible-sizing-guidelines]]
-[[flexible-sizing-lite]]
+[[flexible-sizing-single-node]]
 === Diretrizes flexíveis de dimensionamento
 
-<<lite-vm-sizes,Configurações pequena, média e grande>>são valores de referência recomendados para um período inicial de verificação de três a quatro dias, e não limites rígidos impostos pelo software.
+<<single-node-vm-sizes,Configurações pequena, média e grande>>são valores de referência recomendados para um período inicial de verificação de três a quatro dias, e não limites rígidos impostos pelo software.
 
 O que influencia as recomendações de dimensionamento::
 +
@@ -161,29 +260,25 @@ O que influencia as recomendações de dimensionamento::
 
 
 --
-O que acontece se você usar um tamanho menor do que o necessário?::
+O que acontece se você dimensionar abaixo do necessário ou ultrapassar o tamanho implantado::
 +
 --
-O provisionamento abaixo do tamanho recomendado não impede a instalação nem causa falhas no serviço. O sistema permanece operacional e a verificação continua, mas você pode esperar o seguinte:
+Cada configuração é otimizada para uma quantidade específica de arquivos e taxa de varredura. Se o seu ambiente exceder os limites suportados pela configuração, você pode esperar o seguinte:
 
 * *Duração inicial do catálogo estendida*: a redução da capacidade computacional diminui o número de objetos verificados por dia. Por exemplo, uma implementação destinada a 3 bilhões de objetos, mas provisionada com um tamanho menor, pode levar significativamente mais tempo do que a meta de três a quatro dias.
 * *Redução da taxa de transferência contínua de ingestão*: novos eventos de arquivo e atualizações incrementais de varredura são processados mais lentamente sob carga sustentada.
-* *Risco de capacidade de storage*: uma capacidade de storage insuficiente em relação à contagem total de objetos pode levar o índice de metadados aos limites de capacidade. Normalmente, você pode resolver isso expandindo a capacidade de storage, sem a necessidade de uma reimplantação completa.
+* *Varredura interrompida*: os componentes do AI Data Engine são configurados para o tamanho da sua implantação. Quando o ambiente excede significativamente esse tamanho, a varredura pode parar em vez de apenas ficar mais lenta. Para verificar cargas de trabalho não saudáveis e restrições de recursos, consulte link:../administer/monitor-deployment-health.html["Monitore o estado da implantação e investigue problemas"].
+* *Risco de capacidade de armazenamento*: o armazenamento insuficiente em relação ao número total de objetos pode fazer com que o índice de metadados se aproxime dos limites de capacidade. Entre em contato com o suporte da NetApp para planejar uma expansão de storage.
 
 
 --
-Aumente a capacidade quando precisar de mais capacidade::
+Escale além do tamanho recomendado::
 +
 --
-O AIDE Lite é executado em uma única VM, portanto o escalonamento é vertical:
-
-* Aumente a quantidade de vCPU, memória ou storage na VM do host.
-* Não é necessário reconfigurar nem reinstalar o cluster.
-+
-
-NOTE: O AIDE Lite não oferece suporte a alta disponibilidade nem com escalabilidade horizontal. Se o seu ambiente exceder consistentemente 3 bilhões de arquivos ou se você precisar de alta disponibilidade e tolerância de falhas, implante link:deploy-enterprise.html["O AIDE Enterprise"].
+Os componentes do AI Data Engine são configurados para o tamanho que você implanta, portanto adicionar vCPU, memória ou armazenamento à VM host não aumenta automaticamente a capacidade. Se o número de arquivos ou o desempenho de que você precisa exceder o tamanho que você implantou, entre em contato com o NetApp Support para reajustar o dimensionamento.
 
 
+NOTE: Uma implantação de nó único não oferece suporte a alta disponibilidade nem a escalabilidade horizontal. Se o seu ambiente exceder consistentemente 3 bilhões de arquivos ou se você precisar de alta disponibilidade e tolerância de falhas, implante link:deploy-aide-multi-node.html["Implantação multinó do AIDE"] em vez disso.
 
 --
 
@@ -205,41 +300,45 @@ NOTE: O AIDE Lite não oferece suporte a alta disponibilidade nem com escalabili
 |===
 
 
-[[additional-prerequisites]]
-=== Pré-requisitos adicionais
+[[aide-multi-node-deployment-requirements]]
+== Requisitos de implantação de vários nós do AIDE
 
-* Você precisa ter acesso root ou sudo na máquina virtual de destino para executar o instalador.
-* É necessária uma conexão de rede mínima de 1 GbE (10 GbE para implantações grandes).
-* O host de destino deve ter o bash 4.0 ou posterior, o curl e o tar disponíveis.
-* O instalador baixa e inicializa automaticamente `k3s`, `helm`, `kubectl` e `jq`. Não é necessário pré-instalar essas ferramentas na máquina virtual de destino.
-* As portas 6443 (TCP), 10250 (TCP) e 8472 (UDP) devem estar livres no host antes de o instalador iniciar. Se um firewall do host (`firewalld` no RHEL ou  `ufw` no Ubuntu) estiver ativo, permita essas portas e o CIDR do pod k3s (`10.44.0.0/16`) e o CIDR do serviço (`10.45.0.0/16`) antes de executar o instalador. Consulte a documentação do firewall do seu sistema operacional para ver os comandos necessários.
-* Em sistemas RHEL com SELinux em modo Enforcing, o instalador configura automaticamente os pacotes de política SELinux necessários. Nenhuma configuração manual do SELinux é necessária.
+Você traz seu próprio cluster Kubernetes, que pode ser compartilhado com outras cargas de trabalho ou dedicado ao AI Data Engine. O instalador implanta o AI Data Engine no seu cluster Kubernetes existente e não o provisiona nem o gerencia. Para os requisitos do cluster, do storage e do host do instalador, consulte link:multi-node-prerequisites.html["Pré-requisitos para a implantação de múltiplos nós do AIDE"].
+
+
+NOTE: Para todas as implantações com vários nós, recomenda-se o armazenamento NVMe ou SSD de alto desempenho.
 
 
 
+[[linux-kernel-and-nfs-nconnect-support]]
+[[multi-node-requirements]]
+=== Suporte ao kernel Linux e ao NFS nconnect
 
-[[aide-enterprise-requirements]]
-== Requisitos do AIDE Enterprise
+Recomenda-se o kernel Linux 5.3 ou posterior para a `nconnect` opção de montagem NFS, que fornece a taxa de transferência necessária para o volume de configuração compartilhado do AIDE. As seguintes versões de distribuição suportam `nconnect` e atendem à recomendação do kernel. O RHEL e o CentOS 8.3 usam um backport do kernel da Red Hat.
 
-* Você tem acesso ao kubectl com privilégios de administrador de cluster na máquina a partir da qual executa o instalador.
-* Você tem permissões de Sudo (ou root) na máquina a partir da qual executa o comando de instalação.
-* O RKE2 v1.34 ou posterior (v1.36.x recomendado) está instalado no cluster de destino.
-* O host do instalador baixa e inicializa automaticamente `helm`, `kubectl` e `jq` por meio de `--tools-dir`. Não é necessário pré-instalar essas ferramentas na máquina de gerenciamento.
-* Uma StorageClass configurada (nome padrão `aide-sc`) está disponível no cluster e é usada para os serviços de suporte com estado do AIDE.
-* Um servidor NFS com pelo menos um caminho exportado está disponível, usado para o volume de dados de configuração do AIDE e snapshots de índice compartilhados.
-* Um namespace Kubernetes de destino (padrão `aide`) já existe no cluster; o instalador não o cria.
+[cols="2,1,2"]
+|===
+| Distribuição | Versão do kernel | `nconnect` suporte 
 
 
+| RHEL / CentOS 8.3+ | 4.18 (backport) | Sim 
 
-NOTE: O armazenamento NVMe ou SSD de alto desempenho é recomendado para todas as implementações de nós Enterprise.
 
+| RHEL/CentOS 9.x | 5,14 | Sim 
+
+
+| Ubuntu 20.04 | 5,4 | Sim 
+
+
+| Ubuntu 22.04 | 5,15 | Sim 
+|===
 
 
 [[node-sizing]]
-[[enterprise-vm-sizes]]
+[[multi-node-sizes]]
 === Dimensionamento de nós
 
-Esses tamanhos são configurações de cluster de linha de base recomendadas, otimizadas para uma janela de verificação inicial de aproximadamente três dias, e não limites rígidos de capacidade. AIDE Enterprise oferece suporte a ambientes com mais de 6 bilhões de arquivos por meio de escalabilidade horizontal. Consulte <<flexible-sizing-enterprise,Diretrizes flexíveis de dimensionamento>> para obter detalhes.
+Esses tamanhos são configurações básicas de cluster recomendadas, otimizadas para uma janela de verificação inicial de três a quatro dias, e não limites rígidos de capacidade. Ambientes com mais de 6 bilhões de arquivos exigem dimensionamento personalizado com a NetApp. Consulte <<flexible-sizing-multi-node,Diretrizes flexíveis de dimensionamento>> para obter detalhes.
 
 [cols="1,1,1,1,1,1,1,1,1"]
 |===
@@ -257,56 +356,121 @@ Esses tamanhos são configurações de cluster de linha de base recomendadas, ot
 
 
 [[flexible-sizing-guidelines]]
-[[flexible-sizing-enterprise]]
+[[flexible-sizing-multi-node]]
 === Diretrizes flexíveis de dimensionamento
 
-<<enterprise-vm-sizes,Configurações pequena, média e grande>> são configurações básicas de cluster recomendadas para uma janela de verificação inicial de aproximadamente três dias, e não limites rígidos de capacidade impostos pelo software. O AIDE Enterprise suporta ambientes com mais de 3 bilhões de arquivos por meio de escalabilidade horizontal entre os nós do cluster.
+<<multi-node-sizes,Configurações pequena, média e grande>> são configurações básicas de cluster recomendadas para uma janela de verificação inicial de três a quatro dias, não limites rígidos de capacidade impostos pelo software. Ambientes com mais de 6 bilhões de arquivos exigem dimensionamento personalizado com NetApp.
 
 O que influencia as recomendações de dimensionamento::
 +
 --
 * *Número total de arquivos e diretórios*: o número total de objetos é o principal fator determinante dos requisitos de armazenamento e computação. Ambientes maiores exigem nós de cluster adicionais para distribuir a carga de processamento e manter o desempenho.
-* *Replicação de alta disponibilidade*: implantações corporativas habilitam a replicação de dados entre nós por padrão para tolerância de falhas. A replicação aumenta os requisitos totais de storage e memória em comparação com uma implantação equivalente em um único nó.
+* *Replicação de alta disponibilidade*: implantações com vários nós habilitam a replicação de dados entre os nós por padrão para tolerância de falhas. A replicação aumenta os requisitos totais de armazenamento e memória em comparação com uma implantação equivalente de nó único.
 * *Número de nós e distribuição da carga de trabalho*: a taxa de transferência de processamento e a capacidade total do catálogo aumentam proporcionalmente ao número de nós no cluster. Nós adicionais distribuem tanto a carga de trabalho de indexação quanto a capacidade de storage pelo cluster.
 * *Taxa de transferência de varredura necessária*: a alocação de CPU e memória em todo o cluster determina a taxa de varredura diária e a rapidez com que o catálogo inicial é concluído.
 * *Desempenho de armazenamento por nó*: recomenda-se fortemente o uso de armazenamento de alto desempenho em cada nó, e a capacidade total do cluster aumenta proporcionalmente ao número de nós.
 
 
 --
-O que acontece se você usar um tamanho menor do que o necessário?::
+O que acontece se você dimensionar abaixo do necessário ou ultrapassar o tamanho implantado::
 +
 --
-O provisionamento abaixo do tamanho recomendado não impede a instalação nem causa falhas graves. Os impactos práticos incluem:
+Cada configuração é otimizada para uma quantidade específica de arquivos e taxa de varredura. Se o seu ambiente exceder os limites suportados pela configuração, você pode esperar o seguinte:
 
 * *Duração inicial do catálogo estendida*: menos nós ou recursos reduzidos por nó diminuem a taxa de transferência, prolongando proporcionalmente a janela inicial do catálogo.
-* *Aumento da latência de processamento sob carga máxima*: memória insuficiente em todo o cluster pode causar aumento da latência de processamento durante períodos de ingestão de alto volume. As operações em andamento não são interrompidas, mas a taxa de transferência sustentada é reduzida.
-* *Risco de capacidade de storage*: capacidade de storage insuficiente no cluster para a contagem de objetos de destino pode levar o índice de metadados a se aproximar dos limites de capacidade. Você pode resolver isso expandindo o storage nos nós existentes (sem interrupção) ou adicionando um nó de storage dedicado.
+* *Aumento da latência de processamento sob carga máxima*: memória insuficiente em todo o cluster pode causar aumento da latência de processamento durante períodos de ingestão de alto volume.
+* *Varredura interrompida*: os componentes do AI Data Engine são configurados para o tamanho da sua implantação. Quando o ambiente excede significativamente esse tamanho, a varredura pode parar em vez de apenas ficar mais lenta. Para verificar cargas de trabalho não saudáveis e restrições de recursos, consulte link:../administer/monitor-deployment-health.html["Monitore o estado da implantação e investigue problemas"].
+* *Risco de capacidade de armazenamento*: o armazenamento insuficiente do cluster para a contagem de objetos de destino pode levar o índice de metadados a atingir os limites de capacidade. Entre em contato com o NetApp Support para planejar uma expansão de storage.
 
 
 --
-Aumente a capacidade quando precisar de mais capacidade::
+Escale além do tamanho recomendado::
 +
 --
-O AIDE Enterprise oferece escalabilidade horizontal sem necessidade de reimplantação:
-
-* Adicione nós de trabalho para aumentar a CPU e a memória disponíveis para o processamento de varreduras e a ingestão de eventos.
-* Adicione nós de storage dedicados para aumentar a capacidade total do catálogo. Esta é a principal forma de dimensionar ambientes além do maior tamanho de implantação predefinido.
-* Aumente a capacidade para além de 6 bilhões de arquivos adicionando mais nós ao cluster. Entre em contato com seu NetApp representante para obter orientações sobre o dimensionamento de nós em escalas personalizadas.
-+
-
-NOTE: A adição de nós a um cluster Enterprise existente não interrompe as operações de varredura em andamento, mas coordene a alteração durante um período de baixa atividade.
+O escalonamento horizontal de um cluster existente com vários nós não é suportado. Adicionar nós de trabalho ou nós de storage dedicados não aumenta automaticamente a capacidade de processamento de varredura, ingestão de eventos ou catálogo. Se o seu ambiente exceder o tamanho que você implantou ou se você precisar de mais capacidade de processamento de varredura ou ingestão de eventos, entre em contato com o NetApp Support ou com seu representante da NetApp para planejar a alteração.
 
 
+NOTE: Para escalar além de seis bilhões de arquivos, entre em contato com seu representante da NetApp para obter orientações sobre dimensionamento de nós e escala personalizada.
 
 --
 
+
+
+
+[[kerberos-and-active-directory-requirements]]
+[[kerberos-ad-requirements]]
+== Requisitos do Kerberos e do Active Directory
+
+Analise estes requisitos antes de examinar compartilhamentos SMB/CIFS com autenticação Kerberos ou mapear IDs de usuários e grupos NFS para nomes do Active Directory. Os requisitos de sincronização de tempo, DNS e pacote de host se aplicam somente ao Kerberos. AIDE é um cliente Kerberos: ele se autentica no seu centro de distribuição de chaves (KDC) Kerberos existente e não atua como um servidor Kerberos.
+
+
+
+[[time-synchronization]]
+=== Sincronização de tempo
+
+A autenticação Kerberos falha quando os relógios nos nós do AIDE e no KDC diferem em mais do que a diferença de relógio permitida. O Active Directory permite uma diferença máxima de cinco minutos por padrão.
+
+Verifique o seguinte:
+
+* O Protocolo de Tempo de Rede (NTP) está ativo em todos os nós do AIDE.
+* Os nós do AIDE usam uma fonte de tempo sincronizada com seus controladores de domínio.
+
+
+
+
+[[dns]]
+=== DNS
+
+Atenda aos seguintes requisitos de DNS:
+
+* Cada nó do AIDE pode resolver o servidor de arquivos e o KDC pelo nome de domínio totalmente qualificado (FQDN).
+* Se você configurar os nós para usar seu servidor DNS do Active Directory, esse servidor também deverá resolver nomes externos. Caso contrário, o AIDE não conseguirá alcançar os endpoints listados em <<outbound-internet-access,Acesso à internet de saída>>.
+* Se você alterar as configurações de DNS em uma implantação com vários nós, configure o servidor DNS do Active Directory como o único servidor de nomes em todos os nós. A resolução de nomes no cluster escolhe um dos servidores de nomes listados aleatoriamente, portanto, um servidor de nomes que não consegue resolver nomes do Active Directory causa falhas intermitentes.
+
+
+Para alterar as configurações de DNS, consulte "Corrigir resolução de nomes" em link:../administer/configure-kerberos-smb-single-node.html#fix-name-resolution["Configure o Kerberos para compartilhamentos SMB/CIFS em uma implantação de nó único"] ou link:../administer/configure-kerberos-smb-multi-node.html#fix-name-resolution["Configure o Kerberos para compartilhamentos SMB/CIFS em uma implantação com vários nós"].
+
+
+
+[[host-packages]]
+=== Pacotes de host
+
+[cols="1,3"]
+|===
+| Implantação | Pacotes necessários 
+
+
+| Nó único | Ferramentas do cliente Kerberos: `krb5-user` no Ubuntu ou `krb5-workstation` no RHEL. O instalador instala automaticamente `cifs-utils` para oferecer suporte ao acesso SMB autenticado por Kerberos. 
+
+
+| Multinó | `cifs-utils` em cada nó e ferramentas de cliente Kerberos e um cliente NFS no host onde você cria e testa o keytab. 
+|===
+ `cifs-utils` é necessário em cada nó do AIDE apenas para a verificação SMB/CIFS baseada em Kerberos. O instalador de nó único o instala. Em uma implantação com vários nós, você o instala em cada nó. A verificação Kerberos de um compartilhamento SMB/CIFS falha se `cifs-utils` estiver ausente em um nó.
+
+
+
+[[active-directory-attributes-for-nfs]]
+=== Atributos do Active Directory para NFS
+
+Para resolver IDs de usuário e grupo NFS em nomes do Active Directory, os atributos  `uidNumber` e  `gidNumber` devem ser preenchidos e replicados para o Catálogo Global se AIDE o consultar. Consulte link:../administer/configure-ad-nfs.html["Configure o mapeamento de identidade do Active Directory para NFS"].
+
+
+
+[[active-version-and-support-contact]]
+== Versão ativa e contato de suporte
+
+Para encontrar a versão ativa do AI Data Engine e as informações de contato do suporte da NetApp, acesse *Configuração* > *Sobre o AIDE*.
 
 
 
 [[related-information]]
 == Informações relacionadas
 
+* link:../administer/configure-kerberos-smb.html["Autenticação Kerberos para compartilhamentos SMB/CIFS no AI Data Engine"]
+* link:../administer/configure-ad-nfs.html["Configure o mapeamento de identidade do Active Directory para NFS"]
 * link:deployment-overview.html["Visão geral da implantação do AIDE"]
-* link:deploy-aide-lite.html["Implantar o AI Data Engine — Lite"]
-* link:deploy-enterprise.html["Implantar AI Data Engine — Enterprise"]
+* link:single-node-prerequisites.html["Pré-requisitos para a implantação de nó único do AIDE"]
+* link:multi-node-prerequisites.html["Pré-requisitos para a implantação de múltiplos nós do AIDE"]
+* link:deploy-aide-single-node.html["Implante o AI Data Engine como uma implantação de nó único"]
+* link:deploy-aide-multi-node.html["Implante o AI Data Engine como uma implantação de vários nós"]
 

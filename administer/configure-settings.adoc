@@ -1,67 +1,98 @@
 ---
 sidebar: sidebar 
 permalink: administer/configure-settings.html 
-keywords: cold threshold, stale threshold, configuration, settings, data classification, cold data, stale data 
-summary: Configure os limites de tempo que o AI Data Engine usa para classificar os dados como frios ou obsoletos em todo o seu ambiente. 
+keywords: general settings, cold data, stale data, data classification, thresholds, permission scanning, Active Directory, LDAP, NFS identity mapping, access risk, configuration 
+summary: Defina quais arquivos o AI Data Engine classifica como dados frios ou obsoletos, ative a verificação de permissões e conecte o Active Directory para identificar oportunidades de otimização de armazenamento e riscos de acesso. 
 ---
-= Configure os limites de dados frios e obsoletos no AI Data Engine
+= Configure os limites de classificação de dados e a varredura de acesso no AI Data Engine
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-O AI Data Engine classifica arquivos como frios ou obsoletos com base em limites de tempo definidos por você. Esses limites afetam quais dados aparecem nos resumos do painel, quais arquivos aparecem quando você aplica filtros de arquivos frios ou obsoletos na Investigação e quais arquivos as políticas segmentam. Defina limites que correspondam às práticas de classificação e retenção de dados da sua organização e ajudem você a identificar os dados que considera importantes monitorar.
+Os limites de dados inativos e obsoletos ajudam você a encontrar armazenamento que pode ser otimizado usando o AI Data Engine (AIDE). A verificação de permissões e a integração com o Active Directory ajudam você a identificar e compreender os riscos de acesso. Configure-os para corresponder às políticas da sua organização de classificação de dados, retenção e acesso.
+
+
+
+[[before-you-begin]]
+== Antes de começar
+
+Você precisa ter a função de _administrador do AI Data Engine_.
 
 
 
 [[what-is-cold-and-stale-data]]
 == O que são dados frios e obsoletos?
 
-Dados frios:: Arquivos que não foram acessados dentro do limite configurado para dados frios. Os dados frios são uma métrica fundamental que sua organização pode usar para identificar storage que pode ser otimizado de acordo com suas políticas de retenção e de negócios.
-Dados desatualizados:: Arquivos que não foram acessados ou modificados dentro do limite configurado para dados obsoletos. Os dados obsoletos incluem arquivos que são acessados ocasionalmente, mas não foram modificados recentemente, e que sua organização pode monitorar ou gerenciar de acordo com suas políticas.
+Dados frios:: Arquivos que não foram acessados dentro do limite de dados inativos. Dados inativos são uma métrica importante que sua organização pode usar para identificar armazenamento que pode ser otimizado de acordo com suas políticas de retenção e de negócios.
+Dados desatualizados:: Arquivos que não foram modificados dentro do limite de dados obsoletos. Os dados obsoletos ajudam sua organização a identificar arquivos que não foram alterados recentemente, que você pode monitorar ou gerenciar de acordo com suas políticas.
 
+
+Esses limites afetam os resumos do painel, os arquivos exibidos quando você aplica filtros cold ou stale no Investigation e os arquivos que as políticas segmentam. Escolha limites que reflitam por quanto tempo os dados podem ficar sem uso ou inalterados antes de sua organização avaliá-los. Um limite menor classifica mais dados como cold ou stale, enquanto um limite maior restringe os resultados aos dados que ficaram inativos por mais tempo.
 
 
 NOTE: Os valores de limite padrão são padrões do produto fornecidos como ponto de partida. Eles não representam períodos de retenção legais, de conformidade ou padrão do setor. Defina limites que reflitam as políticas e os requisitos específicos da sua organização.
 
-As alterações em qualquer um dos limites entram em vigor após a conclusão do próximo ciclo de varredura.
+As alterações nos limites de inatividade e obsolescência entram em vigor após a conclusão do próximo ciclo de varredura.
 
 
 
-[[configure-the-cold-data-threshold]]
-== Configure o limite de dados frios
+[[set-the-cold-data-threshold]]
+== Defina o limite de dados frios
 
-.Antes de começar
-* Você precisa ter a função de _administrador do AI Data Engine_.
-
+Defina por quanto tempo os arquivos podem ficar sem acesso antes que sua organização os avalie para arquivamento, exclusão ou monitoramento. Você também pode limitar a classificação por tamanho do arquivo e manter tipos ou caminhos de arquivo específicos fora dela.
 
 .Passos
-. Na interface do usuário do AI Data Engine, selecione *Configuração*.
-. Selecione *Configurações*.
-. Selecione *Editar* para *definição de dados frios*.
-. Defina a propriedade do arquivo como *Último acesso* ou *Última modificação*.
-. Defina o limite de tempo. O padrão é um ano.
+. Na interface do usuário do AI Data Engine, selecione *Configuração* > *Configurações gerais*.
+. Expanda *Definição de dados frios* e habilite a classificação de dados frios, caso esteja desabilitada.
+. Em *Idade com base em*, selecione o carimbo de data/hora que determina a idade: *último acesso* para identificar arquivos que não foram usados recentemente ou *última modificação* para identificar arquivos que não foram alterados recentemente.
+. Defina o *limite de idade fria*. O valor padrão é um ano.
+. Defina o *Tamanho mínimo do arquivo (MiB)* e o *Limite máximo do tamanho do arquivo (MiB)* para se concentrar nos arquivos que importam para você.
+. Opcional: para excluir arquivos específicos desta classificação, insira *Excluir tipos de arquivo* e *Excluir caminhos*. Insira os arquivos e os caminhos completos e separe várias entradas com vírgulas.
 . Selecione *Salvar*.
 
 
 
 
-[[configure-the-stale-data-threshold]]
-== Configure o limite de dados obsoletos
+[[set-the-stale-data-threshold]]
+== Defina o limite de dados obsoletos
 
-.Antes de começar
-* Você precisa ter a função de _administrador do AI Data Engine_.
-
+Defina por quanto tempo os arquivos podem permanecer inalterados antes que sua organização os revise de acordo com suas políticas de ciclo de vida dos dados. Você também pode limitar a classificação por tamanho do arquivo e excluir tipos ou caminhos de arquivo específicos.
 
 .Passos
-. Na interface do usuário do AI Data Engine, selecione *Configuração*.
-. Selecione *Configurações*.
-. Selecione *Editar* para *a definição de dados desatualizados*.
-. Defina a propriedade do arquivo como *Último acesso* ou *Última modificação*.
-. Defina o limite de tempo. O padrão é de três anos.
+. Na interface do usuário do AI Data Engine, selecione *Configuração* > *Configurações gerais*.
+. Expanda a *Definição de dados obsoletos* e habilite a classificação de dados obsoletos, caso esteja desabilitada.
+. Em *Idade com base em*, selecione o carimbo de data e hora que determina a idade: *última modificação* ou *último acesso*.
+. Defina o *Limite de idade para itens obsoletos*. O padrão é três anos.
+. Defina o *Tamanho mínimo do arquivo (MiB)* e o *Limite máximo do tamanho do arquivo (MiB)* para se concentrar nos arquivos que importam para você.
+. Opcional: para excluir arquivos específicos desta classificação, insira *Excluir tipos de arquivo* e *Excluir caminhos*. Insira os arquivos e os caminhos completos e separe várias entradas com vírgulas.
 . Selecione *Salvar*.
 
+
+
+
+[[find-access-risks-with-permission-scanning]]
+== Identifique riscos de acesso com a verificação de permissões
+
+Ative a verificação de permissões quando precisar encontrar arquivos e pastas que estejam abertos para mais pessoas do que suas políticas permitem. Para revisar os resultados, consulte link:../investigate/investigate-directories.html["Investigar diretórios"].
+
+.Passos
+. Na interface do usuário do AI Data Engine, selecione *Configuração* > *Configurações gerais*.
+. Expanda *Verificação de permissões* e ative o botão de alternância.
++
+Para interromper a verificação de permissões, desative o botão de alternância.
+
+
+
+
+
+[[show-user-and-group-names-with-active-directory]]
+== Exibir nomes de usuários e grupos com o Active Directory
+
+Conecte o AI Data Engine ao Active Directory quando precisar ver nomes de usuário e permissões, em vez de IDs numéricos, ao analisar seus dados. Se o seu ambiente usa NFS, você também pode mapear IDs numéricos de usuário (UIDs) e IDs de grupo (GIDs) para usuários e grupos do diretório.
+
+Para os pré-requisitos e etapas, consulte link:configure-ad-nfs.html["Configure o mapeamento de identidade do Active Directory para NFS"].
 
 
 
@@ -69,6 +100,10 @@ As alterações em qualquer um dos limites entram em vigor após a conclusão do
 == Informações relacionadas
 
 * link:../investigate/understand-dashboard.html["Saiba mais sobre o painel do AI Data Engine"]
+* link:../investigate/investigate-directories.html["Investigar diretórios"]
+* link:../investigate/investigate-unstructured.html["Investigar dados não estruturados"]
 * link:../get-started/storage-optimization-workflows.html["Explore fluxos de trabalho de otimização de armazenamento"]
+* link:../deploy/aide-requirements.html["Requisitos do AIDE"]
 * link:manage-users-roles.html["Gerenciar usuários e funções"]
+* link:configure-ad-nfs.html["Configure o mapeamento de identidade do Active Directory para NFS"]
 

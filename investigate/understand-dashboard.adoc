@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: investigate/understand-dashboard.html 
-keywords: dashboard, overview, reclaimable storage, cold data, stale data, storage health, capacity risk, data owners, investigate 
-summary: Avalie a integridade do storage em todo o seu ambiente, identifique onde o storage potencialmente recuperável está concentrado e decida quais sistemas ou proprietários de dados investigar primeiro. 
+keywords: dashboard, overview, reclaimable storage, cold data, stale data, storage health, capacity risk, data owners, investigate, access exposure, open permissions, structured data, duplicates, file types 
+summary: Avalie a integridade do armazenamento em todo o seu ambiente, identifique onde o armazenamento potencialmente recuperável está concentrado, revise diretórios com permissões abertas e dados estruturados e decida quais sistemas ou proprietários de dados investigar primeiro. 
 ---
 = Avalie a integridade do storage com o painel do AI Data Engine
 :allow-uri-read: 
@@ -13,49 +13,75 @@ summary: Avalie a integridade do storage em todo o seu ambiente, identifique ond
 [role="lead"]
 Antes de decidir o que investigar, você precisa entender o estado do seu storage. Quanto do storage atende aos limites de classificação de dados frios e obsoletos da sua organização, e quais sistemas ou proprietários detêm a maior quantidade de dados nessas categorias? Por exemplo, um administrador de storage que responde a um alerta de capacidade pode ver que uma grande parte do storage verificado contém dados frios e, em seguida, detalhar o sistema de maior impacto para começar a investigar imediatamente.
 
-No NetApp Console, selecione *hub de dados de IA* > *AI Data Engine UI*. O painel é aberto por padrão.
+No NetApp Console, selecione *AI data hub* > *AI Data Engine*. O painel é aberto por padrão. O painel organiza seus insights em três guias: *Otimização de armazenamento*, *Exposição de acesso* e *Dados estruturados*.
 
 
 
 [[understand-how-much-storage-is-affected]]
 == Entenda quanto armazenamento é afetado
 
-O painel de resumo mostra a dimensão do problema em todo o ambiente analisado:
+Entenda quanto do seu storage analisado está frio, obsoleto ou exposto. O painel de resumo mostra a dimensão do problema em todo o seu ambiente analisado:
 
-* *Dados frios*: storage não acessado dentro do limite de dados frios (padrão: um ano). Sua organização pode avaliar esses dados de acordo com suas políticas de retenção e governança.
-* *Dados obsoletos*: storage que não foi acessado nem modificado dentro do limite de dados obsoletos (padrão: três anos). Os dados obsoletos podem exigir revisão de acordo com as políticas de ciclo de vida dos dados da sua organização antes de decidir sobre ações como arquivamento ou exclusão.
-* *Diretórios expostos*: diretórios com configurações de acesso excessivamente permissivas. Esses representam um risco de governança independente do consumo de armazenamento.
 * *Recursos de dados*: a quantidade de volumes, compartilhamentos e buckets atualmente analisados.
-* *Total de arquivos verificados*: o número total de arquivos indexados em todos os recursos de dados verificados.
+* *Itens analisados*: o número total de itens indexados em todos os recursos de dados analisados.
+* *Dados frios*: storage não acessado dentro do limite de dados frios (padrão: um ano). Sua organização pode avaliar esses dados de acordo com suas políticas de retenção e governança.
+* *Dados obsoletos*: armazenamento que não foi alterado dentro do limite para dados obsoletos (padrão: três anos). Dados obsoletos podem exigir revisão de acordo com as políticas de ciclo de vida dos dados da sua organização antes de decidir sobre ações como arquivamento ou exclusão.
+* *Diretórios expostos*: o número de diretórios com configurações de acesso excessivamente permissivas e a respectiva quantidade de arquivos. Isso representa um risco de governança independente do consumo de armazenamento.
 
 
-Os limites para dados frios e obsoletos refletem suas configurações e podem ser alterados em *Configuração* > *Configurações*. Os valores padrão são os padrões do produto e não representam períodos de retenção legais, de conformidade ou padrão do setor. Consulte link:../administer/configure-settings.html["Configure os limites para dados frios e obsoletos"].
-
-O gráfico _Storage ativo versus recuperável_ mostra a proporção de dados ativos em comparação com dados frios e obsoletos em todos os recursos analisados. Uma alta proporção de dados frios, obsoletos ou duplicados pode indicar uma oportunidade significativa de otimização de storage.
+Os limites para itens frios e obsoletos refletem suas configurações, incluindo o carimbo de data/hora e a idade que você escolher. Os valores padrão são padrões do produto e não representam períodos de retenção legais, de conformidade ou padrão do setor. Para alterá-los, consulte link:../administer/configure-settings.html["Configurar os limites de classificação de dados e a varredura de acesso"].
 
 Os filtros *Sistema* e *Tipo de sistema* controlam o escopo do painel. Se um sistema de storage não aparecer na lista de filtros, consulte link:../data-sources/connect-data-source.html["Conecte uma fonte de dados"].
+
+O carimbo de data/hora *Última atualização* mostra quando os dados do painel foram atualizados pela última vez. Selecione *Atualizar* para atualizar o painel. Para confirmar se os dados subjacentes estão atualizados, consulte link:../data-sources/manage-data-sources.html#view-scan-status-and-details["Veja o status e os detalhes da digitalização"].
 
 
 
 [[identify-storage-optimization-opportunities]]
 == Identificar oportunidades de otimização de armazenamento
 
-Use o painel de resumo e o gráfico para identificar e priorizar oportunidades de otimização de armazenamento:
+Descubra onde você pode recuperar mais espaço de armazenamento. A aba *Otimização de armazenamento* inclui os seguintes gráficos e tabelas:
+
+* _Armazenamento ativo versus recuperável_: Mostra a proporção de dados ativos em comparação com dados frios e obsoletos em todos os recursos analisados. Uma alta proporção de dados frios, obsoletos ou duplicados pode indicar uma oportunidade significativa de otimização de armazenamento.
+* _Principais recursos de dados por capacidade de armazenamento recuperável_: mostra os recursos de dados com a maior capacidade recuperável.
+* _Principais consumidores por armazenamento recuperável_: mostra os proprietários dos dados, seu armazenamento recuperável e suas contagens de arquivos.
+* _Distribuição de tamanho de duplicados_: mostra como os dados duplicados estão distribuídos entre as faixas de tamanho.
+* _Idade dos ativos_: Exibe os itens por idade. Use o menu suspenso para selecionar o critério de carimbo de data/hora para o gráfico.
+* _Tipos de arquivo mais comuns_: mostra os tipos de arquivo mais frequentes.
+
+
+Use o painel de resumo e estes gráficos para identificar e priorizar oportunidades de otimização de armazenamento:
 
 * Priorize os recursos que têm o maior tamanho potencialmente recuperável, em vez daqueles com o maior tamanho total. Um sistema pequeno, composto principalmente por dados inativos ou obsoletos, pode ser um recurso melhor para você avaliar primeiro do que um sistema grande e predominantemente ativo.
-* Procure grandes concentrações de dados frios ou obsoletos em vez de arquivos isolados. Dezenas de terabytes de dados que atendam ao seu limite de obsolescência em um único recurso justificam uma avaliação; arquivos isolados podem não exigir nenhuma ação.
+* Procure grandes concentrações de dados frios ou obsoletos, em vez de arquivos isolados. Dezenas de terabytes de dados que atingem seu limite de obsolescência em um único recurso justificam uma avaliação. Arquivos isolados podem não exigir nenhuma ação.
 
+
+
+
+[[review-access-exposure]]
+== Revisar a exposição de acesso
+
+Encontre os diretórios a serem priorizados para uma revisão de permissões. A aba *Exposição de acesso* exibe o gráfico _Diretórios com permissões abertas_, que lista os caminhos dos diretórios e suas contagens de arquivos. Para ver esses diretórios em detalhes, consulte link:investigate-directories.html["Investigar diretórios"]. Para controlar se o AI Data Engine verifica as permissões, consulte link:../administer/configure-settings.html["Configurar os limites de classificação de dados e a varredura de acesso"].
+
+
+
+[[explore-structured-data]]
+== Explore dados estruturados
+
+Veja quais esquemas e tabelas estão nos seus dados analisados e compare as contagens de linhas. A guia *Dados estruturados* mostra a tabela _Resumo de dados estruturados_, que lista o esquema, o nome da tabela do banco de dados e o número de linhas. Para pesquisar e filtrar esses dados, consulte link:investigate-structured.html["Investigar dados estruturados"].
 
 
 
 [[move-from-the-dashboard-to-investigation]]
 == Passe do painel de controle para a investigação
 
-Quando você identificar um recurso ou proprietário que valha a pena investigar, use as tabelas na parte inferior do painel para acessar diretamente os detalhes.
+Após identificar um recurso ou proprietário que valha a pena investigar, utilize as tabelas na aba *Otimização de armazenamento* para acessar diretamente os detalhes.
 
 A tabela _Principais recursos de dados por storage recuperável_ lista seus recursos de storage verificados, classificados pela proporção de dados duplicados ou que atendem aos limites de dados inativos e obsoletos da sua organização. Selecione qualquer linha para abrir a visualização Investigation filtrada para esse recurso. A partir daí, use a guia link:investigate-unstructured.html["Não estruturado"] para identificar arquivos inativos ou obsoletos, ou a guia link:investigate-directories.html["Diretórios"] para auditar a exposição de permissões.
 
-A tabela _Principais proprietários de dados por armazenamento recuperável_ mostra quais proprietários de dados possuem dados potencialmente recuperáveis. Selecione qualquer linha para abrir a visualização link:investigate-unstructured.html["Investigação"] filtrada para os arquivos desse proprietário. A partir daí, você pode revisar os resultados, agir com base neles ou salvá-los como uma política.
+A tabela _Principais consumidores por armazenamento recuperável_ mostra quais proprietários de dados detêm dados potencialmente recuperáveis. Selecione qualquer linha para abrir a link:investigate-unstructured.html["Investigação"] visualização filtrada para os arquivos desse proprietário. A partir daí, você pode revisar os resultados, tomar medidas com base neles ou salvá-los como uma política.
+
+Revisar o painel não arquiva nem exclui dados nem altera as permissões do diretório.
 
 
 
@@ -63,7 +89,8 @@ A tabela _Principais proprietários de dados por armazenamento recuperável_ mos
 == Informações relacionadas
 
 * link:investigate-data.html["Analise seus dados"]
-* link:investigate-unstructured.html["Investigar dados não estruturados"]
+* link:../data-sources/manage-data-sources.html["Gerenciar fontes de dados"]
+* link:../administer/monitor-deployment-health.html["Monitore o estado da implantação e investigue problemas"]
 * link:../data-sources/connect-data-source.html["Conecte uma fonte de dados"]
-* link:../administer/configure-settings.html["Configure os limites para dados frios e obsoletos"]
+* link:../administer/configure-settings.html["Configurar os limites de classificação de dados e a varredura de acesso"]
 

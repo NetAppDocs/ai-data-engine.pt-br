@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: release-notes/known-limitations.html 
 keywords: known limitations, limitations, restrictions, AI Data Engine 
-summary: As limitações conhecidas identificam funcionalidades que não têm suporte nesta versão do AI Data Engine. 
+summary: As limitações conhecidas identificam funcionalidades que não são suportadas no AI Data Engine. 
 ---
 = Limitações conhecidas no AI Data Engine
 :allow-uri-read: 
@@ -11,14 +11,30 @@ summary: As limitações conhecidas identificam funcionalidades que não têm su
 
 
 [role="lead"]
-As limitações conhecidas identificam funcionalidades que não são compatíveis nesta versão do AI Data Engine ou funcionalidades que não interoperam corretamente. Analise essas limitações antes de implantar ou usar o produto.
+As limitações conhecidas identificam funcionalidades que não têm suporte no AI Data Engine (AIDE) ou funcionalidades que não interoperam corretamente. Analise essas limitações antes de implantar ou usar o produto.
 
 
 
 [[deployment]]
 == Implantação
 
-As implementações Lite e Enterprise são independentes:: O AIDE Lite e o AIDE Enterprise são modos de implantação separados. Não há um caminho de migração compatível para mover uma implantação existente de um modo para o outro.
+Implantações de nó único e de múltiplos nós são independentes:: Uma implantação de nó único do AIDE e uma implantação de vários nós do AIDE são tipos de implantação distintos. Não há caminho de migração suportado para mover uma implantação existente de um tipo para o outro.
+O suporte a proxy é limitado:: Você pode implantar o AI Data Engine com um proxy de encaminhamento, mas os seguintes recursos de proxy não são compatíveis:
++
+--
+* Proxies de inspeção TLS, que descriptografam e assinam novamente o tráfego HTTPS com uma autoridade de certificação personalizada.
+* NTLM, Kerberos ou autenticação por certificado de cliente para o proxy. Use sem autenticação ou autenticação básica.
+* Proxies SOCKS.
+* Configuração automática de proxy (arquivo PAC ou WPAD). Forneça diretamente ao instalador o host e a porta do proxy.
+* Um proxy diferente para cada destino. Um único proxy transporta todo o tráfego de internet do AI Data Engine.
+* Um endereço IPv6 como o endereço do proxy. Em vez disso, use um nome de host; o nome de host pode ser resolvido para IPv6.
+* Um proxy com uma instalação isolada. O instalador rejeita opções de proxy em uma instalação isolada.
++
+Para obter informações sobre as configurações de proxy suportadas, consulte link:../deploy/configure-proxy.html["Saiba mais sobre proxies para o AI Data Engine"].
+
+
+
+--
 
 
 
@@ -26,7 +42,7 @@ As implementações Lite e Enterprise são independentes:: O AIDE Lite e o AIDE 
 [[policies-and-actions]]
 == Políticas e ações
 
-As ações desencadeadas por políticas são limitadas:: Ao criar uma política, as ações automatizadas disponíveis se limitam à exclusão permanente e à notificação por e-mail. As ações automatizadas de arquivamento e marcação de políticas não estão disponíveis nesta versão. Você pode criar uma política sem nenhuma ação para monitorar uma condição de dados ao longo do tempo.
+As ações desencadeadas por políticas são limitadas:: Ao criar uma política, as ações automatizadas disponíveis se limitam à exclusão permanente e à notificação por e-mail. As ações automatizadas de arquivamento e marcação de políticas não estão disponíveis. Você pode criar uma política sem nenhuma ação para monitorar uma condição de dados ao longo do tempo.
 
 
 
@@ -34,7 +50,16 @@ As ações desencadeadas por políticas são limitadas:: Ao criar uma política,
 [[tags]]
 == Tags
 
-As tags não podem ser excluídas nem renomeadas:: O gerenciamento de tags não está disponível nesta versão. Depois de criar uma tag, ela permanece disponível no sistema. Você pode aplicar uma tag a itens e removê-la deles, mas não pode excluir a definição da tag em si nem corrigir um nome de tag que contenha um erro de digitação.
+As tags não podem ser excluídas nem renomeadas:: Depois de criar uma etiqueta, ela permanece disponível no sistema. Você pode aplicar uma etiqueta a itens e removê-la de itens, mas não pode excluir a definição da etiqueta em si, renomeá-la ou corrigir um nome de etiqueta que contenha um erro de digitação. Os nomes das etiquetas diferenciam maiúsculas de minúsculas, portanto `Finance` e `finance` são etiquetas diferentes.
+
+
+
+
+[[governed-ai-access-mcp]]
+== Acesso governado à IA (MCP)
+
+Os filtros de pesquisa do MCP são limitados:: Os clientes de IA podem pesquisar arquivos apenas por prefixo de nome, tipo de arquivo e proprietário. Se você solicitar arquivos por tamanho, data ou pasta, o cliente precisará percorrer os resultados, e a resposta poderá estar incompleta.
+As operações de tag do MCP são limitadas:: Os clientes de IA não conseguem listar os arquivos que têm uma tag e só podem adicionar ou remover uma tag de um arquivo por vez.
 
 
 
@@ -45,4 +70,5 @@ As tags não podem ser excluídas nem renomeadas:: O gerenciamento de tags não 
 * link:whats-new.html["O que há de novo"]
 * link:../deploy/deployment-overview.html["Visão geral da implantação"]
 * link:../investigate/take-actions.html["Tome medidas com base nos seus dados"]
+* link:../mcp/learn-about-mcp.html["Saiba mais sobre o acesso governado à IA"]
 

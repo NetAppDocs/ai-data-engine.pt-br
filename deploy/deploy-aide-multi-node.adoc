@@ -1,0 +1,83 @@
+---
+sidebar: sidebar 
+permalink: deploy/deploy-aide-multi-node.html 
+keywords: deploy, install, multi-node, multi node, wizard, NetApp Console, deployment wizard, kubernetes, RKE2, OpenShift, AKS 
+summary: Implante o AIDE como uma implantação multinó a partir do NetApp Console usando o assistente de implantação. 
+---
+= Implante o AI Data Engine como uma implantação de vários nós
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Implante o AI Data Engine (AIDE) como uma implantação de vários nós a partir do NetApp Console usando o assistente de implantação. O assistente orienta você na seleção do local de instalação, na escolha do tamanho da configuração e na execução do comando de instalação no seu cluster Kubernetes.
+
+
+IMPORTANT: Se os nós do seu cluster ou o host do instalador acessarem a internet somente por meio de um proxy de saída, use link:deploy-aide-multi-node-proxy.html["Implante o AI Data Engine como uma implantação de vários nós com um proxy"] em vez disso.
+
+.Antes de começar
+*Permissões e acesso*
+
+* Você tem permissões de _Administrador da organização_ ou superiores no NetApp Console.
+* Você tem um arquivo kubeconfig com acesso de administrador de cluster ao cluster de destino. Se  `kubectl`não estiver no seu  `PATH`, o instalador fará o download para o diretório de ferramentas.
+
+
+*Cluster do Kubernetes*
+
+* Seu cluster Kubernetes atende aos pré-requisitos de vários nós descritos em link:multi-node-prerequisites.html["Pré-requisitos para a implantação de múltiplos nós do AIDE"] e link:aide-requirements.html["Requisitos do AIDE"].
+* O `aide` namespace já existe no cluster antes de você executar o comando de instalação.
+* Os nós que agendam cargas de trabalho do AI Data Engine têm os rótulos de nó descritos em link:multi-node-prerequisites.html#node-labels["Rótulos de nó"].
+* Uma StorageClass configurada (nome padrão: `aide-sc`) está disponível no cluster e é usada para os serviços de suporte com estado do AIDE.
+
+
+*Armazenamento e NetApp Console*
+
+* Um servidor NFS com um caminho exportado está disponível e acessível a partir do cluster para o volume de configuração do AIDE.
+* Um agente de console da NetApp https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy["é implantado"^] acessível a partir dos nós do cluster. O endereço IP do agente de console é necessário para executar o comando de instalação.
+
+
+
+NOTE: Use o instalador apenas para a primeira instalação do AIDE. Não o use para atualizar o AIDE. Após a instalação, o operador do AIDE gerencia as atualizações. Para obter informações sobre atualizações, entre em contato com o NetApp Support.
+
+.Passos
+. No NetApp Console, navegue até *hub de dados de IA* > *AI Data Engine*.
++
+A página inicial do AI Data Engine é exibida.
+
+. Selecione *Implantar o AI Data Engine*.
+. Selecione a opção de implantação *Multi-node* e clique em *Avançar*.
+. Selecione o tamanho da sua configuração:
++
+** *Pequeno*: recomendado para ambientes com até aproximadamente 1 bilhão de arquivos.
+** *Médio (Padrão)*: recomendado para ambientes com até aproximadamente 3 bilhões de arquivos.
+** *Grande*: recomendado para ambientes com até aproximadamente 6 bilhões de arquivos.
++
+Esses tamanhos são valores de referência recomendados, não limites rígidos. Uma implantação multinó do AIDE requer dimensionamento personalizado com NetApp para ambientes com mais de 6 bilhões de arquivos; consulte link:aide-requirements.html#flexible-sizing-multi-node["diretrizes flexíveis de dimensionamento"] para detalhes.
+
+
+
+. Copie o comando de instalação exibido no assistente para um editor de texto.
++
+O assistente gera o comando de instalação com o tamanho de configuração que você selecionar.
+
+. Execute o comando de instalação a partir de um host que possa acessar seu cluster Kubernetes.
++
+Se o instalador perguntar se deseja configurar um proxy de saída, digite `n`.
+
++
+
+NOTE: A instalação leva cerca de 30 minutos para ser concluída. Podem ocorrer tempos limite e novas tentativas, o que é normal.
+
+. Responda às solicitações de confirmação do instalador para continuar a instalação.
++
+** O instalador mostra o cluster Kubernetes selecionado pelo seu kubeconfig, incluindo o contexto, o nome do cluster e o servidor da API. Responda "sim" somente se esse for o cluster que você pretende usar. Se for o cluster errado, interrompa o instalador, selecione o contexto kubeconfig correto e execute o instalador novamente.
+** O instalador pede que você confirme se os pré-requisitos para uma implantação em vários nós foram atendidos. Responda sim para continuar.
+** O instalador detecta o endereço IP do nó que executa o NGINX ingress do AI Data Engine e pede que você o confirme. Pressione Enter para manter o endereço exibido ou digite um endereço diferente. Use um endereço que possa ser acessado de fora do cluster. Se o endereço detectado for um endereço interno do cluster, digite o endereço acessível. Não insira o endereço do agente do Console.
+
+
+. Acompanhe a tela de progresso até que a tela de sucesso apareça e confirme que a instalação do AIDE foi concluída.
+
+
+.Resultado
+Sua implantação multinó do AI Data Engine foi concluída e conectada ao NetApp Console. Agora você pode link:../data-sources/connect-data-source.html["conectar uma fonte de dados"] iniciar a verificação.

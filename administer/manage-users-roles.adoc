@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: administer/manage-users-roles.html 
-keywords: roles, users, permissions, AI data engine administrator, AI data engine viewer 
+keywords: roles, users, permissions, ai data engine administrator, ai data engine viewer 
 summary: Controle o acesso atribuindo a cada usuário a função de administrador ou de visualizador. Saiba mais sobre as duas funções e suas permissões. 
 ---
 = Gerencie usuários e funções no AI Data Engine
@@ -11,7 +11,7 @@ summary: Controle o acesso atribuindo a cada usuário a função de administrado
 
 
 [role="lead"]
-Controle o que cada usuário pode visualizar e fazer no AI Data Engine atribuindo a eles uma função de administrador ou de visualizador. Antes que sua equipe comece a usar o AI Data Engine, atribua a cada usuário a função que corresponda ao nível de acesso necessário.
+Controle o que cada usuário pode visualizar e fazer no AI Data Engine (AIDE) atribuindo a eles uma função de administrador ou de visualizador. Antes que sua equipe comece a usar o AI Data Engine, atribua a cada usuário a função que corresponda ao nível de acesso necessário.
 
 Você atribui funções por meio das configurações de organização do Console do NetApp. O AI Data Engine oferece suporte a duas funções.
 
@@ -74,8 +74,18 @@ A função de visualizador do AI Data Engine fornece acesso limitado ao AI Data 
 | Ações: arquivar, copiar, excluir | Sim | - 
 
 
+| Ações: limpar duplicados | Sim | - 
+
+
 | Gerenciar tags de negócios | Sim | Sim 
 |===
+
+
+[[roles-and-governed-ai-access]]
+== Funções e acesso governado à IA
+
+As funções do NetApp Console controlam quem pode configurar o acesso de IA governado no AI Data Engine. Elas não controlam quais coleções um usuário cliente de IA pode pesquisar. Os escopos do Microsoft Entra ID que você concede a cada coleção controlam esse acesso. Para obter detalhes, consulte link:../mcp/configure-entra-id-mcp.html["Configure o Microsoft Entra ID para acesso governado à IA"].
+
 
 
 [[assign-a-role-to-a-user]]
@@ -92,7 +102,7 @@ Você atribui funções no NetApp Console, não no próprio AI Data Engine.
 
 
 . Selecione a organização, a pasta ou o projeto e, em seguida, escolha a categoria *Data Service*.
-. Atribua a função de *administrador do AI Data Engine* ou *visualizador do AI Data Engine*.
+. Atribua a função de *AI Data Engine administrator* ou *AI Data Engine viewer*.
 . Salve suas alterações.
 
 
@@ -105,4 +115,5 @@ O usuário recebe um convite por e-mail e pode acessar o AI Data Engine após ac
 
 * link:../investigate/take-actions.html["Tome medidas com base nos seus dados"]
 * link:../policies/create-policy.html["Criar uma política"]
+* link:../mcp/manage-data-collections.html["Gerenciar coletas de dados"]
 

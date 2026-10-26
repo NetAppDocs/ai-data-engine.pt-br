@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: data-sources/manage-data-sources.html 
-keywords: manage, data source, storage system, scanned systems, pause scanning, resume scanning, scan all, retry scans, CIFS credentials, DP volumes, deactivate, scan status, scan errors, scanning toggle 
+keywords: manage, data source, storage system, data sources page, pause scanning, resume scanning, scan all, retry scans, CIFS credentials, DP volumes, deactivate, scan status, scan errors, scanning toggle 
 summary: Monitore o status da varredura e gerencie suas fontes de dados conectadas, incluindo pausar varreduras, editar credenciais, habilitar o acesso ao volume DP e desativar sistemas. 
 ---
 = Gerencie as fontes de dados no AI Data Engine
@@ -11,17 +11,21 @@ summary: Monitore o status da varredura e gerencie suas fontes de dados conectad
 
 
 [role="lead"]
-Após conectar as fontes de dados, você pode monitorar o status da verificação e gerenciá-las na guia *Sistemas verificados*. Use estes procedimentos para pausar ou retomar a verificação, atualizar credenciais, ajustar as configurações de acesso aos dados e desativar sistemas que você não precisa mais verificar.
+Mantenha a cobertura da varredura alinhada com os dados que você precisa analisar. Use a página *Fontes de dados* para verificar o progresso da varredura, investigar lacunas na cobertura e gerenciar quais sistemas e recursos de dados o AI Data Engine (AIDE) varre.
 
 
 
 [[view-scan-status-and-details]]
 == Veja o status e os detalhes da digitalização
 
+Verifique o status da verificação para acompanhar o progresso e identificar recursos que precisam de atenção. Analise o progresso no nível do sistema e os detalhes no nível dos recursos para distinguir as verificações que ainda estão em andamento daquelas que estão pausadas ou com erros.
+
+Se as verificações pararem ou pausarem inesperadamente, verifique a integridade da implantação. Consulte link:../administer/monitor-deployment-health.html["Monitore o estado da implantação e investigue problemas"].
+
 .Passos
-. Na interface do usuário do AI Data Engine, selecione *Configuração*.
-. Na aba *Sistemas digitalizados*, localize o sistema que você deseja analisar.
-. Selecione a linha do sistema para abrir a visualização detalhada.
+. Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
+. Localize o sistema que você deseja analisar.
+. Selecione a linha do sistema e abra a visualização detalhada.
 +
 A visualização detalhada mostra:
 
@@ -30,7 +34,7 @@ A visualização detalhada mostra:
 ** Um detalhamento dos estados da verificação de recursos de dados: em execução, concluída, pausada e erros
 ** Modo de permissão de digitalização (por exemplo, "digitalizar sem permissões de gravação")
 +
-Se ocorrerem erros de verificação, expanda os detalhes do erro para ver quais volumes ou compartilhamentos foram afetados e o motivo da falha.
+Se ocorrerem erros de varredura, expanda os detalhes do erro para ver quais recursos de dados (volumes, compartilhamentos, buckets ou esquemas) são afetados e o motivo da falha.
 
 
 
@@ -41,9 +45,11 @@ Se ocorrerem erros de verificação, expanda os detalhes do erro para ver quais 
 [[pause-scanning]]
 == Pausar a digitalização
 
+Interrompa temporariamente a verificação de um sistema quando você não quiser que o AI Data Engine o verifique. O sistema permanece conectado e você pode retomar a verificação posteriormente.
+
 .Passos
-. Na interface do usuário do AI Data Engine, selecione *Configuração*.
-. Na aba *Sistemas verificados*, localize o sistema que você deseja pausar.
+. Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
+. Localize o sistema que deseja pausar.
 . Selecione a linha do sistema para abrir a visualização detalhada.
 . Selecione *Pausar*.
 
@@ -53,9 +59,11 @@ Se ocorrerem erros de verificação, expanda os detalhes do erro para ver quais 
 [[resume-scanning]]
 == Retomar a digitalização
 
+Retome a digitalização quando estiver pronto para que o AI Data Engine digitalize novamente um sistema pausado.
+
 .Passos
-. Na interface do usuário do AI Data Engine, selecione *Configuração*.
-. Na aba *Sistemas verificados*, localize o sistema pausado.
+. Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
+. Localize o sistema pausado.
 . Selecione a linha do sistema para abrir a visualização detalhada.
 . Selecione *Resume*.
 
@@ -65,11 +73,11 @@ Se ocorrerem erros de verificação, expanda os detalhes do erro para ver quais 
 [[scan-all-data-resources]]
 == Analisar todos os recursos de dados
 
-Acione uma varredura imediata de todos os recursos de dados em um sistema. Use isso para atualizar metadados após uma alteração significativa nos dados.
+Atualize metadados em todo o sistema após alterações significativas nos dados para que sua análise reflita os dados atualizados. Use esta ação para solicitar uma verificação imediata de todos os recursos de dados no sistema.
 
 .Passos
-. Na interface do usuário do AI Data Engine, selecione *Configuração*.
-. Na aba *Sistemas digitalizados*, localize o sistema que você deseja digitalizar.
+. Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
+. Localize o sistema que você deseja escanear.
 . Selecione o menu de ações ao lado do sistema.
 . Selecione *Verificar todos os volumes* (há uma opção equivalente no menu de ações para compartilhamentos e buckets).
 
@@ -79,11 +87,11 @@ Acione uma varredura imediata de todos os recursos de dados em um sistema. Use i
 [[retry-failed-scans]]
 == Repetir verificações com falha
 
-Reencaminhe os recursos de dados que estiverem em estado de falha ou erro. Resolva primeiro a causa raiz, como um problema de credencial, erro de rede ou problema de permissão, antes de tentar novamente.
+Restaure a cobertura de varredura para recursos que não puderam ser varridos com sucesso. Primeiro resolva a causa da falha, como um problema de credenciais, erro de rede ou problema de permissão, e depois tente novamente as varreduras com falha.
 
 .Passos
-. Na interface do usuário do AI Data Engine, selecione *Configuração*.
-. Na aba *Sistemas verificados*, localize o sistema com verificações com falha.
+. Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
+. Localize o sistema com varreduras com falha.
 . Selecione o menu de ações ao lado do sistema.
 . Selecione *Tentar novamente todas as verificações*.
 
@@ -93,11 +101,14 @@ Reencaminhe os recursos de dados que estiverem em estado de falha ou erro. Resol
 [[edit-cifs-credentials]]
 == Editar credenciais do CIFS
 
-Atualize as credenciais que o AI Data Engine usa para autenticar em compartilhamentos SMB/CIFS.
+Mantenha ou restaure o acesso aos compartilhamentos SMB quando as credenciais da conta de varredura forem alteradas ou a autenticação falhar. Atualize as credenciais SMB (CIFS) que o AI Data Engine usa para se autenticar nos compartilhamentos.
+
+
+NOTE: Se o compartilhamento usar autenticação Kerberos, o AI Data Engine se autenticará com um ticket do keytab, e nenhuma senha será armazenada na fonte de dados. Consulte link:../administer/configure-kerberos-smb.html["Autenticação Kerberos para compartilhamentos SMB/CIFS no AI Data Engine"].
 
 .Passos
-. Na interface do usuário do AI Data Engine, selecione *Configuração*.
-. Na aba *Sistemas verificados*, localize o sistema SMB/CIFS.
+. Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
+. Localize o sistema SMB.
 . Selecione a linha do sistema para abrir a visualização detalhada.
 . Selecione *Editar credenciais CIFS*.
 . Insira o nome de usuário e a senha atualizados e selecione *Salvar*.
@@ -108,11 +119,11 @@ Atualize as credenciais que o AI Data Engine usa para autenticar em compartilham
 [[enable-or-disable-access-to-dp-volumes]]
 == Habilitar ou desabilitar o acesso aos volumes DP
 
-Os volumes de proteção de dados (DP) são volumes de destino do NetApp SnapMirror. Por padrão, o AI Data Engine não verifica os volumes DP. Você pode ativar ou desativar o acesso aos volumes DP por sistema.
+Inclua ou exclua dados replicados na sua cobertura de varredura ativando ou desativando o acesso aos volumes de proteção de dados (DP). Os volumes DP são volumes de destino do NetApp SnapMirror, e o AI Data Engine não os verifica por padrão. Você pode ativar ou desativar o acesso por sistema.
 
 .Passos
-. Na interface do usuário do AI Data Engine, selecione *Configuração*.
-. Na aba *Sistemas digitalizados*, localize o sistema.
+. Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
+. Localize o sistema.
 . Selecione a linha do sistema para abrir a visualização detalhada.
 . Selecione *Ativar acesso aos volumes DP* ou *Desativar acesso aos volumes DP*.
 
@@ -122,11 +133,11 @@ Os volumes de proteção de dados (DP) são volumes de destino do NetApp SnapMir
 [[enable-or-disable-scanning-of-specific-shares-buckets-or-volumes]]
 == Ative ou desative a verificação de compartilhamentos, buckets ou volumes específicos
 
-Após conectar e analisar uma fonte de dados, você pode ativar ou desativar a análise de volumes ou compartilhamentos individuais sem precisar reconfigurar todo o sistema. Use isso para refinar o escopo da análise após a configuração inicial. Por exemplo, você pode querer excluir volumes que contenham dados que você não precisa analisar ou adicionar volumes que não foram selecionados ou não estavam disponíveis durante a análise inicial.
+Concentre a cobertura da varredura nos recursos de dados que você precisa analisar, sem reconfigurar todo o sistema. Habilite a varredura para recursos que não foram selecionados ou não estavam disponíveis durante a configuração inicial e desative a varredura para volumes, compartilhamentos ou buckets que você não precisa analisar.
 
 .Passos
-. Na interface do usuário do AI Data Engine, selecione *Configuração*.
-. Na aba *Sistemas verificados*, localize o sistema que você deseja atualizar.
+. Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
+. Localize o sistema que deseja atualizar.
 . Selecione *Ver detalhes* na linha do sistema.
 . Na lista de recursos de dados, localize o volume, bucket ou compartilhamento que você deseja alterar.
 . Use a opção *Verificação* para ativar ou desativar a verificação desse recurso.
@@ -137,11 +148,11 @@ Após conectar e analisar uma fonte de dados, você pode ativar ou desativar a a
 [[deactivate-ai-data-engine-for-a-system]]
 == Desativar o AI Data Engine para um sistema
 
-Desativar um sistema interrompe todas as varreduras e o remove da cobertura de varredura ativa. A configuração do sistema é preservada, e você pode reativá-lo a qualquer momento selecionando *Activate scans* na linha do sistema.
+Remova um sistema da cobertura de varredura ativa quando você não precisar mais que o AI Data Engine o examine. Desativar um sistema interrompe todas as varreduras e preserva sua configuração. Para incluir o sistema novamente, selecione *Activate scans* na linha do sistema.
 
 .Passos
-. Na interface do usuário do AI Data Engine, selecione *Configuração*.
-. Na aba *Sistemas verificados*, localize o sistema que você deseja desativar.
+. Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
+. Localize o sistema que você deseja desativar.
 . Selecione o menu de ações ao lado do sistema.
 . Selecione *Desativar AI Data Engine*.
 
@@ -152,6 +163,6 @@ Desativar um sistema interrompe todas as varreduras e o remove da cobertura de v
 == Informações relacionadas
 
 * link:connect-data-source.html["Conecte uma fonte de dados"]
-* link:monitor-scanning-health.html["Monitore a integridade da digitalização"]
+* link:../administer/monitor-deployment-health.html["Monitore o estado da implantação e investigue problemas"]
 * link:../investigate/understand-dashboard.html["Avalie a utilização do storage no painel."]
 

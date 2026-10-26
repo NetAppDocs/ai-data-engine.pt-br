@@ -5,8 +5,22 @@ entries:
 - title: Saiba mais sobre a implantação do AIDE
   url: "/deploy/deployment-overview.html"
 - title: Requisitos do AIDE
-  url: "/deploy/aide-requirements.html"
-- title: Implantar o AIDE Lite
-  url: "/deploy/deploy-aide-lite.html"
-- title: Implantar o AIDE Enterprise
-  url: "/deploy/deploy-enterprise.html"
+  entries:
+  - title: Requisitos de implantação do AIDE
+    url: "/deploy/aide-requirements.html"
+  - title: Pré-requisitos para a implantação de nó único do AIDE
+    url: "/deploy/single-node-prerequisites.html"
+  - title: Pré-requisitos para a implantação de múltiplos nós do AIDE
+    url: "/deploy/multi-node-prerequisites.html"
+- title: Implante o AIDE como uma implantação de nó único
+  url: "/deploy/deploy-aide-single-node.html"
+- title: Implante o AIDE como uma implantação de vários nós
+  url: "/deploy/deploy-aide-multi-node.html"
+- title: Implante o AIDE com um proxy
+  entries:
+  - title: Saiba mais sobre proxies para o AIDE
+    url: "/deploy/configure-proxy.html"
+  - title: Implante o AIDE como uma implantação de nó único com um proxy
+    url: "/deploy/deploy-aide-single-node-proxy.html"
+  - title: Implante o AIDE como uma implantação de vários nós com um proxy
+    url: "/deploy/deploy-aide-multi-node-proxy.html"

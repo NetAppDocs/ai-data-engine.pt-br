@@ -1,0 +1,81 @@
+---
+sidebar: sidebar 
+permalink: mcp/mcp-tools-reference.html 
+keywords: mcp, governed ai access, tools, get_collection, search, list_tags, create_tag, tag_document, power users, tags 
+summary: Analise as ferramentas que os clientes de IA podem usar por meio do servidor MCP do AI Data Engine, o acesso necessário e como a pesquisa e a marcação se comportam. 
+---
+= Ferramentas MCP para acesso à IA governado pelo AI Data Engine
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Um cliente de AI conectado pode usar um conjunto de ferramentas por meio do servidor Model Context Protocol (MCP) para o AI Data Engine (AIDE) para pesquisar e etiquetar arquivos em uma coleção. Use estas informações para entender o que cada ferramenta faz e o acesso que as ferramentas exigem.
+
+
+
+[[access-requirements]]
+== Requisitos de acesso
+
+Os clientes de IA utilizam as ferramentas em uma sessão de usuário avançado. Um usuário obtém uma sessão de usuário avançado somente quando ambas as condições a seguir são verdadeiras:
+
+* O usuário detém a `AIDEPowerUsers` função de aplicativo no Microsoft Entra ID.
+* O cliente AI solicita o `power_users` escopo.
+
+
+Consulte link:configure-entra-id-mcp.html#create-and-assign-the-power-user-app-role["Crie e atribua a função de aplicativo de usuário avançado"].
+
+A conexão está limitada à coleção presente no URL do servidor MCP. Para trabalhar com uma coleção diferente, utilize os detalhes de conexão específicos dessa coleção.
+
+
+
+[[tools]]
+== Ferramentas
+
+[cols="1,3"]
+|===
+| Ferramenta | Descrição 
+
+
+| `get_collection` | Retorna a coleção à qual sua conexão está limitada. 
+
+
+| `search` | Realiza buscas de metadados de arquivos em uma coleção por prefixo de nome, tipo de arquivo ou proprietário, com paginação. Em uma sessão de usuário avançado, a busca não é filtrada por permissões no nível do arquivo e retorna todos os arquivos da coleção que correspondem. Os resultados incluem o nome, caminho, tipo, tamanho, data da última modificação e proprietário de cada arquivo. 
+
+
+| `list_tags` | Lista as tags definidas para o seu locatário e o número de arquivos que possuem cada tag. 
+
+
+| `create_tag` | Cria uma tag para o seu tenant e retorna seu ID e nome. 
+
+
+| `tag_document` | Adiciona uma etiqueta a um arquivo ou remove uma etiqueta de um arquivo. Se a etiqueta não existir, a ferramenta a cria primeiro. Um cliente de AI trabalha com um arquivo por vez. 
+|===
+
+
+[[how-tags-work]]
+== Como funcionam as tags
+
+* As tags se aplicam a todo o AI Data Engine, não apenas a uma coleção. As tags que você cria ou aplica por meio de um cliente de AI também estão disponíveis na visualização Investigation.
+* Um nome de tag escrito incorretamente cria uma nova tag. Os nomes de tags diferenciam maiúsculas de minúsculas, portanto `Finance` e `finance` são tags diferentes.
+* Não é possível excluir ou renomear uma tag depois de criá-la. Para limitações nos nomes das tags, consulte link:../release-notes/known-limitations.html["Limitações conhecidas"].
+* Os clientes de AI não conseguem listar os arquivos que possuem uma tag.
+
+
+
+
+[[what-ai-clients-cant-do]]
+== O que os clientes de IA não conseguem fazer
+
+Um cliente de AI não consegue recuperar o conteúdo de arquivos, adicionar arquivos, excluir arquivos, modificar arquivos, alterar fontes de dados ou criar coleções.
+
+
+
+[[related-information]]
+== Informações relacionadas
+
+* link:connect-ai-clients-mcp.html["Conecte clientes de IA ao servidor MCP do AI Data Engine"]
+* link:learn-about-mcp.html["Saiba mais sobre o acesso governado à IA"]
+* link:../release-notes/known-limitations.html["Limitações conhecidas"]
+
