@@ -15,7 +15,7 @@ Coloque o AI Data Engine (AIDE) em funcionamento implantando o serviço, conecta
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Um"] link:../deploy/aide-requirements.html["Analise os requisitos e selecione um tipo de implantação"]
 [role="quick-margin-para"]
-Analise os requisitos e link:../deploy/deployment-overview.html["saiba mais sobre os tipos de implantação"] para decidir se deve instalar uma implantação de nó único ou de vários nós do AIDE.
+Analise os requisitos e link:../deploy/deployment-overview.html["saiba mais sobre os tipos de implantação"]decida se deve instalar uma implantação de nó único ou multinó do AIDE.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Dois"] link:../deploy/deployment-overview.html["Implantar o AI Data Engine"]
 [role="quick-margin-para"]

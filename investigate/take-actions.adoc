@@ -14,7 +14,7 @@ summary: Tome providências em relação aos arquivos que você identificou como
 No AI Data Engine (AIDE), você pode aplicar as políticas de ciclo de vida dos dados da sua organização arquivando, copiando, marcando ou excluindo os arquivos que você identificou com seus filtros. Por exemplo, um administrador de storage que filtra para encontrar terabytes de snapshots de VM que não foram acessados há mais de um ano pode arquivá-los em massa em um compartilhamento de storage frio ou excluí-los, dependendo dos requisitos de retenção e das políticas de negócios.
 
 .Sobre esta tarefa
-Para executar uma ação, selecione um ou mais itens na tabela de resultados da investigação usando as caixas de seleção. A barra de ferramentas de ações é ativada com quatro opções: *excluir*, *arquivar*, *copiar* e *marcar*. Para remover cópias duplicadas de um arquivo, use *Limpar duplicados*. Consulte <<Investigar e eliminar arquivos duplicados>>.
+Para executar uma ação, selecione um ou mais itens na tabela de resultados da investigação usando as caixas de seleção. A barra de ferramentas de ações é ativada com quatro opções: *Excluir*, *Copiar*, *Arquivar* e *Marcar*. Para remover cópias duplicadas de um arquivo, use *Limpar duplicados*. Consulte <<Investigar e eliminar arquivos duplicados>>.
 
 As ações disponíveis para você dependem da função atribuída a você:
 
@@ -23,16 +23,16 @@ As ações disponíveis para você dependem da função atribuída a você:
 | Ação | Administrador do AI Data Engine | Visualizador do AI Data Engine 
 
 
-| Marcação | Sim | Sim 
-
-
-| Arquivo | Sim | - 
+| Excluir | Sim | - 
 
 
 | Copiar | Sim | - 
 
 
-| Excluir | Sim | - 
+| Arquivo | Sim | - 
+
+
+| Marcação | Sim | Sim 
 
 
 | Eliminar duplicados | Sim | - 
@@ -51,16 +51,16 @@ Escolha uma ação com base no seu grau de certeza em relação aos dados:
 | Ação | Quando usar 
 
 
-| Marcação | Você precisa de mais tempo ou precisa coordenar com outra equipe antes de se comprometer a arquivar ou excluir. A marcação rastreia os arquivos sem alterar sua localização. 
-
-
-| Arquivo | Os dados ainda podem ter valor, mas não pertencem ao storage primário. O arquivamento os move para um destino de menor custo, mantendo a possibilidade de recuperação. 
+| Excluir | Os dados não são mais necessários e não têm requisitos de retenção. A exclusão é permanente, portanto use-a somente quando você tiver certeza. 
 
 
 | Copiar | Os dados devem existir em um segundo local, por exemplo, para fins de backup ou migração. A cópia preserva o original no lugar. Você pode copiar para uma pasta NFS ou SMB, criar um volume FlexClone filtrado ou transferir itens com o NetApp Copy and Sync. 
 
 
-| Excluir | Os dados não são mais necessários e não têm requisitos de retenção. A exclusão é permanente, portanto use-a somente quando você tiver certeza. 
+| Arquivo | Os dados ainda podem ter valor, mas não pertencem ao storage primário. O arquivamento os move para um destino de menor custo, mantendo a possibilidade de recuperação. 
+
+
+| Marcação | Você precisa de mais tempo ou precisa coordenar com outra equipe antes de se comprometer a arquivar ou excluir. A marcação rastreia os arquivos sem alterar sua localização. 
 
 
 | Eliminar duplicados | Existem cópias idênticas de um arquivo em mais de um local e você deseja manter apenas uma. Você pode marcar, arquivar ou excluir as cópias redundantes, mantendo apenas uma cópia. Excluir duplicatas é permanente. Consulte <<Investigar e eliminar arquivos duplicados>>. 
@@ -69,36 +69,100 @@ Quando os dados ainda puderem ter valor ou exigirem uma análise mais aprofundad
 
 
 
-[[archive-files]]
-== Arquivar arquivos
+[[delete-files]]
+== Excluir arquivos
 
-Mova arquivos que não pertencem ao storage primário para um destino de storage frio, mantendo-os recuperáveis. Opcionalmente, você pode deixar um arquivo de trilha de navegação no local original para que os usuários possam saber por que um arquivo foi movido.
-
-
-CAUTION: Copiar ou arquivar arquivos pode alterar as permissões, a propriedade, as informações de grupo e os registros de data e hora do destino. Transferências entre protocolos podem ampliar consideravelmente o acesso. Revise as configurações de segurança do destino antes de transferir dados confidenciais e verifique as permissões posteriormente.
+Remova permanentemente os arquivos que você não precisa mais e que não têm requisitos de retenção.
 
 
-NOTE: As credenciais que você fornece para um destino SMB são separadas da integração com o Active Directory. Para exibir nomes de usuário e permissões no AI Data Engine, consulte link:../administer/configure-settings.html["Configurar os limites de classificação de dados e a varredura de acesso"].
+CAUTION: A exclusão é permanente e não pode ser desfeita. Esta ação exclui os arquivos de origem mesmo que contenham dados ativos.
 
 .Antes de começar
 * Você precisa ter a função de _administrador do AI Data Engine_.
 
 
 .Passos
-. Na visualização de investigação, selecione os arquivos que você deseja arquivar.
-. Selecione *Archive*.
-. Na caixa de diálogo Arquivar, selecione o protocolo do volume de destino:
+. Na visualização Investigação, selecione os arquivos que você deseja excluir.
+. Selecione *Delete*.
+. Na caixa de diálogo Excluir, digite *excluir permanentemente* no campo de confirmação.
+. Selecione *Delete*.
+
+
+.Resultado
+Os arquivos selecionados são excluídos permanentemente do armazenamento.
+
+
+
+[[investigate-and-clean-up-duplicate-files]]
+== Investigar e eliminar arquivos duplicados
+
+Encontre cópias duplicadas de um arquivo e remova as redundantes. Analise os metadados e as localizações das cópias e marque as duplicadas para revisão, arquive-as ou exclua permanentemente as cópias duplicadas, mantendo apenas uma cópia.
+
+.Antes de começar
+* Você precisa ter a função de _administrador do AI Data Engine_.
+
+
+.Passos
+. Selecione *Investigação* > *Não estruturado*.
 +
-** Para *NFS*, insira o caminho da pasta de destino no formato `hostname:/path/to/destination`.
-** Para *SMB*, insira o caminho da pasta de destino SMB no formato `\\Hostname\share_name`. Selecione o método de autenticação. Para Kerberos, use o FQDN do host e deixe as credenciais em branco. Consulte link:../administer/configure-kerberos-smb.html["Autenticação Kerberos para compartilhamentos SMB/CIFS no AI Data Engine"]. Para outros métodos, forneça as credenciais do Active Directory: insira o nome de usuário no formato `domain\user` ou `user@domain` e insira a senha.
+A tabela exibe os nomes dos arquivos, seus tamanhos, proprietários, sistemas e tags.
 
-
-. Para criar um arquivo de trilha de navegação no local original, habilite *Deixar breadcrumb*.
+. Opcional: selecione *Adicionar filtro* para restringir a lista de arquivos.
+. Selecione o nome do arquivo para abrir os detalhes.
 +
-Um arquivo de trilha de navegação ajuda os usuários a entender por que um arquivo foi movido.
+Analise o sistema do arquivo, o repositório de storage, o caminho, o tamanho, os registros de data e hora, o acesso e o proprietário. O campo *Duplicados* exibe o número de cópias duplicadas.
 
-. Selecione *Arquivar arquivo*.
+. Ao lado de *Duplicados*, selecione *Ver detalhes*.
++
+A visualização Investigation aplica um filtro de *Duplicates* que inclui arquivos com duplicatas e um filtro de *File hash* que corresponde ao arquivo selecionado.
 
+. Analise os arquivos correspondentes e suas respectivas localizações.
+. Selecione os arquivos que você deseja limpar.
++
+Confira a contagem de *itens selecionados*.
+
+. Selecione *Limpar duplicatas*.
+. Analise o número estimado de arquivos que correspondem aos filtros atuais e que possuem cópias duplicadas.
++
+
+NOTE: A contagem é uma estimativa. As duplicatas exatas são recalculadas quando a ação é executada, e somente os arquivos confirmados como idênticos são afetados.
+
+. Decida como lidar com os duplicados:
++
+** Marque os duplicados para revisão:
++
+... Em *Action*, selecione *Tag*.
+... Selecione *Adicionar* e, em seguida, escolha a tag que deseja aplicar. Repita o processo para adicionar mais tags.
+... Selecione *Enviar*.
+
+
+** Arquive as duplicatas em um volume de destino:
++
+... Em *Ação*, selecione *Arquivar*.
+... Em *No local original*, selecione *Remover completamente* ou *Deixar um rastro*.
+... Selecione o protocolo do volume de destino. Para *NFS*, insira o caminho da pasta de destino no formato  `Hostname:/SHAREPATH`. Para *SMB*, insira o caminho da pasta de destino e selecione a autenticação *Kerberos* ou *NTLM*. Para NTLM, insira seu nome de usuário e senha do Active Directory.
+... Selecione *Enviar*.
+
+
+** Exclua as duplicatas e mantenha apenas uma cópia:
++
+
+CAUTION: A exclusão é permanente e não pode ser desfeita.
+
++
+... Em *Ação*, selecione *Excluir*.
+... Em *Manter cópia com*, selecione *Último acesso*, *Última modificação* ou *Criado*.
+... Em *No local original*, selecione *Remover completamente* ou *Deixar um rastro*.
+... Selecione *Enviar*.
+... Na caixa de diálogo *Excluir cópias duplicadas*, revise o número de arquivos a serem excluídos e as informações sobre a retenção de uma cópia.
+... Digite `permanently delete`, e depois selecione *Excluir*.
+
+
+
+
+
+
+Para sair sem enviar uma ação, selecione *Cancelar*.
 
 
 
@@ -197,101 +261,36 @@ Confirme se todos os itens selecionados pertencem ao mesmo repositório de stora
 
 
 
-[[delete-files]]
-== Excluir arquivos
+[[archive-files]]
+== Arquivar arquivos
 
-Remova permanentemente os arquivos que você não precisa mais e que não têm requisitos de retenção.
-
-
-CAUTION: A exclusão é permanente e não pode ser desfeita. Esta ação exclui os arquivos de origem mesmo que contenham dados ativos.
-
-.Antes de começar
-* Você precisa ter a função de _administrador do AI Data Engine_.
+Mova arquivos que não pertencem ao storage primário para um destino de storage frio, mantendo-os recuperáveis. Opcionalmente, você pode deixar um arquivo de trilha de navegação no local original para que os usuários possam saber por que um arquivo foi movido.
 
 
-.Passos
-. Na visualização Investigação, selecione os arquivos que você deseja excluir.
-. Selecione *Delete*.
-. Na caixa de diálogo Excluir, digite *excluir permanentemente* no campo de confirmação.
-. Selecione *Delete*.
+CAUTION: Copiar ou arquivar arquivos pode alterar as permissões, a propriedade, as informações de grupo e os registros de data e hora do destino. Transferências entre protocolos podem ampliar consideravelmente o acesso. Revise as configurações de segurança do destino antes de transferir dados confidenciais e verifique as permissões posteriormente.
 
 
-.Resultado
-Os arquivos selecionados são excluídos permanentemente do armazenamento.
-
-
-
-[[investigate-and-clean-up-duplicate-files]]
-== Investigar e eliminar arquivos duplicados
-
-Encontre cópias duplicadas de um arquivo e remova as redundantes. Analise os metadados e as localizações das cópias e marque as duplicadas para revisão, arquive-as ou exclua permanentemente as cópias duplicadas, mantendo apenas uma cópia.
+NOTE: As credenciais que você fornece para um destino SMB são separadas da integração com o Active Directory. Para exibir nomes de usuário e permissões no AI Data Engine, consulte link:../administer/configure-settings.html["Configurar os limites de classificação de dados e a varredura de acesso"].
 
 .Antes de começar
 * Você precisa ter a função de _administrador do AI Data Engine_.
 
 
 .Passos
-. No NetApp Console, acesse *central de dados de IA* > *AI Data Engine*.
-. Selecione *Investigação* > *Não estruturado*.
+. Na visualização de investigação, selecione os arquivos que você deseja arquivar.
+. Selecione *Archive*.
+. Na caixa de diálogo Arquivar, selecione o protocolo do volume de destino:
 +
-A tabela exibe os nomes dos arquivos, seus tamanhos, proprietários, sistemas e tags.
+** Para *NFS*, insira o caminho da pasta de destino no formato `hostname:/path/to/destination`.
+** Para *SMB*, insira o caminho da pasta de destino SMB no formato `\\Hostname\share_name`. Selecione o método de autenticação. Para Kerberos, use o FQDN do host e deixe as credenciais em branco. Consulte link:../administer/configure-kerberos-smb.html["Autenticação Kerberos para compartilhamentos SMB/CIFS no AI Data Engine"]. Para outros métodos, forneça as credenciais do Active Directory: insira o nome de usuário no formato `domain\user` ou `user@domain` e insira a senha.
 
-. Opcional: selecione *Adicionar filtro* para restringir a lista de arquivos.
-. Selecione o nome do arquivo para abrir os detalhes.
+
+. Para criar um arquivo de trilha de navegação no local original, habilite *Deixar breadcrumb*.
 +
-Analise o sistema do arquivo, o repositório de storage, o caminho, o tamanho, os registros de data e hora, o acesso e o proprietário. O campo *Duplicados* exibe o número de cópias duplicadas.
+Um arquivo de trilha de navegação ajuda os usuários a entender por que um arquivo foi movido.
 
-. Ao lado de *Duplicados*, selecione *Ver detalhes*.
-+
-A visualização Investigation aplica um filtro de *Duplicates* que inclui arquivos com duplicatas e um filtro de *File hash* que corresponde ao arquivo selecionado.
+. Selecione *Arquivar arquivo*.
 
-. Analise os arquivos correspondentes e suas respectivas localizações.
-. Selecione os arquivos que você deseja limpar.
-+
-Confira a contagem de *itens selecionados*.
-
-. Selecione *Limpar duplicatas*.
-. Analise o número estimado de arquivos que correspondem aos filtros atuais e que possuem cópias duplicadas.
-+
-
-NOTE: A contagem é uma estimativa. As duplicatas exatas são recalculadas quando a ação é executada, e somente os arquivos confirmados como idênticos são afetados.
-
-. Decida como lidar com os duplicados:
-+
-** Marque os duplicados para revisão:
-+
-... Em *Action*, selecione *Tag*.
-... Selecione *Adicionar* e, em seguida, escolha a tag que deseja aplicar. Repita o processo para adicionar mais tags.
-... Selecione *Enviar*.
-
-
-** Arquive as duplicatas em um volume de destino:
-+
-... Em *Ação*, selecione *Arquivar*.
-... Em *No local original*, selecione *Remover completamente* ou *Deixar um rastro*.
-... Selecione o protocolo do volume de destino. Para *NFS*, insira o caminho da pasta de destino no formato  `Hostname:/SHAREPATH`. Para *SMB*, insira o caminho da pasta de destino e selecione a autenticação *Kerberos* ou *NTLM*. Para NTLM, insira seu nome de usuário e senha do Active Directory.
-... Selecione *Enviar*.
-
-
-** Exclua as duplicatas e mantenha apenas uma cópia:
-+
-
-CAUTION: A exclusão é permanente e não pode ser desfeita.
-
-+
-... Em *Ação*, selecione *Excluir*.
-... Em *Manter cópia com*, selecione *Último acesso*, *Última modificação* ou *Criado*.
-... Em *No local original*, selecione *Remover completamente* ou *Deixar um rastro*.
-... Selecione *Enviar*.
-... Na caixa de diálogo *Excluir cópias duplicadas*, revise o número de arquivos a serem excluídos e as informações sobre a retenção de uma cópia.
-... Digite `permanently delete`, e depois selecione *Excluir*.
-
-
-
-
-
-
-Para sair sem enviar uma ação, selecione *Cancelar*.
 
 
 

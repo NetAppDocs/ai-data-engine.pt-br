@@ -18,7 +18,7 @@ O acesso controlado à IA permite que os clientes de IA usem o Model Context Pro
 [[what-governed-ai-access-does]]
 == O que o acesso governado à IA faz
 
-O Model Context Protocol (MCP) é um padrão aberto que permite que clientes de IA se conectem a fontes de dados e ferramentas externas. O AI Data Engine fornece um servidor MCP, chamado Governed Access Gateway, para que clientes de IA possam consultar o catálogo de metadados do AI Data Engine em vez de acessar diretamente seus sistemas de armazenamento.
+O Model Context Protocol (MCP) é um padrão aberto que permite que clientes de IA se conectem a fontes de dados e ferramentas externas. O AI Data Engine fornece um servidor MCP, chamado Governed Access Gateway, para que os clientes de IA possam consultar o catálogo de metadados do AI Data Engine em vez de acessar diretamente seus sistemas de storage.
 
 Por meio do MCP, um cliente de IA conectado pode:
 
@@ -125,12 +125,9 @@ Para a lista completa de restrições, consulte link:../release-notes/known-limi
 == Informações relacionadas
 
 * link:manage-data-collections.html["Gerenciar coletas de dados"]
-* link:maintain-mcp-setup.html["Mantenha a configuração do seu MCP em dia"]
 * link:quick-start-mcp.html["Comece rapidamente a gerenciar o acesso à IA com o AI Data Engine"]
 * link:prepare-mcp-host.html["Prepare o host MCP"]
 * link:configure-entra-id-mcp.html["Configure o Microsoft Entra ID para acesso governado à IA"]
-* link:connect-entra-id-aide-mcp.html["Conecte o AI Data Engine ao Microsoft Entra ID"]
 * link:connect-ai-clients-mcp.html["Conecte clientes de IA ao servidor MCP do AI Data Engine"]
 * link:mcp-tools-reference.html["Ferramentas MCP para acesso à IA governado pelo AI Data Engine"]
-* link:../release-notes/known-limitations.html["Limitações conhecidas"]
 

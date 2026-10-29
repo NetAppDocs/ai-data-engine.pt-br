@@ -20,12 +20,14 @@ Mantenha a cobertura da varredura alinhada com os dados que você precisa analis
 
 Verifique o status da verificação para acompanhar o progresso e identificar recursos que precisam de atenção. Analise o progresso no nível do sistema e os detalhes no nível dos recursos para distinguir as verificações que ainda estão em andamento daquelas que estão pausadas ou com erros.
 
+image::aide_mo_ga_data_sources_page.png[Fontes de dados e status de varredura do AI Data Engine]
+
 Se as verificações pararem ou pausarem inesperadamente, verifique a integridade da implantação. Consulte link:../administer/monitor-deployment-health.html["Monitore o estado da implantação e investigue problemas"].
 
 .Passos
 . Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
 . Localize o sistema que você deseja analisar.
-. Selecione a linha do sistema e abra a visualização detalhada.
+. Selecione *Ver detalhes* na linha do sistema.
 +
 A visualização detalhada mostra:
 
@@ -50,7 +52,8 @@ Interrompa temporariamente a verificação de um sistema quando você não quise
 .Passos
 . Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
 . Localize o sistema que deseja pausar.
-. Selecione a linha do sistema para abrir a visualização detalhada.
+. Selecione *Ver detalhes* na linha do sistema.
+. Selecione o menu de ações ao lado do recurso de dados.
 . Selecione *Pausar*.
 
 
@@ -64,7 +67,8 @@ Retome a digitalização quando estiver pronto para que o AI Data Engine digital
 .Passos
 . Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
 . Localize o sistema pausado.
-. Selecione a linha do sistema para abrir a visualização detalhada.
+. Selecione *Ver detalhes* na linha do sistema.
+. Selecione o menu de ações ao lado do recurso de dados.
 . Selecione *Resume*.
 
 
@@ -79,7 +83,7 @@ Atualize metadados em todo o sistema após alterações significativas nos dados
 . Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
 . Localize o sistema que você deseja escanear.
 . Selecione o menu de ações ao lado do sistema.
-. Selecione *Verificar todos os volumes* (há uma opção equivalente no menu de ações para compartilhamentos e buckets).
+. Selecione *Scan all volumes* (há uma opção equivalente no menu de ações para compartilhamentos, buckets ou esquemas).
 
 
 
@@ -109,7 +113,7 @@ NOTE: Se o compartilhamento usar autenticação Kerberos, o AI Data Engine se au
 .Passos
 . Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
 . Localize o sistema SMB.
-. Selecione a linha do sistema para abrir a visualização detalhada.
+. Selecione *Ver detalhes* na linha do sistema.
 . Selecione *Editar credenciais CIFS*.
 . Insira o nome de usuário e a senha atualizados e selecione *Salvar*.
 
@@ -124,7 +128,7 @@ Inclua ou exclua dados replicados na sua cobertura de varredura ativando ou desa
 .Passos
 . Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
 . Localize o sistema.
-. Selecione a linha do sistema para abrir a visualização detalhada.
+. Selecione *Ver detalhes* na linha do sistema.
 . Selecione *Ativar acesso aos volumes DP* ou *Desativar acesso aos volumes DP*.
 
 
@@ -145,16 +149,16 @@ Concentre a cobertura da varredura nos recursos de dados que você precisa anali
 
 
 
-[[deactivate-ai-data-engine-for-a-system]]
-== Desativar o AI Data Engine para um sistema
+[[remove-ai-data-engine-for-a-system]]
+== Remova o AI Data Engine de um sistema
 
-Remova um sistema da cobertura de varredura ativa quando você não precisar mais que o AI Data Engine o examine. Desativar um sistema interrompe todas as varreduras e preserva sua configuração. Para incluir o sistema novamente, selecione *Activate scans* na linha do sistema.
+Remova um sistema da cobertura de varredura ativa quando você não precisar mais que o AI Data Engine faça a varredura dele. Desativar um sistema interrompe toda a varredura e preserva sua configuração. Para adicionar o sistema novamente, selecione *Ativar varreduras* na linha do sistema.
 
 .Passos
 . Na interface do usuário do AI Data Engine, selecione *Fontes de dados*.
 . Localize o sistema que você deseja desativar.
 . Selecione o menu de ações ao lado do sistema.
-. Selecione *Desativar AI Data Engine*.
+. Selecione *Remover sistema*.
 
 
 

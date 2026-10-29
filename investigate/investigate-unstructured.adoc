@@ -107,6 +107,6 @@ Para baixar os resultados filtrados da guia Dados não estruturados, selecione i
 * link:take-actions.html["Tome medidas com base nos seus dados"]
 * link:../policies/create-policy.html["Criar uma política"]
 * link:../administer/configure-settings.html["Configurar os limites de classificação de dados e a varredura de acesso"]
-* link:../get-started/storage-optimization-workflows.html["Explore fluxos de trabalho de otimização de armazenamento"]
+* link:storage-optimization-workflows.html["Explore fluxos de trabalho de otimização de armazenamento"]
 * link:understand-dashboard.html["Avalie a utilização do storage no painel."]
 

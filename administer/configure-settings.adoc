@@ -13,6 +13,8 @@ summary: Defina quais arquivos o AI Data Engine classifica como dados frios ou o
 [role="lead"]
 Os limites de dados inativos e obsoletos ajudam você a encontrar armazenamento que pode ser otimizado usando o AI Data Engine (AIDE). A verificação de permissões e a integração com o Active Directory ajudam você a identificar e compreender os riscos de acesso. Configure-os para corresponder às políticas da sua organização de classificação de dados, retenção e acesso.
 
+image::aide_mo_ga_configuration_page.png[Configurações gerais do AI Data Engine]
+
 
 
 [[before-you-begin]]
@@ -102,8 +104,7 @@ Para os pré-requisitos e etapas, consulte link:configure-ad-nfs.html["Configure
 * link:../investigate/understand-dashboard.html["Saiba mais sobre o painel do AI Data Engine"]
 * link:../investigate/investigate-directories.html["Investigar diretórios"]
 * link:../investigate/investigate-unstructured.html["Investigar dados não estruturados"]
-* link:../get-started/storage-optimization-workflows.html["Explore fluxos de trabalho de otimização de armazenamento"]
-* link:../deploy/aide-requirements.html["Requisitos do AIDE"]
+* link:../investigate/storage-optimization-workflows.html["Explore fluxos de trabalho de otimização de armazenamento"]
 * link:manage-users-roles.html["Gerenciar usuários e funções"]
 * link:configure-ad-nfs.html["Configure o mapeamento de identidade do Active Directory para NFS"]
 

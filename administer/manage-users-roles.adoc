@@ -94,7 +94,8 @@ As funções do NetApp Console controlam quem pode configurar o acesso de IA gov
 Você atribui funções no NetApp Console, não no próprio AI Data Engine.
 
 .Passos
-. No NetApp Console, acesse *Membros*.
+. No NetApp Console, selecione *Administração > Identidade e acesso*.
+. Vá para *Members*.
 . Faça um dos seguintes procedimentos:
 +
 ** Para adicionar um novo usuário, selecione *Adicionar usuário* e insira o endereço de e-mail do usuário.
@@ -102,8 +103,8 @@ Você atribui funções no NetApp Console, não no próprio AI Data Engine.
 
 
 . Selecione a organização, a pasta ou o projeto e, em seguida, escolha a categoria *Data Service*.
-. Atribua a função de *AI Data Engine administrator* ou *AI Data Engine viewer*.
-. Salve suas alterações.
+. Atribua a função de *administrador do AI Data Engine* ou *visualizador do AI Data Engine*.
+. Adicione a nova função.
 
 
 O usuário recebe um convite por e-mail e pode acessar o AI Data Engine após aceitá-lo.

@@ -13,6 +13,8 @@ summary: Use a visualização Investigação para explorar o armazenamento basea
 [role="lead"]
 Quando você precisa entender o que está consumindo armazenamento, identificar quais tabelas de banco de dados estão crescendo sem controle ou encontrar diretórios com acesso excessivamente permissivo, use filtros de metadados para investigar seus dados em todos os sistemas conectados.
 
+image::aide_mo_ga_investigation_page.png[Visão de investigação do AI Data Engine]
+
 
 
 [[choose-a-starting-point]]
@@ -20,7 +22,7 @@ Quando você precisa entender o que está consumindo armazenamento, identificar 
 
 Selecione *Investigation* na navegação à esquerda para abrir a visualização. Você também pode abrir a visualização Investigation no painel, selecionando *Investigate* na tabela _Top data resources by reclaimable storage_, que aplica automaticamente um filtro para esse recurso.
 
-A seção *Investigação* está organizada em três abas. Selecione a aba que corresponde ao tipo de dados que você está investigando.
+A *Investigation* está organizada em três abas: *Unstructured*, *Directories* e *Structured*. Selecione a aba que corresponde ao tipo de dados que você está investigando.
 
 [cols="1,2,1"]
 |===
@@ -30,12 +32,12 @@ A seção *Investigação* está organizada em três abas. Selecione a aba que c
 | *Não estruturado* | Encontre dados frios, obsoletos ou duplicados baseados em arquivos em volumes NFS e SMB | link:investigate-unstructured.html["Investigar dados não estruturados"] 
 
 
-| *Estruturados* | Identifique tabelas de banco de dados grandes demais ou não utilizadas que consomem armazenamento | link:investigate-structured.html["Investigar dados estruturados"] 
-
-
 | *Diretórios* | Auditar permissões em nível de diretório e encontrar caminhos amplamente acessíveis | link:investigate-directories.html["Investigar diretórios"] 
+
+
+| *Estruturados* | Identifique tabelas de banco de dados grandes demais ou não utilizadas que consomem armazenamento | link:investigate-structured.html["Investigar dados estruturados"] 
 |===
-A contagem de resumo e o tamanho total na parte superior da página são atualizados para refletir a guia ativa (por exemplo, "dados não estruturados (400M) | 5,7 PiB").
+Cada rótulo de guia mostra um resumo dos itens desse tipo (por exemplo, "Não estruturado (30.4M)").
 
 
 

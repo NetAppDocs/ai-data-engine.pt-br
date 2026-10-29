@@ -80,5 +80,5 @@ O AI Data Engine analisa as fontes de dados compatíveis que você conecta. Para
 * link:architecture.html["Arquitetura do AI Data Engine"]
 * link:quick-start.html["Início rápido"]
 * link:../mcp/learn-about-mcp.html["Saiba mais sobre o acesso governado à IA"]
-* link:storage-optimization-workflows.html["Explore fluxos de trabalho de otimização de armazenamento"]
+* link:../investigate/storage-optimization-workflows.html["Explore fluxos de trabalho de otimização de armazenamento"]
 

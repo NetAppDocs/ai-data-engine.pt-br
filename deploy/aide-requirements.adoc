@@ -471,6 +471,4 @@ Para encontrar a versão ativa do AI Data Engine e as informações de contato d
 * link:deployment-overview.html["Visão geral da implantação do AIDE"]
 * link:single-node-prerequisites.html["Pré-requisitos para a implantação de nó único do AIDE"]
 * link:multi-node-prerequisites.html["Pré-requisitos para a implantação de múltiplos nós do AIDE"]
-* link:deploy-aide-single-node.html["Implante o AI Data Engine como uma implantação de nó único"]
-* link:deploy-aide-multi-node.html["Implante o AI Data Engine como uma implantação de vários nós"]
 

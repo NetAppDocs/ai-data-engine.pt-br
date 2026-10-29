@@ -20,8 +20,6 @@ indexpage:
       url: "/get-started/architecture.html"
     - title: Início rápido
       url: "/get-started/quick-start.html"
-    - title: Explore fluxos de trabalho de otimização de armazenamento
-      url: "/get-started/storage-optimization-workflows.html"
     - title: O que há de novo
       url: "/whats-new.html"
     - title: Limitações conhecidas
@@ -50,6 +48,8 @@ indexpage:
       url: "/investigate/investigate-data.html"
     - title: Tome ações nos dados
       url: "/investigate/take-actions.html"
+    - title: Explore fluxos de trabalho de otimização de armazenamento
+      url: "/investigate/storage-optimization-workflows.html"
   - title: Políticas e ações
     links:
     - title: Criar uma política

@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: investigate/understand-dashboard.html 
-keywords: dashboard, overview, reclaimable storage, cold data, stale data, storage health, capacity risk, data owners, investigate, access exposure, open permissions, structured data, duplicates, file types 
+keywords: dashboard, overview, reclaimable storage, cold data, stale data, storage health, capacity risk, data owners, investigate, permissions, open permissions, structured data, duplicates, file types 
 summary: Avalie a integridade do armazenamento em todo o seu ambiente, identifique onde o armazenamento potencialmente recuperável está concentrado, revise diretórios com permissões abertas e dados estruturados e decida quais sistemas ou proprietários de dados investigar primeiro. 
 ---
 = Avalie a integridade do storage com o painel do AI Data Engine
@@ -13,7 +13,9 @@ summary: Avalie a integridade do armazenamento em todo o seu ambiente, identifiq
 [role="lead"]
 Antes de decidir o que investigar, você precisa entender o estado do seu storage. Quanto do storage atende aos limites de classificação de dados frios e obsoletos da sua organização, e quais sistemas ou proprietários detêm a maior quantidade de dados nessas categorias? Por exemplo, um administrador de storage que responde a um alerta de capacidade pode ver que uma grande parte do storage verificado contém dados frios e, em seguida, detalhar o sistema de maior impacto para começar a investigar imediatamente.
 
-No NetApp Console, selecione *AI data hub* > *AI Data Engine*. O painel é aberto por padrão. O painel organiza seus insights em três guias: *Otimização de armazenamento*, *Exposição de acesso* e *Dados estruturados*.
+No NetApp Console, selecione *AI data hub* > *AI Data Engine*. O painel é exibido por padrão. O painel organiza seus insights em três guias: *Storage optimization*, *Permissions* e *Structured data*.
+
+image::aide_mo_ga_overview_page.png[Visão geral do painel do AI Data Engine]
 
 
 
@@ -45,7 +47,7 @@ Descubra onde você pode recuperar mais espaço de armazenamento. A aba *Otimiza
 * _Armazenamento ativo versus recuperável_: Mostra a proporção de dados ativos em comparação com dados frios e obsoletos em todos os recursos analisados. Uma alta proporção de dados frios, obsoletos ou duplicados pode indicar uma oportunidade significativa de otimização de armazenamento.
 * _Principais recursos de dados por capacidade de armazenamento recuperável_: mostra os recursos de dados com a maior capacidade recuperável.
 * _Principais consumidores por armazenamento recuperável_: mostra os proprietários dos dados, seu armazenamento recuperável e suas contagens de arquivos.
-* _Distribuição de tamanho de duplicados_: mostra como os dados duplicados estão distribuídos entre as faixas de tamanho.
+* _Distribuição do tamanho dos dados duplicados_: mostra como os dados duplicados estão distribuídos entre as faixas de tamanho.
 * _Idade dos ativos_: Exibe os itens por idade. Use o menu suspenso para selecionar o critério de carimbo de data/hora para o gráfico.
 * _Tipos de arquivo mais comuns_: mostra os tipos de arquivo mais frequentes.
 
@@ -58,10 +60,10 @@ Use o painel de resumo e estes gráficos para identificar e priorizar oportunida
 
 
 
-[[review-access-exposure]]
-== Revisar a exposição de acesso
+[[review-permissions]]
+== Revisar permissões
 
-Encontre os diretórios a serem priorizados para uma revisão de permissões. A aba *Exposição de acesso* exibe o gráfico _Diretórios com permissões abertas_, que lista os caminhos dos diretórios e suas contagens de arquivos. Para ver esses diretórios em detalhes, consulte link:investigate-directories.html["Investigar diretórios"]. Para controlar se o AI Data Engine verifica as permissões, consulte link:../administer/configure-settings.html["Configurar os limites de classificação de dados e a varredura de acesso"].
+Encontre os diretórios a serem priorizados para uma revisão de permissões. A aba *Permissões* exibe o gráfico _Diretórios com permissões abertas_, que lista os caminhos dos diretórios e suas contagens de arquivos. Para ver esses diretórios em detalhes, consulte link:investigate-directories.html["Investigar diretórios"]. Para controlar se o AI Data Engine verifica as permissões, consulte link:../administer/configure-settings.html["Configurar os limites de classificação de dados e a varredura de acesso"].
 
 
 
@@ -77,9 +79,9 @@ Veja quais esquemas e tabelas estão nos seus dados analisados e compare as cont
 
 Após identificar um recurso ou proprietário que valha a pena investigar, utilize as tabelas na aba *Otimização de armazenamento* para acessar diretamente os detalhes.
 
-A tabela _Principais recursos de dados por storage recuperável_ lista seus recursos de storage verificados, classificados pela proporção de dados duplicados ou que atendem aos limites de dados inativos e obsoletos da sua organização. Selecione qualquer linha para abrir a visualização Investigation filtrada para esse recurso. A partir daí, use a guia link:investigate-unstructured.html["Não estruturado"] para identificar arquivos inativos ou obsoletos, ou a guia link:investigate-directories.html["Diretórios"] para auditar a exposição de permissões.
+A tabela _Principais recursos de dados por armazenamento recuperável_ lista seus recursos de storage verificados, classificados pela proporção de dados duplicados ou que atendem aos limites de dados inativos e obsoletos da sua organização. Use a link:investigate-unstructured.html["Não estruturado"] guia para identificar arquivos inativos ou obsoletos ou a link:investigate-directories.html["Diretórios"] guia para auditar a exposição de permissões.
 
-A tabela _Principais consumidores por armazenamento recuperável_ mostra quais proprietários de dados detêm dados potencialmente recuperáveis. Selecione qualquer linha para abrir a link:investigate-unstructured.html["Investigação"] visualização filtrada para os arquivos desse proprietário. A partir daí, você pode revisar os resultados, tomar medidas com base neles ou salvá-los como uma política.
+A tabela _Principais consumidores por armazenamento recuperável_ mostra quais proprietários de dados detêm dados potencialmente recuperáveis. Selecione *Investigar* para abrir a link:investigate-unstructured.html["Investigação"] visualização filtrada para os arquivos desse proprietário. A partir daí, você pode revisar os resultados, tomar medidas com base neles ou salvá-los como uma política.
 
 Revisar o painel não arquiva nem exclui dados nem altera as permissões do diretório.
 

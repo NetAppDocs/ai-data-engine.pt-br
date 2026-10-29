@@ -7,7 +7,7 @@ summary: Conheça as novas funcionalidades do AI Data Engine.
 = O que há de novo no AI Data Engine
 :allow-uri-read: 
 :icons: font
-:imagesdir: media/
+:imagesdir: ./media/
 
 
 [role="lead"]

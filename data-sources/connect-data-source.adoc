@@ -11,14 +11,14 @@ summary: Conecte as fontes de dados ao AI Data Engine e configure os recursos de
 
 
 [role="lead"]
-Conecte as fontes de dados que você quer que o AI Data Engine (AIDE) analise e escolha quais recursos de dados delas examinar. O AI Data Engine examina as fontes de dados conectadas para coletar metadados, e o procedimento de conexão depende do tipo de fonte.
+Conecte as fontes de dados que você deseja que o AI Data Engine (AIDE) analise e escolha quais recursos de dados devem ser examinados. O AI Data Engine examina as fontes de dados conectadas para coletar metadados, e o procedimento de conexão depende do tipo de fonte. Você conclui essas tarefas no NetApp Console.
 
 
 
 [[before-you-begin]]
 == Antes de começar
 
-* Você precisa ter privilégios de _administrador do AI Data Engine_ para conectar e configurar as fontes de dados.
+* Você precisa ter a função de _AI Data Engine administrator_ no NetApp Console para conectar e configurar fontes de dados.
 * Para sistemas conectados por meio da descoberta do NetApp Console, use um agente do Console para descobrir os sistemas de armazenamento no NetApp Console antes de adicioná-los ao AI Data Engine. Isso se aplica a todos os tipos de armazenamento compatíveis, incluindo clusters locais do ONTAP, o Cloud Volumes ONTAP, o Amazon FSx for NetApp ONTAP, o Google Cloud NetApp Volumes e o Azure NetApp Files. Para clusters locais do ONTAP, consulte link:https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html["Descubra os clusters ONTAP locais"] na documentação do NetApp Console. A descoberta direta não habilita serviços de dados, como o AI Data Engine.
 * Verifique se as conexões de rede necessárias para que o AI Data Engine acesse suas fontes de dados estão abertas. Consulte link:../deploy/aide-requirements.html["Requisitos do AI Data Engine"].
 * Para examinar compartilhamentos SMB/CIFS com autenticação Kerberos, primeiro conclua o procedimento para o seu tipo de implantação em link:../administer/configure-kerberos-smb.html["Autenticação Kerberos para compartilhamentos SMB/CIFS no AI Data Engine"].

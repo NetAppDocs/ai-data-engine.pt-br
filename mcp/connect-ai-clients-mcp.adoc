@@ -357,7 +357,5 @@ TIP: Filtros de pesquisa por prefixo do nome do arquivo, tipo de arquivo e propr
 * link:prepare-mcp-host.html["Prepare o host MCP"]
 * link:manage-data-collections.html["Gerenciar coletas de dados"]
 * link:maintain-mcp-setup.html["Mantenha a configuração do seu MCP em dia"]
-* link:configure-entra-id-mcp.html["Configure o Microsoft Entra ID para acesso governado à IA"]
-* link:connect-entra-id-aide-mcp.html["Conecte o AI Data Engine ao Microsoft Entra ID"]
 * link:../release-notes/known-limitations.html["Limitações conhecidas"]
 

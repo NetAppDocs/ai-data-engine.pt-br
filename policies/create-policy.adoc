@@ -57,7 +57,7 @@ Analise a tabela de resultados para confirmar se o conjunto de filtros captura o
 . Para associar uma ação, selecione uma das seguintes opções em *Ação*:
 +
 ** *Somente monitoramento (nenhuma ação)* (padrão): salva a política como uma condição somente de monitoramento.
-** *Enviar notificação por e-mail*: envia uma notificação por e-mail ao destinatário especificado.
+** *Enviar notificação por e-mail*: envia uma notificação por e-mail aos destinatários que você especificar e permite configurar os intervalos de notificação.
 ** *Excluir permanentemente*: não requer nenhuma entrada adicional.
 +
 
@@ -65,7 +65,7 @@ CAUTION: A ação "Excluir permanentemente" exclui automática e irreversivelmen
 
 
 
-. Selecione *Criar*.
+. Selecione *Salvar*.
 
 
 .Resultado
@@ -85,8 +85,8 @@ O exemplo a seguir cria uma política que envia uma notificação por e-mail qua
 
 . Selecione *Criar policy*.
 . Insira o nome da política: *Arquivos inativos — sem acesso por 1 ano*.
-. Selecione a ação *Enviar notificação por e-mail* e insira o endereço de e-mail do destinatário.
-. Selecione *Criar*.
+. Selecione a ação *Enviar notificação por e-mail*, selecione o intervalo de notificação e insira o endereço de e-mail do destinatário.
+. Selecione *Salvar*.
 
 
 
