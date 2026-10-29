@@ -67,7 +67,7 @@ As operações de tag do MCP são limitadas:: Os clientes de IA não conseguem l
 [[related-information]]
 == Informações relacionadas
 
-* link:whats-new.html["O que há de novo"]
+* link:../whats-new.html["O que há de novo"]
 * link:../deploy/deployment-overview.html["Visão geral da implantação"]
 * link:../investigate/take-actions.html["Tome medidas com base nos seus dados"]
 * link:../mcp/learn-about-mcp.html["Saiba mais sobre o acesso governado à IA"]

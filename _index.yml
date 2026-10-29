@@ -23,7 +23,7 @@ indexpage:
     - title: Explore fluxos de trabalho de otimização de armazenamento
       url: "/get-started/storage-optimization-workflows.html"
     - title: O que há de novo
-      url: "/release-notes/whats-new.html"
+      url: "/whats-new.html"
     - title: Limitações conhecidas
       url: "/release-notes/known-limitations.html"
   - title: Implantar
