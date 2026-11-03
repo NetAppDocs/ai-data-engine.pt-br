@@ -38,6 +38,7 @@ Para obter informações sobre os tipos de proxy suportados e a referência comp
 * Você configurou seu servidor proxy para permitir os endpoints em link:aide-requirements.html#outbound-internet-access["Acesso à internet de saída"].
 * Você conhece o host, a porta e o esquema do proxy (`http` ou `https`). Se o proxy exigir autenticação, você também conhece o nome de usuário e a senha.
 * Se você usa um proxy HTTPS com um certificado assinado de forma privada, você tem o certificado da CA como um arquivo PEM ou um diretório simples de `.crt` e `.pem` arquivos no host de destino.
+* Se você usa um proxy de inspeção TLS, você tem o certificado da CA de inspeção no mesmo formato no host de destino. O instalador exige isso.
 
 
 
@@ -48,14 +49,14 @@ NOTE: Use o instalador apenas para a primeira instalação do AIDE. Não o use p
 [[what-the-installer-configures]]
 == O que o instalador configura
 
-Em uma implantação de nó único, o AI Data Engine é proprietário da VM em que está instalado. O instalador configura o ambiente de execução do k3s e o AI Data Engine para o proxy. Ele não altera a configuração de proxy do host, como a dos gerenciadores de pacotes do sistema operacional. O instalador faz o seguinte:
+Em uma implantação de nó único, o AI Data Engine é proprietário da VM em que é instalado. O instalador configura o ambiente de execução k3s e o AI Data Engine para o proxy. Ele não altera a configuração do proxy de outros softwares no host, como os gerenciadores de pacotes do sistema operacional. O instalador faz o seguinte:
 
 * Faz o download do script de instalação e do binário do k3s por meio do proxy. Não fornece ao k3s nem ao kubelet um proxy para todo o sistema.
 * Configura o ambiente de execução de contêineres do k3s para baixar imagens por meio do proxy.
-* Adiciona o certificado de CA que você fornece com `--proxy-ca-cert` ao repositório de confiança do AI Data Engine.
+* Adiciona o certificado CA que você fornece com `--proxy-ca-cert` ao repositório de certificados confiáveis do host e ao repositório de certificados confiáveis do AI Data Engine.
 
 
-Você não precisa configurar o ambiente de execução de contêiner do k3s nem o repositório de certificados confiáveis.
+Você não configura o ambiente de execução do contêiner k3s. Você fornece o certificado da CA, e o instalador o adiciona aos repositórios de certificados confiáveis.
 
 
 
@@ -206,10 +207,10 @@ Ao executar o comando de instalação em um terminal sem `--proxy-host` ou `--no
 | Porta do proxy | Insira a porta do proxy. O padrão é `443` para HTTPS e `80` para HTTP. 
 
 
-| Tipo de proxy | Pressione Enter para aceitar o valor padrão. 
+| Tipo de proxy | Digite `r` para um proxy de encaminhamento normal ou `t` para um proxy de inspeção TLS. Pressione Enter para aceitar o padrão, `r`. 
 
 
-| Certificado CA para o próprio certificado do proxy (somente HTTPS, opcional) | Insira o caminho para o arquivo ou diretório da CA. Pressione Enter se uma CA pública assinou o certificado do proxy. 
+| Certificado CA para o próprio certificado do proxy (somente HTTPS, opcional) | Insira o caminho para o arquivo ou diretório da CA. Pressione Enter se uma CA pública assinou o certificado do proxy. Para um proxy com inspeção de TLS, insira o caminho para o certificado da CA de inspeção necessário. 
 
 
 | O proxy requer nome de usuário e senha? (s/N) | Se sim, digite o nome de usuário e, em seguida, digite a senha duas vezes. O instalador não exibe a senha. 
@@ -248,6 +249,15 @@ Se o comando contiver `--no-proxy`, remova-o. Mantenha todos os outros parâmetr
 --proxy-port 8443 \
 --proxy-scheme https \
 --proxy-ca-cert /root/proxy-ca.pem
+----
+.Proxy de inspeção de TLS
+[source, bash]
+----
+--proxy-host proxy.example.com \
+--proxy-port 3128 \
+--proxy-scheme http \
+--proxy-type t \
+--proxy-ca-cert /root/inspection-ca.pem
 ----
 * Se o seu proxy não exigir autenticação, omita `--proxy-user` e `--proxy-password-file`.
 * Se você especificar `--proxy-user` sem `--proxy-password-file`, o instalador solicitará a senha quando você o executar em um terminal.

@@ -41,6 +41,7 @@ Para obter informações sobre os tipos de proxy suportados e a referência comp
 * Você configurou seu servidor proxy para permitir os endpoints em link:aide-requirements.html#outbound-internet-access["Acesso à internet de saída"].
 * Você conhece o host, a porta e o esquema do proxy (`http` ou `https`). Se o proxy exigir autenticação, você também conhece o nome de usuário e a senha.
 * Se você usar um proxy HTTPS com um certificado assinado de forma privada, terá o certificado da CA como um arquivo PEM ou um diretório simples de arquivos  `.crt` e  `.pem` no host do instalador.
+* Se você usa um proxy de inspeção TLS, você tem o certificado da CA de inspeção no mesmo formato no host do instalador. O instalador exige isso.
 
 
 
@@ -68,6 +69,7 @@ Antes de executar o instalador, configure o ambiente de execução do contêiner
 * Os nós devem acessar o host do registro de contêineres da NetApp e o bucket da camada de imagens listado em link:aide-requirements.html#outbound-internet-access["Acesso à internet de saída"] por meio do proxy.
 * Mantenha os endereços internos do cluster e os endereços dos nós fora do proxy.
 * Se você usar um proxy HTTPS com um certificado assinado de forma privada, os nós também devem confiar no certificado da CA do proxy.
+* Se você usar um proxy de inspeção TLS, os certificados de CA confiáveis em cada nó devem incluir o certificado de CA de inspeção do proxy.
 
 
 Os passos dependem da sua distribuição do Kubernetes. Consulte a documentação da sua distribuição.
@@ -220,10 +222,10 @@ Ao executar o comando de instalação em um terminal sem `--proxy-host` ou `--no
 | Porta do proxy | Insira a porta do proxy. O padrão é `443` para HTTPS e `80` para HTTP. 
 
 
-| Tipo de proxy | Pressione Enter para aceitar o valor padrão. 
+| Tipo de proxy | Digite `r` para um proxy de encaminhamento normal ou `t` para um proxy de inspeção TLS. Pressione Enter para aceitar o padrão, `r`. 
 
 
-| Certificado CA para o próprio certificado do proxy (somente HTTPS, opcional) | Insira o caminho para o arquivo ou diretório da CA. Pressione Enter se uma CA pública assinou o certificado do proxy. 
+| Certificado CA para o próprio certificado do proxy (somente HTTPS, opcional) | Insira o caminho para o arquivo ou diretório da CA. Pressione Enter se uma CA pública assinou o certificado do proxy. Para um proxy que inspeciona TLS, insira o caminho para o certificado da CA de inspeção. Este campo é obrigatório. 
 
 
 | O proxy requer nome de usuário e senha? (s/N) | Se sim, digite o nome de usuário e, em seguida, digite a senha duas vezes. O instalador não exibe a senha. 
@@ -262,6 +264,15 @@ Se o comando contiver `--no-proxy`, remova-o. Mantenha todos os outros parâmetr
 --proxy-port 8443 \
 --proxy-scheme https \
 --proxy-ca-cert $HOME/proxy-ca.pem
+----
+.Proxy de inspeção de TLS
+[source, bash]
+----
+--proxy-host proxy.example.com \
+--proxy-port 3128 \
+--proxy-scheme http \
+--proxy-type t \
+--proxy-ca-cert $HOME/inspection-ca.pem
 ----
 * Se o seu proxy não exigir autenticação, omita `--proxy-user` e `--proxy-password-file`.
 * Se você especificar `--proxy-user` sem `--proxy-password-file`, o instalador solicitará a senha quando você o executar em um terminal.

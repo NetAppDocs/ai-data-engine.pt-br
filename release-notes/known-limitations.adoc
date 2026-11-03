@@ -22,7 +22,6 @@ Implantações de nó único e de múltiplos nós são independentes:: Uma impla
 O suporte a proxy é limitado:: Você pode implantar o AI Data Engine com um proxy de encaminhamento, mas os seguintes recursos de proxy não são compatíveis:
 +
 --
-* Proxies de inspeção TLS, que descriptografam e assinam novamente o tráfego HTTPS com uma autoridade de certificação personalizada.
 * NTLM, Kerberos ou autenticação por certificado de cliente para o proxy. Use sem autenticação ou autenticação básica.
 * Proxies SOCKS.
 * Configuração automática de proxy (arquivo PAC ou WPAD). Forneça diretamente ao instalador o host e a porta do proxy.
