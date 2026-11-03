@@ -228,19 +228,18 @@ Esses tamanhos são configurações básicas recomendadas, otimizadas para uma j
 | Tamanho | vCPU | RAM | Disco | IOPS de armazenamento | Taxa de transferência de storage | Rede | Arquivos aproximados 
 
 
-| Pequeno | 16 | 64 GB | 500 GB | 8.000 | 1.000 MB/s | 1 GbE | 200 milhões 
+| Pequeno | 16 | 64 GB | 565 GB ^1^ | 8.000 | 1.000 MB/s | 1 GbE | 200 milhões 
 
 
-| Médio | 32 | 128 GB | 2 TB | 12.000 | 1.500 MB/s | 1 GbE | 1 bilhão 
+| Médio | 32 | 128 GB | 2.065 GB ^1^ | 12.000 | 1.500 MB/s | 1 GbE | 1 bilhão 
 
 
-| Grande | 96 | 192 GB | 6 TB | 16.000 | 2.000 MB/s | 10 GbE | 3 bilhões 
+| Grande | 96 | 192 GB | 6.065 GB ^1^ | 16.000 | 2.000 MB/s | 10 GbE | 3 bilhões 
 |===
+^1^ O valor do disco é o espaço livre mínimo necessário quando o sistema operacional, o ambiente de execução do k3s e os dados do AIDE compartilham um único disco. Ele inclui 65 GB para o sistema operacional, k3s, kubelet e logs, além do volume de dados do AIDE (500 GB para Pequeno, 2.000 GB para Médio e 6.000 GB para Grande). Se esses componentes estiverem em discos separados, consulte link:single-node-prerequisites.html#single-node-disk-space["espaço de disco nos pré-requisitos de nó único"].
 
-NOTE: Recomenda-se o uso de SSD NVMe ou outro armazenamento de estado sólido para todos os tamanhos de implantação. Os valores de disco nesta tabela refletem apenas o armazenamento do volume de dados do AIDE. Se o sistema operacional, o runtime do k3s e os dados do AIDE compartilharem um único disco, adicione aproximadamente 65 GB ao valor de disco para o tamanho escolhido. Por exemplo, uma implantação Small em um único disco requer aproximadamente 565 GB no total.
 
-
-NOTE: Em uma implementação de nó único, utilize armazenamento em blocos, e não NFS, para o volume de dados do AIDE. O armazenamento baseado em NFS pode causar baixo desempenho.
+NOTE: Recomenda-se o uso de SSD NVMe ou outro armazenamento de estado sólido para todos os tamanhos de implantação. Em uma implementação de nó único, utilize armazenamento em blocos, e não NFS, para o volume de dados do AIDE. O armazenamento baseado em NFS pode causar baixo desempenho.
 
 
 

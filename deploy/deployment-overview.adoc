@@ -56,7 +56,7 @@ Uma implantação multinó do AIDE está disponível em três tamanhos, Small, M
 | Computação | 16 a 96 vCPU, 64 a 192 GB de RAM | 32 a 64 vCPU, 128 a 256 GB de RAM por nó 
 
 
-| Storage | Armazenamento em blocos SSD de 500 GB a 6 TB, 8.000 a 16.000 IOPS, taxa de transferência de 1.000 a 2.000 MB/s | Capacidade total do cluster de 4 a 24 TB, 8.000 a 16.000 IOPS por nó, taxa de transferência de 1.000 a 2.000 MB/s por nó 
+| Storage | Armazenamento em blocos SSD de 565 GB a 6.065 GB, 8.000 a 16.000 IOPS, taxa de transferência de 1.000 a 2.000 MB/s | Capacidade total do cluster de 4 a 24 TB, 8.000 a 16.000 IOPS por nó, taxa de transferência de 1.000 a 2.000 MB/s por nó 
 
 
 | Rede | 1 GbE (10 GbE recomendado para Large) | 1 a 10 GbE 
